@@ -171,4 +171,17 @@ class RFSceneBuilder(SceneBuilder):
                     agent.reset(qpos)
                     agent.robot.set_pose(ppos)
                     self.articulations[agent_cfg['robot_uid']] = agent
+        property_poses = self.get_property_poses()
+        print('-'*10 + 'Property Poses' + '-'*10)
+        for n, pose in property_poses.items():
+            print(f'{n}: {pose}')
 
+    def get_property_poses(self):
+        property_poses = {}
+        for n, obj in self.scene_objects.items():
+            property_poses[n] = obj.pose
+        for n, obj in self.movable_objects.items():
+            property_poses[n] = obj.pose
+        for n, obj in self.articulations.items():
+            property_poses[n] = obj.robot.pose
+        return property_poses
