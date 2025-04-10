@@ -21,4 +21,6 @@ def solve(env: PickMeatEnv, seed=None, debug=False, vis=False):
     pose1[2] += 0.2
     res = planner.move_to_pose_with_screw(pose1)
     planner.close()
+    while 1:
+        planner.open_gripper()
     return res

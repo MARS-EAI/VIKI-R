@@ -178,10 +178,13 @@ class RFSceneBuilder(SceneBuilder):
 
     def get_property_poses(self):
         property_poses = {}
-        for n, obj in self.scene_objects.items():
-            property_poses[n] = obj.pose
-        for n, obj in self.movable_objects.items():
-            property_poses[n] = obj.pose
-        for n, obj in self.articulations.items():
-            property_poses[n] = obj.robot.pose
+        if getattr(self, 'scene_objects'):
+            for n, obj in self.scene_objects.items():
+                property_poses[n] = obj.pose
+        if getattr(self, 'movable_objects'):
+            for n, obj in self.movable_objects.items():
+                property_poses[n] = obj.pose
+        if getattr(self, 'articulations'):
+            for n, obj in self.articulations.items():
+                property_poses[n] = obj.robot.pose
         return property_poses
