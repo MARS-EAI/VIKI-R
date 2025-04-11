@@ -317,8 +317,8 @@ island_group:
   group_z_rot: 3.1415
 
   island:
-    - name: sink
-      type: sink
+    # - name: sink
+    #   type: sink
 
     - name: island_counter
       type: counter

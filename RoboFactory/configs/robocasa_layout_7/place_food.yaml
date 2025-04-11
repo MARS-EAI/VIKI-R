@@ -3,9 +3,9 @@ scene:
   name: Robocasa
   env:
     scene_idx: 0
-    layout_idx: 1  # 0-9
+    layout_idx: 7  # 0-9
     style_idx: 3  # 0-11
-    customized_layout: configs/robocasa_layout_1/customized_layout.yaml 
+    customized_layout: configs/robocasa_layout_7/customized_layout.yaml 
 
 objects:
   -
@@ -15,7 +15,7 @@ objects:
     scale: 0.2
     pos:
       ppos:
-        p: [2.4, -3.3, 1.01]
+        p: [2.4, -3.3, 1.]
       qpos: [0.732, 0.007, -0.009, 0.681]
       randp_scale: [0.3, 0., 0.]
       randq_scale: [0., 0., 0., 0.]

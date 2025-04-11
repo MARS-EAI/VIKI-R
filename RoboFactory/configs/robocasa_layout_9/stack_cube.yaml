@@ -4,9 +4,9 @@ scene:
   name: Robocasa
   env:
     scene_idx: 0
-    layout_idx: 6  # 0-9
+    layout_idx: 9  # 0-9
     style_idx: 3  # 0-11
-    customized_layout: configs/robocasa_layout_6/customized_layout.yaml 
+    customized_layout: configs/robocasa_layout_9/customized_layout.yaml 
   primitives:
     - name: cubeA
       builder: mani_skill.utils.building.actors.build_cube
