@@ -24,12 +24,19 @@ class TakePhotoEnv(BaseEnv):
     goal_thresh = 0.025
 
     def __init__(
-        self, *args, robot_uids=("panda", "panda", "panda", "panda"), **kwargs
+        self, *args, **kwargs
     ):
         assert 'config' in kwargs
         with open(kwargs['config'], 'r', encoding='utf-8') as f:
             self.cfg = yaml.load(f.read(), Loader=yaml.FullLoader)
         del kwargs['config']
+        if 'robot_uids' in kwargs:
+            robot_uids = kwargs['robot_uids']
+        else:
+            robot_uids = []
+            for agent_cfg in self.cfg['agents']:
+                robot_uid = agent_cfg['robot_uid']
+                robot_uids.append(robot_uid.split('-')[0])
         super().__init__(*args, robot_uids=robot_uids, **kwargs)
 
     @property
