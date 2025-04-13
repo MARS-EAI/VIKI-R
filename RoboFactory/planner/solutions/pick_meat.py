@@ -6,15 +6,18 @@ from planner.motionplanner import PandaArmMotionPlanningSolver
 
 def solve(env: PickMeatEnv, seed=None, debug=False, vis=False):
     env.reset(seed=seed)
+    env = env.unwrapped
+    while 1:
+        env.render_human()
     planner = PandaArmMotionPlanningSolver(
         env,
         debug=False,
         vis=vis,
-        base_pose=env.unwrapped.agent.robot.pose,
+        # base_pose=env.unwrapped.agent.robot.pose,
         visualize_target_grasp_pose=vis,
         print_env_info=False,
+        is_multi_agent=True,
     )
-    env = env.unwrapped
     pose1 = planner.get_grasp_pose_w_labeled_direction(actor=env.meat, actor_data=env.annotation_data['meat'], pre_dis=0)
     planner.move_to_pose_with_screw(pose1)
     planner.close_gripper()

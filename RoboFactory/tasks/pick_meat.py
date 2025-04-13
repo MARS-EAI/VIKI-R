@@ -27,7 +27,7 @@ class PickMeatEnv(BaseEnv):
     cube_half_size = 0.02
 
     def __init__(
-        self, *args, robot_uids="panda", robot_init_qpos_noise=0.02, **kwargs
+        self, *args, robot_uids=("panda","fetch","unitree_go2", "unitree_h1"), robot_init_qpos_noise=0.02, **kwargs
     ):
         assert 'config' in kwargs
         with open(kwargs['config'], 'r', encoding='utf-8') as f:
@@ -81,7 +81,8 @@ class PickMeatEnv(BaseEnv):
             
     def evaluate(self):
         # print(self.meat.pose.p[..., 2])
-        success = self.meat.pose.p[..., 2] > 0.15 + self.agent.robot.pose.p[0, 2]
+        # success = self.meat.pose.p[..., 2] > 0.15 + self.agent.robot.pose.p[0, 2]
+        success = self.meat.pose.p[..., 2] > 0.15
         return {
             "success": success,
         }

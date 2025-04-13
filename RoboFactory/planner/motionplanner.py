@@ -44,6 +44,7 @@ class PandaArmMotionPlanningSolver:
         self.agent_num = len(self.env_agent) if is_multi_agent else 1
 
         self.robot = [agent.robot for agent in self.env_agent]
+        print(self.robot)
         self.base_pose = [base_pose, ] if not isinstance(base_pose, list) else base_pose  
         # Assume all agents have the same control mode and joint limits
         self.control_mode = self.env_agent[0].control_mode
