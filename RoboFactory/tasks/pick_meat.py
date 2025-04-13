@@ -27,7 +27,7 @@ class PickMeatEnv(BaseEnv):
     cube_half_size = 0.02
 
     def __init__(
-        self, *args, robot_uids=("panda","fetch","unitree_go2", "unitree_h1"), robot_init_qpos_noise=0.02, **kwargs
+        self, *args, robot_uids=("panda","fetch","unitree_go2", "unitree_h1", "stompy", "anymal_c"), robot_init_qpos_noise=0.02, **kwargs
     ):
         assert 'config' in kwargs
         with open(kwargs['config'], 'r', encoding='utf-8') as f:
