@@ -161,7 +161,7 @@ class RFSceneBuilder(SceneBuilder):
                         ppos = ppos.tolist()
                         for agent_ppos in pposes:
                             delta_pos = np.abs(np.array(agent_ppos) - np.array(ppos))
-                            if np.max(delta_pos) < 0.3:
+                            if np.max(delta_pos) < 0.6 and np.min(delta_pos) < 0.2:
                                 available_pos = False
                         count += 1
                 ppos = sapien.Pose(ppos, q=euler2quat(*pos_cfg['ppos']['q']))
