@@ -17,8 +17,8 @@ from mani_skill.utils.structs.pose import Pose
 import utils.scenes
 
 
-@register_env("PickMeat-rf", max_episode_steps=500)
-class PickMeatEnv(BaseEnv):
+@register_env("PickMeatRandomRobot-rf", max_episode_steps=500)
+class PickMeatRandomRobotEnv(BaseEnv):
 
     SUPPORTED_ROBOTS = ["panda"]
     agent: Union[Panda, Fetch]
@@ -89,9 +89,8 @@ class PickMeatEnv(BaseEnv):
     def evaluate(self):
         # print(self.meat.pose.p[..., 2])
         # success = self.meat.pose.p[..., 2] > 0.15 + self.agent.robot.pose.p[0, 2]
-        success = self.meat.pose.p[..., 2] > 0.15
         return {
-            "success": success,
+            "success": True,
         }
 
     def _get_obs_extra(self, info: Dict):

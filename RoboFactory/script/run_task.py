@@ -12,7 +12,8 @@ def main():
         f"--render-mode=\"human\" "
         f"-b=\"cpu\" "
         f"-n 1 "
-        f"--vis"
+        f"--vis "
+        f"--save-video "
     )
 
     os.system(command)

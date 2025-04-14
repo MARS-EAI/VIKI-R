@@ -9,3 +9,4 @@ from .three_robots_stack_cube import solve as solveThreeRobotsStackCube
 from .lift_barrier import solve as solveLiftBarrier
 from .take_photo import solve as solveTakePhoto
 from .long_pipeline_delivery import solve as solveLongPipelineDelivery
+from .pick_meat_random_robot import solve as solvePickMeatRandomRobot
