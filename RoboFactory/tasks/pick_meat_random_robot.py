@@ -15,7 +15,7 @@ from mani_skill.utils.registration import register_env
 from mani_skill.utils.scene_builder.table import TableSceneBuilder
 from mani_skill.utils.structs.pose import Pose
 import utils.scenes
-
+import random
 
 @register_env("PickMeatRandomRobot-rf", max_episode_steps=500)
 class PickMeatRandomRobotEnv(BaseEnv):
@@ -33,6 +33,12 @@ class PickMeatRandomRobotEnv(BaseEnv):
         with open(kwargs['config'], 'r', encoding='utf-8') as f:
             self.cfg = yaml.load(f.read(), Loader=yaml.FullLoader)
         del kwargs['config']
+        agent_cfgs = self.cfg['agents']
+        # random choose agents in configuration
+        random.shuffle(agent_cfgs)
+        new_agent_cfgs = agent_cfgs[:random.randint(2, len(agent_cfgs))]
+        self.cfg['agents'] = new_agent_cfgs
+        
         if 'robot_uids' in kwargs:
             robot_uids = kwargs['robot_uids']
         else:

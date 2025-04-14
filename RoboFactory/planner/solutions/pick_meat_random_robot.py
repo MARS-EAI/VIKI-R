@@ -7,6 +7,8 @@ from PIL import Image
 def solve(env: PickMeatRandomRobotEnv, seed=None, debug=False, vis=False):
     env.reset(seed=seed)
     env = env.unwrapped
+    # while 1:
+    #     env.render_human()
     res_video = env.render()
     out_dir = 'demos/PickMeatRandomRobotRenders'
     os.makedirs(out_dir, exist_ok=True)
