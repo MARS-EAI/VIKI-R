@@ -146,13 +146,26 @@ class RFSceneBuilder(SceneBuilder):
             is_multi_agent = (len(agents_cfg) > 1)
             agent = self.env.agent
             self.articulations = {}
+            pposes = []    # add collision avoidance
             for idx, agent_cfg in enumerate(agents_cfg):
                 pos_cfg = agent_cfg['pos']
                 ppos = pos_cfg['ppos']['p']
                 if 'randp_scale' in pos_cfg:
-                    ppos = np.array(ppos) + np.array(agent_cfg['pos']['randp_scale']) * np.random.rand((len(ppos)))
-                    ppos = ppos.tolist()
+                    available_pos = False
+                    count = 0
+                    while not available_pos:
+                        if count > 50:
+                            print(f'Fail to find suitable position for {count} time. Skip.')
+                        available_pos = True
+                        ppos = np.array(ppos) + np.array(agent_cfg['pos']['randp_scale']) * np.random.rand((len(ppos)))
+                        ppos = ppos.tolist()
+                        for agent_ppos in pposes:
+                            delta_pos = np.abs(np.array(agent_ppos) - np.array(ppos))
+                            if np.max(delta_pos) < 0.3:
+                                available_pos = False
+                        count += 1
                 ppos = sapien.Pose(ppos, q=euler2quat(*pos_cfg['ppos']['q']))
+                pposes.append(ppos.p)
                 qpos = np.array((pos_cfg['qpos']))
                 if 'randq_scale' in pos_cfg:
                     qpos = np.tile(qpos, (b, 1)) + np.tile(np.array(agent_cfg['pos']['randq_scale']), (b, 1)) * np.random.rand(b, (len(qpos)))
