@@ -38,6 +38,9 @@ class PickMeatRandomRobotEnv(BaseEnv):
         random.shuffle(agent_cfgs)
         new_agent_cfgs = agent_cfgs[:random.randint(2, len(agent_cfgs))]
         self.cfg['agents'] = new_agent_cfgs
+
+        # random choose layout
+        self.cfg['scene']['env']['style_idx'] = random.randint(0, 11)
         
         if 'robot_uids' in kwargs:
             robot_uids = kwargs['robot_uids']
