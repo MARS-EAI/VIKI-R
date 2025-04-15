@@ -9,17 +9,21 @@ from dotenv import load_dotenv
 from mathruler.grader import extract_boxed_content, grade_answer
 from tqdm import tqdm  # Import tqdm for progress bar
 from concurrent.futures import ThreadPoolExecutor  # Import for parallel execution
-
+import re
 # Load environment variables from .env file
 load_dotenv()
 
 # Constants
 IMAGE_DIR = "/fs-computility/mabasic/zhouheng/RoboViki-R/data/images"
 META_DATA_PATH = "/fs-computility/mabasic/zhouheng/RoboViki-R/data/meta_data.json"
-SYSTEM_PROMPT = (
+SYSTEM_PROMPT_COT = (
     r'The image depicts an indoor scene. Analyze how many robots are present.' 
     r'You FIRST think about the reasoning process as an internal monologue and then provide the final answer. '
-    r'The reasoning process MUST BE enclosed within <think> </think> tags. The final answer MUST BE put in \boxed{}. just a number'
+    r'The reasoning process MUST BE enclosed within <think> </think> tags. The final answer MUST BE put in \boxed{}.'
+)
+SYSTEM_PROMPT = (
+    r'The image depicts an indoor scene. How many robots are present.' 
+    r'The final answer MUST BE put in \boxed{}.'
 )
 
 # Initialize OpenAI client
@@ -70,7 +74,11 @@ def process_image(img_file, metadata, results):
     if response:
         # Extract number from response
         predicted_count = extract_boxed_content(response)
-        
+        if predicted_count==None:
+            match = re.search(r"Final Answer: (\d+)", response)
+            if match:
+                predicted_count = match.group(1)
+
         result = {
             "image_id": img_id,
             "ground_truth": ground_truth,
