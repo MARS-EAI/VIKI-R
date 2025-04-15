@@ -477,10 +477,11 @@ class RobocasaSceneBuilder(RFSceneBuilder):
                 object_file_path = object_cfg['file_path']
                 object_type = os.path.splitext(object_file_path)[-1]
                 object_name = object_cfg['name']
-                object_annotation_path = object_cfg['annotation_path']
-                with open(object_annotation_path, 'r') as f:
-                    object_annotation_data = json.load(f)
-                self.env.annotation_data[object_name] = object_annotation_data
+                if 'annotation_path' in object_cfg:
+                    object_annotation_path = object_cfg['annotation_path']
+                    with open(object_annotation_path, 'r') as f:
+                        object_annotation_data = json.load(f)
+                    self.env.annotation_data[object_name] = object_annotation_data
                 if object_type in ['.obj', '.glb']:
                     builder = self.scene.create_actor_builder()
                     builder.set_physx_body_type("dynamic")
