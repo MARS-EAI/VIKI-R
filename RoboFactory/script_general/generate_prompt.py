@@ -1,17 +1,25 @@
-"""
-task_templates.py
-──────────────────
-以 JSON‑friendly 的 Python dict 定义任务范式，并提供实例化函数
-"""
-
 import random
-import json
 from copy import deepcopy
+from collections import Counter
 from task_pool import TASK_POOL
+import json, pprint
 
-# ------------------------------
-# 1. 机器人类别到具体 ID 的映射
-# ------------------------------
+# ---------- 1) layout → 允许的角色多重集 ----------
+# 例子（请根据之前文档把其它 layout 填完整）
+LAYOUT_COMBINATIONS = {
+    0: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
+    1: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
+    2: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
+    3: [["arm", "dog", "arm"], ["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
+    4: [["humanoid"], ["wheeled"]],
+    5: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
+    7: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"], ["humanoid", "arm"], ["wheeled", "arm"]],
+    8: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"], ["humanoid", "arm"]],
+    9: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"], ["humanoid", "arm"],
+        ["arm", "dog", "arm"], ["arm", "dog", "dog", "arm"]],
+}
+
+# ---------- 2) 机器人类别到具体 ID ----------
 CATEGORY2IDS = {
     "humanoid": ["unitree_h1", "stompy"],
     "wheeled":  ["fetch"],
@@ -19,67 +27,75 @@ CATEGORY2IDS = {
     "dog":      ["anymal_c", "unitree_go2"],
 }
 
-# ------------------------------
-# 2. layout 组合规则（与之前保持一致，可放到 utils/layout_rules.py）
-# ------------------------------
-LAYOUT_COMBINATIONS = {
-    0: [["humanoid"], ["wheeled"]],
-    1: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
-    2: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
-    3: [["arm", "dog", "arm"], ["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
-    4: [["humanoid"], ["wheeled"]],
-    5: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
-    7: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"], [["humanoid", "wheeled"], "arm"]],
-    8: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"], ["humanoid", "arm"]],
-    9: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"], ["humanoid", "arm"],
-        ["arm", "dog", "arm"], ["arm", "dog", "dog", "arm"]],
-}
+# ---------- 3) 工具函数 ----------
+def is_compatible(layout_id, role_seq):
+    """判断任务要求的 role_seq 是否能在给定 layout 内找到足够名额"""
+    avail = Counter()
+    for combo in LAYOUT_COMBINATIONS.get(layout_id, []):
+        avail.update(combo)            # 统计该 layout 能提供的总类别数量
+    needed = Counter(role_seq)
+    return all(avail[c] >= n for c, n in needed.items())
 
-# ------------------------------
-# 3. 实例化工具函数
-# ------------------------------
-def _choose_ids(role_sequence):
-    """从 CATEGORY2IDS 抽取并随机打乱返回 {R1: id1, R2: id2, ...}"""
-    ids = [random.choice(CATEGORY2IDS[cat]) for cat in role_sequence]
-    random.shuffle(ids)
-    return {f"R{i+1}": rid for i, rid in enumerate(ids)}
+def _choose_ids(role_seq):
+    """抽取 ID 并返回 (乱序后的 id 列表, 置换表 perm)"""
+    ids = [random.choice(CATEGORY2IDS[cat]) for cat in role_seq]
+    perm = list(range(len(ids)))
+    random.shuffle(perm)
+    shuffled_ids = [ids[i] for i in perm]
+    return shuffled_ids, perm          # perm[i]=原 idx？我们用 perm.index 逆查
 
-def _fill_masks(text_or_action, mask_map):
-    """递归替换字符串或动作中的 <maskX>"""
-    if isinstance(text_or_action, str):
-        for mk, val in mask_map.items():
-            text_or_action = text_or_action.replace(f"<{mk}>", val)
-        return text_or_action
-    elif isinstance(text_or_action, list):
-        return [_fill_masks(t, mask_map) for t in text_or_action]
-    elif isinstance(text_or_action, dict):
-        return {k: _fill_masks(v, mask_map) for k, v in text_or_action.items()}
-    return text_or_action
+def _permute_gt(gt_steps, perm):
+    """同步置换 ground‑truth 的 Rk 键"""
+    new_steps = []
+    for step in gt_steps:
+        new_step = {}
+        for old_key, action in step.items():
+            old_idx = int(old_key[1:]) - 1          # Rk → idx
+            new_idx = perm.index(old_idx)           # 在新顺序中的位置
+            new_step[f"R{new_idx+1}"] = action
+        new_steps.append(new_step)
+    return new_steps
 
+def _fill_masks(obj, mask_map):
+    """递归替换 <maskX> 占位符"""
+    if isinstance(obj, str):
+        for k, v in mask_map.items():
+            obj = obj.replace(f"<{k}>", v)
+        return obj
+    if isinstance(obj, list):
+        return [_fill_masks(x, mask_map) for x in obj]
+    if isinstance(obj, dict):
+        return {k: _fill_masks(v, mask_map) for k, v in obj.items()}
+    return obj
+
+# ---------- 4) 主实例化函数 ----------
 def instantiate_task(template, layout_id):
-    """给定模板 & layout，输出完整 JSON 样本"""
+    if not is_compatible(layout_id, template["robot_roles"]):
+        raise ValueError(f"layout_id {layout_id} cannot satisfy robot_roles {template['robot_roles']}")
+
     tpl = deepcopy(template)
 
-    # 1) 确定 robot IDs（这里不做 layout 合法性检查，按 roles 抽取并打乱）
-    robots = _choose_ids(tpl["robot_roles"])
+    # a) 随机选取并打乱 robot IDs
+    ids, perm = _choose_ids(tpl["robot_roles"])
+    robots = {f"R{i+1}": rid for i, rid in enumerate(ids)}
 
-    # 2) 随机填充 mask 值
+    # b) 随机选择 mask 值并替换
     mask_map = {mk: random.choice(tpl[mk]) for mk in tpl if mk.startswith("mask")}
-    description_filled = _fill_masks(tpl["description"], mask_map)
-    gt_filled = [_fill_masks(step, mask_map) for step in tpl["ground_truth"]]
+    desc_filled = _fill_masks(tpl["description"], mask_map)
+    gt_masked  = [_fill_masks(step, mask_map) for step in tpl["ground_truth"]]
+
+    # c) 根据置换表同步 ground_truth 键
+    gt_final = _permute_gt(gt_masked, perm)
 
     return {
         "task_name": tpl["task_name"],
         "layout_id": layout_id,
-        "description": description_filled,
+        "description": desc_filled,
         "robots": robots,
-        "ground_truth": gt_filled
+        "ground_truth": gt_final
     }
 
-# ------------------------------
-# 4. demo – 生成 3 条样本并打印 JSON
-# ------------------------------
+# ---------- 5) 小测试 ----------
 if __name__ == "__main__":
-    samples = [instantiate_task(random.choice(TASK_POOL), layout_id=random.choice(list(LAYOUT_COMBINATIONS)))
-               for _ in range(1)]
-    print(json.dumps(samples, indent=2, ensure_ascii=False))
+    sample = instantiate_task(random.choice(TASK_POOL), layout_id=9)
+    pprint.pprint(sample, width=120, sort_dicts=False)
