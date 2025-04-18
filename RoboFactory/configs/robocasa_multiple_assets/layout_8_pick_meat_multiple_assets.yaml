@@ -91,8 +91,8 @@ objects:
   #     inertia: [0.1, 0.1, 0.1]
     
   -
-    name: plate_0
-    file_path: assets/objects/plate/new.obj
+    name: indoor_plant_0
+    file_path: assets/objects/indoor_plant/new.obj
     material: 
       type: sapien.pysapien.physx.PhysxMaterial
       params:
@@ -100,11 +100,11 @@ objects:
         dynamic_friction: 0.3
         restitution: 0.
     visual:
-      filename: assets/objects/plate/new.obj
+      filename: assets/objects/indoor_plant/new.obj
       scale: [0.4, 0.4, 0.4]
     collision:
       type: convex
-      filename: assets/objects/plate/new.obj
+      filename: assets/objects/indoor_plant/new.obj
       scale: [0.4, 0.4, 0.4]
     pos:
       ppos:
