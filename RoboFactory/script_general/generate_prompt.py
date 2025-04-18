@@ -108,6 +108,7 @@ def instantiate_task(template, layout_id):
     gt_final = _permute_gt(gt_masked, perm)
 
     return {
+        "task_id": tpl["task_id"],
         "task_name": tpl["task_name"],
         "layout_id": layout_id,
         "description": desc_filled,
@@ -117,5 +118,6 @@ def instantiate_task(template, layout_id):
 
 # ---------- 5) 小测试 ----------
 if __name__ == "__main__":
-    sample = instantiate_task(random.choice(TASK_POOL), layout_id=9)
+    layout_id = random.choice(list(LAYOUT_COMBINATIONS.keys()))
+    sample = instantiate_task(random.choice(TASK_POOL), layout_id=layout_id)
     pprint.pprint(sample, width=120, sort_dicts=False)
