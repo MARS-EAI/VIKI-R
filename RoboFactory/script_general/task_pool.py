@@ -16,7 +16,7 @@ __all__ = ["TASK_POOL"]
 
 TASK_POOL = [
     {
-        "task_id": "0-1",
+        "task_id": "1-1",
         "task_name": "move_asset_to_target",
         "description": "Move the <mask1> to the <mask2>",
         "mask1": ["plate", "cup", "book", "pan"],
@@ -31,7 +31,7 @@ TASK_POOL = [
         ]
     },
     {
-        "task_id": "0-2",
+        "task_id": "1-2",
         "task_name": "move_asset_to_target",
         "description": "Move the <mask1> to the <mask2>",
         "mask1": ["plate", "cup", "book", "pan"],
@@ -46,7 +46,7 @@ TASK_POOL = [
         ]
     },
     {
-        "task_id": "0-3",
+        "task_id": "1-3",
         "task_name": "move_asset_to_target",
         "description": "Move the <mask1> to the <mask2>",
         "mask1": ["bottle", "screwdriver", "box", "tool"],
@@ -64,7 +64,7 @@ TASK_POOL = [
         ]
     },
     {
-        "task_id": "1-1",
+        "task_id": "2-1",
         "task_name": "parallel_dual_asset_to_plate",
         "description": "Transport the <mask1> and the <mask2> into the <mask3> together",
         "mask1": ["apple", "tomato", "bun"],
@@ -80,7 +80,7 @@ TASK_POOL = [
         ]
     },
     {
-        "task_id": "1-2",
+        "task_id": "2-2",
         "task_name": "parallel_dual_asset_to_plate",
         "description": "Transport the <mask1> and the <mask2> into the <mask3> together",
         "mask1": ["apple", "tomato", "bun"],
@@ -96,7 +96,7 @@ TASK_POOL = [
         ]
     },
     {
-        "task_id": "2-1",
+        "task_id": "3-1",
         "task_name": "set_plate_and_fork_on_table",
         "description": "Place the <mask1> on the <mask2> and fetch the <mask3> from the <mask4> into the <mask1>",
         "mask1": ["plate", "bowl", "tray"],
@@ -115,7 +115,7 @@ TASK_POOL = [
         ]
     },
     {
-        "task_id": "3-1",
+        "task_id": "4-1",
         "task_name": "toast_bread_and_set_plate",
         "description": "Insert the <mask1> into the <mask2> and place the <mask3> on the <mask4>",
         "mask1": ["bread", "bun", "slice"],
@@ -134,7 +134,7 @@ TASK_POOL = [
         ]
     },
     {
-        "task_id": "4-1",
+        "task_id": "5-1",
         "task_name": "push_box_and_store_item",
         "description": "Push the <mask1> on the ground to the goal region and put the <mask2> into the <mask1>",
         "mask1": ["box", "crate", "bin"],
@@ -149,7 +149,7 @@ TASK_POOL = [
         ]
     },    
     {
-        "task_id": "4-2",
+        "task_id": "5-2",
         "task_name": "push_box_and_store_item",
         "description": "Push the <mask1> on the ground to the goal region and put the <mask2> into the <mask1>",
         "mask1": ["box", "crate", "bin"],
@@ -163,4 +163,24 @@ TASK_POOL = [
             {"R2": ["Place", "<mask1>"]}
         ]
     },
+    {
+        "task_id": "6-1",
+        "task_name": "clear_table_with_two_robots",
+        "description": "Put the <mask1> and the <mask2> into the <mask3> to clean up the workspace",
+        "mask1": ["pumpkin", "bread", "cup"],
+        "mask2": ["scissors", "spoon", "towel"],
+        "mask3": ["cabinet", "drawer"],
+        "robot_roles": ["humanoid", "wheeled"],
+        "ground_truth": [
+            {"R1": ["Move", "<mask1>"],        "R2": ["Move", "<mask2>"]},
+            {"R1": ["Reach", "<mask1>"],       "R2": ["Reach", "<mask2>"]},
+            {"R1": ["Grasp", "<mask1>"],       "R2": ["Grasp", "<mask2>"]},
+            {"R1": ["Move", "<mask3>"],        "R2": ["Move", "<mask3>"]},
+            {"R1": ["Open", "<mask3>"]},
+            {"R1": ["Place", "<mask3>"],       "R2": ["Place", "<mask3>"]},
+            {"R1": ["Close", "<mask3>"]}
+        ]
+    }
+
+
 ]
