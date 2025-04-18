@@ -3,6 +3,7 @@ from copy import deepcopy
 from collections import Counter
 from task_pool import TASK_POOL
 import json, pprint
+import re
 
 # ---------- 1) layout → 允许的角色多重集 ----------
 # 例子（请根据之前文档把其它 layout 填完整）
@@ -45,16 +46,35 @@ def _choose_ids(role_seq):
     return shuffled_ids, perm          # perm[i]=原 idx？我们用 perm.index 逆查
 
 def _permute_gt(gt_steps, perm):
-    """同步置换 ground‑truth 的 Rk 键"""
+    """根据 perm 映射 ground_truth 的 key 和 value 中的 Rk"""
+    def remap_robot_str(s):
+        """若 s 是 Rk 形式的机器人代号，则返回重映射后的 Rj"""
+        if isinstance(s, str) and re.fullmatch(r"R\d+", s):
+            idx = int(s[1:]) - 1
+            new_idx = perm.index(idx)
+            return f"R{new_idx+1}"
+        return s
+
     new_steps = []
     for step in gt_steps:
         new_step = {}
         for old_key, action in step.items():
-            old_idx = int(old_key[1:]) - 1          # Rk → idx
-            new_idx = perm.index(old_idx)           # 在新顺序中的位置
-            new_step[f"R{new_idx+1}"] = action
+            # 替换键名 Rk → Rj
+            old_idx = int(old_key[1:]) - 1
+            new_idx = perm.index(old_idx)
+            new_key = f"R{new_idx+1}"
+
+            # 替换动作参数中可能出现的 Rk
+            if isinstance(action, list):
+                new_action = [remap_robot_str(x) for x in action]
+            else:
+                new_action = action  # 非预期格式，保持原样
+
+            new_step[new_key] = new_action
         new_steps.append(new_step)
+
     return new_steps
+
 
 def _fill_masks(obj, mask_map):
     """递归替换 <maskX> 占位符"""
