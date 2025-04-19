@@ -28,7 +28,14 @@ TASK_POOL = [
             {"R1": ["Grasp", "<mask1>"]},
             {"R1": ["Move", "<mask2>"]},
             {"R1": ["Place", "<mask2>"]}
-        ]
+        ],
+        "init_pos": [
+            {
+                "name_key": "mask1",
+                "pos": ["dining table", "counter"],
+                "exclude_keys" : ["mask2"]
+            },
+        ], 
     },
     {
         "task_id": "1-2",
@@ -43,7 +50,14 @@ TASK_POOL = [
             {"R1": ["Grasp", "<mask1>"]},
             {"R1": ["Move", "<mask2>"]},
             {"R1": ["Place", "<mask2>"]}
-        ]
+        ],
+        "init_pos": [
+            {
+                "name_key": "mask1",
+                "pos": ["dining table", "counter"],
+                "exclude_keys" : ["mask2"]
+            },
+        ], 
     },
     {
         "task_id": "1-3",
@@ -61,7 +75,14 @@ TASK_POOL = [
             {"R3": ["Reach", "<mask1>"]},
             {"R3": ["Grasp", "<mask1>"]},
             {"R3": ["Place", "<mask2>"]}
-        ]
+        ],
+        "init_pos": [
+            {
+                "name_key": "mask1",
+                "pos": ["dining table", "kitchen counter"],
+                "exclude_keys" : ["mask2"]
+            },
+        ], 
     },
     {
         "task_id": "2-1",
@@ -77,7 +98,23 @@ TASK_POOL = [
             {"R1": ["Grasp", "<mask1>"],     "R2": ["Grasp", "<mask2>"]},
             {"R1": ["Move", "<mask3>"],      "R2": ["Move", "<mask3>"]},
             {"R1": ["Place", "<mask3>"],     "R2": ["Place", "<mask3>"]}
-        ]
+        ],
+        "init_pos": [
+            {
+                "name_key": "mask1",
+                "pos": ["dining table", "kitchen counter"],
+                "exclude_keys" : ["mask3"]
+            },
+            {
+                "name_key": "mask2",
+                "pos": ["dining table", "kitchen counter"],
+                "exclude_keys" : ["mask3"]
+            },
+            {
+                "name_key": "mask3",
+                "pos": ["dining table", "kitchen counter"],
+            },
+        ], 
     },
     {
         "task_id": "2-2",
@@ -93,6 +130,22 @@ TASK_POOL = [
             {"R1": ["Grasp", "<mask1>"],     "R2": ["Grasp", "<mask2>"]},
             {"R1": ["Move", "<mask3>"],      "R2": ["Move", "<mask3>"]},
             {"R1": ["Place", "<mask3>"],     "R2": ["Place", "<mask3>"]}
+        ],
+        "init_pos": [
+            {
+                "name_key": "mask1",
+                "pos": ["dining table", "kitchen counter"],
+                "exclude_keys" : ["mask3"]
+            },
+            {
+                "name_key": "mask2",
+                "pos": ["dining table", "kitchen counter"],
+                "exclude_keys" : ["mask3"]
+            },
+            {
+                "name_key": "mask3",
+                "pos": ["dining table", "kitchen counter"],
+            },
         ]
     },
     {
@@ -100,9 +153,10 @@ TASK_POOL = [
         "task_name": "set_plate_and_fork_on_table",
         "description": "Place the <mask1> on the <mask2> and fetch the <mask3> from the <mask4> into the <mask1>",
         "mask1": ["plate", "bowl", "tray"],
-        "mask2": ["table", "counter", "stove"],
+        "mask2": ["table", "counter"],
         "mask3": ["fork", "spoon", "knife"],
-        "mask4": ["drawer", "cabinet", "shelf"],
+        # "mask4": ["drawer", "cabinet", "shelf"],
+        "mask4": ["cabinet"],
         "robot_roles": ["humanoid", "wheeled"],
         "ground_truth": [
             {"R1": ["Move", "<mask4>"],      "R2": ["Reach", "<mask1>"]},
@@ -112,7 +166,19 @@ TASK_POOL = [
             {"R1": ["Grasp", "<mask3>"]},
             {"R1": ["Move", "<mask1>"]},
             {"R1": ["Place", "<mask1>"]}
-        ]
+        ],
+        "init_pos": [
+            {
+                "name_key": "mask1",
+                "pos": ["table", "counter"],
+                "exclude_keys" : ["mask2"]
+            },
+            {
+                "name_key": "mask3",
+                "pos": ["cabinet"],
+                "aligned_keys" : ["mask4"]
+            },
+        ], 
     },
     {
         "task_id": "4-1",
@@ -131,38 +197,56 @@ TASK_POOL = [
             {"R1": ["Reach", "<mask2>"],        "R2": ["Place", "<mask4>"]},
             {"R1": ["Place", "<mask2>"]},
             {"R1": ["Interact", "<mask2>"]}
-        ]
+        ],
+        "init_pos": [
+            {
+                "name_key": "mask1",
+                "pos": ["table", "counter", "cabinet"],
+                "exclude_keys" : ["mask4"]
+            },
+            {
+                "name_key": "mask3",
+                "pos": ["table", "counter", "rack"],
+                "exclude_keys" : ["mask4"]
+            },
+        ],
     },
-    {
-        "task_id": "5-1",
-        "task_name": "push_box_and_store_item",
-        "description": "Push the <mask1> on the ground to the goal region and put the <mask2> into the <mask1>",
-        "mask1": ["box", "crate", "bin"],
-        "mask2": ["bottle", "book", "tool"],
-        "robot_roles": ["dog", "humanoid"],
-        "ground_truth": [
-            {"R1": ["Move", "<mask1>"],       "R2": ["Reach", "<mask2>"]},
-            {"R1": ["Reach", "<mask1>"],      "R2": ["Grasp", "<mask2>"]},
-            {"R1": ["Push", "<mask1>"]},       
-            {"R2": ["Move", "<mask1>"]},
-            {"R2": ["Place", "<mask1>"]}
-        ]
-    },    
-    {
-        "task_id": "5-2",
-        "task_name": "push_box_and_store_item",
-        "description": "Push the <mask1> on the ground to the goal region and put the <mask2> into the <mask1>",
-        "mask1": ["box", "crate", "bin"],
-        "mask2": ["bottle", "book", "tool"],
-        "robot_roles": ["dog", "wheeled"],
-        "ground_truth": [
-            {"R1": ["Move", "<mask1>"],       "R2": ["Reach", "<mask2>"]},
-            {"R1": ["Reach", "<mask1>"],      "R2": ["Grasp", "<mask2>"]},
-            {"R1": ["Push", "<mask1>"]},       
-            {"R2": ["Move", "<mask1>"]},
-            {"R2": ["Place", "<mask1>"]}
-        ]
-    },
+    # {
+    #     "task_id": "5-1",
+    #     "task_name": "push_box_and_store_item",
+    #     "description": "Push the <mask1> on the ground to the goal region and put the <mask2> into the <mask1>",
+    #     "mask1": ["box", "crate", "bin"],
+    #     "mask2": ["bottle", "book", "tool"],
+    #     "robot_roles": ["dog", "humanoid"],
+    #     "ground_truth": [
+    #         {"R1": ["Move", "<mask1>"],       "R2": ["Reach", "<mask2>"]},
+    #         {"R1": ["Reach", "<mask1>"],      "R2": ["Grasp", "<mask2>"]},
+    #         {"R1": ["Push", "<mask1>"]},       
+    #         {"R2": ["Move", "<mask1>"]},
+    #         {"R2": ["Place", "<mask1>"]}
+    #     ],
+    #     "init_pos": {
+    #         "mask1": ["table", "counter", "cabinet"],
+    #         "mask1_exclude_keys": "mask2",
+    #         "mask3": ["table", "counter", "rack"],
+    #         "mask3_aligned_keys": "mask4",
+    #     }, 
+    # },    
+    # {
+    #     "task_id": "5-2",
+    #     "task_name": "push_box_and_store_item",
+    #     "description": "Push the <mask1> on the ground to the goal region and put the <mask2> into the <mask1>",
+    #     "mask1": ["box", "crate", "bin"],
+    #     "mask2": ["bottle", "book", "tool"],
+    #     "robot_roles": ["dog", "wheeled"],
+    #     "ground_truth": [
+    #         {"R1": ["Move", "<mask1>"],       "R2": ["Reach", "<mask2>"]},
+    #         {"R1": ["Reach", "<mask1>"],      "R2": ["Grasp", "<mask2>"]},
+    #         {"R1": ["Push", "<mask1>"]},       
+    #         {"R2": ["Move", "<mask1>"]},
+    #         {"R2": ["Place", "<mask1>"]}
+    #     ]
+    # },
     {
         "task_id": "6-1",
         "task_name": "clear_table_with_two_robots",
@@ -179,8 +263,20 @@ TASK_POOL = [
             {"R1": ["Open", "<mask3>"]},
             {"R1": ["Place", "<mask3>"],       "R2": ["Place", "<mask3>"]},
             {"R1": ["Close", "<mask3>"]}
+        ],
+        "init_pos": [
+            {
+                "name_key": "mask1",
+                "pos": ["table", "counter", "cabinet"],
+                "exclude_keys" : ["mask3"]
+            },
+            {
+                "name_key": "mask2",
+                "pos": ["table", "counter", "cabinet"],
+                "exclude_keys" : ["mask3"]
+            },
         ]
-    }
+    },
 
 
 ]

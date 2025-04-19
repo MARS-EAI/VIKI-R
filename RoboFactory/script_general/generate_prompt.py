@@ -107,17 +107,39 @@ def instantiate_task(template, layout_id):
     # c) 根据置换表同步 ground_truth 键
     gt_final = _permute_gt(gt_masked, perm)
 
+    init_pos = {}
+    init_pos_meta = tpl["init_pos"]
+    for idx, item_pos in enumerate(init_pos_meta):
+        if 'name_key' in item_pos:
+            item_name = mask_map[item_pos['name_key']]
+        else:
+            raise ValueError
+        cur_pos = item_pos["pos"]
+        removed_pos = []
+        if 'exclude_keys' in item_pos:
+            for exclude_key in item_pos['exclude_keys']:
+                removed_pos.append(mask_map[exclude_key])
+        for p in removed_pos:
+            if p in cur_pos:
+                cur_pos.remove(p)
+        if "aligned_keys" in item_pos:
+            assert len(item_pos['aligned_keys']) == 1
+            cur_pos = mask_map[item_pos["aligned_keys"][0]]
+        init_pos[f'{item_name}_{idx}'] = [cur_pos]
+            
     return {
         "task_id": tpl["task_id"],
         "task_name": tpl["task_name"],
         "layout_id": layout_id,
         "description": desc_filled,
         "robots": robots,
-        "ground_truth": gt_final
+        "ground_truth": gt_final,
+        "init_pos": init_pos
     }
 
 # ---------- 5) 小测试 ----------
 if __name__ == "__main__":
-    layout_id = random.choice(list(LAYOUT_COMBINATIONS.keys()))
+    # layout_id = random.choice(list(LAYOUT_COMBINATIONS.keys()))
+    layout_id = 8
     sample = instantiate_task(random.choice(TASK_POOL), layout_id=layout_id)
     pprint.pprint(sample, width=120, sort_dicts=False)
