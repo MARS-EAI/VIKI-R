@@ -128,6 +128,9 @@ class RFSceneBuilder(SceneBuilder):
                 if not asset:
                     raise AttributeError(f'Attribute "{asset_cfg["name"]}" not found in SceneBuilder.')
                 ppos = asset_cfg['pos']['ppos']['p']
+                if 'randp_scale' in asset_cfg['pos']:
+                    ppos = np.array(ppos) + np.array(asset_cfg['pos']['randp_scale'])* np.random.rand((len(ppos)))
+                    ppos = ppos.tolist()
                 qpos = asset_cfg['pos']['qpos']
                 if 'randq_scale' in asset_cfg['pos']:
                     qpos = np.array(qpos) + np.array(asset_cfg['pos']['randq_scale'])* np.random.rand((len(qpos)))

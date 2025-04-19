@@ -85,19 +85,15 @@ def main():
         
 
         # print(general_config)
-    # command = (
-    #     f"python -m planner.run "
-    #     f"-c \"{args.config}\" " 
-    #     f"--render-mode=\"human\" "
-    #     f"-b=\"cpu\" "
-    #     f"-n 1 "
-    #     f"--vis "
-    #     f"--save-video "
-    # )
 
-    # os.system(command)
         yaml.dump(temp_config, open(os.path.join(args.temp_config_path, folder_name, temp_config_name), 'w'))
+        command = (
+            f"python script/generate_data.py \\"
+            f"{os.path.join(args.temp_config_path, folder_name, temp_config_name)} \ " 
+            f"100 "
+        )
 
+        os.system(command)
         # os.system('')    # generate
         if not args.save_temp_config:
             os.remove(os.path.join(args.temp_config_path, folder_name, temp_config_name))
