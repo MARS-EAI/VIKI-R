@@ -128,6 +128,9 @@ class RFSceneBuilder(SceneBuilder):
                 if not asset:
                     raise AttributeError(f'Attribute "{asset_cfg["name"]}" not found in SceneBuilder.')
                 ppos = asset_cfg['pos']['ppos']['p']
+                if 'randp_scale' in asset_cfg['pos']:
+                    ppos = np.array(ppos) + np.array(asset_cfg['pos']['randp_scale'])* np.random.rand((len(ppos)))
+                    ppos = ppos.tolist()
                 qpos = asset_cfg['pos']['qpos']
                 if 'randq_scale' in asset_cfg['pos']:
                     qpos = np.array(qpos) + np.array(asset_cfg['pos']['randq_scale'])* np.random.rand((len(qpos)))
@@ -156,16 +159,22 @@ class RFSceneBuilder(SceneBuilder):
                     while not available_pos:
                         if count > 50:
                             print(f'Fail to find suitable position for {count} time. Skip.')
+                            exit(0)
                         available_pos = True
-                        ppos = np.array(ppos) + np.array(agent_cfg['pos']['randp_scale']) * np.random.rand((len(ppos)))
-                        ppos = ppos.tolist()
+                        temp_ppos = np.array(ppos) + np.array(agent_cfg['pos']['randp_scale']) * np.random.rand((len(ppos)))
+                        temp_ppos = temp_ppos.tolist()
                         for agent_ppos in pposes:
-                            delta_pos = np.abs(np.array(agent_ppos) - np.array(ppos))
-                            if np.max(delta_pos) < 0.6 and np.min(delta_pos) < 0.2:
+                            delta_pos = np.abs(np.array(agent_ppos) - np.array(temp_ppos))
+                            if np.max(delta_pos) < 0.6 or (delta_pos[1] < 0.3):
                                 available_pos = False
+                                if (agent_cfg['robot_uid'].startswith('panda')):
+                                    if delta_pos[0] < 0.3:
+                                        available_pos = False
+                                    else:
+                                        available_pos = True
                         count += 1
-                ppos = sapien.Pose(ppos, q=euler2quat(*pos_cfg['ppos']['q']))
-                pposes.append(ppos.p)
+                temp_ppos = sapien.Pose(temp_ppos, q=euler2quat(*pos_cfg['ppos']['q']))
+                pposes.append(temp_ppos.p)
                 qpos = np.array((pos_cfg['qpos']))
                 if 'randq_scale' in pos_cfg:
                     qpos = np.tile(qpos, (b, 1)) + np.tile(np.array(agent_cfg['pos']['randq_scale']), (b, 1)) * np.random.rand(b, (len(qpos)))
@@ -178,11 +187,11 @@ class RFSceneBuilder(SceneBuilder):
                     )
                 if is_multi_agent:
                     agent.agents[idx].reset(qpos)
-                    agent.agents[idx].robot.set_pose(ppos)
+                    agent.agents[idx].robot.set_pose(temp_ppos)
                     self.articulations[agent_cfg['robot_uid']] = agent.agents[idx]
                 else:
                     agent.reset(qpos)
-                    agent.robot.set_pose(ppos)
+                    agent.robot.set_pose(temp_ppos)
                     self.articulations[agent_cfg['robot_uid']] = agent
         property_poses = self.get_property_poses()
         print('-'*10 + 'Property Poses' + '-'*10)
