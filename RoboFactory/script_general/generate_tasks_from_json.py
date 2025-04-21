@@ -20,6 +20,7 @@ def main():
     os.makedirs(os.path.join(args.temp_config_path, folder_name), exist_ok=True)
 
     for gt in data:
+        
         general_config_file = 'configs/robocasa_random_task/layout_8_pick_meat_multiple_assets.yaml'    # the config that consists all possible assets & agents in a layout
         with open(general_config_file, 'r', encoding='utf-8') as f:
             general_config = yaml.load(f.read(), Loader=yaml.FullLoader)
@@ -68,7 +69,8 @@ def main():
                 transparent_style = True
             print(position_area)
             new_pos_cfg = pos_dict[position_area]
-            item_cfg['pos']['ppos'] = new_pos_cfg['ppos'] + item_cfg['pos']['ppos']
+            for axis in range(len(item_cfg['pos']['ppos']['p'])):
+                item_cfg['pos']['ppos']['p'][axis] = new_pos_cfg['ppos']['p'][axis] + item_cfg['pos']['ppos']['p'][axis]
             item_cfg['pos']['randp_scale'] = new_pos_cfg['randp_scale']
             new_object_cfgs.append(item_cfg)
         
