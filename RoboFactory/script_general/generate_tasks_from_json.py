@@ -68,7 +68,7 @@ def main():
                 transparent_style = True
             print(position_area)
             new_pos_cfg = pos_dict[position_area]
-            item_cfg['pos']['ppos'] = new_pos_cfg['ppos']
+            item_cfg['pos']['ppos'] = new_pos_cfg['ppos'] + item_cfg['pos']['ppos']
             item_cfg['pos']['randp_scale'] = new_pos_cfg['randp_scale']
             new_object_cfgs.append(item_cfg)
         
