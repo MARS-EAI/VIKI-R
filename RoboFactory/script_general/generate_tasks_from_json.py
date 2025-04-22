@@ -58,10 +58,19 @@ def main():
         new_agent_cfgs = []
         transparent_style = False
 
-        for c, robot_type in enumerate(gt['robots'].values()):
+        c = 0
+        for robot_type in gt['robots'].values():
             base_agent_cfg = agents_dict[robot_type].copy()
             base_agent_cfg['robot_uid'] = f'{robot_type}-{c}'
             new_agent_cfgs.append(base_agent_cfg)
+            c += 1
+        
+        if 'idle_robots' in gt:
+            for idle_robot in gt['idle_robots']:
+                base_agent_cfg = agents_dict[idle_robot].copy()
+                base_agent_cfg['robot_uid'] = f'{idle_robot}-{c}'
+                new_agent_cfgs.append(base_agent_cfg)
+                c += 1
 
         for item_name, item_pos in gt['init_pos'].items():
             item_type = item_name.rsplit('_', maxsplit=1)[0].replace(' ', '_').replace('-', '_')
@@ -113,7 +122,7 @@ def main():
             })
         if not args.save_temp_config:
             os.remove(os.path.join(args.temp_config_path, folder_name, temp_config_name))
-        json.dump(current_metadata, open(args.metadata_file, 'w'))
+        json.dump(current_metadata, open(args.metadata_file, 'w'), indent=4)
 
 if __name__ == "__main__":
     main()
