@@ -65,7 +65,7 @@ def main():
             
             # set random positions
             position_area = random.choice(item_pos)
-            if position_area in ['cabinet', 'rack', 'kitchen cabinet', 'kitchen rack']:
+            if position_area in ['cabinet', 'kitchen cabinet']:
                 transparent_style = True
             new_pos_cfg = pos_dict[position_area]
             for axis in range(len(item_cfg['pos']['ppos']['p'])):
@@ -77,6 +77,7 @@ def main():
             style_idx = random.choice([4, 11])
         else:
             style_idx = random.randint(0, 11)
+        print(style_idx)
         temp_config['scene']['env']['style_idx'] = style_idx
         
         temp_config['agents'] = new_agent_cfgs
