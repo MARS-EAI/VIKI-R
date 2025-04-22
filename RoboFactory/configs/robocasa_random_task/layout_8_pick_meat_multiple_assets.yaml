@@ -405,7 +405,7 @@ objects:
     pos:
       ppos:
         p: [0., 0., 0.]
-        qpos: [-0.0550838, 0.0471417, -0.687082, 0.722954]
+      qpos: [-0.0550838, 0.0471417, -0.687082, 0.722954]
       randp_scale: [0, 0, 0.]
       randq_scale: [0., 0., 0., 0.]
     mass_params:
@@ -575,7 +575,7 @@ objects:
       cmass_local_pose: [0., 0., 0.]
       inertia: [0.1, 0.1, 0.1]
 
--
+  -
     name: dish_0
     file_path: assets/objects/plate/new.obj
     material: 
@@ -602,7 +602,7 @@ objects:
       cmass_local_pose: [0., 0., 0.]
       inertia: [0.1, 0.1, 0.1]
 
--
+  -
     name: tray_0
     file_path: assets/objects/plate/new.obj
     material: 
@@ -749,3 +749,25 @@ position_areas:
       ppos:
         p: [0.8, -0.28, 1.65]
       randp_scale: [2.1, 0.15, 0]
+
+pseduo_assets_areas:
+  -
+    name: sink_area
+    pos:
+      min: [-0.05, -2.764, 0.6]
+      max: [0.678, -1.635, 1.5]
+  -
+    name: coffee_machine
+    pos:
+      min: [0.736, -0.626, 0.6]
+      max: [1.205, 0.073, 1.2]
+  -
+    name: toaster
+    pos:
+      min: [2.227, -0.461, 0.6]
+      max: [2.585, 0.063, 1.2]
+  -
+    name: stove
+    pos:
+      min: [3.710, 0.680, 0.6]
+      max: [4.688, 0.089, 1.5]

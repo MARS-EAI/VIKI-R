@@ -133,7 +133,7 @@ class RFSceneBuilder(SceneBuilder):
                     available_pos = False
                     count = 0
                     while not available_pos:
-                        if count > 50:
+                        if count > 100:
                             print(f'Fail to find suitable position for {count} time. Skip.')
                             exit(0)
                         available_pos = True
@@ -143,6 +143,14 @@ class RFSceneBuilder(SceneBuilder):
                         delta_pos = np.abs(np.array(object_ppos) - np.array(temp_ppos))
                         if np.max(delta_pos) < 0.6 or (delta_pos[1] < 0.3):
                             available_pos = False
+                    if 'pseduo_assets_areas' in self.cfg:
+                        for pseudo_asset_pos in self.cfg['pseduo_assets_areas']:
+                            axis_min = pseudo_asset_pos['pos']['min']
+                            axis_max = pseudo_asset_pos['pos']['max']
+                            delta_min = np.array(temp_ppos) - np.array(axis_min)
+                            delta_max = np.array(axis_max) - np.array(temp_ppos)
+                            if delta_max.min() >= 0 and delta_min.min() >=0:    # overlap with the area
+                                available_pos = False
                     count += 1
                 pposes.append(temp_ppos)
                 qpos = asset_cfg['pos']['qpos']
