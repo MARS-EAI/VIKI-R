@@ -101,7 +101,8 @@ def instantiate_task(template, layout_id):
 
     # b) 随机选择 mask 值并替换
     mask_map = {mk: random.choice(tpl[mk]) for mk in tpl if mk.startswith("mask")}
-    desc_filled = _fill_masks(tpl["description"], mask_map)
+    desc_template = random.choice(tpl["description"])
+    desc_filled = _fill_masks(desc_template, mask_map)
     gt_masked  = [_fill_masks(step, mask_map) for step in tpl["ground_truth"]]
 
     # c) 根据置换表同步 ground_truth 键

@@ -18,9 +18,21 @@ TASK_POOL = [
     {
         "task_id": "1-1",
         "task_name": "move_asset_to_target",
-        "description": "Move the <mask1> to the <mask2>",
-        "mask1": ["plate", "cup", "book", "pan"],
-        "mask2": ["dining table", "counter", "sink area", "stove"],
+        "description": [
+            "Move the <mask1> to the <mask2> so it is ready for the next step.",
+            "Please carefully place the <mask1> onto the <mask2> to continue the preparation.",
+            "Transfer the <mask1> over to the <mask2> and ensure it is positioned correctly.",
+            "Put the <mask1> on the <mask2> so it can be used later.",
+            "Take the <mask1> and move it to the <mask2> in an orderly manner.",
+            "Gently move the <mask1> onto the <mask2> to complete this part of the task.",
+            "Relocate the <mask1> to the <mask2> as instructed.",
+            "Pick up the <mask1> and place it on the <mask2> to set things up.",
+            "Move the <mask1> from its current location to the <mask2>.",
+            "Ensure that the <mask1> is moved properly onto the <mask2> for the next operation."
+        ],
+        "mask1": ["meat", "cardboardbox", "pumpkin", "cooling fan", "cup", "bread", "plate", "bottle", 
+                  "pizza", "scissors", "wine", "banana", "apple", "kettle", "tomato", "spoon"],
+        "mask2": ["kitchen work area", "kitchen island area"],
         "robot_roles": ["humanoid"],
         "ground_truth": [
             {"R1": ["Move", "<mask1>"]},
@@ -32,17 +44,29 @@ TASK_POOL = [
         "init_pos": [
             {
                 "name_key": "mask1",
-                "pos": ["dining table", "counter"],
+                "pos": ["kitchen work area", "kitchen island area"],
                 "exclude_keys" : ["mask2"]
             },
-        ], 
+        ],
     },
     {
         "task_id": "1-2",
         "task_name": "move_asset_to_target",
-        "description": "Move the <mask1> to the <mask2>",
-        "mask1": ["plate", "cup", "book", "pan"],
-        "mask2": ["dining table", "counter", "sink area", "stove"],
+        "description": [
+            "Move the <mask1> to the <mask2> so it is ready for the next step.",
+            "Please carefully place the <mask1> onto the <mask2> to continue the preparation.",
+            "Transfer the <mask1> over to the <mask2> and ensure it is positioned correctly.",
+            "Put the <mask1> on the <mask2> so it can be used later.",
+            "Take the <mask1> and move it to the <mask2> in an orderly manner.",
+            "Gently move the <mask1> onto the <mask2> to complete this part of the task.",
+            "Relocate the <mask1> to the <mask2> as instructed.",
+            "Pick up the <mask1> and place it on the <mask2> to set things up.",
+            "Move the <mask1> from its current location to the <mask2>.",
+            "Ensure that the <mask1> is moved properly onto the <mask2> for the next operation."
+        ],
+        "mask1": ["meat", "cardboardbox", "pumpkin", "cooling fan", "cup", "bread", "plate", "bottle", 
+                  "pizza", "scissors", "wine", "banana", "apple", "kettle", "tomato", "spoon"],
+        "mask2": ["kitchen work area", "kitchen island area"],
         "robot_roles": ["wheeled"],
         "ground_truth": [
             {"R1": ["Move", "<mask1>"]},
@@ -54,17 +78,29 @@ TASK_POOL = [
         "init_pos": [
             {
                 "name_key": "mask1",
-                "pos": ["dining table", "counter"],
+                "pos": ["kitchen work area", "kitchen island area"],
                 "exclude_keys" : ["mask2"]
             },
-        ], 
+        ],
     },
     {
         "task_id": "1-3",
         "task_name": "move_asset_to_target",
-        "description": "Move the <mask1> to the <mask2>",
-        "mask1": ["bottle", "screwdriver", "box", "tool"],
-        "mask2": ["kitchen counter", "toolbox", "sink", "shelf"],
+        "description": [
+            "Move the <mask1> to the <mask2> so it is ready for the next step.",
+            "Please carefully place the <mask1> onto the <mask2> to continue the preparation.",
+            "Transfer the <mask1> over to the <mask2> and ensure it is positioned correctly.",
+            "Put the <mask1> on the <mask2> so it can be used later.",
+            "Take the <mask1> and move it to the <mask2> in an orderly manner.",
+            "Gently move the <mask1> onto the <mask2> to complete this part of the task.",
+            "Relocate the <mask1> to the <mask2> as instructed.",
+            "Pick up the <mask1> and place it on the <mask2> to set things up.",
+            "Move the <mask1> from its current location to the <mask2>.",
+            "Ensure that the <mask1> is moved properly onto the <mask2> for the next operation."
+        ],
+        "mask1": ["meat", "cardboardbox", "pumpkin", "cooling fan", "cup", "bread", "plate", "bottle", 
+                  "pizza", "scissors", "wine", "banana", "apple", "kettle", "tomato", "spoon"],
+        "mask2": ["kitchen work area", "kitchen island area"],
         "robot_roles": ["arm", "dog", "arm"],
         "ground_truth": [
             {"R1": ["Move", "<mask1>"],    "R2": ["Move", "R1"]},
@@ -277,6 +313,4 @@ TASK_POOL = [
             },
         ]
     },
-
-
 ]
