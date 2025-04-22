@@ -59,7 +59,7 @@ def main():
             new_agent_cfgs.append(base_agent_cfg)
 
         for item_name, item_pos in gt['init_pos'].items():
-            item_type = item_name.rsplit('_', maxsplit=1)[0]
+            item_type = item_name.rsplit('_', maxsplit=1)[0].replace(' ', '_').replace('-', '_')
             item_cfg = objects_dict[item_type]
             item_cfg['name'] = item_name
             
