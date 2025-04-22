@@ -98,6 +98,13 @@ def instantiate_task(template, layout_id):
     # a) 随机选取并打乱 robot IDs
     ids, perm = _choose_ids(tpl["robot_roles"])
     robots = {f"R{i+1}": rid for i, rid in enumerate(ids)}
+    ids_idle, perm_idle = _choose_ids(tpl["idle_robot_roles"])
+    idle_robots = {f"R{i+1}": rid for i, rid in enumerate(ids_idle)}
+    # 有一定的概率不需要idle_robots, 可以考虑去除一部分
+    idle_robots_list = []
+    for i in range(len(ids_idle)):
+        if random.random() < 0.5:
+            idle_robots_list.append(idle_robots[f"R{i+1}"])
 
     # b) 随机选择 mask 值并替换
     mask_map = {mk: random.choice(tpl[mk]) for mk in tpl if mk.startswith("mask")}
@@ -135,7 +142,8 @@ def instantiate_task(template, layout_id):
         "description": desc_filled,
         "robots": robots,
         "ground_truth": gt_final,
-        "init_pos": init_pos
+        "init_pos": init_pos,
+        "idle_robots": idle_robots_list,
     }
 
 # ---------- 5) 小测试 ----------

@@ -49,6 +49,7 @@ TASK_POOL = [
                 "exclude_keys" : ["mask2"]
             },
         ],
+        "idle_robot_roles": ["dog", "arm"],
     },
     {
         "task_id": "1-2",
@@ -84,6 +85,7 @@ TASK_POOL = [
                 "exclude_keys" : ["mask2"]
             },
         ],
+        "idle_robot_roles": ["dog", "arm"],
     },
     # {
     #     "task_id": "1-3",
@@ -159,7 +161,8 @@ TASK_POOL = [
                 "pos": ["kitchen work area", "kitchen island area"],
                 "exclude_keys" : ["mask3"]
             },
-        ], 
+        ],
+        "idle_robot_roles": ["dog", "arm"],
     },
     {
         "task_id": "3-1",
@@ -200,7 +203,8 @@ TASK_POOL = [
                 "pos": ["fork", "spoon", "knife"],
                 "aligned_keys" : ["mask4"]
             },
-        ], 
+        ],
+        "idle_robot_roles": ["dog", "arm"],
     },
     {
         "task_id": "4-1",
@@ -237,6 +241,7 @@ TASK_POOL = [
                 "exclude_keys" : ["mask4"]
             },
         ],
+        "idle_robot_roles": ["dog", "arm"],
     },
     # {
     #     "task_id": "5-1",
@@ -313,6 +318,7 @@ TASK_POOL = [
                 "name_key": "mask2",
                 "pos": ["kitchen work area", "kitchen island area"],
             },
-        ]
+        ],
+        "idle_robot_roles": ["dog", "arm"],
     },
 ]

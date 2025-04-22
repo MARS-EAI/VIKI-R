@@ -12,6 +12,8 @@ def solve(env: PickMeatRandomTaskEnv, seed=None, debug=False, vis=False):
     # while 1:
     #     env.render_human()
     res_video = env.render()
+    for _ in range(10):
+        res_video = env.render()
     out_dir = 'demos/PickMeatRandomTaskRenders'
     # meta_file = 'meta_data.json'
     os.makedirs(out_dir, exist_ok=True)
