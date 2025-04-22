@@ -1,0 +1,84 @@
+[
+    {
+        "task_id": "2-1_0",
+        "task_name": "parallel_dual_asset_to_plate",
+        "layout_id": 8,
+        "description": "Transport the meat and the bread into the plate together",
+        "robots": {
+            "R1": "fetch",
+            "R2": "unitree_h1"
+        },
+        "ground_truth": [
+            {
+                "R2": [
+                    "Move",
+                    "meat"
+                ],
+                "R1": [
+                    "Move",
+                    "bread"
+                ]
+            },
+            {
+                "R2": [
+                    "Reach",
+                    "meat"
+                ],
+                "R1": [
+                    "Reach",
+                    "bread"
+                ]
+            },
+            {
+                "R2": [
+                    "Grasp",
+                    "meat"
+                ],
+                "R1": [
+                    "Grasp",
+                    "bread"
+                ]
+            },
+            {
+                "R2": [
+                    "Move",
+                    "plate"
+                ],
+                "R1": [
+                    "Move",
+                    "plate"
+                ]
+            },
+            {
+                "R2": [
+                    "Place",
+                    "plate"
+                ],
+                "R1": [
+                    "Place",
+                    "plate"
+                ]
+            }
+        ],
+        "init_pos": {
+            "meat_0": [
+                [
+                    "dining table",
+                    "kitchen counter"
+                ]
+            ],
+            "bread_1": [
+                [
+                    "dining table",
+                    "kitchen counter"
+                ]
+            ],
+            "plate_2": [
+                [
+                    "dining table",
+                    "kitchen counter"
+                ]
+            ]
+        }
+    }
+]
