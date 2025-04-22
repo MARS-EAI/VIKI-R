@@ -45,7 +45,7 @@ class PickMeatRandomTaskEnv(BaseEnv):
         # random choose layout
         # self.cfg['scene']['env']['style_idx'] = random.randint(0, 11)
         # transparent cabinet style: 4, 11
-        self.cfg['scene']['env']['style_idx'] = 4
+        # self.cfg['scene']['env']['style_idx'] = 4
 
         if 'robot_uids' in kwargs:
             robot_uids = kwargs['robot_uids']

@@ -59,13 +59,13 @@ def main():
             new_agent_cfgs.append(base_agent_cfg)
 
         for item_name, item_pos in gt['init_pos'].items():
-            item_type = item_name.rsplit('_', maxsplit=1)[0]
+            item_type = item_name.rsplit('_', maxsplit=1)[0].replace(' ', '_').replace('-', '_')
             item_cfg = objects_dict[item_type]
             item_cfg['name'] = item_name
             
             # set random positions
             position_area = random.choice(item_pos)
-            if position_area in ['cabinet', 'rack', 'kitchen cabinet', 'kitchen rack']:
+            if position_area in ['cabinet', 'kitchen cabinet']:
                 transparent_style = True
             new_pos_cfg = pos_dict[position_area]
             for axis in range(len(item_cfg['pos']['ppos']['p'])):
@@ -77,6 +77,7 @@ def main():
             style_idx = random.choice([4, 11])
         else:
             style_idx = random.randint(0, 11)
+        print(style_idx)
         temp_config['scene']['env']['style_idx'] = style_idx
         
         temp_config['agents'] = new_agent_cfgs
