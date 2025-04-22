@@ -10,7 +10,6 @@ def main():
     parser.add_argument('--data', type=str, default='script_general/output.json', help="the json file for data")
     parser.add_argument('--temp_config_path', type=str, default='data_gen', help="the save path for temp configs")
     parser.add_argument('--save_temp_config', action='store_true', help="whether to save temp configs")
-    parser.add_argument('--metadata_file', type=str, default="script_general/metadata.json", help='file name of metadata')
     args = parser.parse_args()
 
     data = json.load(open(args.data, 'r'))
@@ -20,12 +19,7 @@ def main():
     folder_name = f"data_{current_time}"
     os.makedirs(os.path.join(args.temp_config_path, folder_name), exist_ok=True)
 
-    current_metadata = []
-    if os.path.exists(args.metadata_file):
-        current_metadata = json.load(open(args.metadata_file, 'r'))
-
     for gt in data:
-        current_fns = os.listdir('demos/PickMeatRandomTaskRenders/images')
         general_config_file = 'configs/robocasa_random_task/layout_8_pick_meat_multiple_assets.yaml'    # the config that consists all possible assets & agents in a layout
         with open(general_config_file, 'r', encoding='utf-8') as f:
             general_config = yaml.load(f.read(), Loader=yaml.FullLoader)
@@ -97,7 +91,7 @@ def main():
         temp_config['objects'] = new_object_cfgs
 
 
-        
+        temp_config['gt'] = gt
 
         # print(general_config)
 
@@ -109,20 +103,9 @@ def main():
 
         os.system(command)
         # os.system('')    # generate
-        new_fns = os.listdir('demos/PickMeatRandomTaskRenders/images')
-        added_fn = []
-        for new_fn in new_fns:
-            if new_fn not in current_fns:
-                added_fn.append(new_fn)
-        assert(len(added_fn) <= 1)
-        if len(added_fn) == 1:
-            current_metadata.append({
-                'image': added_fn,
-                'gt': gt
-            })
+
         if not args.save_temp_config:
             os.remove(os.path.join(args.temp_config_path, folder_name, temp_config_name))
-        json.dump(current_metadata, open(args.metadata_file, 'w'), indent=4)
 
 if __name__ == "__main__":
     main()
