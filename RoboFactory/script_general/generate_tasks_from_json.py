@@ -90,9 +90,8 @@ def main():
 
         yaml.dump(temp_config, open(os.path.join(args.temp_config_path, folder_name, temp_config_name), 'w'))
         command = (
-            f"python script/generate_data.py \\"
-            f"{os.path.join(args.temp_config_path, folder_name, temp_config_name)} \ " 
-            f"100 "
+            f"python script/generate_planning_data.py \\"
+            f"{os.path.join(args.temp_config_path, folder_name, temp_config_name)} " 
         )
 
         os.system(command)

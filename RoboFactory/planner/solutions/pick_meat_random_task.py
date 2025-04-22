@@ -28,7 +28,7 @@ def solve(env: PickMeatRandomTaskEnv, seed=None, debug=False, vis=False):
     #         meta_data = json.load(f)
     # else:
     #     meta_data = []
-    Image.fromarray(res_video[0, :, :, :].numpy()).save(os.path.join(out_dir, 'images', f'{fn_idx}.png'))
+    Image.fromarray(res_video[0, :, :, :].cpu().numpy()).save(os.path.join(out_dir, 'images', f'{fn_idx}.png'))
     # meta_data.append({
     #     'image': f'{fn_idx}.png',
     #     'robot_num': robot_num,
@@ -36,23 +36,5 @@ def solve(env: PickMeatRandomTaskEnv, seed=None, debug=False, vis=False):
     # })
     # json.dump(meta_data, open(os.path.join(out_dir, meta_file), 'w'), indent=4)
     exit(0)
-    planner = PandaArmMotionPlanningSolver(
-        env,
-        debug=False,
-        vis=vis,
-        base_pose=[agent.robot.pose for agent in env.agent.agents],
-        visualize_target_grasp_pose=vis,
-        print_env_info=False,
-        is_multi_agent=True,
-    )
-    pose1 = env.scene_builder.articulations['panda-0'].robot.pose
-    pose1[2] += 0.1
-    # pose1 = planner.get_grasp_pose_w_labeled_direction(actor=env.meat, actor_data=env.annotation_data['meat'], pre_dis=0)
-    # planner.move_to_pose_with_screw(pose1)
-    # planner.close_gripper()
-    # pose1[2] += 0.2
-    res = planner.move_to_pose_with_screw([pose1], move_id=[0])
-    res = planner.close_gripper()
-    # while 1:
-    #     planner.open_gripper()
+    res = {}
     return res

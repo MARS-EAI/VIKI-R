@@ -115,6 +115,7 @@ def instantiate_task(template, layout_id):
     # c) 根据置换表同步 ground_truth 键
     gt_final = _permute_gt(gt_masked, perm)
 
+    # d) 处理 init_pos
     init_pos = {}
     init_pos_meta = tpl["init_pos"]
     for idx, item_pos in enumerate(init_pos_meta):
