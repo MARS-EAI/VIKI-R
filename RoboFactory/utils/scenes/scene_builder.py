@@ -97,7 +97,7 @@ class RFSceneBuilder(SceneBuilder):
         self.cfg = cfg
         self.env.annotation_data = {}
 
-    def initialize(self, env_idx: torch.Tensor):
+    def initialize(self, env_idx: torch.Tensor, collision_detect=False):
         b = len(env_idx)
         scene_cfg = self.cfg['scene']
 
@@ -129,29 +129,30 @@ class RFSceneBuilder(SceneBuilder):
                 if not asset:
                     raise AttributeError(f'Attribute "{asset_cfg["name"]}" not found in SceneBuilder.')
                 ppos = asset_cfg['pos']['ppos']['p']
+                temp_ppos = np.array(ppos)
                 if 'randp_scale' in asset_cfg['pos']:
-                    available_pos = False
+                    available_pos = not collision_detect
                     count = 0
                     while not available_pos:
                         if count > 100:
                             print(f'Fail to find suitable position for {count} time. Skip.')
                             exit(0)
                         available_pos = True
-                    temp_ppos = np.array(ppos) + np.array(asset_cfg['pos']['randp_scale']) * np.random.rand((len(ppos)))
-                    temp_ppos = temp_ppos.tolist()
-                    for object_ppos in pposes:
-                        delta_pos = np.abs(np.array(object_ppos) - np.array(temp_ppos))
-                        if np.max(delta_pos) < 0.6 or (delta_pos[1] < 0.3):
-                            available_pos = False
-                    if 'pseduo_assets_areas' in self.cfg:
-                        for pseudo_asset_pos in self.cfg['pseduo_assets_areas']:
-                            axis_min = pseudo_asset_pos['pos']['min']
-                            axis_max = pseudo_asset_pos['pos']['max']
-                            delta_min = np.array(temp_ppos) - np.array(axis_min)
-                            delta_max = np.array(axis_max) - np.array(temp_ppos)
-                            if delta_max.min() >= 0 and delta_min.min() >=0:    # overlap with the area
+                        temp_ppos = np.array(ppos) + np.array(asset_cfg['pos']['randp_scale']) * np.random.rand((len(ppos)))
+                        temp_ppos = temp_ppos.tolist()
+                        for object_ppos in pposes:
+                            delta_pos = np.abs(np.array(object_ppos) - np.array(temp_ppos))
+                            if np.max(delta_pos) < 0.2:
                                 available_pos = False
-                    count += 1
+                        if 'pseduo_assets_areas' in self.cfg:
+                            for pseudo_asset_pos in self.cfg['pseduo_assets_areas']:
+                                axis_min = pseudo_asset_pos['pos']['min']
+                                axis_max = pseudo_asset_pos['pos']['max']
+                                delta_min = np.array(temp_ppos) - np.array(axis_min)
+                                delta_max = np.array(axis_max) - np.array(temp_ppos)
+                                if delta_max.min() >= 0 and delta_min.min() >=0:    # overlap with the area
+                                    available_pos = False
+                        count += 1
                 pposes.append(temp_ppos)
                 qpos = asset_cfg['pos']['qpos']
                 if 'randq_scale' in asset_cfg['pos']:
@@ -175,8 +176,9 @@ class RFSceneBuilder(SceneBuilder):
             for idx, agent_cfg in enumerate(agents_cfg):
                 pos_cfg = agent_cfg['pos']
                 ppos = pos_cfg['ppos']['p']
+                temp_ppos = np.array(ppos)
                 if 'randp_scale' in pos_cfg:
-                    available_pos = False
+                    available_pos = not collision_detect
                     count = 0
                     while not available_pos:
                         if count > 50:
@@ -194,6 +196,14 @@ class RFSceneBuilder(SceneBuilder):
                                         available_pos = False
                                     else:
                                         available_pos = True
+                        if 'pseduo_assets_areas' in self.cfg:
+                            for pseudo_asset_pos in self.cfg['pseduo_assets_areas']:
+                                axis_min = pseudo_asset_pos['pos']['min']
+                                axis_max = pseudo_asset_pos['pos']['max']
+                                delta_min = np.array(temp_ppos) - np.array(axis_min)
+                                delta_max = np.array(axis_max) - np.array(temp_ppos)
+                                if delta_max.min() >= 0 and delta_min.min() >=0:    # overlap with the area
+                                    available_pos = False
                         count += 1
                 temp_ppos = sapien.Pose(temp_ppos, q=euler2quat(*pos_cfg['ppos']['q']))
                 pposes.append(temp_ppos.p)
