@@ -38,7 +38,34 @@ objects:
       inertia: [0.1, 0.1, 0.1]
 
   -
-    name: box_0
+    name: fork_0
+    file_path: assets/objects/fork/new.obj
+    material: 
+      type: sapien.pysapien.physx.PhysxMaterial
+      params:
+        static_friction: 0.3
+        dynamic_friction: 0.3
+        restitution: 0.
+    visual:
+      filename: assets/objects/fork/new.obj
+      scale: [0.25, 0.25, 0.25]
+    collision:
+      type: convex
+      filename: assets/objects/fork/new.obj
+      scale: [0.25, 0.25, 0.25]
+    pos:
+      ppos:
+        p: [0., 0., 0.]
+      qpos: [0.72207, 0.0302875, 0.0180827, -0.69092]
+      randp_scale: [0, 0, 0.]
+      randq_scale: [0., 0., 0., 0.]
+    mass_params:
+      mass: 0.005
+      cmass_local_pose: [0., 0., 0.]
+      inertia: [0.1, 0.1, 0.1]
+
+  -
+    name: cardboardbox_0
     file_path: assets/objects/cardboardbox/new.obj
     material: 
       type: sapien.pysapien.physx.PhysxMaterial
@@ -58,6 +85,32 @@ objects:
         p: [0., 0., 0.]
       qpos: [0.707, 0.707, 0.0, 0.0]
       randp_scale: [0.0, 0.0, 0.]
+      randq_scale: [0., 0., 0., 0.]
+    mass_params:
+      mass: 0.005
+      cmass_local_pose: [0., 0., 0.]
+      inertia: [0.1, 0.1, 0.1]
+  -
+    name: bowl_0
+    file_path: assets/objects/bowl/new.obj
+    material: 
+      type: sapien.pysapien.physx.PhysxMaterial
+      params:
+        static_friction: 0.3
+        dynamic_friction: 0.3
+        restitution: 0.
+    visual:
+      filename: assets/objects/bowl/new.obj
+      scale: [0.18, 0.18, 0.18]
+    collision:
+      type: convex
+      filename: assets/objects/bowl/new.obj
+      scale: [0.18, 0.18, 0.18]
+    pos:
+      ppos:
+        p: [0., 0., 0.]
+      qpos: [0.722696, -0.00326816, -0.0140146, -0.691016]
+      randp_scale: [0, 0, 0.]
       randq_scale: [0., 0., 0., 0.]
     mass_params:
       mass: 0.005
@@ -117,7 +170,7 @@ objects:
       inertia: [0.1, 0.1, 0.1]
 
   -
-    name: wine
+    name: wine_0
     file_path: assets/objects/wine/new.obj
     material: 
       type: sapien.pysapien.physx.PhysxMaterial
@@ -277,6 +330,33 @@ objects:
       mass: 0.005
       cmass_local_pose: [0., 0., 0.]
       inertia: [0.1, 0.1, 0.1]
+  
+  -
+    name: pizza_0
+    file_path: assets/objects/pizza/new.obj
+    material: 
+      type: sapien.pysapien.physx.PhysxMaterial
+      params:
+        static_friction: 0.3
+        dynamic_friction: 0.3
+        restitution: 0.
+    visual:
+      filename: assets/objects/pizza/new.obj
+      scale: [0.35, 0.35, 0.35]
+    collision:
+      type: convex
+      filename: assets/objects/pizza/new.obj
+      scale: [0.35, 0.35, 0.35]
+    pos:
+      ppos:
+        p: [0., 0., 0.]
+      qpos: [0.98993, -0.000455425, -0.0468798, -0.133568]
+      randp_scale: [0, 0, 0.]
+      randq_scale: [0., 0., 0., 0.]
+    mass_params:
+      mass: 0.005
+      cmass_local_pose: [0., 0., 0.]
+      inertia: [0.1, 0.1, 0.1]
 
   -
     name: cup_0
@@ -358,7 +438,34 @@ objects:
       mass: 0.005
       cmass_local_pose: [0., 0., 0.]
       inertia: [0.1, 0.1, 0.1]
-  
+
+  -
+    name: apple_0
+    file_path: assets/objects/apple/new.obj
+    material: 
+      type: sapien.pysapien.physx.PhysxMaterial
+      params:
+        static_friction: 0.3
+        dynamic_friction: 0.3
+        restitution: 0.
+    visual:
+      filename: assets/objects/apple/new.obj
+      scale: [0.08, 0.08, 0.08]
+    collision:
+      type: convex
+      filename: assets/objects/apple/new.obj
+      scale: [0.08, 0.08, 0.08]
+    pos:
+      ppos:
+        p: [0., 0., 0.]
+      qpos: [0.722678, -0.00625833, -0.0168827, -0.690951]
+      randp_scale: [0, 0, 0.]
+      randq_scale: [0., 0., 0., 0.]
+    mass_params:
+      mass: 0.005
+      cmass_local_pose: [0., 0., 0.]
+      inertia: [0.1, 0.1, 0.1]
+
   -
     name: green_peas_0
     file_path: assets/objects/green_peas/new.obj
@@ -386,6 +493,60 @@ objects:
       cmass_local_pose: [0., 0., 0.]
       inertia: [0.1, 0.1, 0.1]
   
+  -
+    name: spoon_0
+    file_path: assets/objects/spoon/new.obj
+    material: 
+      type: sapien.pysapien.physx.PhysxMaterial
+      params:
+        static_friction: 0.3
+        dynamic_friction: 0.3
+        restitution: 0.
+    visual:
+      filename: assets/objects/spoon/new.obj
+      scale: [0.05, 0.05, 0.05]
+    collision:
+      type: convex
+      filename: assets/objects/spoon/new.obj
+      scale: [0.05, 0.05, 0.05]
+    pos:
+      ppos:
+        p: [0., 0., 0.]
+      qpos: [0.704236, 0.708093, 0.00237229, -0.0514744]
+      randp_scale: [0, 0, 0.]
+      randq_scale: [0., 0., 0., 0.]
+    mass_params:
+      mass: 0.005
+      cmass_local_pose: [0., 0., 0.]
+      inertia: [0.1, 0.1, 0.1]
+
+  -
+    name: kettle_0
+    file_path: assets/objects/kettle/new.obj
+    material: 
+      type: sapien.pysapien.physx.PhysxMaterial
+      params:
+        static_friction: 0.3
+        dynamic_friction: 0.3
+        restitution: 0.
+    visual:
+      filename: assets/objects/kettle/new.obj
+      scale: [0.35, 0.35, 0.35]
+    collision:
+      type: convex
+      filename: assets/objects/kettle/new.obj
+      scale: [0.35, 0.35, 0.35]
+    pos:
+      ppos:
+        p: [0., 0., 0.]
+      qpos: [-0.00642696, -0.000446394, 0.712781, 0.701357]
+      randp_scale: [0, 0, 0.]
+      randq_scale: [0., 0., 0., 0.]
+    mass_params:
+      mass: 0.005
+      cmass_local_pose: [0., 0., 0.]
+      inertia: [0.1, 0.1, 0.1]
+
   -
     name: rock_0
     file_path: assets/objects/rock/new.obj
@@ -576,6 +737,87 @@ objects:
       inertia: [0.1, 0.1, 0.1]
 
   -
+    name: tomato_0
+    file_path: assets/objects/tomato/new.obj
+    material: 
+      type: sapien.pysapien.physx.PhysxMaterial
+      params:
+        static_friction: 0.3
+        dynamic_friction: 0.3
+        restitution: 0.
+    visual:
+      filename: assets/objects/tomato/new.obj
+      scale: [0.18, 0.18, 0.18]
+    collision:
+      type: convex
+      filename: assets/objects/tomato/new.obj
+      scale: [0.18, 0.18, 0.18]
+    pos:
+      ppos:
+        p: [0., 0., 0.]
+      qpos: [0.72207, 0.0302875, 0.0180827, -0.69092]
+      randp_scale: [0, 0, 0.]
+      randq_scale: [0., 0., 0., 0.]
+    mass_params:
+      mass: 0.005
+      cmass_local_pose: [0., 0., 0.]
+      inertia: [0.1, 0.1, 0.1]
+
+  -
+    name: pear_0
+    file_path: assets/objects/pear/new.obj
+    material: 
+      type: sapien.pysapien.physx.PhysxMaterial
+      params:
+        static_friction: 0.3
+        dynamic_friction: 0.3
+        restitution: 0.
+    visual:
+      filename: assets/objects/pear/new.obj
+      scale: [0.18, 0.18, 0.18]
+    collision:
+      type: convex
+      filename: assets/objects/pear/new.obj
+      scale: [0.18, 0.18, 0.18]
+    pos:
+      ppos:
+        p: [0., 0., 0.]
+      qpos: [0.72207, 0.0302875, 0.0180827, -0.69092]
+      randp_scale: [0, 0, 0.]
+      randq_scale: [0., 0., 0., 0.]
+    mass_params:
+      mass: 0.005
+      cmass_local_pose: [0., 0., 0.]
+      inertia: [0.1, 0.1, 0.1]
+
+  -
+    name: peach_0
+    file_path: assets/objects/peach/new.obj
+    material: 
+      type: sapien.pysapien.physx.PhysxMaterial
+      params:
+        static_friction: 0.3
+        dynamic_friction: 0.3
+        restitution: 0.
+    visual:
+      filename: assets/objects/peach/new.obj
+      scale: [0.18, 0.18, 0.18]
+    collision:
+      type: convex
+      filename: assets/objects/peach/new.obj
+      scale: [0.18, 0.18, 0.18]
+    pos:
+      ppos:
+        p: [0., 0., 0.]
+      qpos: [0.72207, 0.0302875, 0.0180827, -0.69092]
+      randp_scale: [0, 0, 0.]
+      randq_scale: [0., 0., 0., 0.]
+    mass_params:
+      mass: 0.005
+      cmass_local_pose: [0., 0., 0.]
+      inertia: [0.1, 0.1, 0.1]
+
+  -
     name: dish_0
     file_path: assets/objects/plate/new.obj
     material: 
@@ -732,13 +974,13 @@ cameras:
 
 position_areas:
   -
-    names: ['table', 'dining table', 'kitchen table']
+    names: ['table', 'dining table', 'kitchen table', 'kitchen island area']
     pos:
       ppos:
         p: [0.250, -4.185, 1.050]
       randp_scale: [2.85, 0.4, 0.]
   -
-    names: ['counter', 'kitchen counter']
+    names: ['counter', 'kitchen counter', 'kitchen work area']
     pos:
       ppos:
         p: [1.27, -0.45, 0.98]

@@ -496,7 +496,7 @@ objects:
       inertia: [0.1, 0.1, 0.1]
 
   -
-    name: pizza
+    name: pizza_0
     file_path: assets/objects/pizza/new.obj
     material: 
       type: sapien.pysapien.physx.PhysxMaterial

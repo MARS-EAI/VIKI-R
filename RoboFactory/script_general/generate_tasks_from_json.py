@@ -38,7 +38,7 @@ def main():
             agent_name = agent_cfg['robot_uid'].rsplit('-', maxsplit=1)[0]
             agents_dict[agent_name] = agent_cfg
         for object_cfg in object_cfgs:
-            object_name = object_cfg['name'].rsplit('_', maxsplit=1)[0]
+            object_name = object_cfg['name'].rsplit('_', maxsplit=1)[0].replace(' ', '_').replace('-', '_')
             objects_dict[object_name] = object_cfg
         for pos_area in general_config['position_areas']:
             pos_args = pos_area['pos']
