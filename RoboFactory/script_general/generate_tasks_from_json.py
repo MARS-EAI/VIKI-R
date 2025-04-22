@@ -67,7 +67,6 @@ def main():
             position_area = random.choice(item_pos[0])
             if position_area in ['cabinet', 'rack', 'kitchen cabinet', 'kitchen rack']:
                 transparent_style = True
-            print(position_area)
             new_pos_cfg = pos_dict[position_area]
             for axis in range(len(item_cfg['pos']['ppos']['p'])):
                 item_cfg['pos']['ppos']['p'][axis] = new_pos_cfg['ppos']['p'][axis] + item_cfg['pos']['ppos']['p'][axis]

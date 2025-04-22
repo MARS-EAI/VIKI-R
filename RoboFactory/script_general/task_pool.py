@@ -152,38 +152,38 @@ TASK_POOL = [
             },
         ], 
     },
-    {
-        "task_id": "2-2",
-        "task_name": "parallel_dual_asset_to_plate",
-        "description": "Transport the <mask1> and the <mask2> into the <mask3> together",
-        "mask1": ["apple", "tomato", "bun"],
-        "mask2": ["banana", "pear", "peach"],
-        "mask3": ["plate", "bowl", "tray"],
-        "robot_roles": ["wheeled", "humanoid"],
-        "ground_truth": [
-            {"R1": ["Move", "<mask1>"],      "R2": ["Move", "<mask2>"]},
-            {"R1": ["Reach", "<mask1>"],     "R2": ["Reach", "<mask2>"]},
-            {"R1": ["Grasp", "<mask1>"],     "R2": ["Grasp", "<mask2>"]},
-            {"R1": ["Move", "<mask3>"],      "R2": ["Move", "<mask3>"]},
-            {"R1": ["Place", "<mask3>"],     "R2": ["Place", "<mask3>"]}
-        ],
-        "init_pos": [
-            {
-                "name_key": "mask1",
-                "pos": ["dining table", "kitchen counter"],
-                "exclude_keys" : ["mask3"]
-            },
-            {
-                "name_key": "mask2",
-                "pos": ["dining table", "kitchen counter"],
-                "exclude_keys" : ["mask3"]
-            },
-            {
-                "name_key": "mask3",
-                "pos": ["dining table", "kitchen counter"],
-            },
-        ]
-    },
+    # {
+    #     "task_id": "2-2",
+    #     "task_name": "parallel_dual_asset_to_plate",
+    #     "description": "Transport the <mask1> and the <mask2> into the <mask3> together",
+    #     "mask1": ["apple", "tomato", "bun"],
+    #     "mask2": ["banana", "pear", "peach"],
+    #     "mask3": ["plate", "bowl", "tray"],
+    #     "robot_roles": ["wheeled", "humanoid"],
+    #     "ground_truth": [
+    #         {"R1": ["Move", "<mask1>"],      "R2": ["Move", "<mask2>"]},
+    #         {"R1": ["Reach", "<mask1>"],     "R2": ["Reach", "<mask2>"]},
+    #         {"R1": ["Grasp", "<mask1>"],     "R2": ["Grasp", "<mask2>"]},
+    #         {"R1": ["Move", "<mask3>"],      "R2": ["Move", "<mask3>"]},
+    #         {"R1": ["Place", "<mask3>"],     "R2": ["Place", "<mask3>"]}
+    #     ],
+    #     "init_pos": [
+    #         {
+    #             "name_key": "mask1",
+    #             "pos": ["dining table", "kitchen counter"],
+    #             "exclude_keys" : ["mask3"]
+    #         },
+    #         {
+    #             "name_key": "mask2",
+    #             "pos": ["dining table", "kitchen counter"],
+    #             "exclude_keys" : ["mask3"]
+    #         },
+    #         {
+    #             "name_key": "mask3",
+    #             "pos": ["dining table", "kitchen counter"],
+    #         },
+    #     ]
+    # },
     {
         "task_id": "3-1",
         "task_name": "set_plate_and_fork_on_table",

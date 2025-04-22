@@ -123,14 +123,36 @@ class RFSceneBuilder(SceneBuilder):
         if 'objects' in self.cfg:
             objects_cfg = self.cfg['objects']
             self.movable_objects = {}
+            pposes = []    # add collision avoidance
             for asset_cfg in objects_cfg:
                 asset = getattr(self.env, asset_cfg['name'], None)
                 if not asset:
                     raise AttributeError(f'Attribute "{asset_cfg["name"]}" not found in SceneBuilder.')
                 ppos = asset_cfg['pos']['ppos']['p']
                 if 'randp_scale' in asset_cfg['pos']:
-                    ppos = np.array(ppos) + np.array(asset_cfg['pos']['randp_scale'])* np.random.rand((len(ppos)))
-                    ppos = ppos.tolist()
+                    available_pos = False
+                    count = 0
+                    while not available_pos:
+                        if count > 100:
+                            print(f'Fail to find suitable position for {count} time. Skip.')
+                            exit(0)
+                        available_pos = True
+                    temp_ppos = np.array(ppos) + np.array(asset_cfg['pos']['randp_scale']) * np.random.rand((len(ppos)))
+                    temp_ppos = temp_ppos.tolist()
+                    for object_ppos in pposes:
+                        delta_pos = np.abs(np.array(object_ppos) - np.array(temp_ppos))
+                        if np.max(delta_pos) < 0.6 or (delta_pos[1] < 0.3):
+                            available_pos = False
+                    if 'pseduo_assets_areas' in self.cfg:
+                        for pseudo_asset_pos in self.cfg['pseduo_assets_areas']:
+                            axis_min = pseudo_asset_pos['pos']['min']
+                            axis_max = pseudo_asset_pos['pos']['max']
+                            delta_min = np.array(temp_ppos) - np.array(axis_min)
+                            delta_max = np.array(axis_max) - np.array(temp_ppos)
+                            if delta_max.min() >= 0 and delta_min.min() >=0:    # overlap with the area
+                                available_pos = False
+                    count += 1
+                pposes.append(temp_ppos)
                 qpos = asset_cfg['pos']['qpos']
                 if 'randq_scale' in asset_cfg['pos']:
                     qpos = np.array(qpos) + np.array(asset_cfg['pos']['randq_scale'])* np.random.rand((len(qpos)))
@@ -141,7 +163,7 @@ class RFSceneBuilder(SceneBuilder):
                         lock_y=asset_cfg['pos']['random_quaternions'][1],
                         lock_z=asset_cfg['pos']['random_quaternions'][2]
                     )
-                asset.set_pose(Pose.create_from_pq(ppos, qpos))
+                asset.set_pose(Pose.create_from_pq(temp_ppos, qpos))
                 self.movable_objects[asset_cfg['name']] = asset
         # agents
         if 'agents' in self.cfg:
