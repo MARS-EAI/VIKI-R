@@ -177,7 +177,8 @@ TASK_POOL = [
         "mask1": ["plate", "bowl"],
         "mask2": ["kitchen work area", "kitchen island area"],
         "mask3": ["fork", "spoon", "knife"],
-        "mask4": ["cabinet", "drawer"],
+        # "mask4": ["cabinet", "drawer"],
+        "mask4": ["cabinet"],
         "robot_roles": ["humanoid", "wheeled"],
         "ground_truth": [
             {"R1": ["Move", "<mask4>"],      "R2": ["Reach", "<mask1>"]},
@@ -290,7 +291,8 @@ TASK_POOL = [
         ],
         "mask1": ["pumpkin", "bread", "apple", "peach"],
         "mask2": ["scissors", "spoon", "fork"],
-        "mask3": ["cabinet", "drawer"],
+        # "mask3": ["cabinet", "drawer"],
+        "mask3": ["cabinet"],
         "robot_roles": ["humanoid", "wheeled"],
         "ground_truth": [
             {"R1": ["Move", "<mask3>"],        "R2": ["Move", "<mask2>"]},

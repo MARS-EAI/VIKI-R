@@ -64,7 +64,7 @@ def main():
             item_cfg['name'] = item_name
             
             # set random positions
-            position_area = random.choice(item_pos[0])
+            position_area = random.choice(item_pos)
             if position_area in ['cabinet', 'rack', 'kitchen cabinet', 'kitchen rack']:
                 transparent_style = True
             new_pos_cfg = pos_dict[position_area]

@@ -125,8 +125,8 @@ def instantiate_task(template, layout_id):
                 cur_pos.remove(p)
         if "aligned_keys" in item_pos:
             assert len(item_pos['aligned_keys']) == 1
-            cur_pos = mask_map[item_pos["aligned_keys"][0]]
-        init_pos[f'{item_name}_{idx}'] = [cur_pos]
+            cur_pos = [mask_map[item_pos["aligned_keys"][0]]]
+        init_pos[f'{item_name}_{idx}'] = cur_pos
             
     return {
         "task_id": tpl["task_id"],
