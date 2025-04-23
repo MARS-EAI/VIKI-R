@@ -4,9 +4,9 @@ scene:
   name: Robocasa
   env:
     scene_idx: 0
-    layout_idx: 1  # 0-9
+    layout_idx: 6  # 0-9
     style_idx: 0  # 0-11
-    # customized_layout: configs/robocasa_layout_1/customized_layout.yaml 
+    customized_layout: configs/robocasa_layout_6/customized_layout.yaml 
     
 # objects:
 #   -
@@ -903,50 +903,50 @@ agents:
     robot_uid: panda-0
     pos:
       ppos:
-        p: [1.632, -3.214, 1.070]
+        p: [2.34224, -2.54039, 1.070]
         q: [0., 0., 0.]
       qpos: [0., 0.3926990817, 0., -1.9634954085, 0., 2.3561944902, 0.7853981634, 0.04, 0.04]
-      randp_scale: [0, 0, 0]
+      randp_scale: [0.25, 0.25, 0]
   - 
     robot_uid: fetch-0
     pos:
       ppos:
-        p: [-0.264, -1.589, 0.001]
+        p: [5.16706, -2.68144, 0.001]
         q: [0., 0., 0.]
       qpos: [0, 0, 0, 0.386, 0, -0.370, 0.562, -1.032, 0.695, 0.955, -0.1, 2.077, 0, 0.015, 0.015]
-      randp_scale: [4.3, 0.32, 0]
+      randp_scale: [-0.3, -0.3, 0]
   - 
     robot_uid: unitree_go2-0
     pos:
       ppos:
-        p: [-0.264, -1.589, 0.29]
+        p: [0.960034, -3.32656, 0.29]
         q: [0., 0., 0.]
       qpos: [0.0, 0.0, 0.0, 0.0, 0.9, 0.9, 0.9, 0.9, -1.8, -1.8, -1.8, -1.8]
-      randp_scale: [4.3, 0.32, 0]
+      randp_scale: [0.604, 2.481, 0]
   -
     robot_uid: unitree_h1-0
     pos:
       ppos:
-        p: [-0.264, -1.589, 0.975]
+        p: [1.09966, -1.55781, 0.975]
         q: [0., 0., 0.]
       qpos: [0, 0, 0, 0, 0, 0, 0, -0.4, -0.4, 0.0, 0.0, 0.8, 0.8, 0.0, 0.0, -0.4, -0.4, 0.0, 0.0]
-      randp_scale: [4.3, 0.32, 0]
+      randp_scale: [4.3, 0.57, 0]
   -
     robot_uid: stompy-0
     pos:
       ppos:
-        p: [-0.264, -1.589, 0.975]
+        p: [1.09966, -1.55781, 0.975]
         q: [0., 0., 0.]
       qpos: [1.5, -1.5, -0.942, 0, 1.5, -1.5, -0.25, 0.25, 0.5, 0.65, -0.65, -0.5, -0.5, 0, 0, -0.5, 0.5, 0.78, -0.78, 0.25, -0.25, 0, -0.2, 0, 0.2, 0, 0, -0.2, 0.2, 0.2, -2.2, 0, 0, 0, 0, 0, 0]
-      randp_scale: [4.3, 0.32, 0]
+      randp_scale: [4.3, 0.57, 0]
   -
     robot_uid: anymal_c-0
     pos:
       ppos:
-        p: [-0.264, -1.589, 0.545]
+        p: [0.960034, -3.32656, 0.545]
         q: [0., 0., 0.]
       qpos: [0.03, -0.03, 0.03, -0.03, 0.4, 0.4, -0.4, -0.4, -0.8, -0.8, 0.8, 0.8]
-      randp_scale: [4.3, 0.32, 0]
+      randp_scale: [0.604, 2.481, 0]
 
 cameras:
   sensor:
@@ -965,9 +965,9 @@ cameras:
       uid: render_camera
       pose:
         type: pose
-        params: [[2.63367, -3.09278, 2.78253], [0.663229, -0.245825, 0.24602, 0.6627]]
-      width: 512
-      height: 512
+        params: [[1.41349, -4.28313, 2.69517], [0.804482, -0.176327, 0.291346, 0.486657]]
+      width: 1920
+      height: 1080
       fov: 1.57
       near: 0.01
       far: 100
@@ -977,35 +977,40 @@ position_areas:
     names: ['kitchen table', 'kitchen island area']
     pos:
       ppos:
-        p: [1.538, -3.250, 1.212]
-      randp_scale: [2.30, 0.89, 0]
+        p: [2.16265, -4.07295, 1.16949]
+      randp_scale: [1.8, 1.8, 0]
   -
     names: ['counter', 'kitchen counter', 'kitchen work area']
     pos:
       ppos:
-        p: [1.447, -0.493, 1.070]
-      randp_scale: [0.753, 0.329, 0]
+        p: [0.297169, -0.514829, 1.095]
+      randp_scale: [5.21, 0.245, 0]
   -
     names: ['cabinet']
     pos:
       ppos:
-        p: [1.996, -0.576, 1.790]
-      randp_scale: [0.079, 0.08, 0]
+        p: [6.17289, -0.984547, 1.64461]
+      randp_scale: [0.02, 0.02, 0]
   -
     names: ['rack']
     pos:
       ppos:
-        p: [3.384, -0.386, 2.040]
-      randp_scale: [0.513, 0.243, 0]
+        p: [4.34095, -0.316032, 2.04172]
+      randp_scale: [0.729, 0.191, 0]
 
 pseduo_assets_areas:
   -
-    name: paper_towel
+    name: holder
     pos:
-      min: [1.918, -0.158, 0.9]
-      max: [1.988, -0.118, 1.2]
+      min: [1.88561, -0.201824, 0.61095]
+      max: [2.08561, -0.001824, 1.51095]
   -
-    name: sink
+    name: stove
     pos:
-      min: [2.478, -2.701, 0.6]
-      max: [3.0262, -2.302, 1.570]
+      min: [3.39, -0.5, 0.750221]
+      max: [3.99, -0.05, 1.326197]
+  -
+    name: flower
+    pos:
+      min: [4.90452, -0.261975, 0.795]
+      max: [5.10452, -0.111975, 1.395]
