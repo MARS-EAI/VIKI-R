@@ -29,8 +29,7 @@ def solve(env: PickMeatRandomRobotEnv, seed=None, debug=False, vis=False):
     Image.fromarray(res_video[0, :, :, :].numpy()).save(os.path.join(out_dir, 'images', f'{fn_idx}.png'))
     meta_data.append({
         'image': f'{fn_idx}.png',
-        'robot_num': robot_num,
-        'robot_uids': env.robot_uids,
+        'gt': env.cfg['gt']
     })
     json.dump(meta_data, open(os.path.join(out_dir, meta_file), 'w'), indent=4)
     exit(0)
