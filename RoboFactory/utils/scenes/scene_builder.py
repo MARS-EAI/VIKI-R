@@ -97,7 +97,7 @@ class RFSceneBuilder(SceneBuilder):
         self.cfg = cfg
         self.env.annotation_data = {}
 
-    def initialize(self, env_idx: torch.Tensor, collision_detect=False):
+    def initialize(self, env_idx: torch.Tensor, collision_detect=True):
         b = len(env_idx)
         scene_cfg = self.cfg['scene']
 
@@ -181,7 +181,7 @@ class RFSceneBuilder(SceneBuilder):
                     available_pos = not collision_detect
                     count = 0
                     while not available_pos:
-                        if count > 50:
+                        if count > 100:
                             print(f'Fail to find suitable position for {count} time. Skip.')
                             exit(0)
                         available_pos = True
@@ -189,7 +189,7 @@ class RFSceneBuilder(SceneBuilder):
                         temp_ppos = temp_ppos.tolist()
                         for agent_ppos in pposes:
                             delta_pos = np.abs(np.array(agent_ppos) - np.array(temp_ppos))
-                            if np.max(delta_pos) < 0.6 or (delta_pos[1] < 0.3):
+                            if np.max(delta_pos) < 0.6 or (delta_pos[0] < 0.3):
                                 available_pos = False
                                 if (agent_cfg['robot_uid'].startswith('panda')):
                                     if delta_pos[0] < 0.3:

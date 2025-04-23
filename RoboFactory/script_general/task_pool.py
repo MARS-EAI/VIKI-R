@@ -161,6 +161,10 @@ TASK_POOL = [
                 "pos": ["kitchen work area", "kitchen island area"],
                 "exclude_keys" : ["mask3"]
             },
+            {
+                "name_key": "mask3",
+                "pos": ["kitchen work area", "kitchen island area"],
+            }
         ],
         "idle_robot_roles": ["dog", "arm"],
     },
