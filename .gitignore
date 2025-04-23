@@ -7,6 +7,7 @@ RoboFactory/demos
 RoboFactory/data
 RoboFactory/eval_video
 RoboFactory/checkpoints
+RoboFactory/data_gen
 
 docs/
 _ext

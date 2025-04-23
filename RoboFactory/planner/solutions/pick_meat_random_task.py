@@ -9,8 +9,8 @@ import json
 def solve(env: PickMeatRandomTaskEnv, seed=None, debug=False, vis=False):
     env.reset(seed=seed)
     env = env.unwrapped
-    # while 1:
-    #     env.render_human()
+    while 1:
+        env.render_human()
     res_video = env.render()
     for _ in range(10):
         res_video = env.render()
