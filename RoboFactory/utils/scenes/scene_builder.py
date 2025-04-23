@@ -97,7 +97,7 @@ class RFSceneBuilder(SceneBuilder):
         self.cfg = cfg
         self.env.annotation_data = {}
 
-    def initialize(self, env_idx: torch.Tensor, collision_detect=True):
+    def initialize(self, env_idx: torch.Tensor, collision_detect=False):
         b = len(env_idx)
         scene_cfg = self.cfg['scene']
 
@@ -205,7 +205,11 @@ class RFSceneBuilder(SceneBuilder):
                                 if delta_max.min() >= 0 and delta_min.min() >=0:    # overlap with the area
                                     available_pos = False
                         count += 1
-                temp_ppos = sapien.Pose(temp_ppos, q=euler2quat(*pos_cfg['ppos']['q']))
+                euler_pose = pos_cfg['ppos']['q']
+                if 'rand_euler' in pos_cfg:
+                    new_euler_pose = np.array(euler_pose) + np.random.rand((len(euler_pose))) * np.array(agent_cfg['pos']['rand_euler'])
+                    euler_pose = new_euler_pose.tolist()
+                temp_ppos = sapien.Pose(temp_ppos, q=euler2quat(*euler_pose))
                 pposes.append(temp_ppos.p)
                 qpos = np.array((pos_cfg['qpos']))
                 if 'randq_scale' in pos_cfg:
