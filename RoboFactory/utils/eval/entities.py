@@ -27,15 +27,15 @@ class Asset:
         self, 
         name: str,
         pos: Position,
-        is_grasped_by: list[str] = [],
+        is_grasped_by: list = [],
         is_activated: bool = False,    # whether the asset is interacted
-        is_container: bool = False    # whether the asset can serve as a container (holding other assets)
+        # is_container: bool = False    # whether the asset can serve as a container (holding other assets)
     ):
         self.name = name
         self.pos = pos
         self.is_grasped_by = is_grasped_by
         self.is_activated = is_activated
-        self.is_container = is_container
+        # self.is_container = is_container
 
 
 class Agent:
@@ -46,8 +46,8 @@ class Agent:
         pos: Position,
         avail_actions: list[str],    # available action list
         end_effector_num: int = 0,
-        reached_objects: list[str] = [],
-        carried_objects: list[str] = []
+        reached_objects: list = [],
+        carried_objects: list = []
     ):
         self.name = name    # R1
         self.type = type    # panda
@@ -88,4 +88,13 @@ AGENT_AVAIL_ACTIONS = {
     'unitree_h1': ['move', 'reach', 'grasp', 'place', 'open', 'close', 'handover', 'interact'],
     'stompy': ['move', 'reach', 'grasp', 'place', 'open', 'close', 'handover', 'interact'],
     'anymal_c': ['move', 'reach', 'grasp', 'place', 'handover', 'interact'],
+}
+
+AGENT_END_EFFECTOR_NUM = {
+    'panda': 1,
+    'fetch': 1,
+    'unitree_go2': 1,
+    'unitree_h1': 2,
+    'stompy': 2,
+    'anymal_c': 1,
 }

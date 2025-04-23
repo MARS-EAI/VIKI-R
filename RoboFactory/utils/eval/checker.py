@@ -52,7 +52,7 @@ class Checker:
     def check_agent_relative_position(self, agent: Agent, target: Union[Agent, Asset]):
         return agent.pos.name == target.name
     
-    def check_operation_feasibility(self, operation_name: str, params: list):
+    def check_operation(self, operation_name: str, params: list):
         if operation_name not in ALL_ACTIONS:
             return False
         action_type = ALL_ACTIONS[operation_name]
