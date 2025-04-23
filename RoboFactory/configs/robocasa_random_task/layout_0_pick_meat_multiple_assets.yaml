@@ -4,7 +4,7 @@ scene:
   name: Robocasa
   env:
     scene_idx: 0
-    layout_idx: 7  # 0-9
+    layout_idx: 0  # 0-9
     style_idx: 0  # 0-11
     # customized_layout: configs/robocasa_layout_2/customized_layout.yaml 
     
@@ -900,53 +900,45 @@ objects:
 
 agents:
   - 
-    robot_uid: panda-0
-    pos:
-      ppos:
-        p: [2.05, -3.36, 1.070]
-        q: [0., 0., 0.]
-      qpos: [0., 0.3926990817, 0., -1.9634954085, 0., 2.3561944902, 0.7853981634, 0.04, 0.04]
-      randp_scale: [1.55, 0.31, 0]
-  - 
     robot_uid: fetch-0
     pos:
       ppos:
-        p: [1.2, -2.5, 0.001]
+        p: [0.836, -2.756, 0.001]
         q: [0., 0., 0.]
       qpos: [0, 0, 0, 0.386, 0, -0.370, 0.562, -1.032, 0.695, 0.955, -0.1, 2.077, 0, 0.015, 0.015]
-      randp_scale: [2.0, 1.2, 0]
+      randp_scale: [3.45, 1.489, 0]
   - 
     robot_uid: unitree_go2-0
     pos:
       ppos:
-        p: [1.2, -2.5, 0.29]
+        p: [0.836, -2.756, 0.29]
         q: [0., 0., 0.]
       qpos: [0.0, 0.0, 0.0, 0.0, 0.9, 0.9, 0.9, 0.9, -1.8, -1.8, -1.8, -1.8]
-      randp_scale: [2.0, 1.2, 0]
+      randp_scale: [3.45, 1.489, 0]
   -
     robot_uid: unitree_h1-0
     pos:
       ppos:
-        p: [1.2, -2.5, 0.975]
+        p: [0.836, -2.756, 0.975]
         q: [0., 0., 0.]
       qpos: [0, 0, 0, 0, 0, 0, 0, -0.4, -0.4, 0.0, 0.0, 0.8, 0.8, 0.0, 0.0, -0.4, -0.4, 0.0, 0.0]
-      randp_scale: [2.0, 1.2, 0]
+      randp_scale: [3.45, 1.489, 0]
   -
     robot_uid: stompy-0
     pos:
       ppos:
-        p: [1.2, -2.5, 0.975]
+        p: [0.836, -2.756, 0.975]
         q: [0., 0., 0.]
       qpos: [1.5, -1.5, -0.942, 0, 1.5, -1.5, -0.25, 0.25, 0.5, 0.65, -0.65, -0.5, -0.5, 0, 0, -0.5, 0.5, 0.78, -0.78, 0.25, -0.25, 0, -0.2, 0, 0.2, 0, 0, -0.2, 0.2, 0.2, -2.2, 0, 0, 0, 0, 0, 0]
-      randp_scale: [2.0, 1.2, 0]
+      randp_scale: [3.45, 1.489, 0]
   -
     robot_uid: anymal_c-0
     pos:
       ppos:
-        p: [1.2, -2.5, 0.545]
+        p: [0.836, -2.756, 0.545]
         q: [0., 0., 0.]
       qpos: [0.03, -0.03, 0.03, -0.03, 0.4, 0.4, -0.4, -0.4, -0.8, -0.8, 0.8, 0.8]
-      randp_scale: [2.0, 1.2, 0]
+      randp_scale: [3.45, 1.489, 0]
 
 cameras:
   sensor:
@@ -965,7 +957,7 @@ cameras:
       uid: render_camera
       pose:
         type: pose
-        params: [[2.14981, -4.236, 2.96786], [0.650266, -0.271847, 0.269357, 0.656277]]
+        params: [[2.63367, -3.09278, 2.78253], [0.663229, -0.245825, 0.24602, 0.6627]]
       width: 512
       height: 512
       fov: 1.57
@@ -974,37 +966,27 @@ cameras:
 
 position_areas:
   -
-    names: ['table', 'dining table', 'kitchen table', 'kitchen island area']
-    pos:
-      ppos:
-        p: [1.914, -3.386, 1.070]
-      randp_scale: [2.0, 0.4, 0.]
-  -
     names: ['counter', 'kitchen counter', 'kitchen work area']
     pos:
       ppos:
-        p: [0.820, -0.552, 1.070]
-      randp_scale: [2.736, 0.35, 0]
+        p: [1.852, -0.538, 1.070]
+      randp_scale: [0.77, 0.31, 0]
   -
-    names: ['cabinet', 'rack']
+    names: ['cabinet']
     pos:
       ppos:
-        p: [0.8, -0.247, 1.584]
-      randp_scale: [0.6, 0.1, 0]
+        p: [1.892, -0.248, 1.584]
+      randp_scale: [0.464, 0.08, 0]
+  -
+    names: ['rack']
+    pos:
+      ppos:
+        p: [3.684, -0.306, 1.584]
+      randp_scale: [0.370, 0.154, 0]
 
 pseduo_assets_areas:
   -
-    name: toaster
+    name: paper_towel
     pos:
-      min: [2.796, -0.318, 0.9]
-      max: [2.931, -0.058, 1.2]
-  -
-    name: knife_block
-    pos:
-      min: [0.921, -1.057, 0.9]
-      max: [1.050, 0.006, 1.4]
-  -
-    name: fixed_plant
-    pos:
-      min: [2.888, -3.176, 0.9]
-      max: [3.038, -3.276, 1.2]
+      min: [1.918, -0.158, 0.9]
+      max: [1.988, -0.118, 1.2]
