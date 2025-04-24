@@ -78,7 +78,8 @@ class Eval:
                         },
                     ]
                     [
-                        {    # status 1: pot at flower
+                        {    # status 2: pot at flower and activated
+
                             "type": asset    # {asset, agent}
                             "name": pot
                             "is_satisfied": True
@@ -89,6 +90,19 @@ class Eval:
                         },
                     ]
                 ],
+                [
+                    # e.g., 3. pot at the table
+                    [
+                        {
+                            "type": asset    # {asset, agent}
+                            "name": pot
+                            "is_satisfied": True
+                            "status": {
+                                "pos.name": "table"
+                                "is_grasped_by": []
+                        }
+                    ]
+                ]
             ]
 
         """
