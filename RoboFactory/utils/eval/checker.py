@@ -79,4 +79,4 @@ class Checker:
                 return False
             return self.check_agent_relative_position(params[0], params[1], assets, agents) and not self.check_asset_is_activated(params[1])
         else:    # should never reach
-            return False
+            raise ValueError(f'Unexpected operation: {operation_name}.')
