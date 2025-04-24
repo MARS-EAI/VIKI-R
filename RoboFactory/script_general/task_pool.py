@@ -675,7 +675,7 @@ TASK_POOL = [
                         }
                     }
                 ],
-            ]
+            ],
             # Constraint 2: <mask3> should be moved to <mask4>
             [
                 [
