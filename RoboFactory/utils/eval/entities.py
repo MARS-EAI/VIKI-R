@@ -27,15 +27,25 @@ class Asset:
         self, 
         name: str,
         pos: Position,
-        is_grasped_by: list[str] = [],
+        is_grasped_by: list = [],
         is_activated: bool = False,    # whether the asset is interacted
-        is_container: bool = False    # whether the asset can serve as a container (holding other assets)
+        is_container: bool = False,    # whether the asset can serve as a container (holding other assets)
+        container_positions: list = [],
     ):
         self.name = name
         self.pos = pos
         self.is_grasped_by = is_grasped_by
         self.is_activated = is_activated
         self.is_container = is_container
+        self.container_positions = container_positions
+    
+    def add_container_position(self, container_position: Position):
+        self.container_positions.append(container_position)
+    
+    def set_all_container_positions(self, position_kwargs={}):
+        for position in self.container_positions:
+            for kwarg in position_kwargs:
+                setattr(position, kwarg, position_kwargs[kwarg])
 
 
 class Agent:
@@ -46,8 +56,8 @@ class Agent:
         pos: Position,
         avail_actions: list[str],    # available action list
         end_effector_num: int = 0,
-        reached_objects: list[str] = [],
-        carried_objects: list[str] = []
+        reached_objects: list = [],
+        carried_objects: list = []
     ):
         self.name = name    # R1
         self.type = type    # panda
@@ -66,7 +76,7 @@ class Agent:
     def is_reached_objects(self, asset: Asset):
         return asset in self.reached_objects
     
-    def is_carried_objects(self, asset: Asset)
+    def is_carried_objects(self, asset: Asset):
         return asset in self.carried_objects
     
 
@@ -74,7 +84,7 @@ ALL_ACTIONS  = {
     'move': Action(name='move', param_types=[{Agent, Asset}]),
     'reach': Action(name='reach', param_types=[{Agent, Asset}]),
     'grasp': Action(name='grasp', param_types=[{Asset}]),
-    'place': Action(name='place', param_types=[{Asset}]),
+    'place': Action(name='place', param_types=[{Position}]),
     'open': Action(name='open', param_types=[{Asset}], param_scopes=[{"name": {'cabinet', 'drawer', 'kitchen cabinet', 'kitchen drawer'}}]),
     'close': Action(name='close', param_types=[{Asset}], param_scopes=[{"name": {'cabinet', 'drawer', 'kitchen cabinet', 'kitchen drawer'}}]),
     'handover': Action(name='handover', param_types=[{Asset}, {Agent}]),
@@ -88,4 +98,13 @@ AGENT_AVAIL_ACTIONS = {
     'unitree_h1': ['move', 'reach', 'grasp', 'place', 'open', 'close', 'handover', 'interact'],
     'stompy': ['move', 'reach', 'grasp', 'place', 'open', 'close', 'handover', 'interact'],
     'anymal_c': ['move', 'reach', 'grasp', 'place', 'handover', 'interact'],
+}
+
+AGENT_END_EFFECTOR_NUM = {
+    'panda': 1,
+    'fetch': 1,
+    'unitree_go2': 1,
+    'unitree_h1': 2,
+    'stompy': 2,
+    'anymal_c': 1,
 }
