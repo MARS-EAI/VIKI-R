@@ -1,19 +1,54 @@
 import argparse
 import json
 from utils.eval.eval import Eval
-
+import random
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-d', '--data', type=str, default='script_general/output.json', help='data for eval')
+    parser.add_argument('-d', '--data', type=str, default='script_general/gt_test.json', help='data for eval')
     return parser.parse_args()
 
 
 def eval(data: list):
+    judger = Eval()
+    success_count = 0
     for d in data:
         robots = d["robots"]
         gt = d["ground_truth"]
-        prediction = gt    # currently use the same gt
+        init_pos = d['init_pos']
+        constraints = d['constraints']
+        
+        default_metadata = {
+            "agents": {
+
+            },
+            "assets": {
+
+            }
+        }
+        for robot_id, robot_type in robots.items():
+            default_metadata["agents"][robot_id] = {
+                "type": robot_type,
+                "pos": {
+                    "name": robot_id,
+                }
+            }
+        for asset_name, asset_pos in init_pos.items():
+            default_metadata["assets"][asset_name.rsplit('_', maxsplit=1)[0]] = {
+                "pos": {
+                    "name": random.choice(asset_pos)
+                },
+            }
+        default_metadata['constraints'] = constraints
+        judger.set_env(default_metadata)
+        success = judger.eval([{
+            'R1': '<move, bread>'
+        }])
+        if not success:
+            print(judger.get_error_desc())
+        else:
+            success_count += 1
+    print(f'Success Count: {success_count}')
 
 
 if __name__ == '__main__':

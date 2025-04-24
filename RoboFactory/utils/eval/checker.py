@@ -32,7 +32,7 @@ class Checker:
         if len(target) != len(action.param_types):
             return False
         for t, p in zip(target, action.param_types):
-            if t not in p:
+            if type(t) not in p:
                 return False
         if action.param_scopes is not None:
             for t, scope in zip(target, action.param_scopes):
@@ -56,7 +56,7 @@ class Checker:
         if operation_name not in ALL_ACTIONS:
             return False
         action_type = ALL_ACTIONS[operation_name]
-        if not self.check_action_target(action_type, params):
+        if not self.check_action_target(action_type, params[1:]):
             return False
         if operation_name == 'move':
             return True

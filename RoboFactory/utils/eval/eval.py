@@ -136,7 +136,7 @@ class Eval:
         content = command_desc[1:-1].strip().lower()
         return [elem.strip() for elem in content.split(',')]
 
-    def nested_getattr(obj, attr_path):
+    def nested_getattr(self, obj, attr_path):
         attrs = attr_path.split('.')
         for attr in attrs:
             obj = getattr(obj, attr)
@@ -144,7 +144,9 @@ class Eval:
 
     def check_goal_constraint(self, goal_constraint: list[dict]):
         for goal_status in goal_constraint:
-            target_entity = getattr(self.env, goal_status['type'])[goal_status['name']]
+            if isinstance(goal_status, list) and len(goal_status) == 1:
+                goal_status = goal_status[0]
+            target_entity = getattr(self.env, f'{goal_status["type"]}s')[goal_status['name']]
             # status_achieved = True
             positive_check = goal_status['is_satisfied']
             for target_attr, target_status in goal_status['status'].items():
@@ -197,11 +199,13 @@ class Eval:
                     self.error_desc_code = 'ACTION_NOT_FEASIBLE'
                     return False
                 # step env step by step
-                self.env.step([operation_name].extend(operation_entities))
+                step_params = [operation_name]
+                step_params.extend(operation_entities)
+                self.env.step(step_params)
             # check temporal constraints
             pass
         # check final status
-        goal_constraints = self.env_metadata
+        goal_constraints = self.env.metadata['constraints']
         for goal_constraint in goal_constraints:
             if not self.check_goal_constraint(goal_constraint):
                 self.error_desc_code = 'FAILED_GOAL_CONSTRAINT'
