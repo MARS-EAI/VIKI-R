@@ -95,9 +95,14 @@ class RFSceneBuilder(SceneBuilder):
     def __init__(self, env, cfg, **kwargs):
         super().__init__(env, **kwargs)
         self.cfg = cfg
+        self.first_initial = True
         self.env.annotation_data = {}
 
     def initialize(self, env_idx: torch.Tensor, collision_detect=True):
+        if self.first_initial:
+            self.first_initial = False
+            print("First time initializing the scene, skip.")
+            return
         b = len(env_idx)
         scene_cfg = self.cfg['scene']
 
@@ -181,7 +186,7 @@ class RFSceneBuilder(SceneBuilder):
                     available_pos = not collision_detect
                     count = 0
                     while not available_pos:
-                        if count > 100:
+                        if count > 5000:
                             print(f'Fail to find suitable position for {count} time. Skip.')
                             exit(0)
                         available_pos = True
