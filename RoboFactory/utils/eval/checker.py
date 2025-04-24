@@ -50,7 +50,7 @@ class Checker:
             return target.pos.name == pos.name
     
     def check_agent_relative_position(self, agent: Agent, target: Union[Agent, Asset]):
-        return agent.pos.name == target.name
+        return agent.pos.name == target.name or agent.name == target.pos.name
     
     def check_operation(self, operation_name: str, params: list, assets: dict = {}, agents: dict = {}):
         if operation_name not in ALL_ACTIONS:
@@ -75,6 +75,8 @@ class Checker:
         elif operation_name == 'handover':    # handover <asset, agent>
             return self.check_agent_relative_position(params[0], params[2]) and len(params[0].get_carried_objects()) > 0 and self.check_agent_has_free_end_effector(params[2])
         elif operation_name == 'interact':    # known: agent may activate irrelevant assets, can be solved by informing each task of interact scopes
-            return self.check_agent_relative_position(params[0], params[1]) and self.check_agent_has_free_end_effector(params[0]) and not self.check_asset_is_activated(params[1])
+            if params[1] not in params[0].get_carried_objets() and not self.check_agent_has_free_end_effector(params[0]):
+                return False
+            return self.check_agent_relative_position(params[0], params[1], assets, agents) and not self.check_asset_is_activated(params[1])
         else:    # should never reach
             return False
