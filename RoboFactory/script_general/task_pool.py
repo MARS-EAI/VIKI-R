@@ -222,10 +222,10 @@ TASK_POOL = [
                 [
                     {
                         "type": "asset",
-                        "name": "mask1",
+                        "name": "<mask1>",
                         "is_satisfied": True,
                         "status": {
-                            "pos.name": "mask2"
+                            "pos.name": "<mask2>"
                         }
                     }
                 ]

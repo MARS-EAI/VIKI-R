@@ -135,6 +135,29 @@ def instantiate_task(template, layout_id):
             assert len(item_pos['aligned_keys']) == 1
             cur_pos = [mask_map[item_pos["aligned_keys"][0]]]
         init_pos[f'{item_name}_{idx}'] = cur_pos
+    # e) add constraints
+    constraints = []
+    if 'constraints' in tpl:
+        constraints = tpl['constraints']
+        for con in constraints:
+            for tcon in con:
+                for i in range(len(tcon)):
+                    new_tcon = deepcopy(tcon[i])
+                    for k, v in tcon[i].items():
+                        # if 'mask' in v:
+                        #     # print(v)
+                        #     pass
+                            # new_tcon[k] = mask_map[v.replace('<', '').replace('>', '')]
+                            # print(mask_map[v.replace('<', '').replace('>', '')])
+                            # print(tcon[i])
+                        if k == 'status':
+                            # print('in')
+                            for ik, iv in tcon[i]['status'].items():
+                                if 'mask' in iv:
+                                    new_tcon['status'][ik] = mask_map[iv.replace('<', '').replace('>', '')]
+                        elif k == 'name':
+                            new_tcon[k] = mask_map[v.replace('<', '').replace('>', '')]
+                    tcon[i] = new_tcon
             
     return {
         "task_id": tpl["task_id"],
@@ -145,6 +168,7 @@ def instantiate_task(template, layout_id):
         "ground_truth": gt_final,
         "init_pos": init_pos,
         "idle_robots": idle_robots_list,
+        "constraints": constraints,
     }
 
 # ---------- 5) 小测试 ----------
