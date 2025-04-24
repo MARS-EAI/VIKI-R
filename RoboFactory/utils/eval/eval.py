@@ -1,3 +1,5 @@
+import re
+
 from .env import SimEnv
 from .checker import Checker
 
@@ -12,6 +14,7 @@ class Eval:
                     "R1": {
                         type: [robot_type],
                         pos: {
+                            name: XXXX,
                             **kwargs
                         }
                         params: **
@@ -20,6 +23,7 @@ class Eval:
                 "assets": {
                     "A1": {
                         pos: {
+                            name: XXXX,
                             **kwargs
                         }
                         params: **
@@ -106,8 +110,23 @@ class Eval:
             ]
 
         """
-    def parse_command(self, command):
+
+    def is_valid_sequence(self, s):
+        pattern = r'^<\s*([^,<>\s][^,<>\s]*\s*)(\s*,\s*[^,<>\s][^,<>\s]*\s*)*>$'
+        return bool(re.match(pattern, s))
+
+    def parse_command(self, command: dict):
         pass
 
-    def eval(self, commands):
-        pass
+    def eval(self, command_records: list):
+        """
+        command_records: [
+            {
+                id_1: command,
+                ...
+            }
+        ]
+        """
+        for command_record in command_records:
+            
+
