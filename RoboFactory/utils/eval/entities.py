@@ -29,13 +29,23 @@ class Asset:
         pos: Position,
         is_grasped_by: list = [],
         is_activated: bool = False,    # whether the asset is interacted
-        # is_container: bool = False    # whether the asset can serve as a container (holding other assets)
+        is_container: bool = False,    # whether the asset can serve as a container (holding other assets)
+        container_positions: list = [],
     ):
         self.name = name
         self.pos = pos
         self.is_grasped_by = is_grasped_by
         self.is_activated = is_activated
-        # self.is_container = is_container
+        self.is_container = is_container
+        self.container_positions = container_positions
+    
+    def add_container_position(self, container_position: Position):
+        self.container_positions.append(container_position)
+    
+    def set_all_container_positions(self, position_kwargs={}):
+        for position in self.container_positions:
+            for kwarg in position_kwargs:
+                setattr(position, kwarg, position_kwargs[kwarg])
 
 
 class Agent:
@@ -66,7 +76,7 @@ class Agent:
     def is_reached_objects(self, asset: Asset):
         return asset in self.reached_objects
     
-    def is_carried_objects(self, asset: Asset)
+    def is_carried_objects(self, asset: Asset):
         return asset in self.carried_objects
     
 
@@ -74,7 +84,7 @@ ALL_ACTIONS  = {
     'move': Action(name='move', param_types=[{Agent, Asset}]),
     'reach': Action(name='reach', param_types=[{Agent, Asset}]),
     'grasp': Action(name='grasp', param_types=[{Asset}]),
-    'place': Action(name='place', param_types=[{Asset}]),
+    'place': Action(name='place', param_types=[{Position}]),
     'open': Action(name='open', param_types=[{Asset}], param_scopes=[{"name": {'cabinet', 'drawer', 'kitchen cabinet', 'kitchen drawer'}}]),
     'close': Action(name='close', param_types=[{Asset}], param_scopes=[{"name": {'cabinet', 'drawer', 'kitchen cabinet', 'kitchen drawer'}}]),
     'handover': Action(name='handover', param_types=[{Asset}, {Agent}]),

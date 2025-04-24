@@ -52,7 +52,7 @@ class Checker:
     def check_agent_relative_position(self, agent: Agent, target: Union[Agent, Asset]):
         return agent.pos.name == target.name
     
-    def check_operation(self, operation_name: str, params: list):
+    def check_operation(self, operation_name: str, params: list, assets: dict = {}, agents: dict = {}):
         if operation_name not in ALL_ACTIONS:
             return False
         action_type = ALL_ACTIONS[operation_name]
@@ -67,7 +67,7 @@ class Checker:
         elif operation_name == 'grasp':
             return not self.check_asset_is_grasped(params[1]) and self.check_agent_has_free_end_effector(params[0]) and params[0].is_reached_objects(params[1])
         elif operation_name == 'place':
-            return self.check_agent_relative_position(params[0], params[1]) and len(params[0].get_carried_objects()) > 0
+            return self.check_target_aligned_position(params[0], params[1], assets, agents) and len(params[0].get_carried_objects()) > 0
         elif operation_name == 'open':
             return self.check_agent_relative_position(params[0], params[1]) and self.check_agent_has_free_end_effector(params[0]) and self.check_pos_is_isolated(params[1].pos)
         elif operation_name == 'close':
