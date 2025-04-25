@@ -24,7 +24,6 @@ def eval(data: list):
     judger = Eval()
     success_count = 0
     for idx, d in enumerate(data):
-        # d = {'task_id': '2-1_993', 'task_name': 'parallel_human_dual_asset_to_plate_or_bowl', 'layout_id': 8, 'description': 'Carry the pear along with the tomato and place them into the bowl.', 'robots': {'R1': 'fetch', 'R2': 'unitree_h1'}, 'ground_truth': [{'R2': ['Move', 'pear'], 'R1': ['Move', 'tomato']}, {'R2': ['Reach', 'pear'], 'R1': ['Reach', 'tomato']}, {'R2': ['Grasp', 'pear'], 'R1': ['Grasp', 'tomato']}, {'R2': ['Move', 'bowl'], 'R1': ['Move', 'bowl']}, {'R2': ['Place', 'bowl'], 'R1': ['Place', 'bowl']}], 'init_pos': {'pear_0': ['kitchen work area', 'kitchen island area'], 'tomato_1': ['kitchen work area', 'kitchen island area'], 'bowl_2': ['kitchen work area', 'kitchen island area']}, 'idle_robots': [], 'constraints': [[[{'type': 'asset', 'name': 'pear', 'is_satisfied': True, 'status': {'pos.name': 'bowl'}}]], [[{'type': 'asset', 'name': 'tomato', 'is_satisfied': True, 'status': {'pos.name': 'bowl'}}]]]}
         robots = d["robots"]
         gt = d["ground_truth"]
         init_pos = d['init_pos']
@@ -73,8 +72,7 @@ def eval(data: list):
             print(f'{idx}: {judger.get_error_desc()}')
         else:
             success_count += 1
-        # break
-    print(f'Success Count: {success_count}')
+    print(f'Success Count: {success_count}. Failed Count: {len(data) - success_count}.')
 
 
 if __name__ == '__main__':

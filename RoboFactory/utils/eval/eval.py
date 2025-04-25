@@ -13,6 +13,7 @@ class Eval:
             "NOT_FOUND_ENTITY": "entity not found in the environment.",
             "ACTION_NOT_FEASIBLE": "action not feasible",
             "FAILED_GOAL_CONSTRAINT": "failed goal constraint",
+            "ACTION_NOT_COMPATIBLE": "action not compatible in one step.",
         }
 
     def set_env(self, env_metadata):
@@ -178,10 +179,11 @@ class Eval:
                 parsed_command.insert(1, robot_name)    # add the agent name
                 commands.append(parsed_command)
             all_commands.append(commands)
-
+        
         # action feasibility
         for commands in all_commands:
-            for command in commands:    # currently step by 
+            step_commands = []    # commands in one step
+            for command in commands:
                 operation_name = command[0]
                 operation_params = command[1:]
                 operation_entities = []
@@ -200,10 +202,15 @@ class Eval:
                     self.error_desc_code = 'ACTION_NOT_FEASIBLE'
                     return False
                 # step env step by step
-                step_params = [operation_name]
-                step_params.extend(operation_entities)
-
-                self.env.step(step_params)
+                robot_inst_params = [operation_name]
+                robot_inst_params.extend(operation_entities)
+                step_commands.append(robot_inst_params)
+            is_compatible_actions = self.checker.check_compatible_constraints(step_commands=step_commands, assets=self.env.assets, agents=self.env.agents)
+            if not is_compatible_actions:
+                self.error_desc_code = 'ACTION_NOT_COMPATIBLE'
+                return False
+            for step_command in step_commands:
+                self.env.step(step_command)
             # check temporal constraints
             pass
         # check final status

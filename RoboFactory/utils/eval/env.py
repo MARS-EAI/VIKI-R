@@ -111,3 +111,6 @@ class SimEnv:
             params[1].is_activated = True
         else:    # should never reach
             raise ValueError(f'Unsupported operation: {operation}')
+        
+    def sim_step(self, commands: list):
+        pass
