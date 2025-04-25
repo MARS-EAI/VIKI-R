@@ -43,7 +43,14 @@ def _choose_ids(role_seq):
     perm = list(range(len(ids)))
     random.shuffle(perm)
     shuffled_ids = [ids[i] for i in perm]
-    return shuffled_ids, perm          # perm[i]=原 idx？我们用 perm.index 逆查
+    return shuffled_ids, perm
+
+def _choose_ids_not_shuffled(role_seq):
+    """抽取 ID 并返回 (正序后的 id 列表, 置换表 perm)"""
+    ids = [random.choice(CATEGORY2IDS[cat]) for cat in role_seq]
+    perm = list(range(len(ids)))
+    _ids = [ids[i] for i in perm]
+    return _ids, perm
 
 def _permute_gt(gt_steps, perm):
     """根据 perm 映射 ground_truth 的 key 和 value 中的 Rk"""
@@ -92,15 +99,14 @@ def _fill_masks(obj, mask_map):
 def instantiate_task(template):
 
     tpl = deepcopy(template)
-    layout_id = 0
+    layout_id = 1
     if layout_id not in tpl["layout_idx"]:
         raise ValueError(f"layout_id {layout_id} not in template layout_idx {tpl['layout_idx']}")
 
     # a) 随机选取并打乱 robot IDs
     ids, perm = _choose_ids(tpl["robot_roles"])
     robots = {f"R{i+1}": rid for i, rid in enumerate(ids)}
-    ids_idle, perm_idle = _choose_ids(tpl["idle_robot_roles"])
-    idle_robots = {f"R{i+1}": rid for i, rid in enumerate(ids_idle)}
+    ids_idle, perm_idle = _choose_ids_not_shuffled(tpl["idle_robot_roles"])
 
     KEEP_PROB = 0.5
     core_roles = tpl["robot_roles"]
@@ -117,7 +123,6 @@ def instantiate_task(template):
 
     combined_roles = core_roles + selected_idle_roles
     idle_robots_list = selected_idle_ids
-
 
     if not is_compatible(layout_id, combined_roles):
         raise ValueError(f"layout_id {layout_id} cannot satisfy robot_roles {combined_roles}")
@@ -153,28 +158,32 @@ def instantiate_task(template):
         init_pos[f'{item_name}_{idx}'] = cur_pos
 
     # e) add constraints
-    constraints = []
-    if 'constraints' in tpl:
-        constraints = tpl['constraints']
-        for con in constraints:
-            for tcon in con:
-                for i in range(len(tcon)):
-                    new_tcon = deepcopy(tcon[i])
-                    for k, v in tcon[i].items():
-                        # if 'mask' in v:
-                        #     # print(v)
-                        #     pass
-                            # new_tcon[k] = mask_map[v.replace('<', '').replace('>', '')]
-                            # print(mask_map[v.replace('<', '').replace('>', '')])
-                            # print(tcon[i])
-                        if k == 'status':
-                            # print('in')
-                            for ik, iv in tcon[i]['status'].items():
-                                if 'mask' in iv:
-                                    new_tcon['status'][ik] = mask_map[iv.replace('<', '').replace('>', '')]
-                        elif k == 'name':
-                            new_tcon[k] = mask_map[v.replace('<', '').replace('>', '')]
-                    tcon[i] = new_tcon
+    temporal_constraints_masked = []
+    if 'temporal_constraints' in tpl:
+        temporal_constraints_masked = [_fill_masks(step, mask_map) for step in tpl["temporal_constraints"]]
+    
+    goal_constraints_masked = []
+    if 'goal_constraints' in tpl:
+        goal_constraints_masked = [_fill_masks(step, mask_map) for step in tpl["goal_constraints"]]
+        # for con in constraints:
+        #     for tcon in con:
+        #         for i in range(len(tcon)):
+        #             new_tcon = deepcopy(tcon[i])
+        #             for k, v in tcon[i].items():
+        #                 # if 'mask' in v:
+        #                 #     # print(v)
+        #                 #     pass
+        #                     # new_tcon[k] = mask_map[v.replace('<', '').replace('>', '')]
+        #                     # print(mask_map[v.replace('<', '').replace('>', '')])
+        #                     # print(tcon[i])
+        #                 if k == 'status':
+        #                     # print('in')
+        #                     for ik, iv in tcon[i]['status'].items():
+        #                         if 'mask' in iv:
+        #                             new_tcon['status'][ik] = mask_map[iv.replace('<', '').replace('>', '')]
+        #                 elif k == 'name':
+        #                     new_tcon[k] = mask_map[v.replace('<', '').replace('>', '')]
+        #             tcon[i] = new_tcon
             
     return {
         "task_id": tpl["task_id"],
@@ -185,7 +194,8 @@ def instantiate_task(template):
         "ground_truth": gt_final,
         "init_pos": init_pos,
         "idle_robots": idle_robots_list,
-        "constraints": constraints,
+        "goal_constraints": goal_constraints_masked,
+        "temporal_constraints": temporal_constraints_masked
     }
 
 # ---------- 5) 小测试 ----------

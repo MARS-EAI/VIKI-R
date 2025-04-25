@@ -9,8 +9,8 @@ import json
 def solve(env: PickMeatRandomRobotEnv, seed=None, debug=False, vis=False):
     env.reset(seed=seed)
     env = env.unwrapped
-    while 1:
-        env.render_human()
+    # while 1:
+    #     env.render_human()
     res_video = env.render()
     out_dir = 'demos/PickMeatRandomRobotRenders'
     meta_file = 'meta_data.json'

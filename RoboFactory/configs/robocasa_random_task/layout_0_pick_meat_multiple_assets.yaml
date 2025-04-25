@@ -9,7 +9,6 @@ scene:
     # customized_layout: configs/robocasa_layout_2/customized_layout.yaml 
     
 objects:
-
   # asset_id: 0
   -
     name: meat_0
