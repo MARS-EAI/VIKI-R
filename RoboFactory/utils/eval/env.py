@@ -67,18 +67,15 @@ class SimEnv:
         for asset_name, asset in self.assets.items():
             asset_pos_name = asset.pos.name
             if asset_pos_name in self.container_assets:
-                self.container_assets[asset_pos_name].add_container_position(asset.pos)
-        for container_asset_name, container_asset in self.container_assets.items():   
-            if 'container_params' in self.metadata['assets'][container_asset_name]:
-                container_asset.set_all_container_positions(self.metadata['assets'][container_asset_name]['container_params'])
-
+                self.assets[asset_name].pos = self.container_assets[asset_pos_name].container_position
+    
     def step(self, command: list):
         # assume feasible command
         operation = command[0]    # str
         params = command[1:]    # entities
         agent = params[0]
         if operation == 'move':
-            agent.pos.name = params[1].name    # known bug: move to agent may cause the wrong position.
+            agent.pos = Position(name=params[1].name)
             agent.get_reached_objects().clear()
         elif operation == 'reach':
             if len(agent.get_reached_objects()) >= agent.end_effector_num:
@@ -89,18 +86,19 @@ class SimEnv:
             agent.get_reached_objects().clear()
             for carried_object in agent.get_carried_objects():
                 carried_object.is_grasped_by.append(agent)
-                carried_object.pos.name = agent.name
+                carried_object.pos = Position(name=agent.name)
         elif operation == 'place':
             for carried_object in agent.get_carried_objects():
-                carried_object.pos = params[1]
+                if isinstance(params[1], Position):
+                    carried_object.pos = params[1]
+                elif isinstance(params[1], Asset):    # asset as position
+                    carried_object.pos = params[1].container_position
                 carried_object.is_grasped_by.remove(agent)
             agent.get_carried_objects().clear()
         elif operation == 'open':
-            for position in params[1].container_positions:
-                position.isolated = False
+            params[1].container_position.isolated = False
         elif operation == 'close':
-            for position in params[1].container_positions:
-                position.isolated = True
+            params[1].container_position.isolated = True
         elif operation == 'handover':
             new_agent = params[1]
             asset = params[2]

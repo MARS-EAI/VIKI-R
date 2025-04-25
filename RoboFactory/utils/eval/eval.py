@@ -181,7 +181,7 @@ class Eval:
 
         # action feasibility
         for commands in all_commands:
-            for command in commands:    # currently step by step
+            for command in commands:    # currently step by 
                 operation_name = command[0]
                 operation_params = command[1:]
                 operation_entities = []
