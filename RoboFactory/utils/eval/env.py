@@ -33,6 +33,8 @@ class SimEnv:
     
     def initialize_scene(self):
         self.agents = {}
+        self.assets = {}
+        self.container_assets = {}
         for agent_name, agent_cfg in self.metadata["agents"].items():
             agent_type = agent_cfg['type']
             pos_params = agent_cfg['pos'] if 'pos' in agent_cfg else {"name": agent_name}
@@ -48,8 +50,6 @@ class SimEnv:
                 end_effector_num=end_effector_num,
                 **agent_params
             )
-        self.assets = {}
-        self.container_assets = {}
         for asset_name, asset_cfg in self.metadata["assets"].items():
             pos_params = asset_cfg['pos'] if 'pos' in asset_cfg else {"name": asset_name}
             asset_pos = Position(**pos_params)

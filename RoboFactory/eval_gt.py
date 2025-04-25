@@ -9,10 +9,20 @@ def parse_args():
     return parser.parse_args()
 
 
+def format_answer(answer):
+    commands = []
+    for inst in answer:
+        formatted_inst = {}
+        for robob_name, robot_inst in inst.items():
+            formatted_inst[robob_name] = f'<{",".join(robot_inst)}>'
+        commands.append(formatted_inst)
+    return commands
+
+
 def eval(data: list):
     judger = Eval()
     success_count = 0
-    for d in data:
+    for idx, d in enumerate(data):
         robots = d["robots"]
         gt = d["ground_truth"]
         init_pos = d['init_pos']
@@ -41,11 +51,14 @@ def eval(data: list):
             }
         default_metadata['constraints'] = constraints
         judger.set_env(default_metadata)
-        success = judger.eval([{
-            'R1': '<move, bread>'
-        }])
+        answers = format_answer(gt)
+        print(answers)
+        success = judger.eval(answers)
+        # success = judger.eval([{
+        #     'R1': '<move, bread>'
+        # }])
         if not success:
-            print(judger.get_error_desc())
+            print(f'{idx}: {judger.get_error_desc()}')
         else:
             success_count += 1
     print(f'Success Count: {success_count}')

@@ -81,7 +81,7 @@ class Agent:
     
 
 ALL_ACTIONS  = {
-    'move': Action(name='move', param_types=[{Agent, Asset}]),
+    'move': Action(name='move', param_types=[{Agent, Asset, Position}]),
     'reach': Action(name='reach', param_types=[{Agent, Asset}]),
     'grasp': Action(name='grasp', param_types=[{Asset}]),
     'place': Action(name='place', param_types=[{Position}]),
