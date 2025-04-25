@@ -93,6 +93,8 @@ def instantiate_task(template):
 
     tpl = deepcopy(template)
     layout_id = 0
+    if layout_id not in tpl["layout_idx"]:
+        raise ValueError(f"layout_id {layout_id} not in template layout_idx {tpl['layout_idx']}")
 
     # a) 随机选取并打乱 robot IDs
     ids, perm = _choose_ids(tpl["robot_roles"])
