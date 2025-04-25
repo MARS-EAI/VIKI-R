@@ -1,4 +1,5 @@
 from typing import Union
+from itertools import combinations
 
 from .entities import Action, Agent, Asset, Position, ALL_ACTIONS
     
@@ -41,7 +42,11 @@ class Checker:
                         return False
         return True
 
-    def check_target_aligned_position(self, target: Union[Agent, Asset], pos: Position, assets: dict, agents: dict):
+    def check_target_aligned_position(self, target: Union[Agent, Asset], pos: Position, assets: dict, agents: dict, finished: list = []):
+        # known: possible deadlocks
+        if target in finished:
+            return False
+        finished.append(target)
         if target.pos.name in assets:
             return self.check_target_aligned_position(assets[target.pos.name], pos, assets, agents) or target.pos.name == pos.name
         elif target.pos.name in agents:
@@ -52,7 +57,11 @@ class Checker:
     def check_agent_relative_position(self, agent: Agent, target: Union[Agent, Asset]):
         return agent.pos.name == target.name or agent.name == target.pos.name
     
-    def check_operation(self, operation_name: str, params: list, assets: dict = {}, agents: dict = {}):
+    def check_operation(self, operation_name: str, params: list, assets: dict = None, agents: dict = None):
+        if not assets:
+            assets = {}
+        if not agents:
+            agents = {}
         if operation_name not in ALL_ACTIONS:
             return False
         action_type = ALL_ACTIONS[operation_name]
@@ -80,3 +89,58 @@ class Checker:
             return self.check_agent_relative_position(params[0], params[1], assets, agents) and not self.check_asset_is_activated(params[1])
         else:    # should never reach
             raise ValueError(f'Unexpected operation: {operation_name}.')
+    
+    def check_compatible_paired_actions(self, command_x: str, command_y: str):
+        """
+                        MOVE REACH GRASP PLACE OPEN CLOSE HANDOVER INTERACT
+            MOVE         o     o     o     o     o    o      o        o
+            REACH        o     o     x     x     x    x      x        x
+            GRASP        o     x     x     x     x    x      x        x
+            PLACE        o     x     x     o     x    x      x        x
+            OPEN         o     x     x     x     x    x      x        x
+            CLOSE        o     x     x     x     x    x      x        x
+            HANDOVER     o     x     x     x     x    x      x        x
+            INTERACT     o     x     x     x     x    x      x        x
+        """
+        if 'move' in [command_x, command_y]:
+            return True
+        if command_x == 'reach' and command_y == 'reach':
+            return True
+        if command_x == 'place' and command_y == 'place':
+            return True
+        return False
+
+    def check_compatible_constraints(self, step_commands: list, assets: dict = None, agents: dict = None):
+        if not assets:
+            assets = {}
+        if not agents:
+            agents = {}
+        commands = [command[0] for command in step_commands if command]
+        params = [command[1:] for command in step_commands if command]
+        target_agents = [param[0].name for param in params]
+        if len(target_agents) != len(set(target_agents)):
+            return False
+        target_entities = {}
+        for idx, inst_params in enumerate(params):    # params for inst idx
+            for param in inst_params:
+                if param.name in assets:
+                    if param.name not in target_entities:
+                        target_entities[param.name] = [idx]
+                    else:
+                        target_entities[param.name].append(idx)
+        for asset, inst_idx  in target_entities.items():
+            if len(inst_idx) < 2:
+                continue
+            operation_names = [commands[i] for i in inst_idx]
+            for op1, op2 in combinations(operation_names, 2):
+                if not self.check_compatible_paired_actions(op1, op2):
+                    return False
+                
+        # close operation should avoid collisions within the position
+        if 'close' in commands:
+            target_container = params[commands.index('close')][0]
+            for idx, inst_params in enumerate(params):
+                for param in inst_params:
+                    if isinstance(param, Asset) and param.pos == target_container.container_position and commands[idx] not in ['move', 'close']:
+                        return False
+        return True
