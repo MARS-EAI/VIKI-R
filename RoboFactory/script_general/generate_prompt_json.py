@@ -16,12 +16,13 @@ if __name__ == '__main__':
     count = 0
     data = []
     while count < args.number:
-        layout_id = 8    # current fixed 8
         try:
-            sample = instantiate_task(random.choice(TASK_POOL), layout_id=layout_id)
-        except:
+            sample = instantiate_task(random.choice(TASK_POOL))
+        except Exception as e:
+            print(e)
             continue
-        sample['task_id'] = f'{sample["task_id"]}_{count}'
+        sample['task_id'] = f'{count}_{sample["task_id"]}'
         data.append(sample)
         count += 1
     json.dump(data, open(args.output, 'w'), indent=4)
+    print("Successfully generated %d data." % len(data))

@@ -8,16 +8,16 @@ import re
 # ---------- 1) layout → 允许的角色多重集 ----------
 # 例子（请根据之前文档把其它 layout 填完整）
 LAYOUT_COMBINATIONS = {
-    0: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
-    1: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
-    2: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
-    3: [["arm", "dog", "arm"], ["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
-    4: [["humanoid"], ["wheeled"]],
-    5: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
-    7: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"], ["humanoid", "arm"], ["wheeled", "arm"]],
-    8: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"], ["humanoid", "arm"]],
-    9: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"], ["humanoid", "arm"],
-        ["arm", "dog", "arm"], ["arm", "dog", "dog", "arm"]],
+    0: [["humanoid", "wheeled", "dog"]],
+    1: [["humanoid", "wheeled", "dog", "arm"]],
+    2: [["humanoid", "wheeled", "dog"]],
+    3: [["humanoid", "wheeled", "dog", "arm", "arm"]],
+    4: [["humanoid", "wheeled", "dog", "arm"]],
+    5: [["humanoid", "wheeled", "dog", "arm"]],
+    6: [["humanoid", "wheeled", "dog", "dog", "arm", "arm", "arm"]],
+    7: [["humanoid", "wheeled", "dog", "dog", "arm", "arm"]],
+    8: [["humanoid", "wheeled", "dog", "dog", "arm"]],
+    9: [["humanoid", "wheeled", "dog", "dog", "arm", "arm"]],
 }
 
 # ---------- 2) 机器人类别到具体 ID ----------
@@ -89,17 +89,23 @@ def _fill_masks(obj, mask_map):
     return obj
 
 # ---------- 4) 主实例化函数 ----------
-def instantiate_task(template, layout_id):
-    if not is_compatible(layout_id, template["robot_roles"]):
-        raise ValueError(f"layout_id {layout_id} cannot satisfy robot_roles {template['robot_roles']}")
+def instantiate_task(template):
 
     tpl = deepcopy(template)
+    layout_id = random.choice(tpl['layout_idx'])
 
     # a) 随机选取并打乱 robot IDs
     ids, perm = _choose_ids(tpl["robot_roles"])
     robots = {f"R{i+1}": rid for i, rid in enumerate(ids)}
     ids_idle, perm_idle = _choose_ids(tpl["idle_robot_roles"])
     idle_robots = {f"R{i+1}": rid for i, rid in enumerate(ids_idle)}
+    combined_roles = []
+    for role in tpl["robot_roles"] + tpl["idle_robot_roles"]:
+        if role not in combined_roles:
+            combined_roles.append(role)
+    if not is_compatible(layout_id, combined_roles):
+        raise ValueError(f"layout_id {layout_id} cannot satisfy robot_roles {combined_roles}")
+    
     # 有一定的概率不需要idle_robots, 可以考虑去除一部分
     idle_robots_list = []
     for i in range(len(ids_idle)):
@@ -173,7 +179,5 @@ def instantiate_task(template, layout_id):
 
 # ---------- 5) 小测试 ----------
 if __name__ == "__main__":
-    # layout_id = random.choice(list(LAYOUT_COMBINATIONS.keys()))
-    layout_id = 8
-    sample = instantiate_task(random.choice(TASK_POOL), layout_id=layout_id)
+    sample = instantiate_task(random.choice(TASK_POOL))
     pprint.pprint(sample, width=120, sort_dicts=False)

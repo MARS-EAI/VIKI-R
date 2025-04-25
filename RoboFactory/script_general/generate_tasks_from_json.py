@@ -20,7 +20,7 @@ def main():
     os.makedirs(os.path.join(args.temp_config_path, folder_name), exist_ok=True)
 
     for gt in data:
-        general_config_file = 'configs/robocasa_random_task/layout_8_pick_meat_multiple_assets.yaml'    # the config that consists all possible assets & agents in a layout
+        general_config_file = f'configs/robocasa_random_task/layout_{gt["layout_id"]}_pick_meat_multiple_assets.yaml'    # the config that consists all possible assets & agents in a layout
         with open(general_config_file, 'r', encoding='utf-8') as f:
             general_config = yaml.load(f.read(), Loader=yaml.FullLoader)
         # generate a subset config that fits the gt as temp_config
