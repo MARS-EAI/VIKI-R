@@ -8,7 +8,7 @@ import re
 # ---------- 1) layout → 允许的角色多重集 ----------
 # 例子（请根据之前文档把其它 layout 填完整）
 LAYOUT_COMBINATIONS = {
-    0: [["humanoid", "wheeled", "dog"]],
+    0: [["humanoid", "wheeled", "dog",]],
     1: [["humanoid", "wheeled", "dog", "arm"]],
     2: [["humanoid", "wheeled", "dog"]],
     3: [["humanoid", "wheeled", "dog", "arm", "arm"]],
@@ -92,25 +92,33 @@ def _fill_masks(obj, mask_map):
 def instantiate_task(template):
 
     tpl = deepcopy(template)
-    layout_id = random.choice(tpl['layout_idx'])
+    layout_id = 0
 
     # a) 随机选取并打乱 robot IDs
     ids, perm = _choose_ids(tpl["robot_roles"])
     robots = {f"R{i+1}": rid for i, rid in enumerate(ids)}
     ids_idle, perm_idle = _choose_ids(tpl["idle_robot_roles"])
     idle_robots = {f"R{i+1}": rid for i, rid in enumerate(ids_idle)}
-    combined_roles = []
-    for role in tpl["robot_roles"] + tpl["idle_robot_roles"]:
-        if role not in combined_roles:
-            combined_roles.append(role)
+
+    KEEP_PROB = 0.5
+    core_roles = tpl["robot_roles"]
+    idle_roles = tpl.get("idle_robot_roles", [])
+    ids_idle   = ids_idle
+
+    selected_idle_roles = []
+    selected_idle_ids   = []
+
+    for role, rid in zip(idle_roles, ids_idle):
+        if random.random() < KEEP_PROB:
+            selected_idle_roles.append(role)
+            selected_idle_ids.append(rid)
+
+    combined_roles = core_roles + selected_idle_roles
+    idle_robots_list = selected_idle_ids
+
+
     if not is_compatible(layout_id, combined_roles):
         raise ValueError(f"layout_id {layout_id} cannot satisfy robot_roles {combined_roles}")
-    
-    # 有一定的概率不需要idle_robots, 可以考虑去除一部分
-    idle_robots_list = []
-    for i in range(len(ids_idle)):
-        if random.random() < 0.5:
-            idle_robots_list.append(idle_robots[f"R{i+1}"])
 
     # b) 随机选择 mask 值并替换
     mask_map = {mk: random.choice(tpl[mk]) for mk in tpl if mk.startswith("mask")}
@@ -141,6 +149,7 @@ def instantiate_task(template):
             assert len(item_pos['aligned_keys']) == 1
             cur_pos = [mask_map[item_pos["aligned_keys"][0]]]
         init_pos[f'{item_name}_{idx}'] = cur_pos
+
     # e) add constraints
     constraints = []
     if 'constraints' in tpl:
