@@ -123,7 +123,7 @@ class Eval:
         """
 
     def is_valid_sequence(self, s):
-        pattern = r'^<\s*([^,<>\s][^,<>\s]*\s*)(\s*,\s*[^,<>\s][^,<>\s]*\s*)*>$'
+        pattern = r'^<\s*([^,<>][^,<>]*\s*)(\s*,\s*[^,<>][^,<>]*\s*)*>$'
         return bool(re.match(pattern, s))
 
     def get_error_desc(self):
@@ -171,6 +171,7 @@ class Eval:
             commands = []
             for robot_name, command_desc in command_record.items():
                 if not self.is_valid_sequence(command_desc):
+                    print(f'Current command: {command_desc}')
                     self.error_desc_code = "INVALID_COMMAND"
                     return False
                 parsed_command = self.parse_command(command_desc)
@@ -180,7 +181,7 @@ class Eval:
 
         # action feasibility
         for commands in all_commands:
-            for command in commands:    # currently step by step
+            for command in commands:    # currently step by 
                 operation_name = command[0]
                 operation_params = command[1:]
                 operation_entities = []
@@ -189,7 +190,7 @@ class Eval:
                         operation_entities.append(self.env.agents[operation_param])
                     elif operation_param in self.env.assets:
                         operation_entities.append(self.env.assets[operation_param])
-                    elif operation_name == 'place':
+                    elif operation_name in ['move', 'place']:
                         operation_entities.append(Position(name=operation_param))
                     else:
                         self.error_desc_code = "NOT_FOUND_ENTITY"
@@ -201,6 +202,7 @@ class Eval:
                 # step env step by step
                 step_params = [operation_name]
                 step_params.extend(operation_entities)
+
                 self.env.step(step_params)
             # check temporal constraints
             pass
