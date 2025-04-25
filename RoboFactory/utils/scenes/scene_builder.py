@@ -98,7 +98,7 @@ class RFSceneBuilder(SceneBuilder):
         self.first_initial = True
         self.env.annotation_data = {}
 
-    def initialize(self, env_idx: torch.Tensor, collision_detect=True):
+    def initialize(self, env_idx: torch.Tensor, collision_detect=False):
         if self.first_initial:
             self.first_initial = False
             print("First time initializing the scene, skip.")
@@ -136,7 +136,7 @@ class RFSceneBuilder(SceneBuilder):
                 ppos = asset_cfg['pos']['ppos']['p']
                 temp_ppos = np.array(ppos)
                 if 'randp_scale' in asset_cfg['pos']:
-                    available_pos = not collision_detect
+                    available_pos = False
                     count = 0
                     while not available_pos:
                         if count > 100:
@@ -158,6 +158,8 @@ class RFSceneBuilder(SceneBuilder):
                                 if delta_max.min() >= 0 and delta_min.min() >=0:    # overlap with the area
                                     available_pos = False
                         count += 1
+                        if not collision_detect:
+                            break
                 pposes.append(temp_ppos)
                 qpos = asset_cfg['pos']['qpos']
                 if 'randq_scale' in asset_cfg['pos']:
@@ -183,7 +185,7 @@ class RFSceneBuilder(SceneBuilder):
                 ppos = pos_cfg['ppos']['p']
                 temp_ppos = np.array(ppos)
                 if 'randp_scale' in pos_cfg:
-                    available_pos = not collision_detect
+                    available_pos = False
                     count = 0
                     while not available_pos:
                         if count > 5000:
@@ -210,6 +212,8 @@ class RFSceneBuilder(SceneBuilder):
                                 if delta_max.min() >= 0 and delta_min.min() >=0:    # overlap with the area
                                     available_pos = False
                         count += 1
+                        if not collision_detect:
+                            break
                 euler_pose = pos_cfg['ppos']['q']
                 if 'rand_euler' in pos_cfg:
                     new_euler_pose = np.array(euler_pose) + np.random.rand((len(euler_pose))) * np.array(agent_cfg['pos']['rand_euler'])
