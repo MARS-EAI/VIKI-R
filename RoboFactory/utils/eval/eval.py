@@ -209,8 +209,9 @@ class Eval:
             if not is_compatible_actions:
                 self.error_desc_code = 'ACTION_NOT_COMPATIBLE'
                 return False
-            for step_command in step_commands:
-                self.env.step(step_command)
+            self.env.sim_step(step_commands)
+            # for step_command in step_commands:
+            #     self.env.step(step_command)
             # check temporal constraints
             pass
         # check final status

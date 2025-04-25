@@ -117,6 +117,9 @@ class Checker:
             agents = {}
         commands = [command[0] for command in step_commands if command]
         params = [command[1:] for command in step_commands if command]
+        target_agents = [param[0].name for param in params]
+        if len(target_agents) != len(set(target_agents)):
+            return False
         target_entities = {}
         for idx, inst_params in enumerate(params):    # params for inst idx
             for param in inst_params:

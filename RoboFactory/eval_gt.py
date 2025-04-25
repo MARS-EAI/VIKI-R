@@ -65,9 +65,6 @@ def eval(data: list):
         answers = format_answer(gt)
         # print(answers)
         success = judger.eval(answers)
-        # success = judger.eval([{
-        #     'R1': '<move, bread>'
-        # }])
         if not success:
             print(f'{idx}: {judger.get_error_desc()}')
         else:
