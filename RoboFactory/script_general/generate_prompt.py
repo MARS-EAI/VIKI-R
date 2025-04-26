@@ -8,16 +8,16 @@ import re
 # ---------- 1) layout → 允许的角色多重集 ----------
 # 例子（请根据之前文档把其它 layout 填完整）
 LAYOUT_COMBINATIONS = {
-    0: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
-    1: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
-    2: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
-    3: [["arm", "dog", "arm"], ["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
-    4: [["humanoid"], ["wheeled"]],
-    5: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"]],
-    7: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"], ["humanoid", "arm"], ["wheeled", "arm"]],
-    8: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"], ["humanoid", "arm"]],
-    9: [["humanoid"], ["wheeled"], ["humanoid", "wheeled"], ["humanoid", "arm"],
-        ["arm", "dog", "arm"], ["arm", "dog", "dog", "arm"]],
+    0: [["humanoid", "wheeled", "dog",]],
+    1: [["humanoid", "wheeled", "dog", "arm"]],
+    2: [["humanoid", "wheeled", "dog"]],
+    3: [["humanoid", "wheeled", "dog", "arm", "arm"]],
+    4: [["humanoid", "wheeled", "dog", "arm"]],
+    5: [["humanoid", "wheeled", "dog", "arm"]],
+    6: [["humanoid", "wheeled", "dog", "dog", "arm", "arm", "arm"]],
+    7: [["humanoid", "wheeled", "dog", "dog", "arm", "arm"]],
+    8: [["humanoid", "wheeled", "dog", "dog", "arm"]],
+    9: [["humanoid", "wheeled", "dog", "dog", "arm", "arm"]],
 }
 
 # ---------- 2) 机器人类别到具体 ID ----------
@@ -43,7 +43,14 @@ def _choose_ids(role_seq):
     perm = list(range(len(ids)))
     random.shuffle(perm)
     shuffled_ids = [ids[i] for i in perm]
-    return shuffled_ids, perm          # perm[i]=原 idx？我们用 perm.index 逆查
+    return shuffled_ids, perm
+
+def _choose_ids_not_shuffled(role_seq):
+    """抽取 ID 并返回 (正序后的 id 列表, 置换表 perm)"""
+    ids = [random.choice(CATEGORY2IDS[cat]) for cat in role_seq]
+    perm = list(range(len(ids)))
+    _ids = [ids[i] for i in perm]
+    return _ids, perm
 
 def _permute_gt(gt_steps, perm):
     """根据 perm 映射 ground_truth 的 key 和 value 中的 Rk"""
@@ -89,24 +96,47 @@ def _fill_masks(obj, mask_map):
     return obj
 
 # ---------- 4) 主实例化函数 ----------
-def instantiate_task(template, layout_id):
-    if not is_compatible(layout_id, template["robot_roles"]):
-        raise ValueError(f"layout_id {layout_id} cannot satisfy robot_roles {template['robot_roles']}")
+def instantiate_task(template):
 
     tpl = deepcopy(template)
+    layout_id = 1
+    if layout_id not in tpl["layout_idx"]:
+        raise ValueError(f"layout_id {layout_id} not in template layout_idx {tpl['layout_idx']}")
 
     # a) 随机选取并打乱 robot IDs
     ids, perm = _choose_ids(tpl["robot_roles"])
     robots = {f"R{i+1}": rid for i, rid in enumerate(ids)}
+    ids_idle, perm_idle = _choose_ids_not_shuffled(tpl["idle_robot_roles"])
+
+    KEEP_PROB = 0.5
+    core_roles = tpl["robot_roles"]
+    idle_roles = tpl.get("idle_robot_roles", [])
+    ids_idle   = ids_idle
+
+    selected_idle_roles = []
+    selected_idle_ids   = []
+
+    for role, rid in zip(idle_roles, ids_idle):
+        if random.random() < KEEP_PROB:
+            selected_idle_roles.append(role)
+            selected_idle_ids.append(rid)
+
+    combined_roles = core_roles + selected_idle_roles
+    idle_robots_list = selected_idle_ids
+
+    if not is_compatible(layout_id, combined_roles):
+        raise ValueError(f"layout_id {layout_id} cannot satisfy robot_roles {combined_roles}")
 
     # b) 随机选择 mask 值并替换
     mask_map = {mk: random.choice(tpl[mk]) for mk in tpl if mk.startswith("mask")}
-    desc_filled = _fill_masks(tpl["description"], mask_map)
+    desc_template = random.choice(tpl["description"])
+    desc_filled = _fill_masks(desc_template, mask_map)
     gt_masked  = [_fill_masks(step, mask_map) for step in tpl["ground_truth"]]
 
     # c) 根据置换表同步 ground_truth 键
     gt_final = _permute_gt(gt_masked, perm)
 
+    # d) 处理 init_pos
     init_pos = {}
     init_pos_meta = tpl["init_pos"]
     for idx, item_pos in enumerate(init_pos_meta):
@@ -124,8 +154,36 @@ def instantiate_task(template, layout_id):
                 cur_pos.remove(p)
         if "aligned_keys" in item_pos:
             assert len(item_pos['aligned_keys']) == 1
-            cur_pos = mask_map[item_pos["aligned_keys"][0]]
-        init_pos[f'{item_name}_{idx}'] = [cur_pos]
+            cur_pos = [mask_map[item_pos["aligned_keys"][0]]]
+        init_pos[f'{item_name}_{idx}'] = cur_pos
+
+    # e) add constraints
+    temporal_constraints_masked = []
+    if 'temporal_constraints' in tpl:
+        temporal_constraints_masked = [_fill_masks(step, mask_map) for step in tpl["temporal_constraints"]]
+    
+    goal_constraints_masked = []
+    if 'goal_constraints' in tpl:
+        goal_constraints_masked = [_fill_masks(step, mask_map) for step in tpl["goal_constraints"]]
+        # for con in constraints:
+        #     for tcon in con:
+        #         for i in range(len(tcon)):
+        #             new_tcon = deepcopy(tcon[i])
+        #             for k, v in tcon[i].items():
+        #                 # if 'mask' in v:
+        #                 #     # print(v)
+        #                 #     pass
+        #                     # new_tcon[k] = mask_map[v.replace('<', '').replace('>', '')]
+        #                     # print(mask_map[v.replace('<', '').replace('>', '')])
+        #                     # print(tcon[i])
+        #                 if k == 'status':
+        #                     # print('in')
+        #                     for ik, iv in tcon[i]['status'].items():
+        #                         if 'mask' in iv:
+        #                             new_tcon['status'][ik] = mask_map[iv.replace('<', '').replace('>', '')]
+        #                 elif k == 'name':
+        #                     new_tcon[k] = mask_map[v.replace('<', '').replace('>', '')]
+        #             tcon[i] = new_tcon
             
     return {
         "task_id": tpl["task_id"],
@@ -134,12 +192,13 @@ def instantiate_task(template, layout_id):
         "description": desc_filled,
         "robots": robots,
         "ground_truth": gt_final,
-        "init_pos": init_pos
+        "init_pos": init_pos,
+        "idle_robots": idle_robots_list,
+        "goal_constraints": goal_constraints_masked,
+        "temporal_constraints": temporal_constraints_masked
     }
 
 # ---------- 5) 小测试 ----------
 if __name__ == "__main__":
-    # layout_id = random.choice(list(LAYOUT_COMBINATIONS.keys()))
-    layout_id = 8
-    sample = instantiate_task(random.choice(TASK_POOL), layout_id=layout_id)
+    sample = instantiate_task(random.choice(TASK_POOL))
     pprint.pprint(sample, width=120, sort_dicts=False)

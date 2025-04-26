@@ -312,14 +312,14 @@ island_group:
   group_z_rot: 3.1415
 
   island:
-    # - name: sink
-    #   type: sink
+    - name: sink
+      type: sink
 
     - name: island
       type: counter
       default_config_name: island
       # base_opening: [false, true]
-      # interior_obj: sink
+      interior_obj: sink
 
       size: [2.5, 2.55, 0.92]
       pos: [0, 0.5, 0.46]

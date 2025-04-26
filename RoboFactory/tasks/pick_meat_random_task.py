@@ -33,19 +33,19 @@ class PickMeatRandomTaskEnv(BaseEnv):
         with open(kwargs['config'], 'r', encoding='utf-8') as f:
             self.cfg = yaml.load(f.read(), Loader=yaml.FullLoader)
         del kwargs['config']
-        agent_cfgs = self.cfg['agents']
+        # agent_cfgs = self.cfg['agents']
 
         # clean the cfg based on the task to fit the standard configuration
         
         # random choose agents in configuration
-        random.shuffle(agent_cfgs)
-        new_agent_cfgs = agent_cfgs[:random.randint(2, 7)]
-        self.cfg['agents'] = new_agent_cfgs
+        # random.shuffle(agent_cfgs)
+        # new_agent_cfgs = agent_cfgs[:random.randint(2, 7)]
+        # self.cfg['agents'] = new_agent_cfgs
 
         # random choose layout
         # self.cfg['scene']['env']['style_idx'] = random.randint(0, 11)
         # transparent cabinet style: 4, 11
-        self.cfg['scene']['env']['style_idx'] = 4
+        # self.cfg['scene']['env']['style_idx'] = 4
 
         if 'robot_uids' in kwargs:
             robot_uids = kwargs['robot_uids']
