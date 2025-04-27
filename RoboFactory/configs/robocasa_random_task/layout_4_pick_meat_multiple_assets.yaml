@@ -1,5 +1,5 @@
 # configuration for objects and agents, add scene as well
-task_name: PickMeatRandomRobot
+task_name: PickMeatRandomTask
 scene:
   name: Robocasa
   env:

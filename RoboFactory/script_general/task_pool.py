@@ -589,6 +589,30 @@ TASK_POOL = [
                 ],
             ]
         ],
+        "goal_constraints": [
+            # G-Constraint 1: <mask1> should be moved to <mask2>
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask1>",
+                    "is_satisfied": True,
+                    "status": {
+                        "pos.name": "<mask2>"
+                    }
+                }
+            ],
+            # G-Constraint 2: <mask3> should be moved to <mask1>
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask3>",
+                    "is_satisfied": True,
+                    "status": {
+                        "pos.name": "<mask1>"
+                    }
+                }
+            ],
+        ],
     },
     
     # 4 - Toaster bread and move 1 objects to table with 2 robots
@@ -726,7 +750,7 @@ TASK_POOL = [
                         }
                     }
                 ],
-                # Sub-constraints 2: <mask3> should be moved to <mask1>
+                # Sub-constraints 2: toaster should be activated
                 [
                     {
                         "type": "asset",
@@ -748,6 +772,17 @@ TASK_POOL = [
                     "is_satisfied": True,
                     "status": {
                         "pos.name": "<mask4>"
+                    }
+                }
+            ],
+            # G-Constraint 2: toaster should be activated
+            [
+                {
+                    "type": "asset",
+                    "name": "toaster",
+                    "is_satisfied": True,
+                    "status": {
+                        "is_activated": True
                     }
                 }
             ]
@@ -1351,7 +1386,6 @@ TASK_POOL = [
         ],
         "idle_robot_roles": [
             "dog",
-            "arm",
             "wheeled"
         ],
         "temporal_constraints": [
@@ -1717,6 +1751,18 @@ TASK_POOL = [
                     }
                 ]
             ]
+        ],
+        "goal_constraints": [
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask1>",
+                    "is_satisfied": True,
+                    "status": {
+                        "is_activated": True
+                    }
+                }
+            ]
         ]
     },
     {
@@ -1871,6 +1917,18 @@ TASK_POOL = [
                         }
                     }
                 ]
+            ]
+        ],
+        "goal_constraints": [
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask1>",
+                    "is_satisfied": True,
+                    "status": {
+                        "is_activated": True
+                    }
+                }
             ]
         ]
     },
@@ -2079,6 +2137,18 @@ TASK_POOL = [
                         }
                     }
                 ]
+            ]
+        ],
+        "goal_constraints": [
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask1>",
+                    "is_satisfied": True,
+                    "status": {
+                        "is_activated": True
+                    }
+                }
             ]
         ]
     },
@@ -2325,7 +2395,7 @@ TASK_POOL = [
                 }
             ]
         ]
-    }
+    },
 
     # 11 - Visual-searching for ENSURE BOWL & PLATE ON THE TABLE
     {
@@ -2338,15 +2408,15 @@ TASK_POOL = [
             9
         ],
         "description": [
-            "Take a look at the <mask3>. If you don’t see both a <mask1> and a <mask2> there, bring over whichever dish is missing.",
-            "Survey the <mask3> first; once you spot which item isn’t present—the <mask1> or the <mask2>—carry it to the table.",
-            "Glance at the <mask3> and confirm it holds one <mask1> and one <mask2>. Fetch the dish that’s still absent.",
+            "Take a look at the <mask3>. If you don't see both a <mask1> and a <mask2> there, bring over whichever dish is missing.",
+            "Survey the <mask3> first; once you spot which item isn't present—the <mask1> or the <mask2>—carry it to the table.",
+            "Glance at the <mask3> and confirm it holds one <mask1> and one <mask2>. Fetch the dish that's still absent.",
             "Check the <mask3> with your sensors. Should it lack either the <mask1> or the <mask2>, deliver the missing one.",
-            "Observe the <mask3> for both the <mask1> and <mask2>. Bring along whichever plate or bowl you don’t detect.",
-            "Scan the <mask3>. If one of the two dishes—the <mask1> or the <mask2>—isn’t present, place it there.",
+            "Observe the <mask3> for both the <mask1> and <mask2>. Bring along whichever plate or bowl you don't detect.",
+            "Scan the <mask3>. If one of the two dishes—the <mask1> or the <mask2>—isn't present, place it there.",
             "Look over the <mask3>; whichever of the <mask1> or <mask2> is not already resting there, go get it and set it down.",
             "Examine the <mask3> visually. When you find only one dish, supply the other so both the <mask1> and <mask2> are in position.",
-            "Inspect the <mask3>. Any dish you can’t see—whether it’s the <mask1> or the <mask2>—needs to be fetched and placed.",
+            "Inspect the <mask3>. Any dish you can't see—whether it's the <mask1> or the <mask2>—needs to be fetched and placed.",
             "Verify with a quick look that the <mask3> hosts both the <mask1> and <mask2>. Retrieve and add the missing one if necessary."
         ],
         "mask1": [
@@ -2419,7 +2489,7 @@ TASK_POOL = [
                 {
                     "type": "asset",
                     "name": "<mask1>",
-                    "is_satisfied": true,
+                    "is_satisfied": True,
                     "status": {
                         "pos.name": "<mask3>"
                     }
@@ -2429,7 +2499,7 @@ TASK_POOL = [
                 {
                     "type": "asset",
                     "name": "<mask2>",
-                    "is_satisfied": true,
+                    "is_satisfied": True,
                     "status": {
                         "pos.name": "<mask3>"
                     }
@@ -2447,15 +2517,15 @@ TASK_POOL = [
             9
         ],
         "description": [
-            "Take a look at the <mask3>. If you don’t see both a <mask1> and a <mask2> there, bring over whichever dish is missing.",
-            "Survey the <mask3> first; once you spot which item isn’t present—the <mask1> or the <mask2>—carry it to the table.",
-            "Glance at the <mask3> and confirm it holds one <mask1> and one <mask2>. Fetch the dish that’s still absent.",
+            "Take a look at the <mask3>. If you don't see both a <mask1> and a <mask2> there, bring over whichever dish is missing.",
+            "Survey the <mask3> first; once you spot which item isn't present—the <mask1> or the <mask2>—carry it to the table.",
+            "Glance at the <mask3> and confirm it holds one <mask1> and one <mask2>. Fetch the dish that's still absent.",
             "Check the <mask3> with your sensors. Should it lack either the <mask1> or the <mask2>, deliver the missing one.",
-            "Observe the <mask3> for both the <mask1> and <mask2>. Bring along whichever plate or bowl you don’t detect.",
-            "Scan the <mask3>. If one of the two dishes—the <mask1> or the <mask2>—isn’t present, place it there.",
+            "Observe the <mask3> for both the <mask1> and <mask2>. Bring along whichever plate or bowl you don't detect.",
+            "Scan the <mask3>. If one of the two dishes—the <mask1> or the <mask2>—isn't present, place it there.",
             "Look over the <mask3>; whichever of the <mask1> or <mask2> is not already resting there, go get it and set it down.",
             "Examine the <mask3> visually. When you find only one dish, supply the other so both the <mask1> and <mask2> are in position.",
-            "Inspect the <mask3>. Any dish you can’t see—whether it’s the <mask1> or the <mask2>—needs to be fetched and placed.",
+            "Inspect the <mask3>. Any dish you can't see—whether it's the <mask1> or the <mask2>—needs to be fetched and placed.",
             "Verify with a quick look that the <mask3> hosts both the <mask1> and <mask2>. Retrieve and add the missing one if necessary."
         ],
         "mask1": [
@@ -2528,7 +2598,7 @@ TASK_POOL = [
                 {
                     "type": "asset",
                     "name": "<mask1>",
-                    "is_satisfied": true,
+                    "is_satisfied": True,
                     "status": {
                         "pos.name": "<mask3>"
                     }
@@ -2538,7 +2608,7 @@ TASK_POOL = [
                 {
                     "type": "asset",
                     "name": "<mask2>",
-                    "is_satisfied": true,
+                    "is_satisfied": True,
                     "status": {
                         "pos.name": "<mask3>"
                     }
@@ -2556,15 +2626,15 @@ TASK_POOL = [
             9
         ],
         "description": [
-            "Take a look at the <mask3>. If you don’t see both a <mask1> and a <mask2> there, bring over whichever dish is missing.",
-            "Survey the <mask3> first; once you spot which item isn’t present—the <mask1> or the <mask2>—carry it to the table.",
-            "Glance at the <mask3> and confirm it holds one <mask1> and one <mask2>. Fetch the dish that’s still absent.",
+            "Take a look at the <mask3>. If you don't see both a <mask1> and a <mask2> there, bring over whichever dish is missing.",
+            "Survey the <mask3> first; once you spot which item isn't present—the <mask1> or the <mask2>—carry it to the table.",
+            "Glance at the <mask3> and confirm it holds one <mask1> and one <mask2>. Fetch the dish that's still absent.",
             "Check the <mask3> with your sensors. Should it lack either the <mask1> or the <mask2>, deliver the missing one.",
-            "Observe the <mask3> for both the <mask1> and <mask2>. Bring along whichever plate or bowl you don’t detect.",
-            "Scan the <mask3>. If one of the two dishes—the <mask1> or the <mask2>—isn’t present, place it there.",
+            "Observe the <mask3> for both the <mask1> and <mask2>. Bring along whichever plate or bowl you don't detect.",
+            "Scan the <mask3>. If one of the two dishes—the <mask1> or the <mask2>—isn't present, place it there.",
             "Look over the <mask3>; whichever of the <mask1> or <mask2> is not already resting there, go get it and set it down.",
             "Examine the <mask3> visually. When you find only one dish, supply the other so both the <mask1> and <mask2> are in position.",
-            "Inspect the <mask3>. Any dish you can’t see—whether it’s the <mask1> or the <mask2>—needs to be fetched and placed.",
+            "Inspect the <mask3>. Any dish you can't see—whether it's the <mask1> or the <mask2>—needs to be fetched and placed.",
             "Verify with a quick look that the <mask3> hosts both the <mask1> and <mask2>. Retrieve and add the missing one if necessary."
         ],
         "mask1": [
@@ -2658,7 +2728,7 @@ TASK_POOL = [
                 {
                     "type": "asset",
                     "name": "<mask1>",
-                    "is_satisfied": true,
+                    "is_satisfied": True,
                     "status": {
                         "pos.name": "<mask3>"
                     }
@@ -2668,7 +2738,7 @@ TASK_POOL = [
                 {
                     "type": "asset",
                     "name": "<mask2>",
-                    "is_satisfied": true,
+                    "is_satisfied": True,
                     "status": {
                         "pos.name": "<mask3>"
                     }

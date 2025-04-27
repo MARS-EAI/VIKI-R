@@ -18,8 +18,10 @@ def main():
     current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     folder_name = f"data_{current_time}"
     os.makedirs(os.path.join(args.temp_config_path, folder_name), exist_ok=True)
-
+    num = 0
     for gt in data:
+        num += 1
+        print(f'Generating {num} tasks. Layout id is {gt["layout_id"]}.')
         general_config_file = f'configs/robocasa_random_task/layout_{gt["layout_id"]}_pick_meat_multiple_assets.yaml'    # the config that consists all possible assets & agents in a layout
         with open(general_config_file, 'r', encoding='utf-8') as f:
             general_config = yaml.load(f.read(), Loader=yaml.FullLoader)

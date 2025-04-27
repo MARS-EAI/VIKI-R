@@ -99,7 +99,7 @@ def _fill_masks(obj, mask_map):
 def instantiate_task(template):
 
     tpl = deepcopy(template)
-    layout_id = 1
+    layout_id = random.choice(tpl["layout_idx"])
     if layout_id not in tpl["layout_idx"]:
         raise ValueError(f"layout_id {layout_id} not in template layout_idx {tpl['layout_idx']}")
 

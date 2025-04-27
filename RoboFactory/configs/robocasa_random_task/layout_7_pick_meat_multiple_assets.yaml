@@ -877,8 +877,8 @@ cameras:
       pose:
         type: pose
         params: [[2.14981, -4.236, 2.96786], [0.650266, -0.271847, 0.269357, 0.656277]]
-      width: 512
-      height: 512
+      width: 1920
+      height: 1080
       fov: 1.57
       near: 0.01
       far: 100
@@ -887,8 +887,8 @@ cameras:
       pose:
         type: pose
         params: [[3.38992, -3.75923, 2.46027], [0.498687, -0.277445, 0.172324, 0.802895]]
-      width: 512
-      height: 512
+      width: 1920
+      height: 1080
       fov: 1.57
       near: 0.01
       far: 100
