@@ -162,7 +162,7 @@ class SimEnv:
                         new_env_status["assets"][carried_object.name] = {}
                     if isinstance(params[1], Position):
                         new_env_status["assets"][carried_object.name]["pos"] = params[1]
-                    elif isinstance(params[1], Asset):    # asset as position
+                    elif isinstance(params[1], Asset) and hasattr(params[1], 'container_position'):    # asset as position
                         new_env_status["assets"][carried_object.name]["pos"] = params[1].container_position
                     new_env_status["assets"][carried_object.name]["is_grasped_by"] = []
                 new_env_status['agents'][agent.name] = {

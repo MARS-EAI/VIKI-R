@@ -23,6 +23,7 @@ def format_answer(answer):
 def eval(data: list):
     judger = Eval()
     success_count = 0
+    tc = 0
     for idx, d in enumerate(data):
         # d = data[954]
         robots = d["robots"]
@@ -32,8 +33,8 @@ def eval(data: list):
         temporal_constraints = d['temporal_constraints']
 
         # skip test data
-        # if 'cabinet' in d['description']:
-        #     continue
+        if 'knife' in d['description'] or 'toaster' in d['description']:
+            continue
 
         default_metadata = {
             "agents": {

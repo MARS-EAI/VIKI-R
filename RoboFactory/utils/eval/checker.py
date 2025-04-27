@@ -86,9 +86,9 @@ class Checker:
         elif operation_name == 'handover':    # handover <asset, agent>
             return self.check_agent_relative_position(params[0], params[2]) and len(params[0].get_carried_objects()) > 0 and self.check_agent_has_free_end_effector(params[2])
         elif operation_name == 'interact':    # known: agent may activate irrelevant assets, can be solved by informing each task of interact scopes
-            if params[1] not in params[0].get_carried_objets() and not self.check_agent_has_free_end_effector(params[0]):
+            if params[1] not in params[0].get_carried_objects() and not self.check_agent_has_free_end_effector(params[0]):
                 return False
-            return self.check_agent_relative_position(params[0], params[1], assets, agents) and not self.check_asset_is_activated(params[1])
+            return self.check_agent_relative_position(params[0], params[1]) and not self.check_asset_is_activated(params[1])
         else:    # should never reach
             raise ValueError(f'Unexpected operation: {operation_name}.')
     

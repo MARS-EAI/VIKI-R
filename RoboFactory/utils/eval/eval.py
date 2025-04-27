@@ -228,11 +228,11 @@ class Eval:
                         break
                 if satisfied_temporal_status:
                     satisfied_temporal_constraints[idx] = True
-
-            if len(satisfied_temporal_constraints) != 0 and not all(satisfied_temporal_constraints):
-                self.error_desc_code = 'FAILED_TEMPORAL_CONSTRAINT'
-                return False
+        
         # check final status
+        if len(satisfied_temporal_constraints) != 0 and not all(satisfied_temporal_constraints):
+            self.error_desc_code = 'FAILED_TEMPORAL_CONSTRAINT'
+            return False
         goal_constraints = self.env.metadata['goal_constraints']
         for goal_constraint in goal_constraints:
             if not self.check_constraint(goal_constraint):
