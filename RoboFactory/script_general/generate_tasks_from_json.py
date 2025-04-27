@@ -53,7 +53,16 @@ def main():
         transparent_style = False
 
         c = 0
-        for robot_type in gt['robots'].values():
+        for robot_id, robot_type in gt['robots'].items():
+            if robot_type.startswith('panda'):    # search panda positions in init_pos
+                if robot_id in gt['init_pos'].keys():
+                    robot_init_pos = gt['init_pos'][robot_id]
+                    base_agent_cfg = agents_dict[robot_init_pos].copy()
+                    base_agent_cfg['robot_uid'] = f'{robot_type}-{c}'
+                    c += 1
+                    continue
+                else:
+                    print(f'Failed to find a specific init position for "{robot_id}: {robot_type}". Using default.')
             base_agent_cfg = agents_dict[robot_type].copy()
             base_agent_cfg['robot_uid'] = f'{robot_type}-{c}'
             new_agent_cfgs.append(base_agent_cfg)
@@ -61,6 +70,14 @@ def main():
         
         if 'idle_robots' in gt:
             for idle_robot in gt['idle_robots']:
+                if robot_id in gt['init_pos'].keys():
+                    robot_init_pos = gt['init_pos'][robot_id]
+                    base_agent_cfg = agents_dict[robot_init_pos].copy()
+                    base_agent_cfg['robot_uid'] = f'{robot_type}-{c}'
+                    c += 1
+                    continue
+                else:
+                    print(f'Failed to find a specific init position for "{robot_id}: {robot_type}". Using default.')
                 base_agent_cfg = agents_dict[idle_robot].copy()
                 base_agent_cfg['robot_uid'] = f'{idle_robot}-{c}'
                 new_agent_cfgs.append(base_agent_cfg)
