@@ -223,9 +223,11 @@ class Eval:
                     continue
                 satisfied_temporal_status = True
                 for temporal_status in temporal_constraint:
-                    if not self.check_constraint(temporal_status):
-                        satisfied_temporal_status = False
-                        break
+                    if self.check_constraint(temporal_status):
+                        if not satisfied_temporal_status:
+                            return False
+                        else:
+                            satisfied_temporal_status = False
                 if satisfied_temporal_status:
                     satisfied_temporal_constraints[idx] = True
         

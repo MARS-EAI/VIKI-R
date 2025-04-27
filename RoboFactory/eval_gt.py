@@ -23,7 +23,6 @@ def format_answer(answer):
 def eval(data: list):
     judger = Eval()
     success_count = 0
-    tc = 0
     for idx, d in enumerate(data):
         # d = data[954]
         robots = d["robots"]
@@ -33,8 +32,6 @@ def eval(data: list):
         temporal_constraints = d['temporal_constraints']
 
         # skip test data
-        if 'knife' in d['description'] or 'toaster' in d['description']:
-            continue
 
         default_metadata = {
             "agents": {
@@ -78,9 +75,8 @@ def eval(data: list):
         else:
             success_count += 1
 
-        # break
     print(f'Success Count: {success_count}. Failed Count: {len(data) - success_count}.')
-
+    
 
 if __name__ == '__main__':
     args = parse_args()

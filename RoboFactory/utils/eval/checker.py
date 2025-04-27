@@ -96,9 +96,9 @@ class Checker:
         """
                         MOVE REACH GRASP PLACE OPEN CLOSE HANDOVER INTERACT
             MOVE         o     o     o     o     o    o      o        o
-            REACH        o     o     x     x     x    x      x        x
+            REACH        o     o     x     o     x    x      x        x
             GRASP        o     x     x     x     x    x      x        x
-            PLACE        o     x     x     o     x    x      x        x
+            PLACE        o     o     x     o     x    x      x        x
             OPEN         o     x     x     x     x    x      x        x
             CLOSE        o     x     x     x     x    x      x        x
             HANDOVER     o     x     x     x     x    x      x        x
@@ -106,9 +106,7 @@ class Checker:
         """
         if 'move' in [command_x, command_y]:
             return True
-        if command_x == 'reach' and command_y == 'reach':
-            return True
-        if command_x == 'place' and command_y == 'place':
+        if command_x in ['reach', 'place'] and command_y in ['reach', 'place']:
             return True
         return False
 
