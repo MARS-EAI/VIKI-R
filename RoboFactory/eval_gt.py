@@ -24,11 +24,16 @@ def eval(data: list):
     judger = Eval()
     success_count = 0
     for idx, d in enumerate(data):
+        d = data[954]
         robots = d["robots"]
         gt = d["ground_truth"]
         init_pos = d['init_pos']
         goal_constraints = d['goal_constraints']
         temporal_constraints = d['temporal_constraints']
+
+        # skip test data
+        # if 'cabinet' in d['description']:
+        #     continue
 
         default_metadata = {
             "agents": {
@@ -71,6 +76,8 @@ def eval(data: list):
             print(f'{idx}: {judger.get_error_desc()}')
         else:
             success_count += 1
+
+        break
     print(f'Success Count: {success_count}. Failed Count: {len(data) - success_count}.')
 
 

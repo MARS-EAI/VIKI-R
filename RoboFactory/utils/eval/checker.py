@@ -47,17 +47,18 @@ class Checker:
         if target in finished:
             return False
         finished.append(target)
-        if target.pos.name in assets:
-            return self.check_target_aligned_position(assets[target.pos.name], pos, assets, agents) or target.pos.name == pos.name
-        elif target.pos.name in agents:
-            return self.check_target_aligned_position(agents[target.pos.name], pos, assets, agents) or target.pos.name == pos.name
-        else:
-            return target.pos.name == pos.name
+        if not finished:
+            if target.pos.name in assets:
+                return self.check_target_aligned_position(assets[target.pos.name], pos, assets, agents, finished) or target.pos.name == pos.name
+            elif target.pos.name in agents:
+                return self.check_target_aligned_position(agents[target.pos.name], pos, assets, agents, finished) or target.pos.name == pos.name
+        return target.pos.name == pos.name
     
     def check_agent_relative_position(self, agent: Agent, target: Union[Agent, Asset]):
         return agent.pos.name == target.name or agent.name == target.pos.name
     
     def check_operation(self, operation_name: str, params: list, assets: dict = None, agents: dict = None):
+        print(f'check {operation_name}')
         if not assets:
             assets = {}
         if not agents:
@@ -76,6 +77,9 @@ class Checker:
         elif operation_name == 'grasp':
             return not self.check_asset_is_grasped(params[1]) and self.check_agent_has_free_end_effector(params[0]) and params[0].is_reached_objects(params[1])
         elif operation_name == 'place':
+            print('return: ')
+            print(self.check_target_aligned_position(params[0], params[1], assets, agents) and len(params[0].get_carried_objects()) > 0)
+            # print(params[0].pos.name)
             return self.check_target_aligned_position(params[0], params[1], assets, agents) and len(params[0].get_carried_objects()) > 0
         elif operation_name == 'open':
             return self.check_agent_relative_position(params[0], params[1]) and self.check_agent_has_free_end_effector(params[0]) and self.check_pos_is_isolated(params[1].pos)

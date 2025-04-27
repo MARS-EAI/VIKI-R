@@ -201,6 +201,9 @@ class Eval:
                         self.error_desc_code = "NOT_FOUND_ENTITY"
                         return False
                 is_available_action = self.checker.check_operation(operation_name=operation_name, params=operation_entities, assets=self.env.assets, agents=self.env.agents)
+                print(operation_entities[1].name)
+                print('get:')
+                print(is_available_action)
                 if not is_available_action:
                     self.error_desc_code = 'ACTION_NOT_FEASIBLE'
                     return False
