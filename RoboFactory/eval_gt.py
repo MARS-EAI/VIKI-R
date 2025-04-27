@@ -74,7 +74,6 @@ def eval(data: list):
             print(f'{idx}: {judger.get_error_desc()}')
         else:
             success_count += 1
-
     print(f'Success Count: {success_count}. Failed Count: {len(data) - success_count}.')
     
 

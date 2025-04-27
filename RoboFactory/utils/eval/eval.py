@@ -225,9 +225,13 @@ class Eval:
                 for temporal_status in temporal_constraint:
                     if self.check_constraint(temporal_status):
                         if not satisfied_temporal_status:
+                            print(command)
+                            print(self.env.assets['apple'].pos.name)
+                            print(self.env.assets['knife'].is_activated)
+                            self.error_desc_code = 'FAILED_TEMPORAL_CONSTRAINT'
                             return False
-                        else:
-                            satisfied_temporal_status = False
+                    else:
+                        satisfied_temporal_status = False
                 if satisfied_temporal_status:
                     satisfied_temporal_constraints[idx] = True
         
