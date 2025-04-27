@@ -18,8 +18,10 @@ def main():
     current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     folder_name = f"data_{current_time}"
     os.makedirs(os.path.join(args.temp_config_path, folder_name), exist_ok=True)
-
+    num = 0
     for gt in data:
+        num += 1
+        print(f'Generating No.{num} tasks. Layout id is {gt["layout_id"]}.')
         general_config_file = f'configs/robocasa_random_task/layout_{gt["layout_id"]}_pick_meat_multiple_assets.yaml'    # the config that consists all possible assets & agents in a layout
         with open(general_config_file, 'r', encoding='utf-8') as f:
             general_config = yaml.load(f.read(), Loader=yaml.FullLoader)
@@ -53,7 +55,17 @@ def main():
         transparent_style = False
 
         c = 0
-        for robot_type in gt['robots'].values():
+        for robot_id, robot_type in gt['robots'].items():
+            if robot_type.startswith('panda'):    # search panda positions in init_pos
+                if robot_id in gt['init_pos'].keys():
+                    robot_init_pos = random.choice(gt['init_pos'][robot_id])
+                    base_agent_cfg = agents_dict[robot_init_pos].copy()
+                    base_agent_cfg['robot_uid'] = f'{robot_type}-{c}'
+                    new_agent_cfgs.append(base_agent_cfg)
+                    c += 1
+                    continue
+                else:
+                    print(f'Failed to find a specific init position for "{robot_id}: {robot_type}". Using default.')
             base_agent_cfg = agents_dict[robot_type].copy()
             base_agent_cfg['robot_uid'] = f'{robot_type}-{c}'
             new_agent_cfgs.append(base_agent_cfg)
@@ -61,6 +73,16 @@ def main():
         
         if 'idle_robots' in gt:
             for idle_robot in gt['idle_robots']:
+                if robot_type.startswith('panda'):    # search panda positions in init_pos
+                    if robot_id in gt['init_pos'].keys():
+                        robot_init_pos = random.choice(gt['init_pos'][robot_id])
+                        base_agent_cfg = agents_dict[robot_init_pos].copy()
+                        base_agent_cfg['robot_uid'] = f'{robot_type}-{c}'
+                        new_agent_cfgs.append(base_agent_cfg)
+                        c += 1
+                        continue
+                    else:
+                        print(f'Failed to find a specific init position for "{robot_id}: {robot_type}". Using default.')
                 base_agent_cfg = agents_dict[idle_robot].copy()
                 base_agent_cfg['robot_uid'] = f'{idle_robot}-{c}'
                 new_agent_cfgs.append(base_agent_cfg)
@@ -93,7 +115,9 @@ def main():
         temp_config['agents'] = new_agent_cfgs
         temp_config['objects'] = new_object_cfgs
 
-
+        render_cameras = temp_config['cameras']['human_render']
+        render_camera = random.choice(render_cameras)
+        temp_config['cameras']['human_render'] = [render_camera]
         temp_config['gt'] = gt
 
         # print(general_config)

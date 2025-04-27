@@ -38,21 +38,23 @@ class Checker:
         if action.param_scopes is not None:
             for t, scope in zip(target, action.param_scopes):
                 for k, value_set in scope.items():
-                    if getattr(action, k) not in value_set:
+                    if getattr(t, k) not in value_set:
                         return False
         return True
 
-    def check_target_aligned_position(self, target: Union[Agent, Asset], pos: Position, assets: dict, agents: dict, finished: list = []):
+    def check_target_aligned_position(self, target: Union[Agent, Asset], pos: Position, assets: dict, agents: dict, finished: list = None):
         # known: possible deadlocks
+        if not finished:
+            finished = []
         if target in finished:
             return False
         finished.append(target)
-        if target.pos.name in assets:
-            return self.check_target_aligned_position(assets[target.pos.name], pos, assets, agents) or target.pos.name == pos.name
-        elif target.pos.name in agents:
-            return self.check_target_aligned_position(agents[target.pos.name], pos, assets, agents) or target.pos.name == pos.name
-        else:
-            return target.pos.name == pos.name
+        if not finished:
+            if target.pos.name in assets:
+                return self.check_target_aligned_position(assets[target.pos.name], pos, assets, agents, finished) or target.pos.name == pos.name
+            elif target.pos.name in agents:
+                return self.check_target_aligned_position(agents[target.pos.name], pos, assets, agents, finished) or target.pos.name == pos.name
+        return target.pos.name == pos.name
     
     def check_agent_relative_position(self, agent: Agent, target: Union[Agent, Asset]):
         return agent.pos.name == target.name or agent.name == target.pos.name
@@ -78,15 +80,15 @@ class Checker:
         elif operation_name == 'place':
             return self.check_target_aligned_position(params[0], params[1], assets, agents) and len(params[0].get_carried_objects()) > 0
         elif operation_name == 'open':
-            return self.check_agent_relative_position(params[0], params[1]) and self.check_agent_has_free_end_effector(params[0]) and self.check_pos_is_isolated(params[1].pos)
+            return self.check_agent_relative_position(params[0], params[1]) and self.check_agent_has_free_end_effector(params[0]) and hasattr(params[1], 'container_position') and self.check_pos_is_isolated(params[1].container_position)
         elif operation_name == 'close':
-            return self.check_agent_relative_position(params[0], params[1]) and self.check_agent_has_free_end_effector(params[0]) and not self.check_pos_is_isolated(params[1].pos)
+            return self.check_agent_relative_position(params[0], params[1]) and self.check_agent_has_free_end_effector(params[0]) and hasattr(params[1], 'container_position') and not self.check_pos_is_isolated(params[1].container_position)
         elif operation_name == 'handover':    # handover <asset, agent>
             return self.check_agent_relative_position(params[0], params[2]) and len(params[0].get_carried_objects()) > 0 and self.check_agent_has_free_end_effector(params[2])
         elif operation_name == 'interact':    # known: agent may activate irrelevant assets, can be solved by informing each task of interact scopes
-            if params[1] not in params[0].get_carried_objets() and not self.check_agent_has_free_end_effector(params[0]):
+            if params[1] not in params[0].get_carried_objects() and not self.check_agent_has_free_end_effector(params[0]):
                 return False
-            return self.check_agent_relative_position(params[0], params[1], assets, agents) and not self.check_asset_is_activated(params[1])
+            return self.check_agent_relative_position(params[0], params[1]) and not self.check_asset_is_activated(params[1])
         else:    # should never reach
             raise ValueError(f'Unexpected operation: {operation_name}.')
     

@@ -19,9 +19,6 @@ import random
 
 @register_env("PickMeatRandomTask-rf", max_episode_steps=500)
 class PickMeatRandomTaskEnv(BaseEnv):
-
-    SUPPORTED_ROBOTS = ["panda"]
-    agent: Union[Panda, Fetch]
     goal_thresh = 0.025
     cube_color = np.concatenate((np.array([187, 116, 175]) / 255, [1]))
     cube_half_size = 0.02
