@@ -68,7 +68,8 @@ TASK_POOL = [
         ],
         "mask2": [
             "kitchen work area",
-            "kitchen island area"
+            "kitchen island area",
+            "rack"
         ],
         "robot_roles": [
             "humanoid"
@@ -550,6 +551,12 @@ TASK_POOL = [
                     "mask4"
                 ]
             },
+            {
+                "name_key": "mask4",
+                "pos": [
+                    "room_cabinet"
+                ],
+            },
         ],
         "idle_robot_roles": [
             "dog",
@@ -868,6 +875,12 @@ TASK_POOL = [
                     "kitchen island area"
                 ],
             },
+            {
+                "name_key": "mask3",
+                "pos": [
+                    "room_cabinet"
+                ],
+            },
         ],
         "idle_robot_roles": [
             "dog",
@@ -1014,6 +1027,12 @@ TASK_POOL = [
                 "pos": [
                     "kitchen work area",
                     "kitchen island area"
+                ],
+            },
+            {
+                "name_key": "mask3",
+                "pos": [
+                    "room_cabinet"
                 ],
             },
         ],
@@ -2082,6 +2101,17 @@ TASK_POOL = [
             "Place the <mask1> neatly on the <mask3>. If it’s absent, the <mask2> is worth checking.",
             "Deliver the <mask1> to the <mask3>. Should it be hidden, open the <mask2> and retrieve it."
         ],
+        "layout_idx": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+        ],
         "mask1": [
             "bread",
             "apple",
@@ -2196,6 +2226,17 @@ TASK_POOL = [
             "Move the <mask1> to the <mask3>. In case it’s not visible, you may need to inspect the <mask2>.",
             "Transfer the <mask1> to the <mask3>. If you can’t spot it, open the <mask2> and retrieve it."
         ],
+        "layout_idx": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+        ],
         "mask1": [
             "bread",
             "apple",
@@ -2286,5 +2327,353 @@ TASK_POOL = [
         ]
     }
 
-    
+    # 11 - Visual-searching for ENSURE BOWL & PLATE ON THE TABLE
+    {
+        "task_id": "11-1",
+        "task_name": "bring_plate_to_table_bowl_already_there",
+        "layout_idx": [
+            1,
+            3,
+            6,
+            9
+        ],
+        "description": [
+            "Take a look at the <mask3>. If you don’t see both a <mask1> and a <mask2> there, bring over whichever dish is missing.",
+            "Survey the <mask3> first; once you spot which item isn’t present—the <mask1> or the <mask2>—carry it to the table.",
+            "Glance at the <mask3> and confirm it holds one <mask1> and one <mask2>. Fetch the dish that’s still absent.",
+            "Check the <mask3> with your sensors. Should it lack either the <mask1> or the <mask2>, deliver the missing one.",
+            "Observe the <mask3> for both the <mask1> and <mask2>. Bring along whichever plate or bowl you don’t detect.",
+            "Scan the <mask3>. If one of the two dishes—the <mask1> or the <mask2>—isn’t present, place it there.",
+            "Look over the <mask3>; whichever of the <mask1> or <mask2> is not already resting there, go get it and set it down.",
+            "Examine the <mask3> visually. When you find only one dish, supply the other so both the <mask1> and <mask2> are in position.",
+            "Inspect the <mask3>. Any dish you can’t see—whether it’s the <mask1> or the <mask2>—needs to be fetched and placed.",
+            "Verify with a quick look that the <mask3> hosts both the <mask1> and <mask2>. Retrieve and add the missing one if necessary."
+        ],
+        "mask1": [
+            "bowl"
+        ],
+        "mask2": [
+            "plate"
+        ],
+        "mask3": [
+            "table"
+        ],
+        "robot_roles": [
+            "humanoid"
+        ],
+        "ground_truth": [
+            {
+                "R1": [
+                    "Move",
+                    "<mask2>"
+                ]
+            },
+            {
+                "R1": [
+                    "Reach",
+                    "<mask2>"
+                ]
+            },
+            {
+                "R1": [
+                    "Grasp",
+                    "<mask2>"
+                ]
+            },
+            {
+                "R1": [
+                    "Move",
+                    "<mask3>"
+                ]
+            },
+            {
+                "R1": [
+                    "Place",
+                    "<mask3>"
+                ]
+            }
+        ],
+        "init_pos": [
+            {
+                "name_key": "mask1",
+                "pos": [
+                    "table"
+                ]
+            },
+            {
+                "name_key": "mask2",
+                "pos": [
+                    "kitchen work area"
+                ],
+                "exclude_keys": [
+                    "mask3"
+                ]
+            },
+        ],
+        "idle_robot_roles": [
+            "dog",
+            "arm"
+        ],
+        "goal_constraint": [
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask1>",
+                    "is_satisfied": true,
+                    "status": {
+                        "pos.name": "<mask3>"
+                    }
+                }
+            ],
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask2>",
+                    "is_satisfied": true,
+                    "status": {
+                        "pos.name": "<mask3>"
+                    }
+                }
+            ]
+        ]
+    },
+    {
+        "task_id": "11-2",
+        "task_name": "bring_bowl_to_table_plate_already_there",
+        "layout_idx": [
+            1,
+            3,
+            6,
+            9
+        ],
+        "description": [
+            "Take a look at the <mask3>. If you don’t see both a <mask1> and a <mask2> there, bring over whichever dish is missing.",
+            "Survey the <mask3> first; once you spot which item isn’t present—the <mask1> or the <mask2>—carry it to the table.",
+            "Glance at the <mask3> and confirm it holds one <mask1> and one <mask2>. Fetch the dish that’s still absent.",
+            "Check the <mask3> with your sensors. Should it lack either the <mask1> or the <mask2>, deliver the missing one.",
+            "Observe the <mask3> for both the <mask1> and <mask2>. Bring along whichever plate or bowl you don’t detect.",
+            "Scan the <mask3>. If one of the two dishes—the <mask1> or the <mask2>—isn’t present, place it there.",
+            "Look over the <mask3>; whichever of the <mask1> or <mask2> is not already resting there, go get it and set it down.",
+            "Examine the <mask3> visually. When you find only one dish, supply the other so both the <mask1> and <mask2> are in position.",
+            "Inspect the <mask3>. Any dish you can’t see—whether it’s the <mask1> or the <mask2>—needs to be fetched and placed.",
+            "Verify with a quick look that the <mask3> hosts both the <mask1> and <mask2>. Retrieve and add the missing one if necessary."
+        ],
+        "mask1": [
+            "bowl"
+        ],
+        "mask2": [
+            "plate"
+        ],
+        "mask3": [
+            "table"
+        ],
+        "robot_roles": [
+            "humanoid"
+        ],
+        "ground_truth": [
+            {
+                "R1": [
+                    "Move",
+                    "<mask1>"
+                ]
+            },
+            {
+                "R1": [
+                    "Reach",
+                    "<mask1>"
+                ]
+            },
+            {
+                "R1": [
+                    "Grasp",
+                    "<mask1>"
+                ]
+            },
+            {
+                "R1": [
+                    "Move",
+                    "<mask3>"
+                ]
+            },
+            {
+                "R1": [
+                    "Place",
+                    "<mask3>"
+                ]
+            }
+        ],
+        "init_pos": [
+            {
+                "name_key": "mask2",
+                "pos": [
+                    "table"
+                ]
+            },
+            {
+                "name_key": "mask1",
+                "pos": [
+                    "kitchen work area"
+                ],
+                "exclude_keys": [
+                    "mask3"
+                ]
+            },
+        ],
+        "idle_robot_roles": [
+            "dog",
+            "arm"
+        ],
+        "goal_constraint": [
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask1>",
+                    "is_satisfied": true,
+                    "status": {
+                        "pos.name": "<mask3>"
+                    }
+                }
+            ],
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask2>",
+                    "is_satisfied": true,
+                    "status": {
+                        "pos.name": "<mask3>"
+                    }
+                }
+            ]
+        ]
+    },
+    {
+        "task_id": "11-3",
+        "task_name": "bring_plate_and_bowl_to_table",
+        "layout_idx": [
+            1,
+            3,
+            6,
+            9
+        ],
+        "description": [
+            "Take a look at the <mask3>. If you don’t see both a <mask1> and a <mask2> there, bring over whichever dish is missing.",
+            "Survey the <mask3> first; once you spot which item isn’t present—the <mask1> or the <mask2>—carry it to the table.",
+            "Glance at the <mask3> and confirm it holds one <mask1> and one <mask2>. Fetch the dish that’s still absent.",
+            "Check the <mask3> with your sensors. Should it lack either the <mask1> or the <mask2>, deliver the missing one.",
+            "Observe the <mask3> for both the <mask1> and <mask2>. Bring along whichever plate or bowl you don’t detect.",
+            "Scan the <mask3>. If one of the two dishes—the <mask1> or the <mask2>—isn’t present, place it there.",
+            "Look over the <mask3>; whichever of the <mask1> or <mask2> is not already resting there, go get it and set it down.",
+            "Examine the <mask3> visually. When you find only one dish, supply the other so both the <mask1> and <mask2> are in position.",
+            "Inspect the <mask3>. Any dish you can’t see—whether it’s the <mask1> or the <mask2>—needs to be fetched and placed.",
+            "Verify with a quick look that the <mask3> hosts both the <mask1> and <mask2>. Retrieve and add the missing one if necessary."
+        ],
+        "mask1": [
+            "bowl"
+        ],
+        "mask2": [
+            "plate"
+        ],
+        "mask3": [
+            "table"
+        ],
+        "robot_roles": [
+            "humanoid"
+        ],
+        "ground_truth": [
+            {
+                "R1": [
+                    "Move",
+                    "<mask1>"
+                ]
+            },
+            {
+                "R1": [
+                    "Reach",
+                    "<mask1>"
+                ]
+            },
+            {
+                "R1": [
+                    "Grasp",
+                    "<mask1>"
+                ]
+            },
+            {
+                "R1": [
+                    "Move",
+                    "<mask2>"
+                ]
+            },
+            {
+                "R1": [
+                    "Reach",
+                    "<mask2>"
+                ]
+            },
+            {
+                "R1": [
+                    "Grasp",
+                    "<mask2>"
+                ]
+            },
+            {
+                "R1": [
+                    "Move",
+                    "<mask3>"
+                ]
+            },
+            {
+                "R1": [
+                    "Place",
+                    "<mask3>"
+                ]
+            }
+        ],
+        "init_pos": [
+            {
+                "name_key": "mask1",
+                "pos": [
+                    "kitchen work area"
+                ],
+                "exclude_keys": [
+                    "mask3"
+                ]
+            },
+            {
+                "name_key": "mask2",
+                "pos": [
+                    "kitchen work area"
+                ],
+                "exclude_keys": [
+                    "mask3"
+                ]
+            },
+        ],
+        "idle_robot_roles": [
+            "dog",
+            "arm"
+        ],
+        "goal_constraint": [
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask1>",
+                    "is_satisfied": true,
+                    "status": {
+                        "pos.name": "<mask3>"
+                    }
+                }
+            ],
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask2>",
+                    "is_satisfied": true,
+                    "status": {
+                        "pos.name": "<mask3>"
+                    }
+                }
+            ]
+        ]
+    },
 ]

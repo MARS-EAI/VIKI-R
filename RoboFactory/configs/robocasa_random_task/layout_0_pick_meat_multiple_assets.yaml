@@ -804,9 +804,9 @@ objects:
       scale: [0.079, 0.079, 0.079]
     pos:
       ppos:
-        p: [2.55, -3.35, 0.962]
+        p: [0, 0, 0]
       qpos: [0.093, 0.873, 0.476, 0.051]
-      randp_scale: [0.06, 0.15, 0.]
+      randp_scale: [0, 0, 0.]
       randq_scale: [0., 0., 0., 0.]
 
 agents:
@@ -869,8 +869,28 @@ cameras:
       pose:
         type: pose
         params: [[2.63367, -3.09278, 2.78253], [0.663229, -0.245825, 0.24602, 0.6627]]
-      width: 512
-      height: 512
+      width: 1920
+      height: 1080
+      fov: 1.57
+      near: 0.01
+      far: 100
+    - 
+      uid: render_camera_2
+      pose:
+        type: pose
+        params: [[0.165403, -2.54789, 1.97917], [0.899042, -0.0752396, 0.17077, 0.396107]]
+      width: 1920
+      height: 1080
+      fov: 1.57
+      near: 0.01
+      far: 100
+    - 
+      uid: render_camera_3
+      pose:
+        type: pose
+        params: [[4.30399, -2.77935, 3.07789], [0.422893, -0.374827, 0.197909, 0.800936]]
+      width: 1920
+      height: 1080
       fov: 1.57
       near: 0.01
       far: 100
