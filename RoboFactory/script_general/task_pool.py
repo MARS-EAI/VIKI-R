@@ -1612,7 +1612,6 @@ TASK_POOL = [
             "Place the <mask3> on the <mask2> and finish by cutting it with the <mask1>.",
         ],
         "layout_idx": [
-            0,
             1,
             2,
             3,
@@ -1779,7 +1778,6 @@ TASK_POOL = [
             "Place the <mask3> on the <mask2> and finish by cutting it with the <mask1>."
         ],
         "layout_idx": [
-            0,
             1,
             2,
             3,
