@@ -531,11 +531,11 @@ objects:
         restitution: 0.
     visual:
       filename: assets/objects/steak_knife/new.obj
-      scale: [0.3, 0.3, 0.3]
+      scale: [0.5, 0.5, 0.5]
     collision:
       type: convex
       filename: assets/objects/steak_knife/new.obj
-      scale: [0.3, 0.3, 0.3]
+      scale: [0.5, 0.5, 0.5]
     pos:
       ppos:
         p: [0., 0., 0.]
@@ -909,13 +909,13 @@ position_areas:
     names: ['table', 'kitchen island area']
     pos:
       ppos:
-        p: [2.21297, -4.42887, 1.095]
+        p: [2.21297, -4.42887, 1.065]
       randp_scale: [1.605, 2.205, 0]
   -
     names: ['counter', 'kitchen counter', 'kitchen work area']
     pos:
       ppos:
-        p: [0.327189, -0.532036, 1.095]
+        p: [0.327189, -0.532036, 1.065]
       randp_scale: [2.913, 0.303, 0]
   -
     names: ['cabinet']

@@ -531,11 +531,11 @@ objects:
         restitution: 0.
     visual:
       filename: assets/objects/steak_knife/new.obj
-      scale: [0.3, 0.3, 0.3]
+      scale: [0.5, 0.5, 0.5]
     collision:
       type: convex
       filename: assets/objects/steak_knife/new.obj
-      scale: [0.3, 0.3, 0.3]
+      scale: [0.5, 0.5, 0.5]
     pos:
       ppos:
         p: [0., 0., 0.]

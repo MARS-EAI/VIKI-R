@@ -21,7 +21,7 @@ def main():
     num = 0
     for gt in data:
         num += 1
-        print(f'Generating {num} tasks. Layout id is {gt["layout_id"]}.')
+        print(f'Generating No.{num} tasks. Layout id is {gt["layout_id"]}.')
         general_config_file = f'configs/robocasa_random_task/layout_{gt["layout_id"]}_pick_meat_multiple_assets.yaml'    # the config that consists all possible assets & agents in a layout
         with open(general_config_file, 'r', encoding='utf-8') as f:
             general_config = yaml.load(f.read(), Loader=yaml.FullLoader)
