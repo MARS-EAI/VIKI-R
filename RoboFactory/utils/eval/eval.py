@@ -213,9 +213,15 @@ class Eval:
             # for step_command in step_commands:
             #     self.env.step(step_command)
             # check temporal constraints
-            pass
+            if 'temporal_constraints' in self.env.metadata:
+                temporal_constraints = self.env.metadata['temporal_constraints']
+                for temporal_constraint in temporal_constraints:
+                    for temporal_status in temporal_constraint:
+                        for entity_status in temporal_status:
+                            entity_type = entity_status['type']
+
         # check final status
-        goal_constraints = self.env.metadata['constraints']
+        goal_constraints = self.env.metadata['goal_constraints']
         for goal_constraint in goal_constraints:
             if not self.check_goal_constraint(goal_constraint):
                 self.error_desc_code = 'FAILED_GOAL_CONSTRAINT'

@@ -93,7 +93,9 @@ def main():
         temp_config['agents'] = new_agent_cfgs
         temp_config['objects'] = new_object_cfgs
 
-
+        render_cameras = temp_config['cameras']['human_render']
+        render_camera = random.choice(render_cameras)
+        temp_config['cameras']['human_render'] = [render_camera]
         temp_config['gt'] = gt
 
         # print(general_config)
