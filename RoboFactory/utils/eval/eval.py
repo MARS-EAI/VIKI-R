@@ -197,6 +197,7 @@ class Eval:
                     elif operation_name in ['move', 'place']:
                         operation_entities.append(Position(name=operation_param))
                     else:
+                        print(f'not found entity: {operation_param}')
                         self.error_desc_code = "NOT_FOUND_ENTITY"
                         return False
                 is_available_action = self.checker.check_operation(operation_name=operation_name, params=operation_entities, assets=self.env.assets, agents=self.env.agents)

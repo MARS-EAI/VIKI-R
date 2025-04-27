@@ -6,7 +6,7 @@ import random
 CONTAINER_ASSETS = ['plate', 'cabinet', 'drawer', 'bowl', 'sink', 'toaster', 'tray']
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-d', '--data', type=str, default='script_general/gt_test.json', help='data for eval')
+    parser.add_argument('-d', '--data', type=str, default='script_general/output.json', help='data for eval')
     return parser.parse_args()
 
 
@@ -27,8 +27,9 @@ def eval(data: list):
         robots = d["robots"]
         gt = d["ground_truth"]
         init_pos = d['init_pos']
-        constraints = d['constraints']
-        
+        goal_constraints = d['goal_constraints']
+        temporal_constraints = d['temporal_constraints']
+
         default_metadata = {
             "agents": {
 
@@ -60,7 +61,8 @@ def eval(data: list):
                     }
                 }
 
-        default_metadata['constraints'] = constraints
+        default_metadata['goal_constraints'] = goal_constraints
+        default_metadata['temporal_constraints'] = temporal_constraints
         judger.set_env(default_metadata)
         answers = format_answer(gt)
         # print(answers)
