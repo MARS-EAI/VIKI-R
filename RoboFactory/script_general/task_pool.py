@@ -1110,18 +1110,6 @@ TASK_POOL = [
             {
                 "R1": [
                     "Move",
-                    "<mask3>"
-                ]
-            },
-            {
-                "R1": [
-                    "Place",
-                    "<mask3>"
-                ]
-            },
-            {
-                "R1": [
-                    "Move",
                     "<mask2>"
                 ]
             },
@@ -1181,8 +1169,7 @@ TASK_POOL = [
         ],
         "idle_robot_roles": [
             "dog",
-            "arm",
-            "wheeled"
+            "arm"
         ],
         "goal_constraints": [
             [
@@ -1207,7 +1194,7 @@ TASK_POOL = [
             ]
         ]
     },
-    # 7 - Wash 1 objects
+    # 7 - Wash 1 objects and place to the plate
     {
         "task_id": "7-1",
         "task_name": "wash_fruit_and_serve",
@@ -1225,7 +1212,7 @@ TASK_POOL = [
         ],
         "description": [
             "Rinse the <mask1> in <mask3> and set it into the <mask2> for serving.",
-            "Freshen the <mask1> under the tap, then drop it in the <mask2>.",
+            "Freshen the <mask1> under the tap on <mask3>, then drop it in the <mask2>.",
             "Give the <mask1> a quick wash at the <mask3> and place it inside the <mask2>.",
             "Clean the <mask1> at the <mask3>, then deliver it into the <mask2>.",
             "Make sure the <mask1> is washed at the <mask3> before resting it in the <mask2>.",
@@ -1233,7 +1220,7 @@ TASK_POOL = [
             "Wash off the <mask1> at the <mask3> and move it into the <mask2>.",
             "Rinse off the <mask1> at the <mask3> and leave it in the <mask2> when finished.",
             "Use the tap to clean the <mask1> at the <mask3>; afterward, transfer it to the <mask2>.",
-            "Get the <mask1> washed and placed in the <mask2> so it’s ready to eat."
+            "Get the <mask1> washed in <mask3> and placed in the <mask2> so it’s ready to eat."
         ],
         "mask1": [
             "apple",
@@ -1287,6 +1274,12 @@ TASK_POOL = [
                 "R1": [
                     "Interact",
                     "sink"
+                ]
+            },
+            {
+                "R1": [
+                    "Move",
+                    "<mask1>"
                 ]
             },
             {
@@ -1373,223 +1366,4 @@ TASK_POOL = [
             ]
         ]
     },
-    # # 8 - 
-    # {
-    #     "task_id": "8-1",
-    #     "task_name": "pack_items_and_stow_box",
-    #     "layout_idx": [
-    #         1,
-    #         2,
-    #         3,
-    #         4,
-    #         5,
-    #         6,
-    #         7,
-    #         8,
-    #         9
-    #     ],
-    #     "description": [
-    #         "Pack the <mask1> and <mask2> into the <mask3>, then tuck the box away in the <mask4>.",
-    #         "Bundle both <mask1> and <mask2> inside the <mask3> and put that box in the <mask4>.",
-    #         "Make sure the <mask1> plus the <mask2> end up in the <mask3>; afterwards store the box in the <mask4>.",
-    #         "Load the <mask3> with the <mask1> and <mask2>, then slide it into the <mask4>.",
-    #         "Place the <mask1> together with the <mask2> into the <mask3>; move the filled box into the <mask4>.",
-    #         "Get the <mask1> and <mask2> packed inside the <mask3>, then position the box in the <mask4>.",
-    #         "Drop the <mask1> along with the <mask2> into the <mask3> and stow that box in the <mask4>.",
-    #         "Fill the <mask3> using the <mask1> and <mask2>; once done, put the box away in the <mask4>.",
-    #         "Collect the <mask1> plus <mask2>, load them in the <mask3>, and push the box into the <mask4>.",
-    #         "Tidy up: pack <mask1> and <mask2> in the <mask3>, then store the box neatly inside the <mask4>."
-    #     ],
-    #     "mask1": [
-    #         "knife",
-    #         "fork",
-    #         "spoon",
-    #         "bottle"
-    #     ],
-    #     "mask2": [
-    #         "bread",
-    #         "pear",
-    #         "tomato",
-    #         "apple"
-    #     ],
-    #     "mask3": [
-    #         "cardboardbox"
-    #     ],
-    #     "mask4": [
-    #         "cabinet"
-    #     ],
-    #     "robot_roles": [
-    #         "humanoid",
-    #         "wheeled",
-    #         "dog"
-    #     ],
-    #     "ground_truth": [
-    #         {
-    #             "R1": [
-    #                 "Move",
-    #                 "<mask1>"
-    #             ],
-    #             "R2": [
-    #                 "Move",
-    #                 "<mask2>"
-    #             ],
-    #             "R3": [
-    #                 "Move",
-    #                 "<mask3>"
-    #             ]
-    #         },
-    #         {
-    #             "R1": [
-    #                 "Reach",
-    #                 "<mask1>"
-    #             ],
-    #             "R2": [
-    #                 "Reach",
-    #                 "<mask2>"
-    #             ],
-    #             "R3": [
-    #                 "Reach",
-    #                 "<mask3>"
-    #             ]
-    #         },
-    #         {
-    #             "R1": [
-    #                 "Grasp",
-    #                 "<mask1>"
-    #             ],
-    #             "R2": [
-    #                 "Grasp",
-    #                 "<mask2>"
-    #             ]
-    #         },
-    #         {
-    #             "R3": [
-    #                 "Push",
-    #                 "<mask3>"
-    #             ]
-    #         },
-    #         {
-    #             "R1": [
-    #                 "Move",
-    #                 "<mask3>"
-    #             ],
-    #             "R2": [
-    #                 "Move",
-    #                 "<mask3>"
-    #             ]
-    #         },
-    #         {
-    #             "R1": [
-    #                 "Place",
-    #                 "<mask3>"
-    #             ],
-    #             "R2": [
-    #                 "Place",
-    #                 "<mask3>"
-    #             ]
-    #         },
-    #         {
-    #             "R1": [
-    #                 "Move",
-    #                 "<mask4>"
-    #             ],
-    #             "R3": [
-    #                 "Push",
-    #                 "<mask3>"
-    #             ]
-    #         },
-    #         {
-    #             "R1": [
-    #                 "Open",
-    #                 "<mask4>"
-    #             ]
-    #         },
-    #         {
-    #             "R3": [
-    #                 "Push",
-    #                 "<mask3>"
-    #             ]
-    #         },
-    #         {
-    #             "R1": [
-    #                 "Close",
-    #                 "<mask4>"
-    #             ]
-    #         }
-    #     ],
-    #     "init_pos": [
-    #         {
-    #             "name_key": "mask1",
-    #             "pos": [
-    #                 "kitchen work area",
-    #                 "kitchen island area"
-    #             ],
-    #             "exclude_keys": [
-    #                 "mask3",
-    #                 "mask4"
-    #             ]
-    #         },
-    #         {
-    #             "name_key": "mask2",
-    #             "pos": [
-    #                 "kitchen work area",
-    #                 "kitchen island area"
-    #             ],
-    #             "exclude_keys": [
-    #                 "mask3",
-    #                 "mask4"
-    #             ]
-    #         },
-    #         {
-    #             "name_key": "mask3",
-    #             "pos": [
-    #                 "kitchen work area"
-    #             ],
-    #             "exclude_keys": [
-    #                 "mask4"
-    #             ]
-    #         },
-    #         {
-    #             "name_key": "mask4",
-    #             "pos": [
-    #                 "kitchen work area"
-    #             ]
-    #         }
-    #     ],
-    #     "idle_robot_roles": [
-    #         "arm"
-    #     ],
-    #     "goal_constraints": [
-    #         [
-    #             {
-    #                 "type": "asset",
-    #                 "name": "<mask1>",
-    #                 "is_satisfied": True,
-    #                 "status": {
-    #                     "pos.name": "<mask3>"
-    #                 }
-    #             }
-    #         ],
-    #         [
-    #             {
-    #                 "type": "asset",
-    #                 "name": "<mask2>",
-    #                 "is_satisfied": True,
-    #                 "status": {
-    #                     "pos.name": "<mask3>"
-    #                 }
-    #             }
-    #         ],
-    #         [
-    #             {
-    #                 "type": "asset",
-    #                 "name": "<mask3>",
-    #                 "is_satisfied": True,
-    #                 "status": {
-    #                     "pos.name": "<mask4>"
-    #                 }
-    #             }
-    #         ]
-    #     ]
-    # }
 ]
