@@ -24,7 +24,7 @@ def eval(data: list):
     judger = Eval()
     success_count = 0
     for idx, d in enumerate(data):
-        d = data[954]
+        # d = data[954]
         robots = d["robots"]
         gt = d["ground_truth"]
         init_pos = d['init_pos']
@@ -77,7 +77,7 @@ def eval(data: list):
         else:
             success_count += 1
 
-        break
+        # break
     print(f'Success Count: {success_count}. Failed Count: {len(data) - success_count}.')
 
 
