@@ -454,9 +454,6 @@ TASK_POOL = [
         "mask4": [
             "cabinet"
         ],
-        "mask4": [
-            "cabinet"
-        ],
         "robot_roles": [
             "humanoid",
             "wheeled"
@@ -719,6 +716,12 @@ TASK_POOL = [
                 "pos": [
                     "kitchen work area",
                     "kitchen island area"
+                ],
+            },
+            {
+                "name_key": "mask2",
+                "pos": [
+                    "room_toaster",
                 ],
             },
             {
