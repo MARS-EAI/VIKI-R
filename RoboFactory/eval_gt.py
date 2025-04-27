@@ -6,7 +6,7 @@ import random
 CONTAINER_ASSETS = ['plate', 'cabinet', 'drawer', 'bowl', 'sink', 'toaster', 'tray']
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-d', '--data', type=str, default='script_general/gt_test.json', help='data for eval')
+    parser.add_argument('-d', '--data', type=str, default='script_general/output.json', help='data for eval')
     return parser.parse_args()
 
 
@@ -23,12 +23,19 @@ def format_answer(answer):
 def eval(data: list):
     judger = Eval()
     success_count = 0
+    tc = 0
     for idx, d in enumerate(data):
+        # d = data[954]
         robots = d["robots"]
         gt = d["ground_truth"]
         init_pos = d['init_pos']
-        constraints = d['constraints']
-        
+        goal_constraints = d['goal_constraints']
+        temporal_constraints = d['temporal_constraints']
+
+        # skip test data
+        if 'knife' in d['description'] or 'toaster' in d['description']:
+            continue
+
         default_metadata = {
             "agents": {
 
@@ -60,7 +67,8 @@ def eval(data: list):
                     }
                 }
 
-        default_metadata['constraints'] = constraints
+        default_metadata['goal_constraints'] = goal_constraints
+        default_metadata['temporal_constraints'] = temporal_constraints
         judger.set_env(default_metadata)
         answers = format_answer(gt)
         # print(answers)
@@ -69,6 +77,8 @@ def eval(data: list):
             print(f'{idx}: {judger.get_error_desc()}')
         else:
             success_count += 1
+
+        # break
     print(f'Success Count: {success_count}. Failed Count: {len(data) - success_count}.')
 
 

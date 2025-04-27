@@ -11,9 +11,10 @@ class Eval:
         self.error_desc_table = {
             "INVALID_COMMAND": "invalid format of the command.",
             "NOT_FOUND_ENTITY": "entity not found in the environment.",
-            "ACTION_NOT_FEASIBLE": "action not feasible",
-            "FAILED_GOAL_CONSTRAINT": "failed goal constraint",
+            "ACTION_NOT_FEASIBLE": "action not feasible.",
+            "FAILED_GOAL_CONSTRAINT": "failed goal constraint.",
             "ACTION_NOT_COMPATIBLE": "action not compatible in one step.",
+            "FAILED_TEMPORAL_CONSTRAINT": "failed temporal constraint.",
         }
 
     def set_env(self, env_metadata):
@@ -143,14 +144,14 @@ class Eval:
             obj = getattr(obj, attr)
         return obj
 
-    def check_goal_constraint(self, goal_constraint: list[dict]):
-        for goal_status in goal_constraint:
-            if isinstance(goal_status, list) and len(goal_status) == 1:
-                goal_status = goal_status[0]
-            target_entity = getattr(self.env, f'{goal_status["type"]}s')[goal_status['name']]
+    def check_constraint(self, constraint: list[dict]):
+        for target_status in constraint:
+            if isinstance(target_status, list) and len(target_status) == 1:
+                target_status = target_status[0]
+            target_entity = getattr(self.env, f'{target_status["type"]}s')[target_status['name']]
             # status_achieved = True
-            positive_check = goal_status['is_satisfied']
-            for target_attr, target_status in goal_status['status'].items():
+            positive_check = target_status['is_satisfied']
+            for target_attr, target_status in target_status['status'].items():
                 success = (self.nested_getattr(target_entity, target_attr) == target_status) ^ (not positive_check)
                 if not success:
                     return False
@@ -181,6 +182,7 @@ class Eval:
             all_commands.append(commands)
         
         # action feasibility
+        satisfied_temporal_constraints = [False] * len(self.env.metadata['temporal_constraints'])
         for commands in all_commands:
             step_commands = []    # commands in one step
             for command in commands:
@@ -195,6 +197,7 @@ class Eval:
                     elif operation_name in ['move', 'place']:
                         operation_entities.append(Position(name=operation_param))
                     else:
+                        print(f'Not Found Entity: {operation_param}')
                         self.error_desc_code = "NOT_FOUND_ENTITY"
                         return False
                 is_available_action = self.checker.check_operation(operation_name=operation_name, params=operation_entities, assets=self.env.assets, agents=self.env.agents)
@@ -213,17 +216,26 @@ class Eval:
             # for step_command in step_commands:
             #     self.env.step(step_command)
             # check temporal constraints
-            if 'temporal_constraints' in self.env.metadata:
-                temporal_constraints = self.env.metadata['temporal_constraints']
-                for temporal_constraint in temporal_constraints:
-                    for temporal_status in temporal_constraint:
-                        for entity_status in temporal_status:
-                            entity_type = entity_status['type']
-
+            # if 'temporal_constraints' in self.env.metadata:
+            temporal_constraints = self.env.metadata['temporal_constraints']
+            for idx, temporal_constraint in enumerate(temporal_constraints):
+                if satisfied_temporal_constraints[idx]:
+                    continue
+                satisfied_temporal_status = True
+                for temporal_status in temporal_constraint:
+                    if not self.check_constraint(temporal_status):
+                        satisfied_temporal_status = False
+                        break
+                if satisfied_temporal_status:
+                    satisfied_temporal_constraints[idx] = True
+        
         # check final status
+        if len(satisfied_temporal_constraints) != 0 and not all(satisfied_temporal_constraints):
+            self.error_desc_code = 'FAILED_TEMPORAL_CONSTRAINT'
+            return False
         goal_constraints = self.env.metadata['goal_constraints']
         for goal_constraint in goal_constraints:
-            if not self.check_goal_constraint(goal_constraint):
+            if not self.check_constraint(goal_constraint):
                 self.error_desc_code = 'FAILED_GOAL_CONSTRAINT'
                 return False
         return True
