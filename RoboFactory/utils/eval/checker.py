@@ -106,9 +106,7 @@ class Checker:
         """
         if 'move' in [command_x, command_y]:
             return True
-        if command_x == 'reach' and command_y == 'reach':
-            return True
-        if command_x == 'place' and command_y == 'place':
+        if command_x in ['reach', 'place'] and command_y in ['reach', 'place']:
             return True
         if command_x == 'reach' and command_y == 'place':
             return True
