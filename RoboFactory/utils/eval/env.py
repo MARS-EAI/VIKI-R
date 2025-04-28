@@ -115,8 +115,11 @@ class SimEnv:
             asset.pos.name = new_agent.name
             new_agent.get_carried_objects().append(asset)
             asset.is_grasped_by.append(new_agent)
-        elif operation =='interact':
+        elif operation == 'interact':
             params[1].is_activated = True
+        elif operation == 'push':
+            params[0].pos.name = params[1].name
+            params[1].pos.name = params[2].name
         else:    # should never reach
             raise ValueError(f'Unsupported operation: {operation}')
         
@@ -201,6 +204,13 @@ class SimEnv:
             elif operation =='interact':
                 new_env_status["assets"][params[1].name] = {
                     "is_activated": True
+                }
+            elif operation == 'push':
+                new_env_status["agents"][params[0].name] = {
+                    "pos.name": params[1].name
+                }
+                new_env_status["assets"][params[1].name] = {
+                    "pos.name": params[2].name
                 }
             else:    # should never reach
                 raise ValueError(f'Unsupported operation: {operation}')

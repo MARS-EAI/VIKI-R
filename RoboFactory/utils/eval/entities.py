@@ -87,6 +87,7 @@ ALL_ACTIONS  = {
     'place': Action(name='place', param_types=[{Asset, Position}]),
     'open': Action(name='open', param_types=[{Asset}], param_scopes=[{"name": {'cabinet', 'drawer', 'kitchen cabinet', 'kitchen drawer'}}]),
     'close': Action(name='close', param_types=[{Asset}], param_scopes=[{"name": {'cabinet', 'drawer', 'kitchen cabinet', 'kitchen drawer'}}]),
+    'push': Action(name='push', param_types=[{Asset}, {Asset, Position}], param_scopes=[{}, {"name": {"box", "cardboardbox"}}]),
     'handover': Action(name='handover', param_types=[{Asset}, {Agent}]),
     'interact': Action(name='interact', param_types=[{Asset}]),
 }
@@ -94,17 +95,17 @@ ALL_ACTIONS  = {
 AGENT_AVAIL_ACTIONS = {
     'panda': ['reach', 'grasp', 'place', 'open', 'close', 'handover', 'interact'],
     'fetch': ['move', 'reach', 'grasp', 'place', 'open', 'close', 'handover', 'interact'],
-    'unitree_go2': ['move', 'reach', 'grasp', 'place', 'handover', 'interact'],
+    'unitree_go2': ['move', 'push', 'interact'],
     'unitree_h1': ['move', 'reach', 'grasp', 'place', 'open', 'close', 'handover', 'interact'],
     'stompy': ['move', 'reach', 'grasp', 'place', 'open', 'close', 'handover', 'interact'],
-    'anymal_c': ['move', 'reach', 'grasp', 'place', 'handover', 'interact'],
+    'anymal_c': ['move', 'push', 'interact'],
 }
 
 AGENT_END_EFFECTOR_NUM = {
     'panda': 1,
     'fetch': 1,
-    'unitree_go2': 1,
+    'unitree_go2': 0,
     'unitree_h1': 2,
     'stompy': 2,
-    'anymal_c': 1,
+    'anymal_c': 0,
 }
