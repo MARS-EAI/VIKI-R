@@ -3253,7 +3253,7 @@ TASK_POOL = [
                 "R1": [
                     "Push",
                     "<mask2>",
-                    "R1"
+                    "R2"
                 ],
                 "R2": [
                     "Grasp",
