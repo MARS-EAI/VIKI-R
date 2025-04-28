@@ -2398,7 +2398,7 @@ TASK_POOL = [
         ]
     },
 
-    # 11 - Visual-searching for ENSURE BOWL & PLATE ON THE TABLE
+    # 11 - Visual-searching for ensuring bowl & plate on the table
     {
         "task_id": "11-1",
         "task_name": "bring_plate_to_table_bowl_already_there",
@@ -2747,4 +2747,389 @@ TASK_POOL = [
             ]
         ]
     },
+
+    # 12 - Visual-searching for ensuring all fruit on the table
+    {
+        "task_id": "12-1",
+        "task_name": "ensure_all_fruits_on_table",
+        "layout_idx": [
+            1,
+            3,
+            6
+        ],
+        "description": [
+            "Inspect the <mask3> thoroughly. If you find that both a <mask1> and a <mask2> are missing, fetch the absent fruit from wherever it may be, including cabinet.",
+            "Survey the <mask3> closely. Identify which fruit—the <mask1> or the <mask2>—is absent, then bring it to the table from its current location, which may include cabinet.",
+            "Glance at the <mask3> to confirm both a <mask1> and a <mask2> are present. If not, retrieve the missing fruit, ensuring to check all possible locations, including cabinet.",
+            "Utilize your sensors to check the <mask3>. If either the <mask1> or the <mask2> is missing, retrieve it from wherever it might be, including cabinet.",
+            "Observe the <mask3> for both the <mask1> and <mask2>. If one is missing, bring it along from any location, such as cabinet.",
+            "Scan the <mask3> for any missing fruits—the <mask1> or the <mask2>. Place them on the table, checking cabinet if necessary.",
+            "Examine the <mask3> closely. If either the <mask1> or the <mask2> is not present, retrieve it from its current location, including cabinet, and place it on the table.",
+            "Inspect the <mask3> visually. Ensure both the <mask1> and the <mask2> are present. If not, fetch and place the missing fruit, checking all areas including cabinet.",
+            "Verify with a quick inspection that the <mask3> holds both the <mask1> and the <mask2>. Retrieve the missing fruit from wherever it is, including cabinet, if necessary.",
+            "Thoroughly check the <mask3> to ensure both the <mask1> and the <mask2> are present. Retrieve the missing fruit, checking all possible locations, including cabinet."
+        ],
+        "mask1": [
+            "apple",
+            "pear",
+            "peach"
+        ],
+        "mask2": [
+            "banana",
+            "tomato"
+        ],
+        "mask3": [
+            "table"
+        ],
+        "robot_roles": [
+            "humanoid"
+        ],
+        "ground_truth": [
+            {
+                "R1": [
+                    "Move",
+                    "<mask2>"
+                ]
+            },
+            {
+                "R1": [
+                    "Reach",
+                    "<mask2>"
+                ]
+            },
+            {
+                "R1": [
+                    "Grasp",
+                    "<mask2>"
+                ]
+            },
+            {
+                "R1": [
+                    "Move",
+                    "<mask3>"
+                ]
+            },
+            {
+                "R1": [
+                    "Place",
+                    "<mask3>"
+                ]
+            }
+        ],
+        "init_pos": [
+            {
+                "name_key": "mask1",
+                "pos": [
+                    "table"
+                ]
+            },
+            {
+                "name_key": "mask2",
+                "pos": [
+                    "kitchen work area"
+                ],
+                "exclude_keys": [
+                    "mask3"
+                ]
+            }
+        ],
+        "idle_robot_roles": [
+            "dog",
+            "arm",
+            "wheeled"
+        ],
+        "goal_constraints": [
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask1>",
+                    "is_satisfied": True,
+                    "status": {
+                        "pos.name": "<mask3>"
+                    }
+                }
+            ],
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask2>",
+                    "is_satisfied": True,
+                    "status": {
+                        "pos.name": "<mask3>"
+                    }
+                }
+            ]
+        ]
+    },
+    {
+        "task_id": "12-2",
+        "task_name": "ensure_all_fruits_on_table",
+        "layout_idx": [
+            1,
+            3,
+            6
+        ],
+        "description": [
+            "Inspect the <mask3> thoroughly. If you find that both a <mask1> and a <mask2> are missing, fetch the absent fruit from wherever it may be, including cabinet.",
+            "Survey the <mask3> closely. Identify which fruit—the <mask1> or the <mask2>—is absent, then bring it to the table from its current location, which may include cabinet.",
+            "Glance at the <mask3> to confirm both a <mask1> and a <mask2> are present. If not, retrieve the missing fruit, ensuring to check all possible locations, including cabinet.",
+            "Utilize your sensors to check the <mask3>. If either the <mask1> or the <mask2> is missing, retrieve it from wherever it might be, including cabinet.",
+            "Observe the <mask3> for both the <mask1> and <mask2>. If one is missing, bring it along from any location, such as cabinet.",
+            "Scan the <mask3> for any missing fruits—the <mask1> or the <mask2>. Place them on the table, checking cabinet if necessary.",
+            "Examine the <mask3> closely. If either the <mask1> or the <mask2> is not present, retrieve it from its current location, including cabinet, and place it on the table.",
+            "Inspect the <mask3> visually. Ensure both the <mask1> and the <mask2> are present. If not, fetch and place the missing fruit, checking all areas including cabinet.",
+            "Verify with a quick inspection that the <mask3> holds both the <mask1> and the <mask2>. Retrieve the missing fruit from wherever it is, including cabinet, if necessary.",
+            "Thoroughly check the <mask3> to ensure both the <mask1> and the <mask2> are present. Retrieve the missing fruit, checking all possible locations, including cabinet."
+        ],
+        "mask1": [
+            "apple",
+            "pear",
+            "peach"
+        ],
+        "mask2": [
+            "banana",
+            "tomato"
+        ],
+        "mask3": [
+            "table"
+        ],
+        "robot_roles": [
+            "humanoid"
+        ],
+        "ground_truth": [
+            {
+                "R1": [
+                    "Move",
+                    "<mask1>"
+                ]
+            },
+            {
+                "R1": [
+                    "Reach",
+                    "<mask1>"
+                ]
+            },
+            {
+                "R1": [
+                    "Grasp",
+                    "<mask1>"
+                ]
+            },
+            {
+                "R1": [
+                    "Move",
+                    "<mask3>"
+                ]
+            },
+            {
+                "R1": [
+                    "Place",
+                    "<mask3>"
+                ]
+            }
+        ],
+        "init_pos": [
+            {
+                "name_key": "mask2",
+                "pos": [
+                    "table"
+                ]
+            },
+            {
+                "name_key": "mask1",
+                "pos": [
+                    "kitchen work area"
+                ],
+                "exclude_keys": [
+                    "mask3"
+                ]
+            }
+        ],
+        "idle_robot_roles": [
+            "dog",
+            "arm",
+            "wheeled"
+        ],
+        "goal_constraints": [
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask1>",
+                    "is_satisfied": True,
+                    "status": {
+                        "pos.name": "<mask3>"
+                    }
+                }
+            ],
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask2>",
+                    "is_satisfied": True,
+                    "status": {
+                        "pos.name": "<mask3>"
+                    }
+                }
+            ]
+        ]
+    },
+    {
+        "task_id": "12-3",
+        "task_name": "ensure_all_fruits_on_table",
+        "layout_idx": [
+            1,
+            3,
+            6
+        ],
+        "description": [
+            "Inspect the <mask3> thoroughly. If you find that both a <mask1> and a <mask2> are missing, fetch the absent fruit from wherever it may be, including <mask4>.",
+            "Survey the <mask3> closely. Identify which fruit—the <mask1> or the <mask2>—is absent, then bring it to the table from its current location, which may include <mask4>.",
+            "Glance at the <mask3> to confirm both a <mask1> and a <mask2> are present. If not, retrieve the missing fruit, ensuring to check all possible locations, including <mask4>.",
+            "Utilize your sensors to check the <mask3>. If either the <mask1> or the <mask2> is missing, retrieve it from wherever it might be, including <mask4>.",
+            "Observe the <mask3> for both the <mask1> and <mask2>. If one is missing, bring it along from any location, such as <mask4>.",
+            "Scan the <mask3> for any missing fruits—the <mask1> or the <mask2>. Place them on the table, checking <mask4> if necessary.",
+            "Examine the <mask3> closely. If either the <mask1> or the <mask2> is not present, retrieve it from its current location, including <mask4>, and place it on the table.",
+            "Inspect the <mask3> visually. Ensure both the <mask1> and the <mask2> are present. If not, fetch and place the missing fruit, checking all areas including <mask4>.",
+            "Verify with a quick inspection that the <mask3> holds both the <mask1> and the <mask2>. Retrieve the missing fruit from wherever it is, including <mask4>, if necessary.",
+            "Thoroughly check the <mask3> to ensure both the <mask1> and the <mask2> are present. Retrieve the missing fruit, checking all possible locations, including <mask4>."
+        ],
+        "mask1": [
+            "apple",
+            "pear",
+            "peach"
+        ],
+        "mask2": [
+            "banana",
+            "tomato"
+        ],
+        "mask3": [
+            "table"
+        ],
+        "mask4": [
+            "cabinet"
+        ],
+        "robot_roles": [
+            "humanoid",
+            "wheeled"
+        ],
+        "ground_truth": [
+            {
+                "R1": [
+                    "Move",
+                    "<mask4>"
+                ],
+                "R2": [
+                    "Move",
+                    "<mask2>"
+                ]
+            },
+            {
+                "R1": [
+                    "Reach",
+                    "<mask4>"
+                ],
+                "R2": [
+                    "Reach",
+                    "<mask2>"
+                ]
+            },
+            {
+                "R1": [
+                    "Open",
+                    "<mask4>"
+                ],
+                "R2": [
+                    "Grasp",
+                    "<mask2>"
+                ]
+            },
+            {
+                "R1": [
+                    "Move",
+                    "<mask1>"
+                ],
+                "R2": [
+                    "Move",
+                    "<mask3>"
+                ]
+            },
+            {
+                "R1": [
+                    "Reach",
+                    "<mask1>"
+                ],
+                "R2": [
+                    "Place",
+                    "<mask3>"
+                ]
+            },
+            {
+                "R1": [
+                    "Grasp",
+                    "<mask1>"
+                ]
+            },
+            {
+                "R1": [
+                    "Move",
+                    "<mask3>"
+                ]
+            },
+            {
+                "R1": [
+                    "Place",
+                    "<mask3>"
+                ]
+            },
+        ],
+        "init_pos": [
+            {
+                "name_key": "mask1",
+                "pos": [
+                    "cabinet"
+                ]
+            },
+            {
+                "name_key": "mask2",
+                "pos": [
+                    "kitchen work area"
+                ],
+                "exclude_keys": [
+                    "mask3"
+                ]
+            },
+            {
+                "name_key": "mask4",
+                "pos": [
+                    "room_cabinet"
+                ]
+            },
+        ],
+        "idle_robot_roles": [
+            "dog",
+            "arm"
+        ],
+        "goal_constraints": [
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask1>",
+                    "is_satisfied": True,
+                    "status": {
+                        "pos.name": "<mask3>"
+                    }
+                }
+            ],
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask2>",
+                    "is_satisfied": True,
+                    "status": {
+                        "pos.name": "<mask3>"
+                    }
+                }
+            ]
+        ]
+    }
 ]
