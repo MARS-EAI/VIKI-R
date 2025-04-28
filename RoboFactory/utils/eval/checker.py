@@ -46,9 +46,7 @@ class Checker:
         # known: possible deadlocks
         if not finished:
             finished = []
-        if isinstance(target, Position):
-            return target.name == pos.name
-        elif target.pos.name in assets:
+        if target.pos.name in assets:
             if target.pos.name in finished:
                 return False
             finished.append(target.pos.name)
@@ -58,13 +56,14 @@ class Checker:
                 return False
             finished.append(target.pos.name)
             return self.check_target_aligned_position(agents[target.pos.name], pos, assets, agents, finished) or target.pos.name == pos.name
+        if isinstance(target, Position):
+            return target.name == pos.name
         return target.pos.name == pos.name or target.name == pos.name
     
     def check_agent_relative_position(self, agent: Agent, target: Union[Agent, Asset]):
         return agent.pos.name == target.name or agent.name == target.pos.name
     
     def check_operation(self, operation_name: str, params: list, assets: dict = None, agents: dict = None):
-        print(f'Check {operation_name}')
         if not assets:
             assets = {}
         if not agents:
@@ -79,12 +78,14 @@ class Checker:
             #     return self.check_target_aligned_position(params[1], Position(name='ground'))
             return True
         elif operation_name == 'reach':
-            return self.check_target_aligned_position(params[0], params[1].pos, assets, agents) and not params[1].pos.isolated
+            is_available_position = self.check_target_aligned_position(params[0], params[1].pos, assets, agents) or self.check_target_aligned_position(params[1], params[0].pos, assets, agents)
+            return is_available_position and not params[1].pos.isolated
         elif operation_name == 'grasp':
             return not self.check_asset_is_grasped(params[1]) and self.check_agent_has_free_end_effector(params[0]) and params[0].is_reached_objects(params[1])
         elif operation_name == 'place':
             if isinstance(params[1], Asset):
-                return self.check_target_aligned_position(params[0], params[1].pos, assets, agents) and len(params[0].get_carried_objects()) > 0
+                is_available_position = self.check_target_aligned_position(params[0], params[1].pos, assets, agents) or self.check_target_aligned_position(params[1], params[0].pos, assets, agents)
+                return is_available_position and len(params[0].get_carried_objects()) > 0
             else:
                 return self.check_target_aligned_position(params[0], params[1], assets, agents) and len(params[0].get_carried_objects()) > 0
         elif operation_name == 'open':
