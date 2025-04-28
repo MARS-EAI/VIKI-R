@@ -3131,5 +3131,74 @@ TASK_POOL = [
                 }
             ]
         ]
-    }
+    },
+    {
+        "task_id": "13-1",
+        "task_name": "dog_check_environment",
+        "layout_idx": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+        ],
+        "description": [
+            "Inspect the environment of <mask1>.",
+            "Take a look around <mask1> and check its surroundings.",4
+            "Examine the environment near <mask1>.",
+            "Observe the space around <mask1>.",
+            "Explore the nearby environment of <mask1>.",
+            "Assess the area surrounding <mask1>.",
+            "Inspect the vicinity of <mask1> carefully.",  
+        ],
+        "mask1": [
+            "drawer",
+            "fridge",
+            "oven"
+        ],
+        "robot_roles": [
+            "dog",
+        ],
+        "ground_truth": [
+            {
+                "R1": [
+                    "Move",
+                    "<mask1>"
+                ],
+            },
+            {
+                "R1": [
+                    "Interact",
+                    "<mask1>"
+                ],
+            },
+        ],
+        "init_pos": [
+            {
+                "name_key": "mask1",
+                "pos": [
+                    "mask1"
+                ]
+            },
+        ],
+        "idle_robot_roles": [
+            "arm"
+        ],
+        "goal_constraints": [
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask1>",
+                    "is_satisfied": True,
+                    "status": {
+                        "is_activated": True
+                    }
+                }
+            ],
+        ]
+    },
 ]
