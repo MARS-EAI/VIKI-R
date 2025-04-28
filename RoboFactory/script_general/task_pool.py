@@ -3201,4 +3201,143 @@ TASK_POOL = [
             ],
         ]
     },
+    {
+        "task_id": "13-2",
+        "task_name": "dog_push_box_for_two_panda_transport",
+        "layout_idx": [
+            6,
+        ],
+        "description": [
+            "Move the <mask1> to the <mask3>. If the destination is too far, use the <mask2> to house the <mask1>, transport the <mask2> and fetch the <mask1>.",
+            "Carry the <mask1> over to the <mask3>. If it’s a long way, place the <mask1> into a <mask2> first, then move the <mask2> and retrieve the <mask1> afterwards.",
+            "Relocate the <mask1> to the <mask3>. If it’s too far to carry directly, <mask2> the <mask1>, move the <mask2>, and then remove the <mask1>.",
+            "Bring the <mask1> to the <mask3>. When the <mask3> is too far away, pack the <mask1> into a <mask2>, transport the <mask2>, and take out the <mask1> at the destination.",
+            "Move the <mask1> toward the <mask3>; if the route is too long, use a <mask2> to enclose the <mask1>, transfer the <mask2>, then retrieve the <mask1>.",
+            "Shift the <mask1> to the <mask3> location. If carrying it directly isn't feasible, first house the <mask1> in a <mask2>, move the <mask2>, and extract the <mask1> at the sink.",
+            "Deliver the <mask1> to the <mask3>. If distance makes direct handling difficult, load the <mask1> into a <mask2>, transport the <mask2>, and then unload the <mask1>.",
+            "Take the <mask1> to the <mask3>. If it’s too far to move it conveniently, first secure it inside a <mask2>, move the <mask2>, and fetch the <mask1> afterward.",
+            "Get the <mask1> over to the <mask3>. In case it’s too distant, put the <mask1> into a <mask2>, shift the <mask2> to the <mask3>, and then retrieve the <mask1>.",
+        ],
+        "mask1": [
+            "apple",
+            "pumpkin",
+            "meat",
+            "pear",
+            "peach",
+            "fork",
+            "spoon"
+        ],
+        "mask2": [
+            "cardboardbox"
+        ],
+        "mask3": [
+            "sink"
+        ],
+        "robot_roles": [
+            "dog",
+            "arm",
+            "arm",
+        ],
+        "ground_truth": [
+            {
+                "R1": [
+                    "Move",
+                    "<mask2>"
+                ],
+                "R2": [
+                    "Reach",
+                    "<mask1>"
+                ]
+            },
+            {
+                "R1": [
+                    "Push",
+                    "<mask2>",
+                    "R1"
+                ],
+                "R2": [
+                    "Grasp",
+                    "<mask1>"
+                ]
+            },
+            {
+                "R2": [
+                    "Place",
+                    "<mask2>"
+                ]
+            },
+            {
+                "R1": [
+                    "Push",
+                    "<mask2>",
+                    "R3"
+                ]
+            },
+            {
+                "R3": [
+                    "Reach",
+                    "<mask1>"
+                ]
+            },
+            {
+                "R3": [
+                    "Grasp",
+                    "<mask1>"
+                ]
+            },
+            {
+                "R3": [
+                    "Place",
+                    "<mask3>"
+                ]
+            }
+        ],
+        "init_pos": [
+            {
+                "name_key": "mask1",
+                "pos": [
+                    "kitechen work area"
+                ]
+            },
+            {
+                "name_key": "mask2",
+                "pos": [
+                    "ground"
+                ]
+            },
+            {
+                "name_key": "mask3",
+                "pos": [
+                    "R3"
+                ]
+            },
+            {
+                "name_key": "R1",
+                "pos": [
+                    "pandaA"
+                ]
+            },
+            {
+                "name_key": "R3",
+                "pos": [
+                    "pandaB"
+                ]
+            },
+        ],
+        "idle_robot_roles": [
+        ],
+        "goal_constraints": [
+            [
+                {
+                    "type": "asset",
+                    "name": "<mask1>",
+                    "is_satisfied": True,
+                    "status": {
+                        "pos.name": "<mask3>"
+                    }
+                }
+            ],
+        ]
+    },
+    
 ]

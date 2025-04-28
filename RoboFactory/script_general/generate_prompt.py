@@ -141,9 +141,11 @@ def instantiate_task(template):
     init_pos_meta = tpl["init_pos"]
     for idx, item_pos in enumerate(init_pos_meta):
         if 'name_key' in item_pos:
-            item_name = mask_map[item_pos['name_key']]
+            item_name = item_pos['name_key']
+            if item_name in mask_map:
+                item_name = mask_map[item_name]
         else:
-            raise ValueError
+            raise ValueError    
         cur_pos = item_pos["pos"]
         removed_pos = []
         if 'exclude_keys' in item_pos:
