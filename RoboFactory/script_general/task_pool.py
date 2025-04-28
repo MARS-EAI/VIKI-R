@@ -3296,7 +3296,7 @@ TASK_POOL = [
             {
                 "name_key": "mask1",
                 "pos": [
-                    "kitechen work area"
+                    "R2"
                 ]
             },
             {

@@ -87,7 +87,7 @@ ALL_ACTIONS  = {
     'place': Action(name='place', param_types=[{Asset, Position}]),
     'open': Action(name='open', param_types=[{Asset}], param_scopes=[{"name": {'cabinet', 'drawer', 'kitchen cabinet', 'kitchen drawer'}}]),
     'close': Action(name='close', param_types=[{Asset}], param_scopes=[{"name": {'cabinet', 'drawer', 'kitchen cabinet', 'kitchen drawer'}}]),
-    'push': Action(name='push', param_types=[{Asset}, {Asset, Position}], param_scopes=[{}, {"name": {"box", "cardboardbox"}}]),
+    'push': Action(name='push', param_types=[{Asset}, {Asset, Position, Agent}], param_scopes=[{"name": {"box", "cardboardbox"}}, {}]),
     'handover': Action(name='handover', param_types=[{Asset}, {Agent}]),
     'interact': Action(name='interact', param_types=[{Asset}]),
 }

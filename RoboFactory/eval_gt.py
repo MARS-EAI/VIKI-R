@@ -24,7 +24,7 @@ def eval(data: list):
     judger = Eval()
     success_count = 0
     for idx, d in enumerate(data):
-        # d = data[954]
+        d = data[6]
         robots = d["robots"]
         gt = d["ground_truth"]
         init_pos = d['init_pos']
@@ -60,7 +60,7 @@ def eval(data: list):
                     "is_container": True,
                     "position_kwargs": {
                         "name": asset_type,
-                        "isolated": True if asset_type in ['cabinet'] else False
+                        "isolated": True if asset_type in ['cabinet', 'cardboardbox'] else False
                     }
                 }
 
@@ -74,6 +74,7 @@ def eval(data: list):
             print(f'{idx}: {judger.get_error_desc()}')
         else:
             success_count += 1
+        break
     print(f'Success Count: {success_count}. Failed Count: {len(data) - success_count}.')
     
 

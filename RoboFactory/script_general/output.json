@@ -614,7 +614,7 @@
                 "R1": [
                     "Push",
                     "cardboardbox",
-                    "R1"
+                    "R3"
                 ],
                 "R3": [
                     "Grasp",
@@ -655,19 +655,19 @@
         ],
         "init_pos": {
             "peach_0": [
-                "kitechen work area"
+                "R3"
             ],
             "cardboardbox_1": [
                 "ground"
             ],
             "sink_2": [
-                "R3"
+                "R2"
             ],
-            "R1_3": [
-                "pandaA"
+            "R1": [
+                "kitechen work area"
             ],
-            "R3_4": [
-                "pandaB"
+            "R3": [
+                "kitechen work area"
             ]
         },
         "idle_robots": [],
