@@ -930,8 +930,8 @@ position_areas:
     names: ['cabinet']
     pos:
       ppos:
-        p: [1.996, -0.576, 1.520]
-      randp_scale: [0.079, 0.08, 0]
+        p: [1.996, -0.322, 1.520]
+      randp_scale: [0.079, 0.12, 0]
   -
     names: ['rack']
     pos:
