@@ -147,7 +147,7 @@ class RFSceneBuilder(SceneBuilder):
                         temp_ppos = temp_ppos.tolist()
                         for agent_ppos in agent_pposes:
                             delta_pos = np.abs(np.array(agent_ppos) - np.array(temp_ppos))
-                            if np.max(delta_pos)[:2] < 0.6 or (delta_pos[0] < 0.3):
+                            if np.max(delta_pos[:2]) < 0.6 or (delta_pos[0] < 0.3):
                                 available_pos = False
                                 if (agent_cfg['robot_uid'].startswith('panda')):
                                     if delta_pos[0] < 0.3:

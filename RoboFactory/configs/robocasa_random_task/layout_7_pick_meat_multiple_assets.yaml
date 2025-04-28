@@ -40,7 +40,7 @@ objects:
       scale: [0.4, 0.4, 0.4]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.05]
       qpos: [0.707, 0.707, 0.0, 0.0]
       randp_scale: [0.0, 0.0, 0.]
       randq_scale: [0., 0., 0., 0.]
@@ -76,7 +76,7 @@ objects:
       scale: [0.2, 0.2, 0.2]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.05]
       qpos: [0.707, 0.707, 0.0, 0.0]
       randp_scale: [0.5, 0.168, 0.]
       randq_scale: [0., 0., 0., 0.] 
@@ -230,9 +230,9 @@ objects:
       scale: [0.3, 0.3, 0.3]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.08]
       qpos: [0.707106, 0.707107, -0.000568681, -0.000567657]
-      randp_scale: [0.2, 0.12, 0.]
+      randp_scale: [0. , 0., 0.]
       randq_scale: [0., 0., 0., 0.]
     mass_params:
       mass: 0.005
@@ -482,7 +482,7 @@ objects:
       scale: [0.35, 0.35, 0.35]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.15]
       qpos: [-0.00642696, -0.000446394, 0.712781, 0.701357]
       randp_scale: [0, 0, 0.]
       randq_scale: [0., 0., 0., 0.]
@@ -622,7 +622,7 @@ objects:
       scale: [0.4, 0.4, 0.4]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.08]
       qpos: [0.707, 0.707, 0., 0.]
       randp_scale: [0, 0, 0.]
       randq_scale: [0., 0., 0., 0.]
@@ -814,7 +814,7 @@ agents:
     robot_uid: panda-0
     pos:
       ppos:
-        p: [2.05, -3.36, 1.070]
+        p: [2.05, -3.36, 0.925]
         q: [0., 0., 0.]
       qpos: [0., 0.3926990817, 0., -1.9634954085, 0., 2.3561944902, 0.7853981634, 0.04, 0.04]
       randp_scale: [1.55, 0.31, 0]
@@ -898,20 +898,26 @@ position_areas:
     names: ['kitchen island area']
     pos:
       ppos:
-        p: [1.914, -3.386, 1.070]
+        p: [1.914, -3.386, 0.925]
       randp_scale: [2.0, 0.4, 0.]
   -
     names: ['counter', 'kitchen counter', 'kitchen work area']
     pos:
       ppos:
-        p: [0.820, -0.552, 1.070]
+        p: [0.820, -0.552, 0.925]
       randp_scale: [2.736, 0.35, 0]
   -
-    names: ['cabinet', 'rack']
+    names: ['cabinet']
     pos:
       ppos:
-        p: [0.8, -0.247, 1.584]
+        p: [0.8, -0.247, 1.524]
       randp_scale: [0.6, 0.1, 0]
+  -
+    names: ['rack']
+    pos:
+      ppos:
+        p: [4.10887, -2.51762, 1.88]
+      randp_scale: [0.16, 0.66, 0]
 
 pseduo_assets_areas:
   -

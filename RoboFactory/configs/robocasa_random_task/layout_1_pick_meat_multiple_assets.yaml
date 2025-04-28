@@ -40,7 +40,7 @@ objects:
       scale: [0.4, 0.4, 0.4]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.05]
       qpos: [0.707, 0.707, 0.0, 0.0]
       randp_scale: [0.0, 0.0, 0.]
       randq_scale: [0., 0., 0., 0.]
@@ -76,7 +76,7 @@ objects:
       scale: [0.2, 0.2, 0.2]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.05]
       qpos: [0.707, 0.707, 0.0, 0.0]
       randp_scale: [0.5, 0.168, 0.]
       randq_scale: [0., 0., 0., 0.] 
@@ -230,7 +230,7 @@ objects:
       scale: [0.3, 0.3, 0.3]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.08]
       qpos: [0.707106, 0.707107, -0.000568681, -0.000567657]
       randp_scale: [0.2, 0.12, 0.]
       randq_scale: [0., 0., 0., 0.]
@@ -482,7 +482,7 @@ objects:
       scale: [0.35, 0.35, 0.35]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.15]
       qpos: [-0.00642696, -0.000446394, 0.712781, 0.701357]
       randp_scale: [0, 0, 0.]
       randq_scale: [0., 0., 0., 0.]
@@ -622,7 +622,7 @@ objects:
       scale: [0.4, 0.4, 0.4]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.08]
       qpos: [0.707, 0.707, 0., 0.]
       randp_scale: [0, 0, 0.]
       randq_scale: [0., 0., 0., 0.]
@@ -918,25 +918,25 @@ position_areas:
     names: ['table', 'kitchen island area']
     pos:
       ppos:
-        p: [1.538, -3.250, 1.152]
+        p: [1.538, -3.250, 0.925]
       randp_scale: [2.30, 0.89, 0]
   -
     names: ['counter', 'kitchen counter', 'kitchen work area']
     pos:
       ppos:
-        p: [1.447, -0.493, 1.020]
+        p: [1.447, -0.493, 0.925]
       randp_scale: [0.753, 0.329, 0]
   -
     names: ['cabinet']
     pos:
       ppos:
-        p: [1.996, -0.576, 1.790]
+        p: [1.996, -0.576, 1.520]
       randp_scale: [0.079, 0.08, 0]
   -
     names: ['rack']
     pos:
       ppos:
-        p: [3.384, -0.386, 2.040]
+        p: [3.384, -0.386, 1.86]
       randp_scale: [0.513, 0.243, 0]
 
 pseduo_assets_areas:
