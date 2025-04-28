@@ -42,7 +42,7 @@ class Checker:
                         return False
         return True
 
-    def check_target_aligned_position(self, target: Union[Agent, Asset], pos: Position, assets: dict, agents: dict, finished: list = None):
+    def check_target_aligned_position(self, target: Union[Agent, Asset, Position], pos: Position, assets: dict, agents: dict, finished: list = None):
         # known: possible deadlocks
         if not finished:
             finished = []
@@ -50,7 +50,9 @@ class Checker:
             return False
         finished.append(target)
         if not finished:
-            if target.pos.name in assets:
+            if isinstance(target, Position):
+                return target.name == pos.name
+            elif target.pos.name in assets:
                 return self.check_target_aligned_position(assets[target.pos.name], pos, assets, agents, finished) or target.pos.name == pos.name
             elif target.pos.name in agents:
                 return self.check_target_aligned_position(agents[target.pos.name], pos, assets, agents, finished) or target.pos.name == pos.name
@@ -70,10 +72,10 @@ class Checker:
         if not self.check_action_target(action_type, params[1:]):
             return False
         if operation_name == 'move':
+            # if params[0].type in ['unitree_go2', 'anymal_c']:    # dog can move on the ground
+            #     return self.check_target_aligned_position(params[1], Position(name='ground'))
             return True
         elif operation_name == 'reach':
-            if params[0].type in ['unitree_go2' or 'anymal_c'] and params[1].pos.name != 'ground':    # dog can only reach the ground.
-                return False
             return self.check_agent_relative_position(params[0], params[1]) and not params[1].pos.isolated
         elif operation_name == 'grasp':
             return not self.check_asset_is_grasped(params[1]) and self.check_agent_has_free_end_effector(params[0]) and params[0].is_reached_objects(params[1])
@@ -86,29 +88,30 @@ class Checker:
         elif operation_name == 'handover':    # handover <asset, agent>
             return self.check_agent_relative_position(params[0], params[2]) and len(params[0].get_carried_objects()) > 0 and self.check_agent_has_free_end_effector(params[2])
         elif operation_name == 'interact':    # known: agent may activate irrelevant assets, can be solved by informing each task of interact scopes
-            if params[1] not in params[0].get_carried_objects() and not self.check_agent_has_free_end_effector(params[0]):
+            if not params[0].type in ['unitree_go2', 'anymal_c'] and params[1] not in params[0].get_carried_objects() and not self.check_agent_has_free_end_effector(params[0]):
                 return False
             return self.check_agent_relative_position(params[0], params[1]) and not self.check_asset_is_activated(params[1])
+        elif operation_name == 'push':
+            return self.check_agent_relative_position(params[0], params[1])
         else:    # should never reach
             raise ValueError(f'Unexpected operation: {operation_name}.')
     
     def check_compatible_paired_actions(self, command_x: str, command_y: str):
         """
-                        MOVE REACH GRASP PLACE OPEN CLOSE HANDOVER INTERACT
-            MOVE         o     o     o     o     o    o      o        o
-            REACH        o     o     x     x     x    x      x        x
+                        MOVE REACH GRASP PLACE OPEN CLOSE HANDOVER INTERACT PUSH
+            MOVE         o     o     o     o     o    o      o        o       o
+            REACH        o     o     x     o     x    x      x        x
             GRASP        o     x     x     x     x    x      x        x
-            PLACE        o     x     x     o     x    x      x        x
+            PLACE        o     o     x     o     x    x      x        x
             OPEN         o     x     x     x     x    x      x        x
             CLOSE        o     x     x     x     x    x      x        x
             HANDOVER     o     x     x     x     x    x      x        x
-            INTERACT     o     x     x     x     x    x      x        x
+            INTERACT     o     x     x     x     x    x      x        x       x
+            PUSH         o                                            x       x
         """
         if 'move' in [command_x, command_y]:
             return True
-        if command_x == 'reach' and command_y == 'reach':
-            return True
-        if command_x == 'place' and command_y == 'place':
+        if command_x in ['reach', 'place'] and command_y in ['reach', 'place']:
             return True
         return False
 
