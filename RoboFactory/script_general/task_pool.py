@@ -3148,7 +3148,7 @@ TASK_POOL = [
         ],
         "description": [
             "Inspect the environment of <mask1>.",
-            "Take a look around <mask1> and check its surroundings.",4
+            "Take a look around <mask1> and check its surroundings.",
             "Examine the environment near <mask1>.",
             "Observe the space around <mask1>.",
             "Explore the nearby environment of <mask1>.",
