@@ -33,14 +33,14 @@ objects:
     file_path: assets/objects/cardboardbox/new.obj
     visual:
       filename: assets/objects/cardboardbox/new.obj
-      scale: [0.4, 0.4, 0.4]
+      scale: [0.4, 0.4, 0.8]
     collision:
       type: convex
       filename: assets/objects/cardboardbox/new.obj
-      scale: [0.4, 0.4, 0.4]
+      scale: [0.4, 0.4, 0.8]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.05]
       qpos: [0.707, 0.707, 0.0, 0.0]
       randp_scale: [0.0, 0.0, 0.]
       randq_scale: [0., 0., 0., 0.]
@@ -76,7 +76,7 @@ objects:
       scale: [0.2, 0.2, 0.2]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.05]
       qpos: [0.707, 0.707, 0.0, 0.0]
       randp_scale: [0.5, 0.168, 0.]
       randq_scale: [0., 0., 0., 0.] 
@@ -230,7 +230,7 @@ objects:
       scale: [0.3, 0.3, 0.3]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.08]
       qpos: [0.707106, 0.707107, -0.000568681, -0.000567657]
       randp_scale: [0.2, 0.12, 0.]
       randq_scale: [0., 0., 0., 0.]
@@ -482,7 +482,7 @@ objects:
       scale: [0.35, 0.35, 0.35]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.15]
       qpos: [-0.00642696, -0.000446394, 0.712781, 0.701357]
       randp_scale: [0, 0, 0.]
       randq_scale: [0., 0., 0., 0.]
@@ -622,7 +622,7 @@ objects:
       scale: [0.4, 0.4, 0.4]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.08]
       qpos: [0.707, 0.707, 0., 0.]
       randp_scale: [0, 0, 0.]
       randq_scale: [0., 0., 0., 0.]
@@ -820,6 +820,24 @@ agents:
         q: [0., 0., 0.]
       qpos: [0., 0.3926990817, 0., -1.9634954085, 0., 2.3561944902, 0.7853981634, 0.04, 0.04]
       randp_scale: [0.25, 0.25, 0]
+  -
+    robot_uid: pandaA-0    # panda on the island
+    pos:
+      ppos:
+        p: [4., -2.1, 0.980]
+        q: [0., 0., 0.]
+      qpos: [0., 0.3926990817, 0., -1.9634954085, 0., 2.3561944902, 0.7853981634, 0.04, 0.04]
+      randp_scale: [0., 0., 0]
+      rand_euler: [0, 0, 0.]
+  -
+    robot_uid: pandaB-0    # panda on the work area
+    pos:
+      ppos:
+        p: [1.4, -0.35, 0.950]
+        q: [0., 0., 0.]
+      qpos: [0., 0.3926990817, 0., -1.9634954085, 0., 2.3561944902, 0.7853981634, 0.04, 0.04]
+      randp_scale: [0., 0., 0]
+      rand_euler: [0, 0, 0.]
   - 
     robot_uid: fetch-0
     pos:
@@ -910,26 +928,50 @@ position_areas:
     names: ['table', 'kitchen island area']
     pos:
       ppos:
-        p: [2.16265, -4.07295, 1.16949]
+        p: [2.16265, -4.07295, 0.925]
       randp_scale: [1.8, 1.8, 0]
   -
     names: ['counter', 'kitchen counter', 'kitchen work area']
     pos:
       ppos:
-        p: [0.297169, -0.514829, 1.095]
+        p: [0.297169, -0.514829, 0.925]
       randp_scale: [5.21, 0.245, 0]
   -
     names: ['cabinet']
     pos:
       ppos:
-        p: [6.17289, -0.984547, 1.64461]
+        p: [6.17289, -0.984547, 1.52461]
       randp_scale: [0.02, 0.02, 0]
   -
     names: ['rack']
     pos:
       ppos:
-        p: [4.34095, -0.316032, 2.04172]
+        p: [4.34095, -0.316032, 1.88]
       randp_scale: [0.729, 0.191, 0]
+  -
+    names: ['pandaA_asset']
+    pos:
+      ppos:
+        p: [-1.0, 1.0, 0.]
+      randp_scale: [0.5, -0.5, 0.]
+  -
+    names: ['pandaB_asset']
+    pos:
+      ppos:
+        p: [0.5, 0., 0.]
+      randp_scale: [0., 0., 0.]
+  -
+    names: ['ground']
+    pos:
+      ppos:
+        p: [0.8, -4.5, 0.01]
+      randp_scale: [4.3, 2.8, 0.]
+  -
+    names: ['groundA']
+    pos:
+      ppos:
+        p: [0.8, -4.0, 0.01]
+      randp_scale: [0.1, 2.3, 0.]
 
 pseduo_assets_areas:
   -
@@ -947,3 +989,8 @@ pseduo_assets_areas:
     pos:
       min: [4.90452, -0.261975, 0.795]
       max: [5.10452, -0.111975, 1.395]
+  -
+    name: ground_table
+    pos:
+      min: [1.4, -4.5, -0.2]
+      max: [5.0, -1.9, 0.2]

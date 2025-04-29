@@ -135,19 +135,20 @@ class RFSceneBuilder(SceneBuilder):
                 pos_cfg = agent_cfg['pos']
                 ppos = pos_cfg['ppos']['p']
                 temp_ppos = np.array(ppos)
+                print(temp_ppos)
                 if 'randp_scale' in pos_cfg:
                     available_pos = False
                     count = 0
                     while not available_pos:
                         if count > 5000:
-                            print(f'Fail to find suitable position for {count} time. Skip.')
+                            print(f'Fail to find suitable position for {agent_cfg["robot_uid"]} in {count} time. Skip.')
                             exit(0)
                         available_pos = True
                         temp_ppos = np.array(ppos) + np.array(agent_cfg['pos']['randp_scale']) * np.random.rand((len(ppos)))
                         temp_ppos = temp_ppos.tolist()
                         for agent_ppos in agent_pposes:
                             delta_pos = np.abs(np.array(agent_ppos) - np.array(temp_ppos))
-                            if np.max(delta_pos)[:2] < 0.6 or (delta_pos[0] < 0.3):
+                            if np.max(delta_pos[:2]) < 0.6:
                                 available_pos = False
                                 if (agent_cfg['robot_uid'].startswith('panda')):
                                     if delta_pos[0] < 0.3:
@@ -208,7 +209,7 @@ class RFSceneBuilder(SceneBuilder):
                     count = 0
                     while not available_pos:
                         if count > 100:
-                            print(f'Fail to find suitable position for {count} time. Skip.')
+                            print(f'Fail to find suitable position for {asset_cfg["name"]} in {count} time. Skip.')
                             exit(0)
                         available_pos = True
                         temp_ppos = np.array(ppos) + np.array(asset_cfg['pos']['randp_scale']) * np.random.rand((len(ppos)))

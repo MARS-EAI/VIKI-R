@@ -135,8 +135,10 @@ class Eval:
             return ""
         
     def parse_command(self, command_desc: str):
-        content = command_desc[1:-1].strip().lower()
-        return [elem.strip() for elem in content.split(',')]
+        content = command_desc[1:-1].strip()
+        elements = [elem.strip() for elem in content.split(',')]
+        elements[0] = elements[0].lower()
+        return elements
 
     def nested_getattr(self, obj, attr_path):
         attrs = attr_path.split('.')

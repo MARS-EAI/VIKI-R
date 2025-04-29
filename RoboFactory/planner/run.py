@@ -15,7 +15,7 @@ from .solutions import solvePickMeat, solveStackCube, solveStrikeCube
 from .solutions import solvePlaceFood, solveTwoRobotsStackCube, solvePassShoe, solveLiftBarrier
 from .solutions import solveCameraAlignment, solveThreeRobotsStackCube
 from .solutions import solveTakePhoto, solveLongPipelineDelivery
-from .solutions import solvePickMeatRandomRobot, solvePickMeatRandomTask
+from .solutions import solvePickMeatRandomRobot, solvePickMeatRandomTask, solvePickRandomTaskPerception
 MP_SOLUTIONS = {
     "PickMeat-rf": solvePickMeat,
     "StackCube-rf": solveStackCube,
@@ -29,7 +29,8 @@ MP_SOLUTIONS = {
     "TakePhoto-rf": solveTakePhoto,
     "LongPipelineDelivery-rf": solveLongPipelineDelivery,
     "PickMeatRandomRobot-rf": solvePickMeatRandomRobot,
-    "PickMeatRandomTask-rf": solvePickMeatRandomTask
+    "PickMeatRandomTask-rf": solvePickMeatRandomTask,
+    "PickMeatRandomTaskPerception-rf": solvePickRandomTaskPerception
 }
 def parse_args(args=None):
     parser = argparse.ArgumentParser()

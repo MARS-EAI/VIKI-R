@@ -40,7 +40,7 @@ objects:
       scale: [0.4, 0.4, 0.4]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.05]
       qpos: [0.707, 0.707, 0.0, 0.0]
       randp_scale: [0.0, 0.0, 0.]
       randq_scale: [0., 0., 0., 0.]
@@ -76,7 +76,7 @@ objects:
       scale: [0.2, 0.2, 0.2]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.05]
       qpos: [0.707, 0.707, 0.0, 0.0]
       randp_scale: [0.5, 0.168, 0.]
       randq_scale: [0., 0., 0., 0.] 
@@ -230,9 +230,9 @@ objects:
       scale: [0.3, 0.3, 0.3]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.08]
       qpos: [0.707106, 0.707107, -0.000568681, -0.000567657]
-      randp_scale: [0.2, 0.12, 0.]
+      randp_scale: [0. , 0. , 0.]
       randq_scale: [0., 0., 0., 0.]
     mass_params:
       mass: 0.005
@@ -482,7 +482,7 @@ objects:
       scale: [0.35, 0.35, 0.35]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.15]
       qpos: [-0.00642696, -0.000446394, 0.712781, 0.701357]
       randp_scale: [0, 0, 0.]
       randq_scale: [0., 0., 0., 0.]
@@ -622,7 +622,7 @@ objects:
       scale: [0.4, 0.4, 0.4]
     pos:
       ppos:
-        p: [0., 0., 0.]
+        p: [0., 0., 0.08]
       qpos: [0.707, 0.707, 0., 0.]
       randp_scale: [0, 0, 0.]
       randq_scale: [0., 0., 0., 0.]
@@ -909,25 +909,25 @@ position_areas:
     names: ['table', 'kitchen island area']
     pos:
       ppos:
-        p: [2.21297, -4.42887, 1.065]
+        p: [2.21297, -4.42887, 0.925]
       randp_scale: [1.605, 2.205, 0]
   -
     names: ['counter', 'kitchen counter', 'kitchen work area']
     pos:
       ppos:
-        p: [0.327189, -0.532036, 1.065]
+        p: [0.327189, -0.532036, 0.925]
       randp_scale: [2.913, 0.303, 0]
   -
     names: ['cabinet']
     pos:
       ppos:
-        p: [0.808248, -0.27369, 1.55924]
+        p: [0.808248, -0.27369, 1.52024]
       randp_scale: [0.713, 0.232, 0]
   -
     names: ['rack']
     pos:
       ppos:
-        p: [2.85686, -0.347924, 2.08173]
+        p: [2.85686, -0.347924, 1.88]
       randp_scale: [0.584, 0.122, 0]
 
 pseduo_assets_areas:

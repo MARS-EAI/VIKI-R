@@ -11,3 +11,4 @@ from .take_photo import TakePhotoEnv
 from .long_pipeline_delivery import LongPipelineDeliveryEnv
 from .pick_meat_random_robot import PickMeatRandomRobotEnv
 from .pick_meat_random_task import PickMeatRandomTaskEnv
+from .pick_meat_random_task_perception import PickMeatRandomTaskPerceptionEnv

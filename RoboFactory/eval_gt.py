@@ -3,7 +3,7 @@ import json
 from utils.eval.eval import Eval
 import random
 
-CONTAINER_ASSETS = ['plate', 'cabinet', 'drawer', 'bowl', 'sink', 'toaster', 'tray']
+CONTAINER_ASSETS = ['plate', 'cabinet', 'drawer', 'bowl', 'sink', 'toaster', 'tray', 'cardboardbox']
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--data', type=str, default='script_general/output.json', help='data for eval')
@@ -23,8 +23,9 @@ def format_answer(answer):
 def eval(data: list):
     judger = Eval()
     success_count = 0
+    fail_count = 0
     for idx, d in enumerate(data):
-        # d = data[954]
+        d = data[14]
         robots = d["robots"]
         gt = d["ground_truth"]
         init_pos = d['init_pos']
@@ -32,6 +33,8 @@ def eval(data: list):
         temporal_constraints = d['temporal_constraints']
 
         # skip test data
+        # if 'transport' in d['task_name']:
+        #     continue
 
         default_metadata = {
             "agents": {
@@ -72,9 +75,11 @@ def eval(data: list):
         success = judger.eval(answers)
         if not success:
             print(f'{idx}: {judger.get_error_desc()}')
+            fail_count += 1
         else:
             success_count += 1
-    print(f'Success Count: {success_count}. Failed Count: {len(data) - success_count}.')
+        # break
+    print(f'Success Count: {success_count}. Failed Count: {fail_count}.')
     
 
 if __name__ == '__main__':
