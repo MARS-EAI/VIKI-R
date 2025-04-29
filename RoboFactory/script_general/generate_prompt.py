@@ -52,15 +52,16 @@ def _choose_ids_not_shuffled(role_seq):
     _ids = [ids[i] for i in perm]
     return _ids, perm
 
+def remap_robot_str(s, perm):
+    """若 s 是 Rk 形式的机器人代号，则返回重映射后的 Rj"""
+    if isinstance(s, str) and re.fullmatch(r"R\d+", s):
+        idx = int(s[1:]) - 1
+        new_idx = perm.index(idx)
+        return f"R{new_idx+1}"
+    return s
+    
 def _permute_gt(gt_steps, perm):
     """根据 perm 映射 ground_truth 的 key 和 value 中的 Rk"""
-    def remap_robot_str(s):
-        """若 s 是 Rk 形式的机器人代号，则返回重映射后的 Rj"""
-        if isinstance(s, str) and re.fullmatch(r"R\d+", s):
-            idx = int(s[1:]) - 1
-            new_idx = perm.index(idx)
-            return f"R{new_idx+1}"
-        return s
 
     new_steps = []
     for step in gt_steps:
@@ -73,13 +74,12 @@ def _permute_gt(gt_steps, perm):
 
             # 替换动作参数中可能出现的 Rk
             if isinstance(action, list):
-                new_action = [remap_robot_str(x) for x in action]
+                new_action = [remap_robot_str(x, perm) for x in action]
             else:
                 new_action = action  # 非预期格式，保持原样
 
             new_step[new_key] = new_action
         new_steps.append(new_step)
-
     return new_steps
 
 
@@ -108,6 +108,7 @@ def instantiate_task(template):
     robots = {f"R{i+1}": rid for i, rid in enumerate(ids)}
     ids_idle, perm_idle = _choose_ids_not_shuffled(tpl["idle_robot_roles"])
 
+    print(robots)
     KEEP_PROB = 0.5
     core_roles = tpl["robot_roles"]
     idle_roles = tpl.get("idle_robot_roles", [])
@@ -135,7 +136,6 @@ def instantiate_task(template):
 
     # c) 根据置换表同步 ground_truth 键
     gt_final = _permute_gt(gt_masked, perm)
-
     # d) 处理 init_pos
     init_pos = {}
     init_pos_meta = tpl["init_pos"]
@@ -157,7 +157,28 @@ def instantiate_task(template):
         if "aligned_keys" in item_pos:
             assert len(item_pos['aligned_keys']) == 1
             cur_pos = [mask_map[item_pos["aligned_keys"][0]]]
-        init_pos[f'{item_name}_{idx}'] = cur_pos
+        for pos_idx, pos in enumerate(cur_pos):
+            if pos.startswith('R') and pos[1:].isdigit():
+                new_pos = f'R{perm.index(int(pos[1:]) - 1) + 1}'
+                cur_pos[pos_idx] = new_pos
+        if item_name.startswith('R') and item_name[1:].isdigit():
+            init_pos[f'{item_name}'] = cur_pos
+        else:
+            init_pos[f'{item_name}_{idx}'] = cur_pos
+    
+    # replace R_id for perm
+    new_perm_init_pos = {}
+    old_entity_ids = []
+    for entity_id, poses in init_pos.items():
+        if entity_id.startswith('R') and entity_id[1:].isdigit():
+            new_entity_id = perm.index(int(entity_id[1:]) - 1) + 1
+            new_entity_id = f'R{new_entity_id}'
+            new_perm_init_pos[new_entity_id] = poses
+            old_entity_ids.append(entity_id)
+            print(f'{entity_id}->{new_entity_id}')
+    for k in old_entity_ids:
+        del(init_pos[k])
+    init_pos.update(new_perm_init_pos)
 
     # e) add constraints
     temporal_constraints_masked = []

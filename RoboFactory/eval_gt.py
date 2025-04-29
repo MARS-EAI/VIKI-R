@@ -25,7 +25,7 @@ def eval(data: list):
     success_count = 0
     fail_count = 0
     for idx, d in enumerate(data):
-        # d = data[6]
+        d = data[14]
         robots = d["robots"]
         gt = d["ground_truth"]
         init_pos = d['init_pos']

@@ -5,7 +5,7 @@ scene:
   env:
     scene_idx: 0
     layout_idx: 6  # 0-9
-    style_idx: 3  # 0-11
+    style_idx: 11 # 0-11
     customized_layout: configs/robocasa_layout_6/customized_layout.yaml 
     
 objects:

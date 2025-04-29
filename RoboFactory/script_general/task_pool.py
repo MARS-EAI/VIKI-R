@@ -3302,7 +3302,7 @@ TASK_POOL = [
             {
                 "name_key": "mask2",
                 "pos": [
-                    "ground"
+                    "groundA"
                 ]
             },
             {
@@ -3312,15 +3312,15 @@ TASK_POOL = [
                 ]
             },
             {
-                "name_key": "R1",
+                "name_key": "R2",
                 "pos": [
-                    "pandaA"
+                    "pandaB"
                 ]
             },
             {
                 "name_key": "R3",
                 "pos": [
-                    "pandaB"
+                    "pandaA"
                 ]
             },
         ],
