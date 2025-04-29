@@ -1,0 +1,116 @@
+from typing import Any, Dict, Union
+
+import numpy as np
+import sapien
+import torch
+import json
+import yaml
+from mani_skill.agents.robots import Fetch, Panda
+from mani_skill.envs.sapien_env import BaseEnv
+from mani_skill.envs.utils import randomization
+from mani_skill.sensors.camera import CameraConfig
+from mani_skill.utils import common, sapien_utils
+from mani_skill.utils.building import actors
+from mani_skill.utils.registration import register_env
+from mani_skill.utils.scene_builder.table import TableSceneBuilder
+from mani_skill.utils.structs.pose import Pose
+import utils.scenes
+import random
+
+@register_env("PickMeatRandomTaskPerception-rf", max_episode_steps=500)
+class PickMeatRandomTaskPerceptionEnv(BaseEnv):
+    goal_thresh = 0.025
+    cube_color = np.concatenate((np.array([187, 116, 175]) / 255, [1]))
+    cube_half_size = 0.02
+
+    def __init__(
+        self, *args, **kwargs
+    ):
+        assert 'config' in kwargs
+        with open(kwargs['config'], 'r', encoding='utf-8') as f:
+            self.cfg = yaml.load(f.read(), Loader=yaml.FullLoader)
+        del kwargs['config']
+        # agent_cfgs = self.cfg['agents']
+
+        # clean the cfg based on the task to fit the standard configuration
+        
+        # random choose agents in configuration
+        # random.shuffle(agent_cfgs)
+        # new_agent_cfgs = agent_cfgs[:random.randint(2, 7)]
+        # self.cfg['agents'] = new_agent_cfgs
+
+        # random choose layout
+        # self.cfg['scene']['env']['style_idx'] = random.randint(0, 11)
+        # transparent cabinet style: 4, 11
+        # self.cfg['scene']['env']['style_idx'] = 4
+
+        if 'robot_uids' in kwargs:
+            robot_uids = kwargs['robot_uids']
+        else:
+            robot_uids = []
+            for agent_cfg in self.cfg['agents']:
+                robot_uid = agent_cfg['robot_uid']
+                robot_uids.append(robot_uid.split('-')[0])
+        super().__init__(*args, robot_uids=tuple(robot_uids), **kwargs)
+        
+    @property
+    def _default_sensor_configs(self):
+        camera_cfg = self.cfg.get('cameras', {})
+        sensor_cfg = camera_cfg.get('sensor', [])
+        all_camera_configs =[]
+        for sensor in sensor_cfg:
+            pose = sensor['pose']
+            if pose['type'] == 'pose':
+                sensor['pose'] = sapien.Pose(*pose['params'])
+            elif pose['type'] == 'look_at':
+                sensor['pose'] = sapien_utils.look_at(*pose['params'])
+            all_camera_configs.append(CameraConfig(**sensor))
+        return all_camera_configs
+
+    @property
+    def _default_human_render_camera_configs(self):
+        camera_cfg = self.cfg.get('cameras', {})
+        render_cfg = camera_cfg.get('human_render', [])
+        all_camera_configs =[]
+        for render in render_cfg:
+            pose = render['pose']
+            if pose['type'] == 'pose':
+                render['pose'] = sapien.Pose(*pose['params'])
+            elif pose['type'] == 'look_at':
+                render['pose'] = sapien_utils.look_at(*pose['params'])
+            all_camera_configs.append(CameraConfig(**render))
+        return all_camera_configs
+
+    def _load_agent(self, options: dict):
+        init_poses = []
+        for agent_cfg in self.cfg['agents']:
+            init_poses.append(sapien.Pose(p=agent_cfg['pos']['ppos']['p']))
+        super()._load_agent(options, init_poses)
+
+    def _load_scene(self, options: dict):
+        scene_name = self.cfg['scene']['name']
+        scene_builder = getattr(utils.scenes, f'{scene_name}SceneBuilder')
+        self.scene_builder = scene_builder(env=self, cfg=self.cfg)
+        self.scene_builder.build()
+
+    def _initialize_episode(self, env_idx: torch.Tensor, options: dict):
+        with torch.device(self.device):
+            self.scene_builder.initialize(env_idx)
+            
+    def evaluate(self):
+        # print(self.meat.pose.p[..., 2])
+        # success = self.meat.pose.p[..., 2] > 0.15 + self.agent.robot.pose.p[0, 2]
+        return {
+            "success": True,
+        }
+
+    def _get_obs_extra(self, info: Dict):
+        obs = {}
+        return obs
+
+    def compute_dense_reward(self, obs: Any, action: torch.Tensor, info: Dict):
+        return {}
+
+    def compute_normalized_dense_reward(self, obs: Any, action: torch.Tensor, info: Dict):
+        return {}
+
