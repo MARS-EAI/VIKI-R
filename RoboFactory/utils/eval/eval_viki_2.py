@@ -46,8 +46,8 @@ def eval_single(pred_obj: dict,ground_truth) -> bool:
     judger.set_env(metadata)
     answers = pred_obj
     success = judger.eval(answers)
-    # if not success:
-    #     print(judger.get_error_desc())
+    if not success:
+        print(judger.get_error_desc())
     return success
 
 def filter_none_values(ground_truth):

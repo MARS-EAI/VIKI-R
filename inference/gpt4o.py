@@ -105,7 +105,7 @@ The reasoning process MUST BE enclosed within <think> </think> tags. The final a
 
 Output Format Requirements(please comply strictly, do not output any additional content):
 <answer>
-{{
+
   [
     {{
       "step": 1,
@@ -123,7 +123,6 @@ Output Format Requirements(please comply strictly, do not output any additional 
     }}
     # ... subsequent steps ...
   ]
-}}
 </answer>
 
 Where:
