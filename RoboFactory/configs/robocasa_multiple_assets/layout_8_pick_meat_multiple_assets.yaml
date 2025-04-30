@@ -4,9 +4,9 @@ scene:
   name: Robocasa
   env:
     scene_idx: 0
-    layout_idx: 6  # 0-9
+    layout_idx: 3  # 0-9
     style_idx: 11 # 0-11
-    customized_layout: configs/robocasa_layout_6/customized_layout.yaml 
+    customized_layout: configs/robocasa_layout_3/customized_layout.yaml 
     
 objects:
 #   -
@@ -809,8 +809,8 @@ agents:
     robot_uid: panda-0
     pos:
       ppos:
-        p: [1.4, -0.35, 0.950]
-        q: [0., 0., 0.]
+        p: [3.0, -4.5, 0.92]
+        q: [0., 0., 3.14]
       qpos: [0., 0.3926990817, 0., -1.9634954085, 0., 2.3561944902, 0.7853981634, 0.04, 0.04]
       randp_scale: [0., 0., 0]
       rand_euler: [0, 0, 0.]

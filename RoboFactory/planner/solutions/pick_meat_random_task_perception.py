@@ -5,6 +5,7 @@ from tasks import PickMeatRandomTaskPerceptionEnv
 from planner.motionplanner import PandaArmMotionPlanningSolver
 from PIL import Image
 import json
+import random
 
 def solve(env: PickMeatRandomTaskPerceptionEnv, seed=None, debug=False, vis=False):
     env.reset(seed=seed)
@@ -31,7 +32,7 @@ def solve(env: PickMeatRandomTaskPerceptionEnv, seed=None, debug=False, vis=Fals
     Image.fromarray(res_video[0, :, :, :].cpu().numpy()).save(os.path.join(out_dir, 'images', f'{fn_idx}.png'))
     meta_data.append({
         'image': f'{fn_idx}.png',
-        'gt': env.cfg['gt']
+        'description': random.choice(env.cfg['task_description']),
     })
     json.dump(meta_data, open(os.path.join(out_dir, meta_file), 'w'), indent=4)
     exit(0)

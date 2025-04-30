@@ -33,11 +33,11 @@ objects:
     file_path: assets/objects/cardboardbox/new.obj
     visual:
       filename: assets/objects/cardboardbox/new.obj
-      scale: [0.4, 0.4, 0.4]
+      scale: [0.4, 0.4, 1.0]
     collision:
       type: convex
       filename: assets/objects/cardboardbox/new.obj
-      scale: [0.4, 0.4, 0.4]
+      scale: [0.4, 0.4, 1.0]
     pos:
       ppos:
         p: [0., 0., 0.05]
@@ -815,7 +815,23 @@ agents:
     robot_uid: panda-0
     pos:
       ppos:
-        p: [2.31639, -4.2039, 1.21264]
+        p: [3.0, -4.5, 0.92]
+        q: [0., 0., 0.]
+      qpos: [0., 0.3926990817, 0., -1.9634954085, 0., 2.3561944902, 0.7853981634, 0.04, 0.04]
+      randp_scale: [0, 0, 0]
+  - 
+    robot_uid: pandaB-0
+    pos:
+      ppos:
+        p: [3.0, -4.5, 0.92]
+        q: [0., 0., 3.14]
+      qpos: [0., 0.3926990817, 0., -1.9634954085, 0., 2.3561944902, 0.7853981634, 0.04, 0.04]
+      randp_scale: [0, 0, 0]
+  - 
+    robot_uid: pandaA-0
+    pos:
+      ppos:
+        p: [0.16, -2.92, 0.92]
         q: [0., 0., 0.]
       qpos: [0., 0.3926990817, 0., -1.9634954085, 0., 2.3561944902, 0.7853981634, 0.04, 0.04]
       randp_scale: [0, 0, 0]
@@ -929,6 +945,18 @@ position_areas:
       ppos:
         p: [2.85686, -0.347924, 1.88]
       randp_scale: [0.584, 0.122, 0]
+  -
+    names: ['groundA']
+    pos:
+      ppos:
+        p: [0.74, -4.3, 0.01]
+      randp_scale: [0.5, 2.4, 0.]
+  -
+    names: ['pandaB_asset']
+    pos:
+      ppos:
+        p: [-0.2, 0.2, 0.]
+      randp_scale: [-0.5, 0.5, 0.]
 
 pseduo_assets_areas:
   -
