@@ -43,7 +43,7 @@ class PassShoeEnv(BaseEnv):
             for agent_cfg in self.cfg['agents']:
                 robot_uid = agent_cfg['robot_uid']
                 robot_uids.append(robot_uid.split('-')[0])
-        super().__init__(*args, robot_uids=robot_uids, **kwargs)
+        super().__init__(*args, robot_uids=tuple(robot_uids), **kwargs)
 
     @property
     def _default_sensor_configs(self):
