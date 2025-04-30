@@ -3205,6 +3205,7 @@ TASK_POOL = [
         "task_id": "13-2",
         "task_name": "dog_push_box_for_two_panda_transport",
         "layout_idx": [
+            3,
             6,
         ],
         "description": [

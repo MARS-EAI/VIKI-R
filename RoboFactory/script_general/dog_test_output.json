@@ -2,7 +2,7 @@
     {
         "task_id": "111_13-2",
         "task_name": "dog_push_box_for_two_panda_transport",
-        "layout_id": 6,
+        "layout_id": 3,
         "description": "Move the fork toward the sink; if the route is too long, use a cardboardbox to enclose the fork, transfer the cardboardbox, then retrieve the fork.",
         "robots": {
             "R1": "panda",
