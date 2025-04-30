@@ -30,6 +30,22 @@ class PickMeatRandomTaskPerceptionEnv(BaseEnv):
         with open(kwargs['config'], 'r', encoding='utf-8') as f:
             self.cfg = yaml.load(f.read(), Loader=yaml.FullLoader)
         del kwargs['config']
+        
+        # choose asset from the config
+        if 'asset_list' in self.cfg:
+            current_assets = []
+            for asset in self.cfg['objects']:
+                current_assets.append(asset)
+            new_assets = []
+            for asset_name in self.cfg['asset_list']:
+                if isinstance(asset_name, list):
+                    asset_name = random.choice(asset_name)
+                new_assets.append(asset_name)
+            self.cfg['objects'] = []
+            for asset in current_assets:
+                if asset['name'] in new_assets:
+                    self.cfg['objects'].append(asset)
+
         # agent_cfgs = self.cfg['agents']
 
         # clean the cfg based on the task to fit the standard configuration

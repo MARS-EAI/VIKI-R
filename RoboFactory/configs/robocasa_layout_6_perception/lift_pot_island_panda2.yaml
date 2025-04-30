@@ -1,5 +1,5 @@
 # configuration for objects and agents, add scene as well
-task_name: PickMeatRandomRobot
+task_name: PickMeatRandomTaskPerception
 scene:
   name: Robocasa
   env:
@@ -650,9 +650,9 @@ objects:
       scale: [0.4, 0.4, 0.4]
     pos:
       ppos:
-        p: [3.15, -3.4, 0.955]
+        p: [3.3, -3.3, 0.955]
       qpos: [0.707, 0.707, 0., 0.]
-      randp_scale: [0, 0, 0.]
+      randp_scale: [-0.2, 0.2, 0.]
       randq_scale: [0., 0., 0., 0.]
     mass_params:
       mass: 0.005
@@ -819,6 +819,17 @@ objects:
   #     randp_scale: [0, 0, 0.]
   #     randq_scale: [0., 0., 0., 0.]
 
+  -
+    name: pot_table
+    file_path: assets/objects/pot_annotated/mobility.urdf
+    scale: 0.2
+    pos:
+      ppos:
+        p: [3.05, -3.5, 1.03]
+      qpos: [0.732, 0.007, -0.009, 0.681]
+      randp_scale: [0.2, 0.2, 0.]
+      randq_scale: [0., 0., 0., 0.]
+
   # # asset_id: 31
   # - 
   #   name: hammer
@@ -844,10 +855,19 @@ agents:
     robot_uid: panda-0
     pos:
       ppos:
-        p: [2.34224, -2.54039, 1.070]
+        p: [2.2, -3.4, 0.92]
         q: [0., 0., 0.]
       qpos: [0., 0.3926990817, 0., -1.9634954085, 0., 2.3561944902, 0.7853981634, 0.04, 0.04]
-      randp_scale: [0.25, 0.25, 0]
+      randp_scale: [0., 0., 0]
+
+  - 
+    robot_uid: panda-0
+    pos:
+      ppos:
+        p: [4.2, -3.4, 0.92]
+        q: [0., 0., 3.14]
+      qpos: [0., 0.3926990817, 0., -1.9634954085, 0., 2.3561944902, 0.7853981634, 0.04, 0.04]
+      randp_scale: [0., 0., 0]
   # -
   #   robot_uid: pandaA-0    # panda on the island
   #   pos:
@@ -910,10 +930,20 @@ agents:
 cameras:
   sensor:
     - 
-      uid: head_camera
+      uid: sensor_camera_1
       pose:
-        type: look_at
-        params: [[0.1, -2.5, 3.0], [5.0, -2.5, 0.0]]
+        type: pose
+        params: [[2.44442, -3.05737, 1.37748], [0.898457, 0.0968694, 0.251104, -0.346897]]
+      width: 512
+      height: 512
+      fov: 1.5707963268
+      near: 0.1
+      far: 10
+    - 
+      uid: sensor_camera_2
+      pose:
+        type: pose
+        params: [[4.20123, -3.81967, 1.42077], [0.20381, -0.0709081, 0.0148023, 0.976327]]
       width: 512
       height: 512
       fov: 1.5707963268
@@ -921,10 +951,10 @@ cameras:
       far: 10
   human_render:
     - 
-      uid: render_camera
+      uid: render_camera_1
       pose:
         type: pose
-        params: [[1.41349, -4.28313, 2.69517], [0.804482, -0.176327, 0.291346, 0.486657]]
+        params: [[2.44442, -3.05737, 1.37748], [0.898457, 0.0968694, 0.251104, -0.346897]]
       width: 1920
       height: 1080
       fov: 1.57
@@ -934,22 +964,12 @@ cameras:
       uid: render_camera_2
       pose:
         type: pose
-        params: [[4.51885, -4.50939, 3.17389], [0.565392, -0.309075, 0.240661, 0.72587]]
+        params: [[4.20123, -3.81967, 1.42077], [0.20381, -0.0709081, 0.0148023, 0.976327]]
       width: 1920
       height: 1080
       fov: 1.57
       near: 0.01
-      far: 100   
-    - 
-      uid: render_camera_3
-      pose:
-        type: pose
-        params: [[3.19356, -4.91206, 2.26109], [0.677244, -0.172393, 0.167164, 0.695469]]
-      width: 1920
-      height: 1080
-      fov: 1.57
-      near: 0.01
-      far: 100   
+      far: 100
 
 position_areas:
   -
@@ -1023,8 +1043,9 @@ pseduo_assets_areas:
       min: [1.4, -4.5, -0.2]
       max: [5.0, -1.9, 0.2]
 
+task_description:
+  -
+    lift the pot on the island area together.
 asset_list:    # only asset in this list will be intialized, sub list refers to a random selection.
   -
-    -
-      plate_table
-      pot_table
+    ["plate_table", "pot_table"]
