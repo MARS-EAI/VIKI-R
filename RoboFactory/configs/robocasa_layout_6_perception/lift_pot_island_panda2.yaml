@@ -861,7 +861,7 @@ agents:
       randp_scale: [0., 0., 0]
 
   - 
-    robot_uid: panda-0
+    robot_uid: panda-1
     pos:
       ppos:
         p: [4.2, -3.4, 0.92]
@@ -1046,6 +1046,13 @@ pseduo_assets_areas:
 task_description:
   -
     lift the pot on the island area together.
+
+agent_list:
+  -
+    [panda-0]
+  -
+    [panda-1]
+
 asset_list:    # only asset in this list will be intialized, sub list refers to a random selection.
   -
     ["plate_table", "pot_table"]

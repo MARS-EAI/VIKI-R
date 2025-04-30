@@ -31,6 +31,21 @@ class PickMeatRandomTaskPerceptionEnv(BaseEnv):
             self.cfg = yaml.load(f.read(), Loader=yaml.FullLoader)
         del kwargs['config']
         
+        # choose agent from the config
+        if 'agent_list' in self.cfg:
+            current_agents = []
+            for agent in self.cfg['agents']:
+                current_agents.append(agent)
+            new_agents = []
+            for agent_name in self.cfg['agent_list']:
+                if isinstance(agent_name, list):
+                    agent_name = random.choice(agent_name)
+                new_agents.append(agent_name)
+            self.cfg['agents'] = []
+            for agent in current_agents:
+                if agent['robot_uid'] in new_agents:
+                    self.cfg['agents'].append(agent)
+
         # choose asset from the config
         if 'asset_list' in self.cfg:
             current_assets = []
