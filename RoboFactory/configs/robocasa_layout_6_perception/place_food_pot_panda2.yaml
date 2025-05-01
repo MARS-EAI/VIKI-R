@@ -10,22 +10,22 @@ scene:
     
 objects:
   # asset_id: 0
-  # -
-  #   name: meat_0
-  #   file_path: assets/objects/meat_annotated/textured.obj
-  #   visual:
-  #     filename: assets/objects/meat_annotated/textured.obj
-  #     scale: [0.08, 0.4, 0.08]
-  #   collision:
-  #     type: convex
-  #     filename: assets/objects/meat_annotated/textured.obj
-  #     scale: [0.08, 0.4, 0.08]
-  #   pos:
-  #     ppos:
-  #       p: [0., 0., 1.]
-  #     qpos: [0.996, 0.055, -0.062, 0.036]
-  #     randp_scale: [0.2, 0.2, 0.]
-  #     randq_scale: [0., 0., 0., 0.]
+  -
+    name: meat
+    file_path: assets/objects/meat_annotated/textured.obj
+    visual:
+      filename: assets/objects/meat_annotated/textured.obj
+      scale: [0.08, 0.4, 0.08]
+    collision:
+      type: convex
+      filename: assets/objects/meat_annotated/textured.obj
+      scale: [0.08, 0.4, 0.08]
+    pos:
+      ppos:
+        p: [3.3625, -3.68875, 0.925]
+      qpos: [0.996, 0.055, -0.062, 0.036]
+      randp_scale: [0.16, 0.28, 0.]
+      randq_scale: [0., 0., 0., 0.]
 
   # asset_id: 1
   # -
@@ -127,33 +127,33 @@ objects:
   #     cmass_local_pose: [0., 0., 0.]
   #     inertia: [0.1, 0.1, 0.1]
   
-  # # asset_id: 6
-  # -
-  #   name: banana_0
-  #   file_path: assets/objects/banana/new.obj
-  #   material: 
-  #     type: sapien.pysapien.physx.PhysxMaterial
-  #     params:
-  #       static_friction: 0.3
-  #       dynamic_friction: 0.3
-  #       restitution: 0.
-  #   visual:
-  #     filename: assets/objects/banana/new.obj
-  #     scale: [0.22, 0.22, 0.22]
-  #   collision:
-  #     type: convex
-  #     filename: assets/objects/banana/new.obj
-  #     scale: [0.22, 0.22, 0.22]
-  #   pos:
-  #     ppos:
-  #       p: [0., 0., 0.]
-  #     qpos: [0.517484, -0.504493, -0.490218, -0.48722]
-  #     randp_scale: [0, 0, 0.]
-  #     randq_scale: [0., 0., 0., 0.]
-  #   mass_params:
-  #     mass: 0.005
-  #     cmass_local_pose: [0., 0., 0.]
-  #     inertia: [0.1, 0.1, 0.1]
+  # asset_id: 6
+  -
+    name: banana
+    file_path: assets/objects/banana/new.obj
+    material: 
+      type: sapien.pysapien.physx.PhysxMaterial
+      params:
+        static_friction: 0.3
+        dynamic_friction: 0.3
+        restitution: 0.
+    visual:
+      filename: assets/objects/banana/new.obj
+      scale: [0.18, 0.18, 0.18]
+    collision:
+      type: convex
+      filename: assets/objects/banana/new.obj
+      scale: [0.18, 0.18, 0.18]
+    pos:
+      ppos:
+        p: [3.3625, -3.68875, 0.925]
+      qpos: [0.517484, -0.504493, -0.490218, -0.48722]
+      randp_scale: [0.16, 0.28, 0.]
+      randq_scale: [0., 0., 0., 0.]
+    mass_params:
+      mass: 0.005
+      cmass_local_pose: [0., 0., 0.]
+      inertia: [0.1, 0.1, 0.1]
 
   # # asset_id: 7
   # -
@@ -380,32 +380,32 @@ objects:
   #     inertia: [0.1, 0.1, 0.1]
 
   # # asset_id: 15
-  # -
-  #   name: apple_0
-  #   file_path: assets/objects/apple/new.obj
-  #   material: 
-  #     type: sapien.pysapien.physx.PhysxMaterial
-  #     params:
-  #       static_friction: 0.3
-  #       dynamic_friction: 0.3
-  #       restitution: 0.
-  #   visual:
-  #     filename: assets/objects/apple/new.obj
-  #     scale: [0.08, 0.08, 0.08]
-  #   collision:
-  #     type: convex
-  #     filename: assets/objects/apple/new.obj
-  #     scale: [0.08, 0.08, 0.08]
-  #   pos:
-  #     ppos:
-  #       p: [0., 0., 0.]
-  #     qpos: [0.722678, -0.00625833, -0.0168827, -0.690951]
-  #     randp_scale: [0, 0, 0.]
-  #     randq_scale: [0., 0., 0., 0.]
-  #   mass_params:
-  #     mass: 0.005
-  #     cmass_local_pose: [0., 0., 0.]
-  #     inertia: [0.1, 0.1, 0.1]
+  -
+    name: apple
+    file_path: assets/objects/apple/new.obj
+    material: 
+      type: sapien.pysapien.physx.PhysxMaterial
+      params:
+        static_friction: 0.3
+        dynamic_friction: 0.3
+        restitution: 0.
+    visual:
+      filename: assets/objects/apple/new.obj
+      scale: [0.08, 0.08, 0.08]
+    collision:
+      type: convex
+      filename: assets/objects/apple/new.obj
+      scale: [0.08, 0.08, 0.08]
+    pos:
+      ppos:
+        p: [3.3625, -3.68875, 0.925]
+      qpos: [0.722678, -0.00625833, -0.0168827, -0.690951]
+      randp_scale: [0.16, 0.28, 0.]
+      randq_scale: [0., 0., 0., 0.]
+    mass_params:
+      mass: 0.005
+      cmass_local_pose: [0., 0., 0.]
+      inertia: [0.1, 0.1, 0.1]
 
   # # asset_id: 16
   # -
@@ -632,37 +632,9 @@ objects:
   #     inertia: [0.1, 0.1, 0.1]
 
     # asset_id: 23_1
-  -
-    name: plate_table
-    file_path: assets/objects/plate/new.obj
-    material: 
-      type: sapien.pysapien.physx.PhysxMaterial
-      params:
-        static_friction: 0.3
-        dynamic_friction: 0.3
-        restitution: 0.
-    visual:
-      filename: assets/objects/plate/new.obj
-      scale: [0.4, 0.4, 0.4]
-    collision:
-      type: convex
-      filename: assets/objects/plate/new.obj
-      scale: [0.4, 0.4, 0.4]
-    pos:
-      ppos:
-        p: [3.3, -3.3, 0.955]
-      qpos: [0.707, 0.707, 0., 0.]
-      randp_scale: [-0.2, 0.2, 0.]
-      randq_scale: [0., 0., 0., 0.]
-    mass_params:
-      mass: 0.005
-      cmass_local_pose: [0., 0., 0.]
-      inertia: [0.1, 0.1, 0.1]
-
-  # # asset_id: 24
   # -
-  #   name: tomato_0
-  #   file_path: assets/objects/tomato/new.obj
+  #   name: plate_table
+  #   file_path: assets/objects/plate/new.obj
   #   material: 
   #     type: sapien.pysapien.physx.PhysxMaterial
   #     params:
@@ -670,22 +642,50 @@ objects:
   #       dynamic_friction: 0.3
   #       restitution: 0.
   #   visual:
-  #     filename: assets/objects/tomato/new.obj
-  #     scale: [0.18, 0.18, 0.18]
+  #     filename: assets/objects/plate/new.obj
+  #     scale: [0.4, 0.4, 0.4]
   #   collision:
   #     type: convex
-  #     filename: assets/objects/tomato/new.obj
-  #     scale: [0.18, 0.18, 0.18]
+  #     filename: assets/objects/plate/new.obj
+  #     scale: [0.4, 0.4, 0.4]
   #   pos:
   #     ppos:
-  #       p: [0., 0., 0.]
-  #     qpos: [0.72207, 0.0302875, 0.0180827, -0.69092]
-  #     randp_scale: [0, 0, 0.]
+  #       p: [3.3, -3.3, 0.955]
+  #     qpos: [0.707, 0.707, 0., 0.]
+  #     randp_scale: [-0.2, 0.2, 0.]
   #     randq_scale: [0., 0., 0., 0.]
   #   mass_params:
   #     mass: 0.005
   #     cmass_local_pose: [0., 0., 0.]
   #     inertia: [0.1, 0.1, 0.1]
+
+  # # asset_id: 24
+  -
+    name: tomato
+    file_path: assets/objects/tomato/new.obj
+    material: 
+      type: sapien.pysapien.physx.PhysxMaterial
+      params:
+        static_friction: 0.3
+        dynamic_friction: 0.3
+        restitution: 0.
+    visual:
+      filename: assets/objects/tomato/new.obj
+      scale: [0.18, 0.18, 0.18]
+    collision:
+      type: convex
+      filename: assets/objects/tomato/new.obj
+      scale: [0.18, 0.18, 0.18]
+    pos:
+      ppos:
+        p: [3.3625, -3.68875, 0.925]
+      qpos: [0.72207, 0.0302875, 0.0180827, -0.69092]
+      randp_scale: [0.16, 0.28, 0.]
+      randq_scale: [0., 0., 0., 0.]
+    mass_params:
+      mass: 0.005
+      cmass_local_pose: [0., 0., 0.]
+      inertia: [0.1, 0.1, 0.1]
 
   # # asset_id: 25
   # -
@@ -743,83 +743,6 @@ objects:
   #     cmass_local_pose: [0., 0., 0.]
   #     inertia: [0.1, 0.1, 0.1]
 
-  # # asset_id: 27
-  # -
-  #   name: t_shirt_0
-  #   file_path: assets/objects/t_shirt/new.obj
-  #   material: 
-  #     type: sapien.pysapien.physx.PhysxMaterial
-  #     params:
-  #       static_friction: 0.3
-  #       dynamic_friction: 0.3
-  #       restitution: 0.
-  #   visual:
-  #     filename: assets/objects/t_shirt/new.obj
-  #     scale: [0.65, 0.65, 0.65]
-  #   collision:
-  #     type: convex
-  #     filename: assets/objects/t_shirt/new.obj
-  #     scale: [0.65, 0.65, 0.65]
-  #   pos:
-  #     ppos:
-  #       p: [0., 0., 0.]
-  #     qpos: [-0.00150079, 0.0276896, 0.999415, 0.0199979]
-  #     randp_scale: [0, 0, 0.]
-  #     randq_scale: [0., 0., 0., 0.]
-  #   mass_params:
-  #     mass: 0.005
-  #     cmass_local_pose: [0., 0., 0.]
-  #     inertia: [0.1, 0.1, 0.1]
-
-  # # asset_id: 28
-  # -
-  #   name: watering_can
-  #   file_path: assets/objects/watering_can/new.obj
-  #   visual:
-  #     filename: assets/objects/watering_can/new.obj
-  #     scale: [0.65, 0.65, 0.65]
-  #   collision:
-  #     type: convex
-  #     filename: assets/objects/watering_can/new.obj
-  #     scale: [0.65, 0.65, 0.65]
-  #   pos:
-  #     ppos:
-  #       p: [0., 0., 0.]
-  #     qpos: [-0.457833, -0.51293, 0.502233, 0.524456]
-  #     randp_scale: [0, 0, 0.]
-  #     randq_scale: [0., 0., 0., 0.]
-
-  # # asset_id: 29
-  # - 
-  #   name: shoe
-  #   file_path: assets/objects/single_shoe_annotated/base.glb
-  #   visual:
-  #     filename: assets/objects/single_shoe_annotated/base.glb
-  #     scale: [0.1, 0.1, 0.1]
-  #   collision:
-  #     type: convex
-  #     filename: assets/objects/single_shoe_annotated/base.glb
-  #     scale: [0.1, 0.1, 0.1]
-  #   pos:
-  #     ppos:
-  #       p: [0., 0., 0.]
-  #     qpos: [0.055, 0.058, 0.705, 0.705]
-  #     randp_scale: [0, 0, 0.]
-  #     randq_scale: [0., 0., 0., 0.]
-
-  # # asset_id: 30
-  # -
-  #   name: pot
-  #   file_path: assets/objects/pot_annotated/mobility.urdf
-  #   scale: 0.2
-  #   pos:
-  #     ppos:
-  #       p: [0, 0, 0]
-  #     qpos: [0.732, 0.007, -0.009, 0.681]
-  #     randp_scale: [0, 0, 0.]
-  #     randq_scale: [0., 0., 0., 0.]
-
-  -
     name: pot_table
     file_path: assets/objects/pot_annotated/mobility.urdf
     scale: 0.2
@@ -827,26 +750,8 @@ objects:
       ppos:
         p: [3.05, -3.5, 1.03]
       qpos: [0.732, 0.007, -0.009, 0.681]
-      randp_scale: [0.2, 0.2, 0.]
+      randp_scale: [0.1, 0.25, 0.]
       randq_scale: [0., 0., 0., 0.]
-
-  # # asset_id: 31
-  # - 
-  #   name: hammer
-  #   file_path: assets/objects/hammer_annotated/base.glb
-  #   visual:
-  #     filename: assets/objects/hammer_annotated/base.glb
-  #     scale: [0.079, 0.079, 0.079]
-  #   collision:
-  #     type: convex
-  #     filename: assets/objects/hammer_annotated/base.glb
-  #     scale: [0.079, 0.079, 0.079]
-  #   pos:
-  #     ppos:
-  #       p: [0, 0, 0]
-  #     qpos: [0.093, 0.873, 0.476, 0.051]
-  #     randp_scale: [0, 0, 0.]
-  #     randq_scale: [0., 0., 0., 0.]
 
 
 
@@ -1045,7 +950,7 @@ pseduo_assets_areas:
 
 task_description:
   -
-    lift the pot on the island area together.
+    lift the <asset_mask1> on the island area together.
 
 agent_list:
   -
@@ -1055,4 +960,8 @@ agent_list:
 
 asset_list:    # only asset in this list will be intialized, sub list refers to a random selection.
   -
-    ["plate_table", "pot_table"]
+    ["pot_table", "meat", "apple", "banana", "tomato"]
+
+asset_desc:
+  -
+    ["pot", "meat", "apple", "banana", "tomato"]
