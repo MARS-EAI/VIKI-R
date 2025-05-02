@@ -1045,7 +1045,7 @@ pseduo_assets_areas:
 
 task_description:
   -
-    lift the pot on the island area together.
+    place the <asset_mask2> in the pot.
 
 agent_list:
   -
@@ -1056,5 +1056,11 @@ agent_list:
 asset_list:    # only asset in this list will be intialized, sub list refers to a random selection.
   -
     ["pot_table"]
+  -  
+    ["meat", "apple", "banana", "tomato"]
+
+asset_desc:
+  -
+    ["pot"]
   -
     ["meat", "apple", "banana", "tomato"]

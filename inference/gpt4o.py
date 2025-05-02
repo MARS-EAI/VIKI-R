@@ -28,31 +28,32 @@ ROBOT_DESCRIPTION = {
     'unitree_go2': 'A compact quadrupedal robot optimized for agile movement and stability with four legs for efficient locomotion. Color: White.'
 }
 ACTION_DESCRIPTION = {
-    'move': 'Move the robot to a specific location.',
-    'reach': 'Move the robot\'s end effector near a specific object.',
-    'grasp': 'The robot\'s end effector performs a grasping operation on a specific object.',
-    'place': 'Place the object held by the robot\'s end effector at a specific location (note: this refers to the location where the object is to be released, not the object itself).',
-    'pull': 'The robot\'s end effector performs an outward pulling operation on a specific object.',
-    'push': 'The robot\'s end effector performs an inward pushing operation on a specific object.',
-    'handover': 'Handover operation, where an object held by one robot is given to another robot (or received).',
-    'interact': 'Interaction operation, flexible and used to represent interactions with each asset.',
+    'Move': "Command ['Move', 'object']: Robot R moves to the specified object.",
+    'Open': "Command ['Open', 'object']: Open the object held by the Robot R's end effector.",
+    'Close': "Command ['Close', 'object']: Close the object held by the Robot R's end effector.",
+    'Reach': "Command ['Reach', 'object']: Robot R reaches the specified object.",
+    'Grasp': "Command ['Grasp', 'object']: Robot R's end effector performs a grasping operation on a specified object.",
+    'Place': "Command ['Place', 'object']: Place the object held by the Robot R's end effector at a specified location (the release point, not the object itself).",
+    'Push': "Command ['Push', 'object', 'R1']: Robot R pushes the object to robot R1.",
+    'Interact': "Command ['Interact', 'object']: A general interaction operation, flexible for representing interactions with any asset."
+
 }
 AGENT_AVAIL_ACTIONS = {
-    'panda': ['reach', 'grasp', 'place', 'open', 'close', 'handover', 'interact'],
-    'fetch': ['move', 'reach', 'grasp', 'place', 'open', 'close', 'handover', 'interact'],
-    'unitree_go2': ['move', 'reach', 'grasp', 'place', 'handover', 'interact'],
-    'unitree_h1': ['move', 'reach', 'grasp', 'place', 'open', 'close', 'handover', 'interact'],
-    'stompy': ['move', 'reach', 'grasp', 'place', 'open', 'close', 'handover', 'interact'],
-    'anymal_c': ['move', 'reach', 'grasp', 'place', 'handover', 'interact'],
+    'panda':      ['Reach', 'Grasp', 'Place', 'Open', 'Close', 'Interact'],
+    'fetch':      ['Move', 'Reach', 'Grasp', 'Place', 'Open', 'Close', 'Interact'],
+    'unitree_go2':['Move', 'Push', 'Interact'],
+    'unitree_h1': ['Move', 'Reach', 'Grasp', 'Place', 'Open', 'Close', 'Interact'],
+    'stompy':     ['Move', 'Reach', 'Grasp', 'Place', 'Open', 'Close', 'Interact'],
+    'anymal_c':   ['Move', 'Push', 'Interact'],
 }
 
 AGENT_END_EFFECTOR_NUM = {
     'panda': 1,
     'fetch': 1,
-    'unitree_go2': 1,
+    'unitree_go2': 0,
     'unitree_h1': 2,
     'stompy': 2,
-    'anymal_c': 1,
+    'anymal_c': 0,
 }
 def load_data(file_path):
     with open(file_path, 'r') as f:
@@ -91,47 +92,34 @@ def api_call_with_retry(messages):
         # print(f"API error: {str(e)}")
         raise
 
-def generate_cot(task_description, robots_set, image_path, plan_answer):
+def generate_cot(task_description, robots, image_path, plan_answer):
     instruction_following = """You are a plan creator. I will provide you with an image of robots in a scene, available robots and their action primitives, and a task description. You need to create a plan to complete the task.
-You FIRST think about the reasoning process as an internal monologue and then provide the final answer. 
-The reasoning process MUST BE enclosed within <think> </think> tags. The final answer MUST BE enclosed within <answer></answer> tags.
-
-1. Analyze the image, understand the robots and their available actions, and comprehend the task description.
-2. Create a plan to complete the task, noting:
+1. Create a plan to complete the task, noting:
    - Each robot can only perform ONE action per time step.
    - Multiple robots can work in parallel, but each robot is limited to one action at a time.
-3. You need to first provide your reasoning process within <think> and </think> tags.
-4. Your final answer must be within <answer> and </answer> tags, and **strictly follow the JSON format specified below**.
+2. You need to first provide your reasoning process within <think> and </think> tags.
+3. Your final answer must be within <answer> and </answer> tags, and **strictly follow the JSON format specified below**.
 
 Output Format Requirements(please comply strictly, do not output any additional content):
 <answer>
-
   [
     {{
       "step": 1,
-      "actions": [
-        {{"robot": "R1", "action": "Move", "object": "pumpkin"}},
-        {{"robot": "R2", "action": "Move", "object": "apple"}}
-      ]
+      "actions": {{'R1': ['Move', 'pumpkin'], 'R2': ['Move', 'apple']}}
     }},
     {{
       "step": 2,
-      "actions": [
-        {{"robot": "R1", "action": "Reach", "object": "pumpkin"}},
-        {{"robot": "R2", "action": "Reach", "object": "apple"}}
-      ]
+      "actions": {{'R1': ['Reach', 'pumpkin'], 'R2': ['Reach', 'apple']}}
     }}
     # ... subsequent steps ...
   ]
 </answer>
-
 Where:
 - step is the time step number (starting from 1, incrementing sequentially).
-- Each actions list contains the actions of various robots in that time step.
 - Each robot can only have ONE action per time step.
-- Each action includes 3 fields: robot (robot identifier selected from those provided, Use aliases such as R1, R2, etc.), action (action type, select from corresponding actions), and object or place(the object being operated on, which you need to determine through reasoning).
+- "actions" is a dictionary that specifies the action for each robot during a single time step. Each key (e.g., "R1", "R2") represents a robot. Each value is a list describing the single action that robot will perform in this step, with the following format: action_type, target_object_or_location, (optional: extra_argument)
 Action primitives and descriptions: {ACTION_DESCRIPTION}
-Available robot set: {robots_set}
+Available robot set: {robots}
 Robot characteristics: {available_robots}
 Their available operation APIs: {available_actions}
 """
@@ -143,7 +131,7 @@ Their available operation APIs: {available_actions}
     base64_image = encode_image(image_path)
     if not base64_image:
         return None
-    robots_list = list(robots_set.values())
+    robots_list = list(robots.values())
     # Get available actions and descriptions
     available_actions = {r: AGENT_AVAIL_ACTIONS.get(r, []) for r in robots_list}
     available_robots = {r: ROBOT_DESCRIPTION.get(r, '') for r in robots_list}
@@ -152,11 +140,10 @@ Their available operation APIs: {available_actions}
     
     # Build message sequence with image and plan
     messages = [
-        {"role": "system", "content": instruction_following.format(ACTION_DESCRIPTION=ACTION_DESCRIPTION,robots_set=robots_set,available_actions=available_actions,available_robots=available_robots)},
+        {"role": "system", "content": instruction_following.format(ACTION_DESCRIPTION=ACTION_DESCRIPTION,robots=robots,available_actions=available_actions,available_robots=available_robots)},
         {"role": "user", "content": [
             {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}},
-            {"type": "text", "text": f"""Task Description: {task_description}
-"""}
+            {"type": "text", "text": f"""{task_description}"""}
         ]}
     ]
     
@@ -169,7 +156,7 @@ def process_sample(idx, sample, output_dir):
     ground_truth=sample['gt']
     task_description = sample['gt']['description'].strip()
     robots_set = sample['gt']['robots']
-    image_path = f"/fs-computility/mabasic/zhouheng/work/embodied/verl/data/compress/images_4500/{sample['image']}"
+    image_path = f"/fs-computility/mabasic/zhouheng/work/embodied/verl/data/merged_images/{sample['image']}"
     
     # Get plan answer and convert to string if it's a dictionary/list
     plan_data = sample.get('gt', {}).get('time_steps', '')
@@ -201,16 +188,16 @@ def process_sample(idx, sample, output_dir):
     }
 
 def main():
-    data = load_data("/fs-computility/mabasic/zhouheng/work/embodied/verl/data/viki/viki_plan/meta_data_4500_trans_test.json")
-    #data=data[:3]
+    data = load_data("/fs-computility/mabasic/zhouheng/work/embodied/verl/data/viki/viki_plan_final/split/test.json")
+    data=data[:500]
     output_dir = "/fs-computility/mabasic/zhouheng/RoboViki-R/eval"
     os.makedirs(output_dir, exist_ok=True)
-    
+    model="gpt-4o"
     # Use thread pool for parallel processing
     max_workers = 10  # Adjust parallel count based on API limits
     cot_data = []
     processed_count = 0
-    save_interval = 10
+    save_interval = 300
     total_correct = 0
     total_samples = 0
     
@@ -245,7 +232,7 @@ def main():
     # Final save of all data
     # Sort results by original data index
     sorted_final_data = sorted(cot_data, key=lambda x: next((i for i, s in enumerate(data) if s.get('image', '').split('/')[-1] == x.get('image_path', '').split('/')[-1]), 0))
-    with open(os.path.join(output_dir, "cot_data_final.json"), 'w') as f:
+    with open(os.path.join(output_dir, f"cot_data_final_{model}.json"), 'w') as f:
         json.dump(sorted_final_data, f, indent=2)
     
     # Print final statistics
