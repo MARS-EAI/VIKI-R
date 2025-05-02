@@ -1,7 +1,7 @@
 from typing import Union
 from itertools import combinations
 
-from .entities import Action, Agent, Asset, Position, ALL_ACTIONS
+from .entities import Action, Agent, Asset, Position, ALL_ACTIONS, AGENT_AVAIL_ACTIONS
     
 
 class Checker:
@@ -68,7 +68,8 @@ class Checker:
             assets = {}
         if not agents:
             agents = {}
-        if operation_name not in ALL_ACTIONS:
+        agent_type = params[0].type
+        if operation_name not in AGENT_AVAIL_ACTIONS[agent_type]:
             return False
         action_type = ALL_ACTIONS[operation_name]
         if not self.check_action_target(action_type, params[1:]):
