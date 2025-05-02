@@ -52,10 +52,18 @@ class PickMeatRandomTaskPerceptionEnv(BaseEnv):
             for asset in self.cfg['objects']:
                 current_assets.append(asset)
             new_assets = []
-            for asset_name in self.cfg['asset_list']:
+            for idx, asset_name in enumerate(self.cfg['asset_list'], 1):
+                asset_desc = self.cfg['asset_desc'][idx - 1]
                 if isinstance(asset_name, list):
-                    asset_name = random.choice(asset_name)
+                    asset_idx = random.randint(0, len(asset_name) - 1)
+                    asset_name = asset_name[asset_idx]
+                    asset_desc = asset_desc[asset_idx]
                 new_assets.append(asset_name)
+
+                # change the desc according to the selection
+                for desc_idx, desc in enumerate(self.cfg['task_description']):
+                    if f'<asset_mask{idx}>' in self.cfg['task_description'][desc_idx]:
+                        self.cfg['task_description'][desc_idx] = self.cfg['task_description'][desc_idx].replace(f'<asset_mask{idx}>', asset_desc)
             self.cfg['objects'] = []
             for asset in current_assets:
                 if asset['name'] in new_assets:
