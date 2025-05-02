@@ -1283,7 +1283,7 @@ TASK_POOL = [
             "Wash off the <mask1> at the <mask3> and move it into the <mask2>.",
             "Rinse off the <mask1> at the <mask3> and leave it in the <mask2> when finished.",
             "Use the tap to clean the <mask1> at the <mask3>; afterward, transfer it to the <mask2>.",
-            "Get the <mask1> washed in <mask3> and placed in the <mask2> so it’s ready to eat."
+            "Get the <mask1> washed in <mask3> and placed in the <mask2> so it's ready to eat."
         ],
         "mask1": [
             "apple",
@@ -1453,7 +1453,7 @@ TASK_POOL = [
             "Wash off the <mask1> at the <mask3> and move it into the <mask2>.",
             "Rinse off the <mask1> at the <mask3> and leave it in the <mask2> when finished.",
             "Use the tap to clean the <mask1> at the <mask3>; afterward, transfer it to the <mask2>.",
-            "Get the <mask1> washed in <mask3> and placed in the <mask2> so it’s ready to eat."
+            "Get the <mask1> washed in <mask3> and placed in the <mask2> so it's ready to eat."
         ],
         "mask1": [
             "apple",
@@ -1966,11 +1966,11 @@ TASK_POOL = [
             "Let's get cooking—move the <mask3> plus <mask4> onto the <mask2> and work the <mask1> on them.",
             "When you have a moment, place the <mask3> beside the <mask4> on the <mask2>, then trim them with the <mask1>.",
             "All right, partner: line up the <mask3> and <mask4> on the <mask2> for a tidy cut using the <mask1>.",
-            "Time’s ticking—transport the <mask3> with the <mask4> to the <mask2> and dice them up using the <mask1>.",
+            "Time's ticking—transport the <mask3> with the <mask4> to the <mask2> and dice them up using the <mask1>.",
             "Kindly arrange the <mask3> and <mask4> on the <mask2>; the <mask1> will handle the rest.",
             "Could you pop the <mask3> next to the <mask4> on the <mask2> and slice them clean with the <mask1>?",
-            "Let’s tidy the board: deliver the <mask3> plus the <mask4>, then carve away with the <mask1>.",
-            "Here’s the plan—stack the <mask3> and <mask4> on the <mask2>, then give them a brisk chop with the <mask1>."
+            "Let's tidy the board: deliver the <mask3> plus the <mask4>, then carve away with the <mask1>.",
+            "Here's the plan—stack the <mask3> and <mask4> on the <mask2>, then give them a brisk chop with the <mask1>."
         ],
         "mask1": [
             "knife"
@@ -2161,15 +2161,15 @@ TASK_POOL = [
         "task_id": "10-1",
         "task_name": "serve_bread_after_checking_cabinet",
         "description": [
-            "Put the <mask1> on the <mask3>; if it’s not out here, it could be hiding in the <mask2>, so look carefully.",
+            "Put the <mask1> on the <mask3>; if it's not out here, it could be hiding in the <mask2>, so look carefully.",
             "Place the <mask1> onto the <mask3>. Should it be missing, check the <mask2> before proceeding.",
-            "Serve the <mask1> on the <mask3>. If you don’t see it nearby, it might be inside the <mask2>—have a look.",
+            "Serve the <mask1> on the <mask3>. If you don't see it nearby, it might be inside the <mask2>—have a look.",
             "Get the <mask1> onto the <mask3>; remember, it may have been stored in the <mask2>.",
-            "Move the <mask1> to the <mask3>. In case it isn’t visible, inspect the <mask2> first.",
-            "Transfer the <mask1> to the <mask3>. If it’s nowhere outside, open the <mask2> and fetch it.",
-            "Lay the <mask1> on the <mask3>. Sometimes it’s kept in the <mask2>, so check there if needed.",
-            "Set the <mask1> onto the <mask3>; when it’s not in sight, it could be inside the <mask2>—take a peek.",
-            "Place the <mask1> neatly on the <mask3>. If it’s absent, the <mask2> is worth checking.",
+            "Move the <mask1> to the <mask3>. In case it isn't visible, inspect the <mask2> first.",
+            "Transfer the <mask1> to the <mask3>. If it's nowhere outside, open the <mask2> and fetch it.",
+            "Lay the <mask1> on the <mask3>. Sometimes it's kept in the <mask2>, so check there if needed.",
+            "Set the <mask1> onto the <mask3>; when it's not in sight, it could be inside the <mask2>—take a peek.",
+            "Place the <mask1> neatly on the <mask3>. If it's absent, the <mask2> is worth checking.",
             "Deliver the <mask1> to the <mask3>. Should it be hidden, open the <mask2> and retrieve it."
         ],
         "layout_idx": [
@@ -2274,7 +2274,7 @@ TASK_POOL = [
             "dog",
             "arm"
         ],
-        "goal_constraint": [
+        "goal_constraints": [
             [
                 {
                     "type": "asset",
@@ -2291,11 +2291,11 @@ TASK_POOL = [
         "task_id": "10-2",
         "task_name": "serve_bread_from_counter",
         "description": [
-            "Put the <mask1> on the <mask3>; if it isn’t on the counter, it might still be in the <mask2>, so check there.",
+            "Put the <mask1> on the <mask3>; if it isn't on the counter, it might still be in the <mask2>, so check there.",
             "Place the <mask1> onto the <mask3>. Should it be missing, have a quick look inside the <mask2>.",
-            "Serve the <mask1> on the <mask3>. If it’s not out here, the <mask2> is worth a peek.",
-            "Move the <mask1> to the <mask3>. In case it’s not visible, you may need to inspect the <mask2>.",
-            "Transfer the <mask1> to the <mask3>. If you can’t spot it, open the <mask2> and retrieve it."
+            "Serve the <mask1> on the <mask3>. If it's not out here, the <mask2> is worth a peek.",
+            "Move the <mask1> to the <mask3>. In case it's not visible, you may need to inspect the <mask2>.",
+            "Transfer the <mask1> to the <mask3>. If you can't spot it, open the <mask2> and retrieve it."
         ],
         "layout_idx": [
             1,
@@ -2384,7 +2384,7 @@ TASK_POOL = [
             "dog",
             "arm"
         ],
-        "goal_constraint": [
+        "goal_constraints": [
             [
                 {
                     "type": "asset",
@@ -2485,7 +2485,7 @@ TASK_POOL = [
             "dog",
             "arm"
         ],
-        "goal_constraint": [
+        "goal_constraints": [
             [
                 {
                     "type": "asset",
@@ -2594,7 +2594,7 @@ TASK_POOL = [
             "dog",
             "arm"
         ],
-        "goal_constraint": [
+        "goal_constraints": [
             [
                 {
                     "type": "asset",
@@ -2724,7 +2724,7 @@ TASK_POOL = [
             "dog",
             "arm"
         ],
-        "goal_constraint": [
+        "goal_constraints": [
             [
                 {
                     "type": "asset",
@@ -3132,6 +3132,8 @@ TASK_POOL = [
             ]
         ]
     },
+    
+    # 13 - dog problem200
     {
         "task_id": "13-1",
         "task_name": "dog_check_environment",
@@ -3210,14 +3212,14 @@ TASK_POOL = [
         ],
         "description": [
             "Move the <mask1> to the <mask3>. If the destination is too far, use the <mask2> to house the <mask1>, transport the <mask2> and fetch the <mask1>.",
-            "Carry the <mask1> over to the <mask3>. If it’s a long way, place the <mask1> into a <mask2> first, then move the <mask2> and retrieve the <mask1> afterwards.",
-            "Relocate the <mask1> to the <mask3>. If it’s too far to carry directly, <mask2> the <mask1>, move the <mask2>, and then remove the <mask1>.",
+            "Carry the <mask1> over to the <mask3>. If it's a long way, place the <mask1> into a <mask2> first, then move the <mask2> and retrieve the <mask1> afterwards.",
+            "Relocate the <mask1> to the <mask3>. If it's too far to carry directly, <mask2> the <mask1>, move the <mask2>, and then remove the <mask1>.",
             "Bring the <mask1> to the <mask3>. When the <mask3> is too far away, pack the <mask1> into a <mask2>, transport the <mask2>, and take out the <mask1> at the destination.",
             "Move the <mask1> toward the <mask3>; if the route is too long, use a <mask2> to enclose the <mask1>, transfer the <mask2>, then retrieve the <mask1>.",
             "Shift the <mask1> to the <mask3> location. If carrying it directly isn't feasible, first house the <mask1> in a <mask2>, move the <mask2>, and extract the <mask1> at the sink.",
             "Deliver the <mask1> to the <mask3>. If distance makes direct handling difficult, load the <mask1> into a <mask2>, transport the <mask2>, and then unload the <mask1>.",
-            "Take the <mask1> to the <mask3>. If it’s too far to move it conveniently, first secure it inside a <mask2>, move the <mask2>, and fetch the <mask1> afterward.",
-            "Get the <mask1> over to the <mask3>. In case it’s too distant, put the <mask1> into a <mask2>, shift the <mask2> to the <mask3>, and then retrieve the <mask1>.",
+            "Take the <mask1> to the <mask3>. If it's too far to move it conveniently, first secure it inside a <mask2>, move the <mask2>, and fetch the <mask1> afterward.",
+            "Get the <mask1> over to the <mask3>. In case it's too distant, put the <mask1> into a <mask2>, shift the <mask2> to the <mask3>, and then retrieve the <mask1>.",
         ],
         "mask1": [
             "apple",
