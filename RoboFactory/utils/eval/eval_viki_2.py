@@ -3,7 +3,7 @@ import argparse
 import json
 from .eval import Eval
 import random
-CONTAINER_ASSETS = ['plate', 'cabinet', 'drawer', 'bowl', 'sink', 'toaster', 'tray']
+CONTAINER_ASSETS = ['plate', 'cabinet', 'drawer', 'bowl', 'sink', 'toaster', 'tray', 'cardboardbox']
 
 def eval_single(pred_obj: dict,ground_truth) -> bool:
     """
@@ -34,7 +34,7 @@ def eval_single(pred_obj: dict,ground_truth) -> bool:
                 "is_container": True,
                 "position_kwargs": {
                     "name": asset_type,
-                    "isolated": asset_type == 'cabinet'
+                    "isolated": True if asset_type in ['cabinet'] else False
                 }
             }
 

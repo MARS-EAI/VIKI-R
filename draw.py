@@ -105,3 +105,6 @@ if __name__ == '__main__':
     )
 
     print(f"Output image saved to {args.output_image}")
+    
+    
+    #python draw.py 0.png "3,1;123,543@100,100;200,200" output.png
