@@ -85,6 +85,8 @@ class Checker:
         elif operation_name == 'place':
             if isinstance(params[1], Asset):
                 is_available_position = self.check_target_aligned_position(params[0], params[1].pos, assets, agents) or self.check_target_aligned_position(params[1], params[0].pos, assets, agents)
+                if hasattr(params[1], 'container_position'):
+                    is_available_position = is_available_position and not self.check_pos_is_isolated(params[1].container_position)
                 return is_available_position and len(params[0].get_carried_objects()) > 0
             else:
                 return self.check_target_aligned_position(params[0], params[1], assets, agents) and len(params[0].get_carried_objects()) > 0
