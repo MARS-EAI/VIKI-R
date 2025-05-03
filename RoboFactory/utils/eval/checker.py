@@ -114,14 +114,14 @@ class Checker:
         """
                         MOVE REACH GRASP PLACE OPEN CLOSE HANDOVER INTERACT PUSH
             MOVE         o     o     o     o     o    o      o        o       o
-            REACH        o     o     x     o     x    x      x        x
-            GRASP        o     x     x     x     x    x      x        x
-            PLACE        o     o     x     o     x    x      x        x
-            OPEN         o     x     x     x     x    x      x        x
-            CLOSE        o     x     x     x     x    x      x        x
-            HANDOVER     o     x     x     x     x    x      x        x
+            REACH        o     o     x     o     x    x      x        x       x
+            GRASP        o     x     x     x     x    x      x        x       x
+            PLACE        o     o     x     o     x    x      x        x       x
+            OPEN         o     x     x     x     x    x      x        x       x
+            CLOSE        o     x     x     x     x    x      x        x       x
+            HANDOVER     o     x     x     x     x    x      x        x       x
             INTERACT     o     x     x     x     x    x      x        x       x
-            PUSH         o                                            x       x
+            PUSH         o     x     x     x     x    x      x        x       x
         """
         if 'move' in [command_x, command_y]:
             return True
@@ -140,7 +140,7 @@ class Checker:
         if len(target_agents) != len(set(target_agents)):
             return False
         target_entities = {}
-        for idx, inst_params in enumerate(params[1:]):    # params for inst idx, skip operation agent (param[0])
+        for idx, inst_params in enumerate(params):    # params for inst idx, skip operation agent (param[0])
             for param in inst_params:
                 if param.name in assets:
                     if param.name not in target_entities:

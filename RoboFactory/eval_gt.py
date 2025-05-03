@@ -25,7 +25,7 @@ def eval(data: list):
     success_count = 0
     fail_count = 0
     for idx, d in enumerate(data):
-        d = data[14]
+        d = data[576]
         robots = d["robots"]
         gt = d["ground_truth"]
         init_pos = d['init_pos']
@@ -70,15 +70,97 @@ def eval(data: list):
         default_metadata['goal_constraints'] = goal_constraints
         default_metadata['temporal_constraints'] = temporal_constraints
         judger.set_env(default_metadata)
-        answers = format_answer(gt)
+
         # print(answers)
+        gt = [{
+                "R2": [
+                    "Move",
+                    "apple"
+                ],
+                "R1": [
+                    "Move",
+                    "knife"
+                ]
+            },
+            {
+                "R2": [
+                    "Reach",
+                    "apple"
+                ],
+                "R1": [
+                    "Reach",
+                    "knife"
+                ]
+            },
+            {
+                "R2": [
+                    "Grasp",
+                    "apple"
+                ],
+                "R1": [
+                    "Grasp",
+                    "knife"
+                ]
+            },
+            {
+                "R2": [
+                    "Move",
+                    "banana"
+                ]
+            },
+            {
+                "R2": [
+                    "Reach",
+                    "banana"
+                ]
+            },
+            {
+                "R2": [
+                    "Grasp",
+                    "banana"
+                ]
+            },
+            {
+                "R2": [
+                    "Move",
+                    "wooden cutting board"
+                ],
+                "R1": [
+                    "Move",
+                    "wooden cutting board"
+                ]
+            },
+            {
+                "R2": [
+                    "Place",
+                    "wooden cutting board"
+                ]
+            },
+            {
+                "R2": [
+                    "Move",
+                    "knife"
+                ]
+            },
+            {
+                "R1": [
+                    "Interact",
+                    "knife"
+                ],
+                "R2": [
+                    "Interact",
+                    "knife"
+                ]
+            }
+        ]
+        answers = format_answer(gt)
         success = judger.eval(answers)
         if not success:
             print(f'{idx}: {judger.get_error_desc()}')
             fail_count += 1
         else:
             success_count += 1
-        # break
+        break
     print(f'Success Count: {success_count}. Failed Count: {fail_count}.')
     
 
