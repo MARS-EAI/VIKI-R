@@ -92,9 +92,13 @@ class Checker:
             else:
                 return self.check_target_aligned_position(params[0], params[1], assets, agents) and len(params[0].get_carried_objects()) > 0
         elif operation_name == 'open':
-            return self.check_agent_relative_position(params[0], params[1]) and self.check_agent_has_free_end_effector(params[0]) and hasattr(params[1], 'container_position') and self.check_pos_is_isolated(params[1].container_position)
+            agent_status = self.check_agent_relative_position(params[0], params[1]) and self.check_agent_has_free_end_effector(params[0])
+            position_status = hasattr(params[1], 'container_position') and self.check_pos_is_isolated(params[1].container_position) and params[1] in params[0].get_reached_objects()
+            return agent_status and position_status
         elif operation_name == 'close':
-            return self.check_agent_relative_position(params[0], params[1]) and self.check_agent_has_free_end_effector(params[0]) and hasattr(params[1], 'container_position') and not self.check_pos_is_isolated(params[1].container_position)
+            agent_status = self.check_agent_relative_position(params[0], params[1]) and self.check_agent_has_free_end_effector(params[0])
+            position_status = hasattr(params[1], 'container_position') and not self.check_pos_is_isolated(params[1].container_position) and params[1] in params[0].get_reached_objects()
+            return agent_status and position_status
         elif operation_name == 'handover':    # handover <asset, agent>
             return self.check_agent_relative_position(params[0], params[2]) and len(params[0].get_carried_objects()) > 0 and self.check_agent_has_free_end_effector(params[2])
         elif operation_name == 'interact':    # known: agent may activate irrelevant assets, can be solved by informing each task of interact scopes
