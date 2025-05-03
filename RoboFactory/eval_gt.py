@@ -25,7 +25,7 @@ def eval(data: list):
     success_count = 0
     fail_count = 0
     for idx, d in enumerate(data):
-        # d = data[943]
+        # d = data[90]
         robots = d["robots"]
         gt = d["ground_truth"]
         init_pos = d['init_pos']
@@ -74,7 +74,6 @@ def eval(data: list):
         default_metadata['temporal_constraints'] = temporal_constraints
         judger.set_env(default_metadata)
 
-        # print(answers)
         answers = format_answer(gt)
         success = judger.eval(answers)
         if not success:

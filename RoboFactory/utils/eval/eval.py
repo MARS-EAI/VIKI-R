@@ -153,8 +153,13 @@ class Eval:
             target_entity = getattr(self.env, f'{target_status["type"]}s')[target_status['name']]
             # status_achieved = True
             positive_check = target_status['is_satisfied']
-            for target_attr, target_status in target_status['status'].items():
-                success = (self.nested_getattr(target_entity, target_attr) == target_status) ^ (not positive_check)
+            check_pos_type = target_status.get('check_pos_type', 'static')
+            for target_attr, target_value in target_status['status'].items():
+                success = True
+                if check_pos_type == 'aligned' and 'pos.name' in target_attr:    # check aligned position
+                    success = success and (self.checker.check_target_aligned_position(target_entity, Position(name=target_value), self.env.assets, self.env.agents) ^ (not positive_check))
+                else:
+                    success = (self.nested_getattr(target_entity, target_attr) == target_value) ^ (not positive_check)
                 if not success:
                     return False
         return True

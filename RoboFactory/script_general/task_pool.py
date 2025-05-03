@@ -746,10 +746,10 @@ TASK_POOL = [
                 [
                     {
                         "type": "asset",
-                        "name": "bread",
+                        "name": "<mask1>",
                         "is_satisfied": True,
                         "status": {
-                            "pos.name": "toaster"
+                            "pos.name": "<mask2>"
                         }
                     }
                 ],
@@ -1752,6 +1752,16 @@ TASK_POOL = [
                         "status": {
                             "pos.name": "<mask2>"
                         }
+                    },
+                    # 刀在砧板上
+                    {
+                        "type": "asset",
+                        "name": "<mask1>",
+                        "is_satisfied": True,
+                        "check_pos_type": "aligned",
+                        "status": {
+                            "pos.name": "<mask2>"
+                        }
                     }
                 ],
                 [   # 然后刀被激活（表示切割已执行）
@@ -1915,6 +1925,16 @@ TASK_POOL = [
                         "type": "asset",
                         "name": "<mask3>",
                         "is_satisfied": True,
+                        "status": {
+                            "pos.name": "<mask2>"
+                        }
+                    },
+                    # 刀在砧板上
+                    {
+                        "type": "asset",
+                        "name": "<mask1>",
+                        "is_satisfied": True,
+                        "check_pos_type": "aligned",
                         "status": {
                             "pos.name": "<mask2>"
                         }
@@ -2121,7 +2141,7 @@ TASK_POOL = [
         "temporal_constraints": [
             [
                 [   
-                    # 只有当两种水果都在砧板上时……
+                    # 两种水果都在砧板上
                     {
                         "type": "asset",
                         "name": "<mask3>",
@@ -2134,6 +2154,16 @@ TASK_POOL = [
                         "type": "asset",
                         "name": "<mask4>",
                         "is_satisfied": True,
+                        "status": {
+                            "pos.name": "<mask2>"
+                        }
+                    },
+                    # 刀在砧板上
+                    {
+                        "type": "asset",
+                        "name": "<mask1>",
+                        "is_satisfied": True,
+                        "check_pos_type": "aligned",
                         "status": {
                             "pos.name": "<mask2>"
                         }
