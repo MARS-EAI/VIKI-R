@@ -72,87 +72,6 @@ def eval(data: list):
         judger.set_env(default_metadata)
 
         # print(answers)
-        gt = [{
-                "R2": [
-                    "Move",
-                    "apple"
-                ],
-                "R1": [
-                    "Move",
-                    "knife"
-                ]
-            },
-            {
-                "R2": [
-                    "Reach",
-                    "apple"
-                ],
-                "R1": [
-                    "Reach",
-                    "knife"
-                ]
-            },
-            {
-                "R2": [
-                    "Grasp",
-                    "apple"
-                ],
-                "R1": [
-                    "Grasp",
-                    "knife"
-                ]
-            },
-            {
-                "R2": [
-                    "Move",
-                    "banana"
-                ]
-            },
-            {
-                "R2": [
-                    "Reach",
-                    "banana"
-                ]
-            },
-            {
-                "R2": [
-                    "Grasp",
-                    "banana"
-                ]
-            },
-            {
-                "R2": [
-                    "Move",
-                    "wooden cutting board"
-                ],
-                "R1": [
-                    "Move",
-                    "wooden cutting board"
-                ]
-            },
-            {
-                "R2": [
-                    "Place",
-                    "wooden cutting board"
-                ]
-            },
-            {
-                "R2": [
-                    "Move",
-                    "knife"
-                ]
-            },
-            {
-                "R1": [
-                    "Interact",
-                    "knife"
-                ],
-                "R2": [
-                    "Interact",
-                    "knife"
-                ]
-            }
-        ]
         answers = format_answer(gt)
         success = judger.eval(answers)
         if not success:
@@ -160,7 +79,6 @@ def eval(data: list):
             fail_count += 1
         else:
             success_count += 1
-        break
     print(f'Success Count: {success_count}. Failed Count: {fail_count}.')
     
 
