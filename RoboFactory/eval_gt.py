@@ -25,7 +25,7 @@ def eval(data: list):
     success_count = 0
     fail_count = 0
     for idx, d in enumerate(data):
-        d = data[576]
+        # d = data[943]
         robots = d["robots"]
         gt = d["ground_truth"]
         init_pos = d['init_pos']
@@ -52,6 +52,9 @@ def eval(data: list):
                 }
             }
         for asset_name, asset_pos in init_pos.items():
+            if asset_name.startswith('R') and asset_name[1:].isdigit():    # skip agent
+                continue
+
             asset_type = asset_name.rsplit('_', maxsplit=1)[0]
             default_metadata["assets"][asset_type] = {
                 "pos": {
@@ -79,6 +82,7 @@ def eval(data: list):
             fail_count += 1
         else:
             success_count += 1
+        # break
     print(f'Success Count: {success_count}. Failed Count: {fail_count}.')
     
 
