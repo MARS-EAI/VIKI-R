@@ -1,0 +1,7 @@
+Final Evaluation Results for gpt-4o:
+Total samples processed: 300
+Total correct predictions (res > 0.1): 62
+Total predictions equal to 0: 0
+Total predictions equal to 1: 62
+Total predictions greater than 1: 0
+Final accuracy: 0.2067

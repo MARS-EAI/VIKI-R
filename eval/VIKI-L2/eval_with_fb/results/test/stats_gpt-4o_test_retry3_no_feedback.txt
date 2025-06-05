@@ -1,0 +1,16 @@
+Final Evaluation Results for gpt-4o on test dataset:
+Total samples processed: 100
+Total correct predictions (res > 0.1): 30
+Total predictions equal to 0: 0
+Total predictions equal to 1: 30
+Total predictions greater than 1: 0
+Final accuracy: 0.3000
+Max retries: 3
+Feedback enabled: False
+
+Retry statistics:
+Correct on first attempt: 24 (0.2400)
+Total correct after retries: 6 (0.0600)
+Correct after retry 1: 4 (0.0400)
+Correct after retry 2: 2 (0.0200)
+Correct after retry 3: 0 (0.0000)
