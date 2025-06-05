@@ -26,7 +26,7 @@
 
 ## 📊 Datasets <a name="datasets"></a>
 <div align="center">
-  <img src="./assets/dataset_v5_page-0001.jpg"  width="950" />
+  <img src="./assets/viki-r-v8_00.png"  width="950" />
 </div>
 
 ### VIKI-Bench Levels  
