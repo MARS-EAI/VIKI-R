@@ -1,7 +1,0 @@
-Final Evaluation Results for gpt-4o on val dataset:
-Total samples processed: 100
-Total correct predictions (res > 0.1): 6
-Total predictions equal to 0: 0
-Total predictions equal to 1: 6
-Total predictions greater than 1: 0
-Final accuracy: 0.0600

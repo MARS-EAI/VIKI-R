@@ -1,13 +1,13 @@
 set -x
 ENGINE=${1:-vllm}
 export VLLM_ATTENTION_BACKEND=XFORMERS
-EXP_NAME='qwen2_5_vl_7b_function_rm_rl_zero_step_reward_01'
+EXP_NAME='qwen2_5_vl_7b_VIKI_L2_rl_zero'
 OUTPUT_DIR="/path/to/checkpoints/${EXP_NAME}"
 
 python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
-    data.train_files=/path/to/data/viki/viki_plan_final/split_6/id/train.parquet \
-    data.val_files=/path/to/data/viki/viki_plan_final/split_6/id/val.parquet \
+    data.train_files=VIKI-L2/train.parquet \
+    data.val_files=VIKI-L2/test.parquet \
     data.train_batch_size=256 \
     data.max_prompt_length=4096 \
     data.max_response_length=2048 \
@@ -39,9 +39,9 @@ python3 -m verl.trainer.main_ppo \
     algorithm.use_kl_in_reward=False \
     trainer.critic_warmup=0 \
     trainer.save_freq=100 \
-    trainer.test_freq=5 \
+    trainer.test_freq=100 \
     trainer.logger=['console','wandb'] \
-    trainer.project_name='verl_grpo_example_viki_plan_final' \
+    trainer.project_name='VIKI-L2_7b' \
     trainer.experiment_name=${EXP_NAME} \
     trainer.default_local_dir=${OUTPUT_DIR} \
     trainer.n_gpus_per_node=8 \

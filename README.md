@@ -46,6 +46,8 @@
 
 ## 🚀 Quick Start <a name="quick-start"></a>
 
+### 🔧 Environment Setup
+
 ```bash
 # Clone repository
 git clone https://github.com/MARS-EAI/VIKI-R.git
@@ -54,23 +56,91 @@ cd VIKI-R
 # Create Conda environment
 conda env create -f roboviki.yml
 conda activate roboviki
+```
 
+### 📦 Framework Installation
+
+```bash
 # Install verl framework
 cd verl
 pip install --no-deps -e .
+cd ..
 
-# Install FlashAttention
-# Download wheel from: https://github.com/Dao-AILab/flash-attention
+# Install FlashAttention (download wheel from: https://github.com/Dao-AILab/flash-attention)
 pip install flash_attn-2.7.4.post1+cu12torch2.6cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
+```
 
-# Example: 3B model SFT training
-llamafactory-cli configs/viki-1-3b.yaml
+### 📥 Data Preparation
 
-# Example: GRPO RL training (3B)
+```bash
+# Download VIKI-R dataset from Hugging Face
+git clone https://huggingface.co/datasets/henggg/VIKI-R
+```
+
+### 🏋️ Training
+
+#### Step 1: Supervised Fine-Tuning (SFT)
+
+```bash
+# Prepare LLaMA-Factory environment
+# Use https://github.com/hiyouga/LLaMA-Factory and put the CoT data in llamafactory's dataset_info.json
+
+# Train 3B model with SFT
+llamafactory-cli train configs/viki-1-3b.yaml
+```
+
+#### Step 2: Reinforcement Learning with GRPO
+
+```bash
+# Navigate to GRPO training directory
 cd train/3BGRPO/VIKI-L1
+
+# Initialize VIKI-R-zero training
 bash VIKI-R-zero.sh
+
+# Start VIKI-R
 bash VIKI-R.sh
-````
+```
+
+### 🎯 Evaluation
+
+```bash
+# Navigate to evaluation directory
+cd VIKI-R/eval
+
+# Evaluate on Level 1: Agent Activation
+cd VIKI-L1
+python qwen.py
+
+# Evaluate on Level 2: Task Planning  
+cd ../VIKI-L2
+python qwen.py
+
+# Evaluate on Level 3: Trajectory Perception
+cd ../VIKI-L3
+python qwen.py
+
+# Alternative: Use answer generation script for each level
+cd ../VIKI-L1
+python qwen_ans.py
+
+cd ../VIKI-L2  
+python qwen_ans.py
+
+cd ../VIKI-L3
+python qwen_ans.py
+
+# Evaluation with feedback (if available)
+cd ../eval_with_fb
+python gpt4o.py
+```
+
+### 📊 Evaluation Metrics
+
+- **Level 1 (Agent Activation)**: Activation Accuracy
+- **Level 2 (Task Planning)**: Planning Correctness & Efficiency
+- **Level 3 (Trajectory Perception)**: RMSE, Hausdorff Distance, Dynamic Fréchet Distance
+
 
 ## 🗂️ Model Zoo <a name="model-zoo"></a>
 

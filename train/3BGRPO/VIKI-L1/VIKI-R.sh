@@ -6,8 +6,8 @@ OUTPUT_DIR="/path/to/checkpoints/${EXP_NAME}"
 
 python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
-    data.train_files=/path/to/data/viki/viki_1/final/train.parquet \
-    data.val_files=/path/to/data/viki/viki_1/final/test.parquet \
+    data.train_files=VIKI-L1/train.parquet \
+    data.val_files=VIKI-L1/test.parquet \
     data.train_batch_size=256 \
     data.max_prompt_length=4096 \
     data.max_response_length=2048 \
@@ -41,7 +41,7 @@ python3 -m verl.trainer.main_ppo \
     trainer.save_freq=100 \
     trainer.test_freq=50 \
     trainer.logger=['console','wandb'] \
-    trainer.project_name='verl_grpo_example_viki_count_final_3b' \
+    trainer.project_name='VIKI-L1_3b' \
     trainer.experiment_name=${EXP_NAME} \
     trainer.default_local_dir=${OUTPUT_DIR} \
     trainer.n_gpus_per_node=4 \

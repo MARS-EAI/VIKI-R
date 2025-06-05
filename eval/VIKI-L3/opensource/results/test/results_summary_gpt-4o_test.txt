@@ -1,7 +1,0 @@
-Final Evaluation Results for test dataset:
-Model: gpt-4o
-Total samples processed: 100
-Mean overall score: 100.0732
-Mean RMSE score: 97.1966
-Mean HD score: 110.4871
-Mean DTW score: 125.5602

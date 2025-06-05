@@ -39,11 +39,11 @@ python3 -m verl.trainer.main_ppo \
     algorithm.use_kl_in_reward=False \
     trainer.critic_warmup=0 \
     trainer.save_freq=100 \
-    trainer.test_freq=5 \
+    trainer.test_freq=50 \
     trainer.logger=['console','wandb'] \
-    trainer.project_name='verl_grpo_example_viki_count_final_3b' \
+    trainer.project_name='VIKI-L1_3b' \
     trainer.experiment_name=${EXP_NAME} \
     trainer.default_local_dir=${OUTPUT_DIR} \
     trainer.n_gpus_per_node=4 \
     trainer.nnodes=1 \
-    trainer.total_epochs=1 $@
+    trainer.total_epochs=5 $@
