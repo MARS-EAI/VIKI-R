@@ -5,23 +5,18 @@
   <a href="https://faceong.github.io/VIKI-R/"><img src="https://img.shields.io/badge/Project_Page-green" alt="Project Page"></a>
   <a href='https://huggingface.co/datasets/henggg/VIKI-R'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Datasets-blue'></a>
 </div>
-
-## 🔥 Overview <a name="overview"></a>
-**VIKI** comprises **VIKI-Bench** (a hierarchical multi-agent visual reasoning benchmark) and **VIKI-R** (a two-stage learning framework).  
-- **VIKI-Bench** introduces a three-level evaluation suite—**Agent Activation**, **Task Planning**, **Trajectory Perception**—with 23,737 tasks across 100 scenes, 6 robot morphologies, and over 1,000 asset combinations, offering both global and first-person views.
-
-<div align="center">
-  <img src="./assets/dataset_v5_page-0001.jpg"  width="950" />
-</div>
-
-- **VIKI-R** builds on **Qwen2.5-VL-Instruct** (3B/7B) via:  
-  1. **Supervised Fine-Tuning (SFT)** with high quality Chain-of-Thought (CoT) annotations.
-  2. **Reinforcement Fine-Tuning (RFT)** using Grouped Relative Policy Optimization (GRPO) and combined diverse rewards.
   
+## 🔥 Overview <a name="overview"></a>
 <div align="center">
   <img src="./assets/viki-r_v7_page-0001.jpg" width="950"/>
 </div>
 
+**VIKI** comprises **VIKI-Bench** (a hierarchical multi-agent visual reasoning benchmark) and **VIKI-R** (a two-stage learning framework).  
+- **VIKI-Bench** introduces a three-level evaluation suite—**Agent Activation**, **Task Planning**, **Trajectory Perception**—with 23,737 tasks across 100 scenes, 6 robot morphologies, and over 1,000 asset combinations, offering both global and first-person views.
+- **VIKI-R** builds on **Qwen2.5-VL-Instruct** (3B/7B) via:  
+  1. **Supervised Fine-Tuning (SFT)** with high quality Chain-of-Thought (CoT) annotations.
+  2. **Reinforcement Fine-Tuning (RFT)** using Grouped Relative Policy Optimization (GRPO) and combined diverse rewards.
+     
 ## 🎯 Key Features
 
 - **Hierarchical Dataset**: 23,737 tasks, 100 scenes, 6 robot types, ≥1,000 asset combos. 
@@ -30,6 +25,9 @@
 - **Metrics**: Activation Accuracy, Planning Correctness & Efficiency, Trajectory RMSE/HD/DFD.
 
 ## 📊 Datasets <a name="datasets"></a>
+<div align="center">
+  <img src="./assets/dataset_v5_page-0001.jpg"  width="950" />
+</div>
 
 ### VIKI-Bench Levels  
 - **Level 1: Agent Activation**  
