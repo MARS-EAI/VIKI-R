@@ -8,7 +8,7 @@
   
 ## 🔥 Overview <a name="overview"></a>
 <div align="center">
-  <img src="./assets/viki-r_v7_page-0001.jpg" width="950"/>
+  <img src="./assets/viki-r-v8_00.png" width="950"/>
 </div>
 
 **VIKI** comprises **VIKI-Bench** (a hierarchical multi-agent visual reasoning benchmark) and **VIKI-R** (a two-stage learning framework).  
@@ -26,7 +26,7 @@
 
 ## 📊 Datasets <a name="datasets"></a>
 <div align="center">
-  <img src="./assets/viki-r-v8_00.png"  width="950" />
+  <img src="./assets/dataset_v5_page-0001.jpg"  width="950" />
 </div>
 
 ### VIKI-Bench Levels  
