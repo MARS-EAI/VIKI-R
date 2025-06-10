@@ -156,7 +156,6 @@ python gpt4o.py
   title={{VIKI-R}: Coordinating Embodied Multi-Agent Cooperation via Reinforcement Learning},
   author={},
   booktitle={},
-  year={2025},
-  url={https://github.com/your-org/RoboFactory-VIKI}
+  year={2025}
 }
 ```
