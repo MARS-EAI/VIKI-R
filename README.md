@@ -152,10 +152,10 @@ python gpt4o.py
 ## 📑 Citation <a name="citation"></a>
 
 ```bibtex
-@inproceedings{kang2025viki,
-  title={{VIKI-R}: Coordinating Embodied Multi-Agent Cooperation via Reinforcement Learning},
-  author={},
-  booktitle={},
+@article{kang2025viki,
+  title={VIKI-R: Coordinating Embodied Multi-Agent Cooperation via Reinforcement Learning},
+  author={Li Kang, Xiufeng Song, Heng Zhou, Yiran Qin, Jie Yang, Xiaohong Liu, Philip Torr, Lei Bai, Zhenfei Yin},
+  journal={arXiv preprint arXiv:2506.09049},
   year={2025}
 }
 ```
