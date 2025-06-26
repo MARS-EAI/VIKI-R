@@ -154,7 +154,7 @@ python gpt4o.py
 ```bibtex
 @article{kang2025viki,
   title={VIKI-R: Coordinating Embodied Multi-Agent Cooperation via Reinforcement Learning},
-  author={Li Kang, Xiufeng Song, Heng Zhou, Yiran Qin, Jie Yang, Xiaohong Liu, Philip Torr, Lei Bai, Zhenfei Yin},
+  author={Kang, Li and Song, Xiufeng and Zhou, Heng and Qin, Yiran and Yang, Jie and Liu, Xiaohong and Torr, Philip and Bai, Lei and Yin, Zhenfei},
   journal={arXiv preprint arXiv:2506.09049},
   year={2025}
 }
