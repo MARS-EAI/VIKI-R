@@ -151,11 +151,21 @@ python gpt4o.py
 
 ## 📑 Citation <a name="citation"></a>
 
+If our work is helpful to you, please consider citing our work!
+
 ```bibtex
 @article{kang2025viki,
   title={VIKI-R: Coordinating Embodied Multi-Agent Cooperation via Reinforcement Learning},
   author={Kang, Li and Song, Xiufeng and Zhou, Heng and Qin, Yiran and Yang, Jie and Liu, Xiaohong and Torr, Philip and Bai, Lei and Yin, Zhenfei},
   journal={arXiv preprint arXiv:2506.09049},
+  year={2025}
+}
+```
+```bibtex
+@article{qin2025robofactory,
+  title={RoboFactory: Exploring Embodied Agent Collaboration with Compositional Constraints},
+  author={Qin, Yiran and Kang, Li and Song, Xiufeng and Yin, Zhenfei and Liu, Xiaohong and Liu, Xihui and Zhang, Ruimao and Bai, Lei},
+  journal={arXiv preprint arXiv:2503.16408},
   year={2025}
 }
 ```
