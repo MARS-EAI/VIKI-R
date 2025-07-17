@@ -1,171 +1,227 @@
-<div align="center">
-  <img src="./assets/logo.png" width="150"/>
-  <h1 align="center">VIKI-R: Coordinating Embodied Multi-Agent Cooperation via Reinforcement Learning</h1>
-  <a href="https://arxiv.org/abs/2506.09049"><img src="https://img.shields.io/badge/arxiv-2506.09049-b31b1b" alt="arXiv"></a>
-  <a href="https://faceong.github.io/VIKI-R/"><img src="https://img.shields.io/badge/Project_Page-green" alt="Project Page"></a>
-  <a href='https://huggingface.co/datasets/henggg/VIKI-R'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Datasets-blue'></a>
-</div>
-  
-## 🔥 Overview <a name="overview"></a>
-<div align="center">
-  <img src="./assets/viki-r-v8_00.png" width="950"/>
-</div>
+# Multi-Agent Embodied Intelligence Challenge
 
-**VIKI** comprises **VIKI-Bench** (a hierarchical multi-agent visual reasoning benchmark) and **VIKI-R** (a two-stage learning framework).  
-- **VIKI-Bench** introduces a three-level evaluation suite—**Agent Activation**, **Task Planning**, **Trajectory Perception**—with 23,737 tasks across 100 scenes, 6 robot morphologies, and over 1,000 asset combinations, offering both global and first-person views.
-- **VIKI-R** builds on **Qwen2.5-VL-Instruct** (3B/7B) via:  
-  1. **Supervised Fine-Tuning (SFT)** with high quality Chain-of-Thought (CoT) annotations.
-  2. **Reinforcement Fine-Tuning (RFT)** using Grouped Relative Policy Optimization (GRPO) and combined diverse rewards.
-     
-## 🎯 Key Features
+## Overview
+The [Multi-Agent Plan Track](https://mars-eai.github.io/MARS-Challenge-Webpage/#track1) of the Multi-Agent Embodied Intelligence Challenge focuses on high-level task planning across multiple heterogeneous embodied agents. Participants are required to develop planning systems capable of interpreting natural language instructions and visual observations to generate effective and efficient action sequences for multiple agents.
 
-- **Hierarchical Dataset**: 23,737 tasks, 100 scenes, 6 robot types, ≥1,000 asset combos. 
-- **GRPO RL**: Structured planning with dual-format and correctness rewards.
-- **Robotic-Focused**: Home layouts, varied embodied multi-agent tasks.
-- **Metrics**: Activation Accuracy, Planning Correctness & Efficiency, Trajectory RMSE/HD/DFD.
+Each task is formulated as an episode, comprising a natural language instruction and a structured observation (e.g., rendered scene image) of the environment. The core challenge lies in multi-agent coordination and reasoning, where participants must select a subset of appropriate agents and assign them temporally and semantically grounded action sequences to collaboratively accomplish the task. This track emphasizes reasoning under ambiguity, generalization to novel tasks, and alignment between plans and embodied capabilities.
 
-## 📊 Datasets <a name="datasets"></a>
-<div align="center">
-  <img src="./assets/dataset_v5_page-0001.jpg"  width="950" />
-</div>
+## Important Notice
+This GitHub repository provides a baseline example for competition participants. Participants are free to modify any part of the code, implement their own solutions, and develop novel approaches to solve the multi-agent planning challenge.
 
-### VIKI-Bench Levels  
-- **Level 1: Agent Activation**  
-  Select the appropriate subset of agents given a scene and instruction.
-- **Level 2: Task Planning**  
-  Generate executable multi-agent action sequences within reference length.
-- **Level 3: Trajectory Perception**  
-  Predict spatial trajectories of visible agents from first-person views; evaluate via RMSE, Hausdorff, and Dynamic Fréchet Distance.
+As a rule, all submitted solutions must use or obtain Vision-Language Model (VLM) as part of the answer generation process.
 
-**Statistics:**  
-- **23,737** task samples  
-- **100** diverse 3D scenes  
-- **6** heterogeneous robot morphologies (e.g., dual-arm, tracked, legged, humanoid)  
-- **>1,000** asset combinations  
-- Global view + multi ego-perspectives  
+## Challenge Description
+This track is powered by the [ManiSkill](https://www.maniskill.ai/) platform and the [RoboCasa](https://robocasa.ai/) scene and [VIKI-Bench](https://faceong.github.io/VIKI-R/) dataset, featuring a curated set of task scenarios involving diverse robot embodiments and complex collaborative goals. Given a structured scene image with multiple candidate agents (humanoids, quadrupeds, manipulators), participants need to complete the following two core tasks:
 
-## 🚀 Quick Start <a name="quick-start"></a>
+1. **Agent Selection**: Choose a subset of appropriate agents from the scene based on a natural language command.
+2. **Action Assignment**: Define a sequence of high-level actions for each selected agent to accomplish the collaborative task.
 
-### 🔧 Environment Setup
+This challenge evaluates the vision-language model's ability to reason over multi-agent allocation, role assignment, and symbolic planning, simulating real-world cooperation among diverse robots.
 
+### 🗓️ Competition Timeline
+
+| Date            | Phase             | Description                                                                 |
+|-----------------|-------------------|-----------------------------------------------------------------------------|
+| August 1st      | Warmup Round      | Environment opens for teams to explore and get familiar (no prizes).        |
+| September 1st   | Official Round    | Competition begins with unseen tasks and prize challenges.                  |
+| late October (TBD)  | Official Round Ends | Expected closing of the official round.                                    |
+| December        | Award Ceremony    | Final results and awards will be announced.                                 |
+
+
+## Submission Requirements
+All final submissions must include the following two components:
+
+1. **test.json**: A JSON file containing evaluation results on the public test set, to be submitted on Kaggle for leaderboard scoring
+2. **code.zip**: A zip file containing the complete source code that generates the evaluation results, used for anti-cheating verification
+
+## Evaluation Methodology
+
+### Scoring Framework
+The evaluation system employs a comprehensive scoring mechanism that assesses both agent selection accuracy and action planning quality. The total score is computed as:
+
+**Total Score = 0.1 × Robot Selection Score + 0.9 × Action Planning Score**
+
+### Robot Selection Score (10% weight)
+This component evaluates the accuracy of agent selection:
+- **Binary scoring**: 1.0 if the predicted robot set exactly matches the ground truth, 0.0 otherwise
+- **Case-insensitive**: Robot names are compared in lowercase to handle case variations
+- **Set-based comparison**: Only non-null robots from the ground truth are considered
+
+### Action Planning Score (90% weight)
+A multi-dimensional scoring system that provides graduated feedback:
+
+- **Step Match** (40%): Step-by-step comparison of action sequences
+- **Prefix Match** (30%): Consecutive matches from the beginning of the sequence
+- **Action Type Match** (20%): Matching of action types regardless of target objects
+- **Length Ratio** (10%): Proportion of matched sequence length
+
+**Action Planning Score = 0.4 × Step Match + 0.3 × Prefix Match + 0.2 × Action Type Match + 0.1 × Length Ratio**
+
+### Evaluation Metrics
+Submissions are evaluated on a hidden test set featuring unseen object configurations and domain randomization. The evaluation provides:
+
+1. **Total Score**: The total score of all test cases.
+2. **Score Distribution**: Detailed breakdown of performance across different score ranges:
+   - Zero (0.0): Complete failure cases
+   - Low (0.0-0.3): Minimal partial credit
+   - Medium-Low (0.3-0.6): Substantial partial credit
+   - Medium-High (0.6-0.9): Near-correct solutions
+   - High (0.9-1.0): Almost perfect solutions
+   - Perfect (1.0): Complete success
+
+## Installation and Setup
+
+### Dependencies
+Install required Python packages:
 ```bash
-# Clone repository
-git clone https://github.com/MARS-EAI/VIKI-R.git
-cd VIKI-R
-
-# Create Conda environment
-conda env create -f roboviki.yml
-conda activate roboviki
+pip install -r requirements.txt
 ```
 
-### 📦 Framework Installation
-
-```bash
-# Install verl framework
-cd verl
-pip install --no-deps -e .
-cd ..
-
-# Install FlashAttention (download wheel from: https://github.com/Dao-AILab/flash-attention)
-pip install flash_attn-2.7.4.post1+cu12torch2.6cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
+### Environment Configuration
+Create a `.env` file with your OpenAI API key:
+```
+OPENAI_API_KEY=your_openai_api_key_here
 ```
 
-### 📥 Data Preparation
+## Usage
 
-```bash
-# Download VIKI-R dataset from Hugging Face
-git clone https://huggingface.co/datasets/henggg/VIKI-R
-```
+### Baseline Example
+This repository provides a baseline implementation that participants can use as a starting point. The baseline approach uses GPT-4o for both agent selection and action planning.
 
-### 🏋️ Training
+### Customization and Development
+Participants are encouraged to:
 
-#### Step 1: Supervised Fine-Tuning (SFT)
+1. **Modify the baseline approach**: Improve the existing implementation
+2. **Implement novel methods**: Develop new algorithms for multi-agent planning
+3. **Enhance prompt engineering**: Optimize prompts for better performance
+4. **Add preprocessing/postprocessing**: Implement additional data processing steps
+5. **Integrate different models**: Use alternative language models or vision systems
 
-```bash
-# Prepare LLaMA-Factory environment
-# Use https://github.com/hiyouga/LLaMA-Factory and put the CoT data in llamafactory's dataset_info.json
+### Prompt Customization
+Before running evaluations, customize the prompt content by editing `plan/prompt.py`:
 
-# Train 3B model with SFT
-llamafactory-cli train configs/viki-1-3b.yaml
-```
+1. **System Instructions**: Modify `SYSTEM_INSTRUCTION` to adjust AI behavior
+2. **Robot Descriptions**: Update `ROBOT_DESCRIPTION` for different robot types
+3. **Available Actions**: Customize `AGENT_AVAIL_ACTIONS` for each robot
+4. **User Message Templates**: Adjust `get_user_message_template()` function
 
-#### Step 2: Reinforcement Learning with GRPO
+Example customization:
+```python
+# System instruction - core prompt content
+SYSTEM_INSTRUCTION = """You are a comprehensive robot task planner..."""
 
-```bash
-# Navigate to GRPO training directory
-cd train/3BGRPO/VIKI-L1
+# Robot description information
+ROBOT_DESCRIPTION = {
+    'stompy': 'A bipedal robot designed for...',
+    # Other robot descriptions
+}
 
-# Initialize VIKI-R-zero training
-bash VIKI-R-zero.sh
-
-# Start VIKI-R
-bash VIKI-R.sh
-```
-
-### 🎯 Evaluation
-
-```bash
-# Navigate to evaluation directory
-cd VIKI-R/eval
-
-# Evaluate on Level 1: Agent Activation
-cd VIKI-L1
-python qwen.py
-
-# Evaluate on Level 2: Task Planning  
-cd ../VIKI-L2
-python qwen.py
-
-# Evaluate on Level 3: Trajectory Perception
-cd ../VIKI-L3
-python qwen.py
-
-# Alternative: Use answer generation script for each level
-cd ../VIKI-L1
-python qwen_ans.py
-
-cd ../VIKI-L2  
-python qwen_ans.py
-
-cd ../VIKI-L3
-python qwen_ans.py
-
-# Evaluation with feedback (if available)
-cd ../eval_with_fb
-python gpt4o.py
-```
-
-### 📊 Evaluation Metrics
-
-- **Level 1 (Agent Activation)**: Activation Accuracy
-- **Level 2 (Task Planning)**: Planning Correctness & Efficiency
-- **Level 3 (Trajectory Perception)**: RMSE, Hausdorff Distance, Dynamic Fréchet Distance
-
-
-## 🗂️ Model Zoo <a name="model-zoo"></a>
-
-| Model Size | Levels Supported | Training Stages   | Download           | Status      |
-|------------|------------------|-------------------|--------------------|-------------|
-| 3B         | L1 / L2 / L3     | SFT + GRPO        | [viki-3b](./models/) | Coming Soon |
-| 7B         | L1 / L2 / L3     | SFT + GRPO        | [viki-7b](./models/) | Coming Soon |
-
-## 📑 Citation <a name="citation"></a>
-
-If our work is helpful to you, please consider citing our work!
-
-```bibtex
-@article{kang2025viki,
-  title={VIKI-R: Coordinating Embodied Multi-Agent Cooperation via Reinforcement Learning},
-  author={Kang, Li and Song, Xiufeng and Zhou, Heng and Qin, Yiran and Yang, Jie and Liu, Xiaohong and Torr, Philip and Bai, Lei and Yin, Zhenfei},
-  journal={arXiv preprint arXiv:2506.09049},
-  year={2025}
+# Available actions for robots
+AGENT_AVAIL_ACTIONS = {
+    'panda': ['Reach', 'Grasp', 'Place', 'Open', 'Close', 'Interact'],
+    # Other robot actions
 }
 ```
-```bibtex
-@article{qin2025robofactory,
-  title={RoboFactory: Exploring Embodied Agent Collaboration with Compositional Constraints},
-  author={Qin, Yiran and Kang, Li and Song, Xiufeng and Yin, Zhenfei and Liu, Xiaohong and Liu, Xihui and Zhang, Ruimao and Bai, Lei},
-  journal={arXiv preprint arXiv:2503.16408},
-  year={2025}
-}
+
+### Running Evaluation
+Execute the evaluation script:
+```bash
+cd plan
+python viki.py --model gpt-4o --split test
 ```
+
+
+### Output Files
+Results are generated in the `plan/result/` directory:
+- `combined_data_final_{model_name}.json`: Final evaluation results
+- `stats_{model_name}_{split}.txt`: Statistical summary
+- `combined_data_partial_{count}_{model_name}.json`: Intermediate results (saved every 50 samples)
+
+## Project Structure
+```
+Multi-Agent_Embodied_Intelligence_Challenge/
+├── plan/
+│   ├── prompt.py              # 📝 Prompt configuration (user-modifiable)
+│   ├── viki.py                # 🚀 Main evaluation script
+│   ├── utils/
+│   │   └── reward_score/
+│   │       ├── viki_2.py      # Scoring mechanism
+│   │       └── utils/
+│   │           └── eval/      # Evaluation utilities
+│   └── result/                # Output directory
+├── data/                      # Dataset directory
+│   └── test.parquet          # Test dataset
+├── requirements.txt           # Python dependencies
+├── .env                       # Environment variables
+└── README.md                  # This file
+```
+
+## Data Preparation
+Place dataset files in the `data/` directory:
+- `test.parquet`: Test dataset
+
+Data files should be obtained from the original RoboFactory-VIKI project.
+
+## Quick Start Guide
+
+1. **Setup Environment**:
+```bash
+git clone <repository-url>
+cd Multi-Agent_Embodied_Intelligence_Challenge
+pip install -r requirements.txt
+echo "OPENAI_API_KEY=your_api_key_here" > .env
+```
+
+2. **Customize Prompts** (Optional):
+```bash
+nano plan/prompt.py
+```
+
+3. **Run Evaluation**:
+```bash
+cd plan
+python viki.py --model gpt-4o --split test
+```
+
+4. **View Results**:
+```bash
+cat result/stats_gpt-4o_test.txt
+cat result/combined_data_final_gpt-4o.json
+```
+
+5. **Prepare Submission**:
+   - Generate `test.json` from your evaluation results
+   - Create `code.zip` with your complete source code
+   - Submit both files according to competition guidelines
+
+## Important Notes
+- ✅ This is a baseline example - participants should modify and improve it
+- ✅ Ensure valid OpenAI API key configuration
+- ⚠️ API usage incurs costs - monitor your usage
+- ⚠️ Default processing limit is 200 samples (modify in `viki.py` if needed)
+- ⚠️ Follow anti-cheating guidelines strictly to avoid disqualification
+
+### Anti-Cheating Policy
+**⚠️ Important**: All submissions will undergo rigorous anti-cheating verification. The following behaviors are strictly prohibited:
+
+- **Hardcoded answers**: Directly printing or returning pre-computed answers for specific test cases
+- **Brute force sample exploitation**: Using pattern matching or lookup tables to exploit specific test samples
+- **Data leakage**: Using any information not available during the official evaluation period
+- **Submission manipulation**: Any attempt to game the evaluation system
+
+## Troubleshooting
+
+### Common Issues
+1. **ImportError**: Install dependencies with `pip install -r requirements.txt`
+2. **API Error**: Verify OpenAI API key in `.env` file
+3. **Data Not Found**: Ensure `data/test.parquet` exists
+4. **Permission Error**: Check write permissions for `result/` directory
+
+### Debugging Features
+- Real-time progress display with current average scores
+- Intermediate results saved every 50 samples
+- Detailed error messages in console output
+- Score distribution statistics for performance analysis
+
+## Disclaimer
+This repository provides a baseline implementation for the Multi-Agent Embodied Intelligence Challenge. Participants are free to modify, enhance, or completely rewrite the code to develop their own solutions. The organizing committee reserves all rights to the final interpretation of competition rules and evaluation criteria. 

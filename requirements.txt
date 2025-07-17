@@ -1,0 +1,6 @@
+openai
+pandas
+numpy
+tqdm
+backoff
+python-dotenv 
