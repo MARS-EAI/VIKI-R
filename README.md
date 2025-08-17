@@ -31,8 +31,58 @@ This challenge evaluates the vision-language model's ability to reason over mult
 ## Submission Requirements
 All final submissions must include the following two components:
 
-1. **test.json**: A JSON file containing evaluation results on the public test set, to be submitted on Kaggle for leaderboard scoring
+1. **submission.csv**: A CSV file containing evaluation results on the public test set, to be submitted on Kaggle for leaderboard scoring
 2. **code.zip**: A zip file containing the complete source code that generates the evaluation results, used for anti-cheating verification
+
+### Submission File Format
+
+#### JSON Format (Intermediate)
+Your evaluation results should first be generated as a JSON file with the following structure:
+```json
+[
+  {
+    "task_id": "1044_8-2",
+    "answer": {
+      "selected_robots": ["Fetch", "Stompy"],
+      "action_plan": [
+        {
+          "step": 1,
+          "actions": {
+            "Fetch": ["Move", "pear"],
+            "Stompy": ["Move", "knife"]
+          }
+        },
+        {
+          "step": 2,
+          "actions": {
+            "Fetch": ["Reach", "pear"],
+            "Stompy": ["Reach", "knife"]
+          }
+        }
+      ]
+    }
+  }
+]
+```
+
+#### Required JSON Keys:
+- **task_id**: Unique identifier for each test case
+- **answer**: Object containing the solution
+  - **selected_robots**: List of robot names selected for the task
+  - **action_plan**: Sequential list of action steps
+    - **step**: Step number (starting from 1)
+    - **actions**: Dictionary mapping robot names to their actions [action_type, target_object]
+
+#### CSV Conversion for Kaggle Submission
+Use the provided conversion script to transform your JSON results into the required CSV format for Kaggle submission:
+
+```bash
+cd result
+python convert_csv.py
+```
+
+This will generate a `submission.csv` file that can be directly uploaded to [Kaggle](https://www.kaggle.com/t/08d2cb94348542b2af44ebcf04da722f). The conversion script flattens the nested JSON structure into a format compatible with the evaluation system.
+
 
 ## Evaluation Methodology
 
