@@ -22,7 +22,7 @@ This challenge evaluates the vision-language model's ability to reason over mult
 
 | Date            | Phase             | Description                                                                 |
 |-----------------|-------------------|-----------------------------------------------------------------------------|
-| August 1st      | Warmup Round      | Environment opens for teams to explore and get familiar (no prizes).        |
+| August 18th      | Warmup Round      | Environment opens for teams to explore and get familiar (no prizes).        |
 | September 1st   | Official Round    | Competition begins with unseen tasks and prize challenges.                  |
 | late October (TBD)  | Official Round Ends | Expected closing of the official round.                                    |
 | December        | Award Ceremony    | Final results and awards will be announced.                                 |
