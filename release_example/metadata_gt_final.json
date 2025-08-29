@@ -1,0 +1,900 @@
+[
+  {
+    "task_id": "task_10",
+    "task_description": "Scan the table for any missing fruits-the pear or the tomato. Place them on the table, checking cabinet if necessary.",
+    "image": "10.png",
+    "answer": {
+      "selected_robots": [
+        "Stompy"
+      ],
+      "action_plan": [
+        {
+          "step": 1,
+          "actions": {
+            "Stompy": [
+              "Move",
+              "tomato"
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "actions": {
+            "Stompy": [
+              "Reach",
+              "tomato"
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "actions": {
+            "Stompy": [
+              "Grasp",
+              "tomato"
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "actions": {
+            "Stompy": [
+              "Move",
+              "table"
+            ]
+          }
+        },
+        {
+          "step": 5,
+          "actions": {
+            "Stompy": [
+              "Place",
+              "table"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "task_id": "task_11",
+    "task_description": "Begin by placing the bowl onto the kitchen work area, then fetch the banana from the cabinet and load it into the bowl to complete the preparation.",
+    "image": "11.png",
+    "answer": {
+      "selected_robots": [
+        "Fetch",
+        "Stompy"
+      ],
+      "action_plan": [
+        {
+          "step": 1,
+          "actions": {
+            "Fetch": [
+              "Move",
+              "bowl"
+            ],
+            "Stompy": [
+              "Move",
+              "cabinet"
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "actions": {
+            "Fetch": [
+              "Reach",
+              "bowl"
+            ],
+            "Stompy": [
+              "Reach",
+              "cabinet"
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "actions": {
+            "Fetch": [
+              "Grasp",
+              "bowl"
+            ],
+            "Stompy": [
+              "Open",
+              "cabinet"
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "actions": {
+            "Fetch": [
+              "Move",
+              "kitchen work area"
+            ],
+            "Stompy": [
+              "Move",
+              "banana"
+            ]
+          }
+        },
+        {
+          "step": 5,
+          "actions": {
+            "Fetch": [
+              "Place",
+              "kitchen work area"
+            ],
+            "Stompy": [
+              "Reach",
+              "banana"
+            ]
+          }
+        },
+        {
+          "step": 6,
+          "actions": {
+            "Stompy": [
+              "Grasp",
+              "banana"
+            ]
+          }
+        },
+        {
+          "step": 7,
+          "actions": {
+            "Stompy": [
+              "Move",
+              "bowl"
+            ]
+          }
+        },
+        {
+          "step": 8,
+          "actions": {
+            "Stompy": [
+              "Place",
+              "bowl"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "task_id": "task_13",
+    "task_description": "Transfer the apple over to the kitchen island area and ensure it is positioned correctly.",
+    "image": "13.png",
+    "answer": {
+      "selected_robots": [
+        "Fetch"
+      ],
+      "action_plan": [
+        {
+          "step": 1,
+          "actions": {
+            "Fetch": [
+              "Move",
+              "apple"
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "actions": {
+            "Fetch": [
+              "Reach",
+              "apple"
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "actions": {
+            "Fetch": [
+              "Grasp",
+              "apple"
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "actions": {
+            "Fetch": [
+              "Move",
+              "kitchen island area"
+            ]
+          }
+        },
+        {
+          "step": 5,
+          "actions": {
+            "Fetch": [
+              "Place",
+              "kitchen island area"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "task_id": "task_15",
+    "task_description": "Collect every food and drink on the table and store them properly on the rack.",
+    "image": "15.png",
+    "answer": {
+      "selected_robots": [
+        "Fetch"
+      ],
+      "action_plan": [
+        {
+          "step": 1,
+          "actions": {
+            "Fetch": [
+              "Move",
+              "bread"
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "actions": {
+            "Fetch": [
+              "Reach",
+              "bread"
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "actions": {
+            "Fetch": [
+              "Grasp",
+              "bread"
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "actions": {
+            "Fetch": [
+              "Move",
+              "rack"
+            ]
+          }
+        },
+        {
+          "step": 5,
+          "actions": {
+            "Fetch": [
+              "Place",
+              "rack"
+            ]
+          }
+        },
+        {
+          "step": 6,
+          "actions": {
+            "Fetch": [
+              "Move",
+              "wine"
+            ]
+          }
+        },
+        {
+          "step": 7,
+          "actions": {
+            "Fetch": [
+              "Reach",
+              "wine"
+            ]
+          }
+        },
+        {
+          "step": 8,
+          "actions": {
+            "Fetch": [
+              "Grasp",
+              "wine"
+            ]
+          }
+        },
+        {
+          "step": 9,
+          "actions": {
+            "Fetch": [
+              "Move",
+              "rack"
+            ]
+          }
+        },
+        {
+          "step": 10,
+          "actions": {
+            "Fetch": [
+              "Place",
+              "rack"
+            ]
+          }
+        },
+        {
+          "step": 11,
+          "actions": {
+            "Fetch": [
+              "Move",
+              "apple"
+            ]
+          }
+        },
+        {
+          "step": 12,
+          "actions": {
+            "Fetch": [
+              "Reach",
+              "apple"
+            ]
+          }
+        },
+        {
+          "step": 13,
+          "actions": {
+            "Fetch": [
+              "Grasp",
+              "apple"
+            ]
+          }
+        },
+        {
+          "step": 14,
+          "actions": {
+            "Fetch": [
+              "Move",
+              "rack"
+            ]
+          }
+        },
+        {
+          "step": 15,
+          "actions": {
+            "Fetch": [
+              "Place",
+              "rack"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "task_id": "task_30",
+    "task_description": "Go ahead and open the refrigerator.",
+    "image": "30.png",
+    "answer": {
+      "selected_robots": [
+        "Fetch"
+      ],
+      "action_plan": [
+        {
+          "step": 1,
+          "actions": {
+            "Fetch": [
+              "Move",
+              "refrigerator"
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "actions": {
+            "Fetch": [
+              "Reach",
+              "refrigerator"
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "actions": {
+            "Fetch": [
+              "Open",
+              "refrigerator"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "task_id": "task_35",
+    "task_description": "Let's store the tomato and the pumpkin safely in the plate.",
+    "image": "35.png",
+    "answer": {
+      "selected_robots": [
+        "Unitree_H1"
+      ],
+      "action_plan": [
+        {
+          "step": 1,
+          "actions": {
+            "Unitree_H1": [
+              "Move",
+              "tomato"
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "actions": {
+            "Unitree_H1": [
+              "Reach",
+              "tomato"
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "actions": {
+            "Unitree_H1": [
+              "Grasp",
+              "tomato"
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "actions": {
+            "Unitree_H1": [
+              "Move",
+              "pumpkin"
+            ]
+          }
+        },
+        {
+          "step": 5,
+          "actions": {
+            "Unitree_H1": [
+              "Reach",
+              "pumpkin"
+            ]
+          }
+        },
+        {
+          "step": 6,
+          "actions": {
+            "Unitree_H1": [
+              "Grasp",
+              "pumpkin"
+            ]
+          }
+        },
+        {
+          "step": 7,
+          "actions": {
+            "Unitree_H1": [
+              "Move",
+              "plate"
+            ]
+          }
+        },
+        {
+          "step": 8,
+          "actions": {
+            "Unitree_H1": [
+              "Place",
+              "plate"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "task_id": "task_36",
+    "task_description": "Place the bread into the toaster, turn it on, and meanwhile set the plate onto the kitchen island area for the breakfast setup.",
+    "image": "36.png",
+    "answer": {
+      "selected_robots": [
+        "Stompy",
+        "Fetch"
+      ],
+      "action_plan": [
+        {
+          "step": 1,
+          "actions": {
+            "Stompy": [
+              "Move",
+              "bread"
+            ],
+            "Fetch": [
+              "Move",
+              "plate"
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "actions": {
+            "Stompy": [
+              "Reach",
+              "bread"
+            ],
+            "Fetch": [
+              "Reach",
+              "plate"
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "actions": {
+            "Stompy": [
+              "Grasp",
+              "bread"
+            ],
+            "Fetch": [
+              "Grasp",
+              "plate"
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "actions": {
+            "Stompy": [
+              "Move",
+              "toaster"
+            ],
+            "Fetch": [
+              "Move",
+              "kitchen island area"
+            ]
+          }
+        },
+        {
+          "step": 5,
+          "actions": {
+            "Stompy": [
+              "Place",
+              "toaster"
+            ],
+            "Fetch": [
+              "Place",
+              "kitchen island area"
+            ]
+          }
+        },
+        {
+          "step": 6,
+          "actions": {
+            "Stompy": [
+              "Interact",
+              "toaster"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "task_id": "task_42",
+    "task_description": "Clear the food away and arrange it in the refrigerator.",
+    "image": "42.png",
+    "answer": {
+      "selected_robots": [
+        "Fetch",
+        "Unitree_H1"
+      ],
+      "action_plan": [
+        {
+          "step": 1,
+          "actions": {
+            "Fetch": [
+              "Move",
+              "bread"
+            ],
+            "Unitree_H1": [
+              "Move",
+              "refrigerator"
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "actions": {
+            "Fetch": [
+              "Reach",
+              "bread"
+            ],
+            "Unitree_H1": [
+              "Reach",
+              "refrigerator"
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "actions": {
+            "Fetch": [
+              "Grasp",
+              "bread"
+            ],
+            "Unitree_H1": [
+              "Open",
+              "refrigerator"
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "actions": {
+            "Fetch": [
+              "Move",
+              "refrigerator"
+            ],
+            "Unitree_H1": [
+              "Move",
+              "pizza"
+            ]
+          }
+        },
+        {
+          "step": 5,
+          "actions": {
+            "Fetch": [
+              "Place",
+              "refrigerator"
+            ],
+            "Unitree_H1": [
+              "Reach",
+              "pizza"
+            ]
+          }
+        },
+        {
+          "step": 6,
+          "actions": {
+            "Fetch": [
+              "Move",
+              "apple"
+            ],
+            "Unitree_H1": [
+              "Grasp",
+              "pizza"
+            ]
+          }
+        },
+        {
+          "step": 7,
+          "actions": {
+            "Fetch": [
+              "Reach",
+              "apple"
+            ],
+            "Unitree_H1": [
+              "Move",
+              "refrigerator"
+            ]
+          }
+        },
+        {
+          "step": 8,
+          "actions": {
+            "Fetch": [
+              "Grasp",
+              "apple"
+            ],
+            "Unitree_H1": [
+              "Reach",
+              "refrigerator"
+            ]
+          }
+        },
+        {
+          "step": 9,
+          "actions": {
+            "Fetch": [
+              "Move",
+              "refrigerator"
+            ],
+            "Unitree_H1": [
+              "Place",
+              "refrigerator"
+            ]
+          }
+        },
+        {
+          "step": 10,
+          "actions": {
+            "Fetch": [
+              "Place",
+              "refrigerator"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "task_id": "task_46",
+    "task_description": "Store the tomato together with the scissors inside the cabinet to make the area neat and clean.",
+    "image": "46.png",
+    "answer": {
+      "selected_robots": [
+        "Fetch",
+        "Unitree_H1"
+      ],
+      "action_plan": [
+        {
+          "step": 1,
+          "actions": {
+            "Fetch": [
+              "Move",
+              "scissors"
+            ],
+            "Unitree_H1": [
+              "Move",
+              "tomato"
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "actions": {
+            "Fetch": [
+              "Reach",
+              "scissors"
+            ],
+            "Unitree_H1": [
+              "Reach",
+              "tomato"
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "actions": {
+            "Fetch": [
+              "Grasp",
+              "scissors"
+            ],
+            "Unitree_H1": [
+              "Grasp",
+              "tomato"
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "actions": {
+            "Fetch": [
+              "Move",
+              "cabinet"
+            ],
+            "Unitree_H1": [
+              "Move",
+              "cabinet"
+            ]
+          }
+        },
+        {
+          "step": 5,
+          "actions": {
+            "Unitree_H1": [
+              "Reach",
+              "cabinet"
+            ]
+          }
+        },
+        {
+          "step": 6,
+          "actions": {
+            "Unitree_H1": [
+              "Open",
+              "cabinet"
+            ]
+          }
+        },
+        {
+          "step": 7,
+          "actions": {
+            "Fetch": [
+              "Place",
+              "cabinet"
+            ],
+            "Unitree_H1": [
+              "Place",
+              "cabinet"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "task_id": "task_52",
+    "task_description": "Position the apple on the wooden cutting board; slice it neatly with the knife.",
+    "image": "52.png",
+    "answer": {
+      "selected_robots": [
+        "Unitree_H1",
+        "Fetch"
+      ],
+      "action_plan": [
+        {
+          "step": 1,
+          "actions": {
+            "Unitree_H1": [
+              "Move",
+              "knife"
+            ],
+            "Fetch": [
+              "Move",
+              "apple"
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "actions": {
+            "Unitree_H1": [
+              "Reach",
+              "knife"
+            ],
+            "Fetch": [
+              "Reach",
+              "apple"
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "actions": {
+            "Unitree_H1": [
+              "Grasp",
+              "knife"
+            ],
+            "Fetch": [
+              "Grasp",
+              "apple"
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "actions": {
+            "Unitree_H1": [
+              "Move",
+              "wooden cutting board"
+            ],
+            "Fetch": [
+              "Move",
+              "wooden cutting board"
+            ]
+          }
+        },
+        {
+          "step": 5,
+          "actions": {
+            "Unitree_H1": [
+              "Reach",
+              "wooden cutting board"
+            ],
+            "Fetch": [
+              "Place",
+              "wooden cutting board"
+            ]
+          }
+        },
+        {
+          "step": 6,
+          "actions": {
+            "Unitree_H1": [
+              "Interact",
+              "knife"
+            ]
+          }
+        }
+      ]
+    }
+  }
+]

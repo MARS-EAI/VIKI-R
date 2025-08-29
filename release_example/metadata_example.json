@@ -1,0 +1,52 @@
+[
+  {
+    "image": "10.png",
+    "task_description": "Scan the table for any missing fruits-the pear or the tomato. Place them on the table, checking cabinet if necessary.",
+    "task_id": "task_10"
+  },
+  {
+    "image": "11.png",
+    "task_description": "Begin by placing the bowl onto the kitchen work area, then fetch the banana from the cabinet and load it into the bowl to complete the preparation.",
+    "task_id": "task_11"
+  },
+  {
+    "image": "13.png",
+    "task_description": "Transfer the apple over to the kitchen island area and ensure it is positioned correctly.",
+    "task_id": "task_13"
+  },
+  {
+    "image": "15.png",
+    "task_description": "Collect every food and drink on the table and store them properly on the rack.",
+    "task_id": "task_15"
+  },
+  {
+    "image": "30.png",
+    "task_description": "Go ahead and open the refrigerator.",
+    "task_id": "task_30"
+  },
+  {
+    "image": "35.png",
+    "task_description": "Let's store the tomato and the pumpkin safely in the plate.",
+    "task_id": "task_35"
+  },
+  {
+    "image": "36.png",
+    "task_description": "Place the bread into the toaster, turn it on, and meanwhile set the plate onto the kitchen island area for the breakfast setup.",
+    "task_id": "task_36"
+  },
+  {
+    "image": "42.png",
+    "task_description": "Clear the food away and arrange it in the refrigerator.",
+    "task_id": "task_42"
+  },
+  {
+    "image": "46.png",
+    "task_description": "Store the tomato together with the scissors inside the cabinet to make the area neat and clean.",
+    "task_id": "task_46"
+  },
+  {
+    "image": "52.png",
+    "task_description": "Position the apple on the wooden cutting board; slice it neatly with the knife.",
+    "task_id": "task_52"
+  }
+]
