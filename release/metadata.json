@@ -1,0 +1,1502 @@
+[
+  {
+    "image": "5.png",
+    "task_description": "Thoroughly check the table to ensure both the peach and the tomato are present. Retrieve the missing fruit, checking all possible locations, including cabinet.",
+    "task_id": "task_5"
+  },
+  {
+    "image": "7.png",
+    "task_description": "Carry out the operation of opening the oven.",
+    "task_id": "task_7"
+  },
+  {
+    "image": "10.png",
+    "task_description": "Scan the table for any missing fruits-the pear or the tomato. Place them on the table, checking cabinet if necessary.",
+    "task_id": "task_10"
+  },
+  {
+    "image": "11.png",
+    "task_description": "Begin by placing the bowl onto the kitchen work area, then fetch the banana from the cabinet and load it into the bowl to complete the preparation.",
+    "task_id": "task_11"
+  },
+  {
+    "image": "13.png",
+    "task_description": "Transfer the apple over to the kitchen island area and ensure it is positioned correctly.",
+    "task_id": "task_13"
+  },
+  {
+    "image": "15.png",
+    "task_description": "Collect every food and drink on the table and store them properly on the rack.",
+    "task_id": "task_15"
+  },
+  {
+    "image": "16.png",
+    "task_description": "Move to the refrigerator and make it open.",
+    "task_id": "task_16"
+  },
+  {
+    "image": "19.png",
+    "task_description": "Move the bread to the bowl. In case it's not visible, you may need to inspect the cabinet.",
+    "task_id": "task_19"
+  },
+  {
+    "image": "20.png",
+    "task_description": "Utilize your sensors to check the table. If either the apple or the tomato is missing, retrieve it from wherever it might be, including cabinet.",
+    "task_id": "task_20"
+  },
+  {
+    "image": "21.png",
+    "task_description": "Put the peach and the fork into the cabinet to clean up the workspace.",
+    "task_id": "task_21"
+  },
+  {
+    "image": "24.png",
+    "task_description": "Inspect the table visually. Ensure both the apple and the tomato are present. If not, fetch and place the missing fruit, checking all areas including cabinet.",
+    "task_id": "task_24"
+  },
+  {
+    "image": "25.png",
+    "task_description": "Look over the table; whichever of the bowl or plate is not already resting there, go get it and set it down.",
+    "task_id": "task_25"
+  },
+  {
+    "image": "26.png",
+    "task_description": "Carry out the operation of opening the cabinet.",
+    "task_id": "task_26"
+  },
+  {
+    "image": "29.png",
+    "task_description": "Move to the cabinet and make it open.",
+    "task_id": "task_29"
+  },
+  {
+    "image": "30.png",
+    "task_description": "Go ahead and open the refrigerator.",
+    "task_id": "task_30"
+  },
+  {
+    "image": "31.png",
+    "task_description": "Store the peach together with the knife inside the cabinet to make the area neat and clean.",
+    "task_id": "task_31"
+  },
+  {
+    "image": "32.png",
+    "task_description": "Inspect the table visually. Ensure both the peach and the tomato are present. If not, fetch and place the missing fruit, checking all areas including cabinet.",
+    "task_id": "task_32"
+  },
+  {
+    "image": "35.png",
+    "task_description": "Let's store the tomato and the pumpkin safely in the plate.",
+    "task_id": "task_35"
+  },
+  {
+    "image": "36.png",
+    "task_description": "Place the bread into the toaster, turn it on, and meanwhile set the plate onto the kitchen island area for the breakfast setup.",
+    "task_id": "task_36"
+  },
+  {
+    "image": "37.png",
+    "task_description": "Glance at the table to confirm both a apple and a tomato are present. If not, retrieve the missing fruit, ensuring to check all possible locations, including cabinet.",
+    "task_id": "task_37"
+  },
+  {
+    "image": "38.png",
+    "task_description": "Deliver the banana to the plate. Should it be hidden, open the cabinet and retrieve it.",
+    "task_id": "task_38"
+  },
+  {
+    "image": "39.png",
+    "task_description": "Take every food and drink off the table and place it on the rack.",
+    "task_id": "task_39"
+  },
+  {
+    "image": "41.png",
+    "task_description": "Collect every food and drink on the table and store them properly on the rack.",
+    "task_id": "task_41"
+  },
+  {
+    "image": "42.png",
+    "task_description": "Clear the food away and arrange it in the refrigerator.",
+    "task_id": "task_42"
+  },
+  {
+    "image": "43.png",
+    "task_description": "Navigate to the oven and open it.",
+    "task_id": "task_43"
+  },
+  {
+    "image": "44.png",
+    "task_description": "Store the peach together with the spoon inside the cabinet to make the area neat and clean.",
+    "task_id": "task_44"
+  },
+  {
+    "image": "46.png",
+    "task_description": "Store the tomato together with the scissors inside the cabinet to make the area neat and clean.",
+    "task_id": "task_46"
+  },
+  {
+    "image": "49.png",
+    "task_description": "Inspect the table visually. Ensure both the peach and the tomato are present. If not, fetch and place the missing fruit, checking all areas including cabinet.",
+    "task_id": "task_49"
+  },
+  {
+    "image": "50.png",
+    "task_description": "Place the banana onto the bowl. Should it be missing, check the cabinet before proceeding.",
+    "task_id": "task_50"
+  },
+  {
+    "image": "52.png",
+    "task_description": "Position the apple on the wooden cutting board; slice it neatly with the knife.",
+    "task_id": "task_52"
+  },
+  {
+    "image": "54.png",
+    "task_description": "Collect the bread and scissors, and place them neatly into the cabinet to finish cleaning.",
+    "task_id": "task_54"
+  },
+  {
+    "image": "55.png",
+    "task_description": "Observe the table for both the bowl and plate. Bring along whichever plate or bowl you don't detect.",
+    "task_id": "task_55"
+  },
+  {
+    "image": "56.png",
+    "task_description": "Transfer every item of food and drink from the table onto the rack.",
+    "task_id": "task_56"
+  },
+  {
+    "image": "77.png",
+    "task_description": "Put the bread on the plate; if it's not out here, it could be hiding in the cabinet, so look carefully.",
+    "task_id": "task_77"
+  },
+  {
+    "image": "85.png",
+    "task_description": "Survey the table closely. Identify which fruit-the peach or the tomato-is absent, then bring it to the table from its current location, which may include cabinet.",
+    "task_id": "task_85"
+  },
+  {
+    "image": "102.png",
+    "task_description": "Put the bowl on the kitchen work area as the base, then collect the bread from the cabinet and place it into the bowl to get ready for a meal.",
+    "task_id": "task_102"
+  },
+  {
+    "image": "103.png",
+    "task_description": "Transfer the pumpkin over to the kitchen island area and ensure it is positioned correctly.",
+    "task_id": "task_103"
+  },
+  {
+    "image": "111.png",
+    "task_description": "Gather all food and drink from the table and neatly arrange them on the rack.",
+    "task_id": "task_111"
+  },
+  {
+    "image": "113.png",
+    "task_description": "Gather all food and drink from the table and neatly arrange them on the rack.",
+    "task_id": "task_113"
+  },
+  {
+    "image": "115.png",
+    "task_description": "Glance at the table to confirm both a peach and a tomato are present. If not, retrieve the missing fruit, ensuring to check all possible locations, including cabinet.",
+    "task_id": "task_115"
+  },
+  {
+    "image": "116.png",
+    "task_description": "Approach the oven and make sure to open it.",
+    "task_id": "task_116"
+  },
+  {
+    "image": "118.png",
+    "task_description": "Scan the table for any missing fruits-the apple or the banana. Place them on the table, checking cabinet if necessary.",
+    "task_id": "task_118"
+  },
+  {
+    "image": "119.png",
+    "task_description": "Gather the pear and tomato, and carefully place them into the plate for organization.",
+    "task_id": "task_119"
+  },
+  {
+    "image": "123.png",
+    "task_description": "Carry out the operation of opening the refrigerator.",
+    "task_id": "task_123"
+  },
+  {
+    "image": "125.png",
+    "task_description": "Move to the cabinet and make it open.",
+    "task_id": "task_125"
+  },
+  {
+    "image": "126.png",
+    "task_description": "Survey the table closely. Identify which fruit-the pear or the banana-is absent, then bring it to the table from its current location, which may include cabinet.",
+    "task_id": "task_126"
+  },
+  {
+    "image": "127.png",
+    "task_description": "Place the bread neatly on the bowl. If it's absent, the cabinet is worth checking.",
+    "task_id": "task_127"
+  },
+  {
+    "image": "129.png",
+    "task_description": "Navigate to the refrigerator and open it.",
+    "task_id": "task_129"
+  },
+  {
+    "image": "138.png",
+    "task_description": "Relocate the food and drink from the table to the rack for storage.",
+    "task_id": "task_138"
+  },
+  {
+    "image": "139.png",
+    "task_description": "Ensure all food and drinks are taken off the table and placed on the rack.",
+    "task_id": "task_139"
+  },
+  {
+    "image": "146.png",
+    "task_description": "Gather the pear and pizza, and carefully place them into the plate for organization.",
+    "task_id": "task_146"
+  },
+  {
+    "image": "147.png",
+    "task_description": "Carry the food and put it to the refrigerator.",
+    "task_id": "task_147"
+  },
+  {
+    "image": "151.png",
+    "task_description": "Set the peach on the wooden cutting board, then apply the knife to slice it.",
+    "task_id": "task_151"
+  },
+  {
+    "image": "153.png",
+    "task_description": "Prepare the wooden cutting board with the peach and proceed to cut it using the knife.",
+    "task_id": "task_153"
+  },
+  {
+    "image": "156.png",
+    "task_description": "Put the bread on the bowl; if it isn't on the counter, it might still be in the cabinet, so check there.",
+    "task_id": "task_156"
+  },
+  {
+    "image": "160.png",
+    "task_description": "Glance at the table to confirm both a pear and a tomato are present. If not, retrieve the missing fruit, ensuring to check all possible locations, including cabinet.",
+    "task_id": "task_160"
+  },
+  {
+    "image": "161.png",
+    "task_description": "Verify with a quick inspection that the table holds both the peach and the tomato. Retrieve the missing fruit from wherever it is, including cabinet, if necessary.",
+    "task_id": "task_161"
+  },
+  {
+    "image": "164.png",
+    "task_description": "Glance at the table and confirm it holds one bowl and one plate. Fetch the dish that's still absent.",
+    "task_id": "task_164"
+  },
+  {
+    "image": "172.png",
+    "task_description": "Please carefully place the pumpkin onto the kitchen island area to continue the preparation.",
+    "task_id": "task_172"
+  },
+  {
+    "image": "173.png",
+    "task_description": "Relocate the pumpkin and banana side by side into the plate.",
+    "task_id": "task_173"
+  },
+  {
+    "image": "181.png",
+    "task_description": "Relocate the food and drink from the table to the rack for storage.",
+    "task_id": "task_181"
+  },
+  {
+    "image": "182.png",
+    "task_description": "Scan the table for any missing fruits-the peach or the banana. Place them on the table, checking cabinet if necessary.",
+    "task_id": "task_182"
+  },
+  {
+    "image": "185.png",
+    "task_description": "Move to the cabinet and make it open.",
+    "task_id": "task_185"
+  },
+  {
+    "image": "188.png",
+    "task_description": "Relocate the food and put it neatly in the refrigerator.",
+    "task_id": "task_188"
+  },
+  {
+    "image": "192.png",
+    "task_description": "Take every food and drink off the table and place it on the rack.",
+    "task_id": "task_192"
+  },
+  {
+    "image": "194.png",
+    "task_description": "Collect every food and drink on the table and store them properly on the rack.",
+    "task_id": "task_194"
+  },
+  {
+    "image": "196.png",
+    "task_description": "Glance at the table and confirm it holds one bowl and one plate. Fetch the dish that's still absent.",
+    "task_id": "task_196"
+  },
+  {
+    "image": "198.png",
+    "task_description": "Go ahead and open the cabinet.",
+    "task_id": "task_198"
+  },
+  {
+    "image": "200.png",
+    "task_description": "Move the tomato to the kitchen work area so it is ready for the next step.",
+    "task_id": "task_200"
+  },
+  {
+    "image": "206.png",
+    "task_description": "Move to the oven and make it open.",
+    "task_id": "task_206"
+  },
+  {
+    "image": "207.png",
+    "task_description": "Gather all food and drink from the table and neatly arrange them on the rack.",
+    "task_id": "task_207"
+  },
+  {
+    "image": "215.png",
+    "task_description": "Go ahead and open the refrigerator.",
+    "task_id": "task_215"
+  },
+  {
+    "image": "222.png",
+    "task_description": "Go ahead and open the oven.",
+    "task_id": "task_222"
+  },
+  {
+    "image": "225.png",
+    "task_description": "Verify with a quick look that the table hosts both the bowl and plate. Retrieve and add the missing one if necessary.",
+    "task_id": "task_225"
+  },
+  {
+    "image": "226.png",
+    "task_description": "Approach the refrigerator and make sure to open it.",
+    "task_id": "task_226"
+  },
+  {
+    "image": "229.png",
+    "task_description": "Collect every food item and deposit it in the oven.",
+    "task_id": "task_229"
+  },
+  {
+    "image": "235.png",
+    "task_description": "Carry out the operation of opening the oven.",
+    "task_id": "task_235"
+  },
+  {
+    "image": "240.png",
+    "task_description": "Transfer every item of food and drink from the table onto the rack.",
+    "task_id": "task_240"
+  },
+  {
+    "image": "245.png",
+    "task_description": "Examine the table closely. If either the apple or the banana is not present, retrieve it from its current location, including cabinet, and place it on the table.",
+    "task_id": "task_245"
+  },
+  {
+    "image": "247.png",
+    "task_description": "Arrange the bowl on the kitchen island area, and afterwards, retrieve the bread from the cabinet, placing it into the bowl to finalize the table setup.",
+    "task_id": "task_247"
+  },
+  {
+    "image": "248.png",
+    "task_description": "Place the bowl on the kitchen island area, then fetch the tomato from the cabinet and put it into the bowl to prepare the dining setup.",
+    "task_id": "task_248"
+  },
+  {
+    "image": "250.png",
+    "task_description": "Pick up the kettle and place it on the rack to set things up.",
+    "task_id": "task_250"
+  },
+  {
+    "image": "258.png",
+    "task_description": "Take every food and drink off the table and place it on the rack.",
+    "task_id": "task_258"
+  },
+  {
+    "image": "260.png",
+    "task_description": "Put all the food into the refrigerator for storage.",
+    "task_id": "task_260"
+  },
+  {
+    "image": "261.png",
+    "task_description": "Cut the pear with the knife once everything is on the wooden cutting board.",
+    "task_id": "task_261"
+  },
+  {
+    "image": "264.png",
+    "task_description": "Survey the table first; once you spot which item isn't present-the bowl or the plate-carry it to the table.",
+    "task_id": "task_264"
+  },
+  {
+    "image": "265.png",
+    "task_description": "Get the apple to the wooden cutting board and give it a clean cut with the knife.",
+    "task_id": "task_265"
+  },
+  {
+    "image": "275.png",
+    "task_description": "Begin by inserting the bread into the toaster, switch it on, and at the same time place the bowl on the kitchen island area to organize the workspace.",
+    "task_id": "task_275"
+  },
+  {
+    "image": "280.png",
+    "task_description": "Put the peach on the kitchen work area so it can be used later.",
+    "task_id": "task_280"
+  },
+  {
+    "image": "289.png",
+    "task_description": "Organise things by dropping the banana and bread into the plate.",
+    "task_id": "task_289"
+  },
+  {
+    "image": "302.png",
+    "task_description": "Place the banana onto the plate. Should it be missing, have a quick look inside the cabinet.",
+    "task_id": "task_302"
+  },
+  {
+    "image": "303.png",
+    "task_description": "Start by setting the bowl on the kitchen island area, then pick up the tomato from the cabinet and put it into the bowl for organizing utensils.",
+    "task_id": "task_303"
+  },
+  {
+    "image": "307.png",
+    "task_description": "Move the food and drink away from the table and set them onto the rack.",
+    "task_id": "task_307"
+  },
+  {
+    "image": "313.png",
+    "task_description": "Survey the table first; once you spot which item isn't present-the bowl or the plate-carry it to the table.",
+    "task_id": "task_313"
+  },
+  {
+    "image": "315.png",
+    "task_description": "Observe the table for both the bowl and plate. Bring along whichever plate or bowl you don't detect.",
+    "task_id": "task_315"
+  },
+  {
+    "image": "319.png",
+    "task_description": "Set the bowl onto the kitchen work area, and retrieve the bread from the cabinet, placing it neatly inside the bowl for serving.",
+    "task_id": "task_319"
+  },
+  {
+    "image": "320.png",
+    "task_description": "Move to the oven and make it open.",
+    "task_id": "task_320"
+  },
+  {
+    "image": "321.png",
+    "task_description": "Observe the table for both the bowl and plate. Bring along whichever plate or bowl you don't detect.",
+    "task_id": "task_321"
+  },
+  {
+    "image": "323.png",
+    "task_description": "Place the apple onto the plate. Should it be missing, have a quick look inside the cabinet.",
+    "task_id": "task_323"
+  },
+  {
+    "image": "325.png",
+    "task_description": "Glance at the table to confirm both a peach and a banana are present. If not, retrieve the missing fruit, ensuring to check all possible locations, including cabinet.",
+    "task_id": "task_325"
+  },
+  {
+    "image": "327.png",
+    "task_description": "Carry the food and put it to the oven.",
+    "task_id": "task_327"
+  },
+  {
+    "image": "332.png",
+    "task_description": "Collect every food item and deposit it in the oven.",
+    "task_id": "task_332"
+  },
+  {
+    "image": "333.png",
+    "task_description": "Take every food and drink off the table and place it on the rack.",
+    "task_id": "task_333"
+  },
+  {
+    "image": "335.png",
+    "task_description": "Load the bread into the toaster, start its operation, and arrange the plate neatly on the kitchen island area.",
+    "task_id": "task_335"
+  },
+  {
+    "image": "336.png",
+    "task_description": "Carry out the operation of opening the oven.",
+    "task_id": "task_336"
+  },
+  {
+    "image": "337.png",
+    "task_description": "Move the food and drink away from the table and set them onto the rack.",
+    "task_id": "task_337"
+  },
+  {
+    "image": "339.png",
+    "task_description": "Empty the table by carrying every food and beverage item to the rack.",
+    "task_id": "task_339"
+  },
+  {
+    "image": "342.png",
+    "task_description": "Transfer the apple to the bowl. If you can't spot it, open the cabinet and retrieve it.",
+    "task_id": "task_342"
+  },
+  {
+    "image": "343.png",
+    "task_description": "Examine the table visually. When you find only one dish, supply the other so both the bowl and plate are in position.",
+    "task_id": "task_343"
+  },
+  {
+    "image": "349.png",
+    "task_description": "Make sure the tomato and pumpkin end up inside the bowl.",
+    "task_id": "task_349"
+  },
+  {
+    "image": "350.png",
+    "task_description": "Empty the table by carrying every food and beverage item to the rack.",
+    "task_id": "task_350"
+  },
+  {
+    "image": "353.png",
+    "task_description": "Go ahead and open the refrigerator.",
+    "task_id": "task_353"
+  },
+  {
+    "image": "359.png",
+    "task_description": "Utilize your sensors to check the table. If either the peach or the tomato is missing, retrieve it from wherever it might be, including cabinet.",
+    "task_id": "task_359"
+  },
+  {
+    "image": "361.png",
+    "task_description": "Move the food and drink away from the table and set them onto the rack.",
+    "task_id": "task_361"
+  },
+  {
+    "image": "362.png",
+    "task_description": "Observe the table for both the peach and banana. If one is missing, bring it along from any location, such as cabinet.",
+    "task_id": "task_362"
+  },
+  {
+    "image": "366.png",
+    "task_description": "Transfer the apple to the plate. If you can't spot it, open the cabinet and retrieve it.",
+    "task_id": "task_366"
+  },
+  {
+    "image": "367.png",
+    "task_description": "Put all the food into the refrigerator for storage.",
+    "task_id": "task_367"
+  },
+  {
+    "image": "371.png",
+    "task_description": "Carry out the operation of opening the oven.",
+    "task_id": "task_371"
+  },
+  {
+    "image": "374.png",
+    "task_description": "Check the table with your sensors. Should it lack either the bowl or the plate, deliver the missing one.",
+    "task_id": "task_374"
+  },
+  {
+    "image": "381.png",
+    "task_description": "Inspect the table thoroughly. If you find that both a peach and a tomato are missing, fetch the absent fruit from wherever it may be, including cabinet.",
+    "task_id": "task_381"
+  },
+  {
+    "image": "382.png",
+    "task_description": "Move the cooling fan to the rack so it is ready for the next step.",
+    "task_id": "task_382"
+  },
+  {
+    "image": "385.png",
+    "task_description": "Transfer the pumpkin along with the scissors into the cabinet for proper storage.",
+    "task_id": "task_385"
+  },
+  {
+    "image": "389.png",
+    "task_description": "Carry out the operation of opening the cabinet.",
+    "task_id": "task_389"
+  },
+  {
+    "image": "401.png",
+    "task_description": "Approach the oven and make sure to open it.",
+    "task_id": "task_401"
+  },
+  {
+    "image": "403.png",
+    "task_description": "Make sure the banana and pumpkin end up inside the bowl.",
+    "task_id": "task_403"
+  },
+  {
+    "image": "404.png",
+    "task_description": "Carry out the operation of opening the oven.",
+    "task_id": "task_404"
+  },
+  {
+    "image": "405.png",
+    "task_description": "Survey the table closely. Identify which fruit-the apple or the banana-is absent, then bring it to the table from its current location, which may include cabinet.",
+    "task_id": "task_405"
+  },
+  {
+    "image": "407.png",
+    "task_description": "Carry out the operation of opening the refrigerator.",
+    "task_id": "task_407"
+  },
+  {
+    "image": "410.png",
+    "task_description": "Load the bread into the toaster, start its operation, and arrange the plate neatly on the kitchen island area.",
+    "task_id": "task_410"
+  },
+  {
+    "image": "413.png",
+    "task_description": "Arrange the plate on the kitchen work area, and afterwards, retrieve the apple from the cabinet, placing it into the plate to finalize the table setup.",
+    "task_id": "task_413"
+  },
+  {
+    "image": "426.png",
+    "task_description": "Navigate to the refrigerator and open it.",
+    "task_id": "task_426"
+  },
+  {
+    "image": "430.png",
+    "task_description": "Arrange the plate on the kitchen work area, and afterwards, retrieve the tomato from the cabinet, placing it into the plate to finalize the table setup.",
+    "task_id": "task_430"
+  },
+  {
+    "image": "432.png",
+    "task_description": "Carry out the operation of opening the cabinet.",
+    "task_id": "task_432"
+  },
+  {
+    "image": "434.png",
+    "task_description": "Examine the table visually. When you find only one dish, supply the other so both the bowl and plate are in position.",
+    "task_id": "task_434"
+  },
+  {
+    "image": "440.png",
+    "task_description": "Ensure all food and drinks are taken off the table and placed on the rack.",
+    "task_id": "task_440"
+  },
+  {
+    "image": "441.png",
+    "task_description": "Set the bowl onto the kitchen island area, and retrieve the banana from the cabinet, placing it neatly inside the bowl for serving.",
+    "task_id": "task_441"
+  },
+  {
+    "image": "443.png",
+    "task_description": "Navigate to the refrigerator and open it.",
+    "task_id": "task_443"
+  },
+  {
+    "image": "450.png",
+    "task_description": "Place the apple onto the bowl. Should it be missing, have a quick look inside the cabinet.",
+    "task_id": "task_450"
+  },
+  {
+    "image": "451.png",
+    "task_description": "Put the banana on the plate; if it isn't on the counter, it might still be in the cabinet, so check there.",
+    "task_id": "task_451"
+  },
+  {
+    "image": "453.png",
+    "task_description": "Move the peach from its current location to the kitchen work area.",
+    "task_id": "task_453"
+  },
+  {
+    "image": "458.png",
+    "task_description": "Verify with a quick look that the table hosts both the bowl and plate. Retrieve and add the missing one if necessary.",
+    "task_id": "task_458"
+  },
+  {
+    "image": "459.png",
+    "task_description": "Carry out the operation of opening the oven.",
+    "task_id": "task_459"
+  },
+  {
+    "image": "462.png",
+    "task_description": "Time to clear the counter: get banana and pear, put them in the plate.",
+    "task_id": "task_462"
+  },
+  {
+    "image": "470.png",
+    "task_description": "Verify with a quick inspection that the table holds both the apple and the banana. Retrieve the missing fruit from wherever it is, including cabinet, if necessary.",
+    "task_id": "task_470"
+  },
+  {
+    "image": "471.png",
+    "task_description": "Place the bread into the toaster, turn it on, and meanwhile set the plate onto the kitchen work area for the breakfast setup.",
+    "task_id": "task_471"
+  },
+  {
+    "image": "472.png",
+    "task_description": "Move to the cabinet and make it open.",
+    "task_id": "task_472"
+  },
+  {
+    "image": "482.png",
+    "task_description": "Take a look at the table. If you don't see both a bowl and a plate there, bring over whichever dish is missing.",
+    "task_id": "task_482"
+  },
+  {
+    "image": "485.png",
+    "task_description": "Survey the table closely. Identify which fruit-the apple or the banana-is absent, then bring it to the table from its current location, which may include cabinet.",
+    "task_id": "task_485"
+  },
+  {
+    "image": "488.png",
+    "task_description": "Go ahead and open the cabinet.",
+    "task_id": "task_488"
+  },
+  {
+    "image": "489.png",
+    "task_description": "Collect the pumpkin and knife, and place them neatly into the cabinet to finish cleaning.",
+    "task_id": "task_489"
+  },
+  {
+    "image": "492.png",
+    "task_description": "Verify with a quick look that the table hosts both the bowl and plate. Retrieve and add the missing one if necessary.",
+    "task_id": "task_492"
+  },
+  {
+    "image": "493.png",
+    "task_description": "Verify with a quick inspection that the table holds both the pear and the banana. Retrieve the missing fruit from wherever it is, including cabinet, if necessary.",
+    "task_id": "task_493"
+  },
+  {
+    "image": "494.png",
+    "task_description": "Carry out the operation of opening the oven.",
+    "task_id": "task_494"
+  },
+  {
+    "image": "507.png",
+    "task_description": "Store the peach together with the knife inside the cabinet to make the area neat and clean.",
+    "task_id": "task_507"
+  },
+  {
+    "image": "510.png",
+    "task_description": "Arrange the bowl on the kitchen island area, and afterwards, retrieve the tomato from the cabinet, placing it into the bowl to finalize the table setup.",
+    "task_id": "task_510"
+  },
+  {
+    "image": "518.png",
+    "task_description": "Relocate the food and drink from the table to the rack for storage.",
+    "task_id": "task_518"
+  },
+  {
+    "image": "519.png",
+    "task_description": "Put the bread on the plate; if it isn't on the counter, it might still be in the cabinet, so check there.",
+    "task_id": "task_519"
+  },
+  {
+    "image": "522.png",
+    "task_description": "Observe the table for both the peach and banana. If one is missing, bring it along from any location, such as cabinet.",
+    "task_id": "task_522"
+  },
+  {
+    "image": "526.png",
+    "task_description": "Transfer the bread to the plate. If you can't spot it, open the cabinet and retrieve it.",
+    "task_id": "task_526"
+  },
+  {
+    "image": "527.png",
+    "task_description": "Put the tomato and the scissors into the cabinet to clean up the workspace.",
+    "task_id": "task_527"
+  },
+  {
+    "image": "529.png",
+    "task_description": "Inspect the table. Any dish you can't see-whether it's the bowl or the plate-needs to be fetched and placed.",
+    "task_id": "task_529"
+  },
+  {
+    "image": "531.png",
+    "task_description": "Carry the food and put it to the oven.",
+    "task_id": "task_531"
+  },
+  {
+    "image": "532.png",
+    "task_description": "Load the bread into the toaster, start its operation, and arrange the bowl neatly on the kitchen work area.",
+    "task_id": "task_532"
+  },
+  {
+    "image": "534.png",
+    "task_description": "Put the bread on the plate; if it's not out here, it could be hiding in the cabinet, so look carefully.",
+    "task_id": "task_534"
+  },
+  {
+    "image": "535.png",
+    "task_description": "Survey the table closely. Identify which fruit-the peach or the banana-is absent, then bring it to the table from its current location, which may include cabinet.",
+    "task_id": "task_535"
+  },
+  {
+    "image": "536.png",
+    "task_description": "Store the pumpkin together with the scissors inside the cabinet to make the area neat and clean.",
+    "task_id": "task_536"
+  },
+  {
+    "image": "538.png",
+    "task_description": "Place the bowl onto the kitchen island area to create space for serving, then gather the apple from the cabinet and deposit it into the bowl.",
+    "task_id": "task_538"
+  },
+  {
+    "image": "544.png",
+    "task_description": "Survey the table first; once you spot which item isn't present-the bowl or the plate-carry it to the table.",
+    "task_id": "task_544"
+  },
+  {
+    "image": "546.png",
+    "task_description": "Transfer every item of food and drink from the table onto the rack.",
+    "task_id": "task_546"
+  },
+  {
+    "image": "549.png",
+    "task_description": "Put the plate on the kitchen work area as the base, then collect the tomato from the cabinet and place it into the plate to get ready for a meal.",
+    "task_id": "task_549"
+  },
+  {
+    "image": "550.png",
+    "task_description": "Prepare the wooden cutting board with the pear and proceed to cut it using the knife.",
+    "task_id": "task_550"
+  },
+  {
+    "image": "551.png",
+    "task_description": "Move the pumpkin to the kitchen work area so it is ready for the next step.",
+    "task_id": "task_551"
+  },
+  {
+    "image": "558.png",
+    "task_description": "Approach the cabinet and make sure to open it.",
+    "task_id": "task_558"
+  },
+  {
+    "image": "567.png",
+    "task_description": "Prepare the wooden cutting board with the apple and proceed to cut it using the knife.",
+    "task_id": "task_567"
+  },
+  {
+    "image": "568.png",
+    "task_description": "Begin by placing the bowl onto the kitchen work area, then fetch the banana from the cabinet and load it into the bowl to complete the preparation.",
+    "task_id": "task_568"
+  },
+  {
+    "image": "569.png",
+    "task_description": "Observe the table for both the peach and banana. If one is missing, bring it along from any location, such as cabinet.",
+    "task_id": "task_569"
+  },
+  {
+    "image": "573.png",
+    "task_description": "First, position the bowl on the kitchen work area, then carefully retrieve the apple from the cabinet and place it inside the bowl to complete the dining arrangement.",
+    "task_id": "task_573"
+  },
+  {
+    "image": "576.png",
+    "task_description": "Transfer the plate over to the rack and ensure it is positioned correctly.",
+    "task_id": "task_576"
+  },
+  {
+    "image": "579.png",
+    "task_description": "Go ahead and open the oven.",
+    "task_id": "task_579"
+  },
+  {
+    "image": "589.png",
+    "task_description": "Carry out the operation of opening the refrigerator.",
+    "task_id": "task_589"
+  },
+  {
+    "image": "590.png",
+    "task_description": "Put the bread into the toaster, turn on the device to begin, and place the plate on the kitchen work area to complete the setup.",
+    "task_id": "task_590"
+  },
+  {
+    "image": "592.png",
+    "task_description": "Carry out the operation of opening the refrigerator.",
+    "task_id": "task_592"
+  },
+  {
+    "image": "595.png",
+    "task_description": "Gather the bread and tomato, and carefully place them into the plate for organization.",
+    "task_id": "task_595"
+  },
+  {
+    "image": "596.png",
+    "task_description": "Verify with a quick look that the table hosts both the bowl and plate. Retrieve and add the missing one if necessary.",
+    "task_id": "task_596"
+  },
+  {
+    "image": "605.png",
+    "task_description": "Thoroughly check the table to ensure both the pear and the banana are present. Retrieve the missing fruit, checking all possible locations, including cabinet.",
+    "task_id": "task_605"
+  },
+  {
+    "image": "610.png",
+    "task_description": "Serve the bread on the bowl. If you don't see it nearby, it might be inside the cabinet-have a look.",
+    "task_id": "task_610"
+  },
+  {
+    "image": "612.png",
+    "task_description": "Ensure all food and drinks are taken off the table and placed on the rack.",
+    "task_id": "task_612"
+  },
+  {
+    "image": "622.png",
+    "task_description": "Get the bread onto the plate; remember, it may have been stored in the cabinet.",
+    "task_id": "task_622"
+  },
+  {
+    "image": "627.png",
+    "task_description": "Move to the cabinet and make it open.",
+    "task_id": "task_627"
+  },
+  {
+    "image": "629.png",
+    "task_description": "Go ahead and open the oven.",
+    "task_id": "task_629"
+  },
+  {
+    "image": "638.png",
+    "task_description": "Verify with a quick inspection that the table holds both the pear and the tomato. Retrieve the missing fruit from wherever it is, including cabinet, if necessary.",
+    "task_id": "task_638"
+  },
+  {
+    "image": "640.png",
+    "task_description": "Move to the oven and make it open.",
+    "task_id": "task_640"
+  },
+  {
+    "image": "644.png",
+    "task_description": "Thoroughly check the table to ensure both the peach and the tomato are present. Retrieve the missing fruit, checking all possible locations, including cabinet.",
+    "task_id": "task_644"
+  },
+  {
+    "image": "646.png",
+    "task_description": "Load the bread into the toaster, start its operation, and arrange the plate neatly on the kitchen island area.",
+    "task_id": "task_646"
+  },
+  {
+    "image": "664.png",
+    "task_description": "Thoroughly check the table to ensure both the peach and the tomato are present. Retrieve the missing fruit, checking all possible locations, including cabinet.",
+    "task_id": "task_664"
+  },
+  {
+    "image": "674.png",
+    "task_description": "Put away the peach and scissors by placing them into the cabinet to prepare for the next task.",
+    "task_id": "task_674"
+  },
+  {
+    "image": "677.png",
+    "task_description": "Carry out the operation of opening the oven.",
+    "task_id": "task_677"
+  },
+  {
+    "image": "685.png",
+    "task_description": "Set the pear on the wooden cutting board, then apply the knife to slice it.",
+    "task_id": "task_685"
+  },
+  {
+    "image": "688.png",
+    "task_description": "Let's store the apple and the pumpkin safely in the bowl.",
+    "task_id": "task_688"
+  },
+  {
+    "image": "691.png",
+    "task_description": "Take all food from here and store it in the refrigerator.",
+    "task_id": "task_691"
+  },
+  {
+    "image": "694.png",
+    "task_description": "Could you place the tomato along with the bread inside the plate?",
+    "task_id": "task_694"
+  },
+  {
+    "image": "705.png",
+    "task_description": "Transfer the apple over to the kitchen island area and ensure it is positioned correctly.",
+    "task_id": "task_705"
+  },
+  {
+    "image": "720.png",
+    "task_description": "Transfer the tomato along with the spoon into the cabinet for proper storage.",
+    "task_id": "task_720"
+  },
+  {
+    "image": "728.png",
+    "task_description": "Put the apple on the plate; if it isn't on the counter, it might still be in the cabinet, so check there.",
+    "task_id": "task_728"
+  },
+  {
+    "image": "741.png",
+    "task_description": "Start by setting the bowl on the kitchen work area, then pick up the banana from the cabinet and put it into the bowl for organizing utensils.",
+    "task_id": "task_741"
+  },
+  {
+    "image": "745.png",
+    "task_description": "Gather the pumpkin and the knife, and store them inside the cabinet to clear the space.",
+    "task_id": "task_745"
+  },
+  {
+    "image": "748.png",
+    "task_description": "Load the bread into the toaster, start its operation, and arrange the bowl neatly on the kitchen work area.",
+    "task_id": "task_748"
+  },
+  {
+    "image": "749.png",
+    "task_description": "Ensure that both the tomato and scissors are placed into the cabinet to maintain order in the workspace.",
+    "task_id": "task_749"
+  },
+  {
+    "image": "750.png",
+    "task_description": "Put the bread into the toaster, turn on the device to begin, and place the plate on the kitchen island area to complete the setup.",
+    "task_id": "task_750"
+  },
+  {
+    "image": "754.png",
+    "task_description": "Take all food from here and store it in the refrigerator.",
+    "task_id": "task_754"
+  },
+  {
+    "image": "760.png",
+    "task_description": "Clear the food away and arrange it in the oven.",
+    "task_id": "task_760"
+  },
+  {
+    "image": "763.png",
+    "task_description": "Move the bread to the bowl. In case it isn't visible, inspect the cabinet first.",
+    "task_id": "task_763"
+  },
+  {
+    "image": "770.png",
+    "task_description": "First, position the bowl on the kitchen work area, then carefully retrieve the banana from the cabinet and place it inside the bowl to complete the dining arrangement.",
+    "task_id": "task_770"
+  },
+  {
+    "image": "777.png",
+    "task_description": "Please carefully place the wine onto the kitchen island area to continue the preparation.",
+    "task_id": "task_777"
+  },
+  {
+    "image": "779.png",
+    "task_description": "Make sure the apple and green peas end up inside the plate.",
+    "task_id": "task_779"
+  },
+  {
+    "image": "784.png",
+    "task_description": "Move the bread to the plate. In case it's not visible, you may need to inspect the cabinet.",
+    "task_id": "task_784"
+  },
+  {
+    "image": "790.png",
+    "task_description": "Examine the table visually. When you find only one dish, supply the other so both the bowl and plate are in position.",
+    "task_id": "task_790"
+  },
+  {
+    "image": "794.png",
+    "task_description": "Make sure the banana and pear end up inside the bowl.",
+    "task_id": "task_794"
+  },
+  {
+    "image": "810.png",
+    "task_description": "Ensure that both the pumpkin and scissors are placed into the cabinet to maintain order in the workspace.",
+    "task_id": "task_810"
+  },
+  {
+    "image": "818.png",
+    "task_description": "Observe the table for both the bowl and plate. Bring along whichever plate or bowl you don't detect.",
+    "task_id": "task_818"
+  },
+  {
+    "image": "822.png",
+    "task_description": "Begin by placing the plate onto the kitchen island area, then fetch the bread from the cabinet and load it into the plate to complete the preparation.",
+    "task_id": "task_822"
+  },
+  {
+    "image": "825.png",
+    "task_description": "Look over the table; whichever of the bowl or plate is not already resting there, go get it and set it down.",
+    "task_id": "task_825"
+  },
+  {
+    "image": "826.png",
+    "task_description": "Move the apple to the bowl. In case it isn't visible, inspect the cabinet first.",
+    "task_id": "task_826"
+  },
+  {
+    "image": "828.png",
+    "task_description": "Ensure all food and drinks are taken off the table and placed on the rack.",
+    "task_id": "task_828"
+  },
+  {
+    "image": "831.png",
+    "task_description": "Transfer the banana to the plate. If you can't spot it, open the cabinet and retrieve it.",
+    "task_id": "task_831"
+  },
+  {
+    "image": "834.png",
+    "task_description": "Arrange the bowl on the kitchen island area, and afterwards, retrieve the apple from the cabinet, placing it into the bowl to finalize the table setup.",
+    "task_id": "task_834"
+  },
+  {
+    "image": "836.png",
+    "task_description": "Move the banana to the plate. In case it isn't visible, inspect the cabinet first.",
+    "task_id": "task_836"
+  },
+  {
+    "image": "840.png",
+    "task_description": "Move the pizza from its current location to the rack.",
+    "task_id": "task_840"
+  },
+  {
+    "image": "841.png",
+    "task_description": "Transfer the bread to the plate. If you can't spot it, open the cabinet and retrieve it.",
+    "task_id": "task_841"
+  },
+  {
+    "image": "856.png",
+    "task_description": "Collect the peach and knife, and place them neatly into the cabinet to finish cleaning.",
+    "task_id": "task_856"
+  },
+  {
+    "image": "859.png",
+    "task_description": "Place the apple on the wooden cutting board and finish by cutting it with the knife.",
+    "task_id": "task_859"
+  },
+  {
+    "image": "875.png",
+    "task_description": "Clear the food away and arrange it in the refrigerator.",
+    "task_id": "task_875"
+  },
+  {
+    "image": "880.png",
+    "task_description": "Kindly relocate both tomato and pumpkin to the bowl for me.",
+    "task_id": "task_880"
+  },
+  {
+    "image": "883.png",
+    "task_description": "Check the table with your sensors. Should it lack either the bowl or the plate, deliver the missing one.",
+    "task_id": "task_883"
+  },
+  {
+    "image": "898.png",
+    "task_description": "Arrange the plate on the kitchen work area, and afterwards, retrieve the tomato from the cabinet, placing it into the plate to finalize the table setup.",
+    "task_id": "task_898"
+  },
+  {
+    "image": "902.png",
+    "task_description": "Transfer the apple to the bowl. If it's nowhere outside, open the cabinet and fetch it.",
+    "task_id": "task_902"
+  },
+  {
+    "image": "918.png",
+    "task_description": "Please carefully place the pear onto the rack to continue the preparation.",
+    "task_id": "task_918"
+  },
+  {
+    "image": "928.png",
+    "task_description": "Please place every piece of food inside the oven.",
+    "task_id": "task_928"
+  },
+  {
+    "image": "952.png",
+    "task_description": "Relocate the food and put it neatly in the refrigerator.",
+    "task_id": "task_952"
+  },
+  {
+    "image": "974.png",
+    "task_description": "Pick up the pumpkin and tomato, and transport them into the plate together.",
+    "task_id": "task_974"
+  },
+  {
+    "image": "986.png",
+    "task_description": "Take the peach and move it to the kitchen work area in an orderly manner.",
+    "task_id": "task_986"
+  },
+  {
+    "image": "990.png",
+    "task_description": "Transfer the peach along with the scissors into the cabinet for proper storage.",
+    "task_id": "task_990"
+  },
+  {
+    "image": "1004.png",
+    "task_description": "Inspect the table. Any dish you can't see-whether it's the bowl or the plate-needs to be fetched and placed.",
+    "task_id": "task_1004"
+  },
+  {
+    "image": "1006.png",
+    "task_description": "Pick up the peach and spoon and carefully deposit them into the cabinet for cleanup.",
+    "task_id": "task_1006"
+  },
+  {
+    "image": "1016.png",
+    "task_description": "Ensure all food and drinks are taken off the table and placed on the rack.",
+    "task_id": "task_1016"
+  },
+  {
+    "image": "1026.png",
+    "task_description": "Look over the table; whichever of the bowl or plate is not already resting there, go get it and set it down.",
+    "task_id": "task_1026"
+  },
+  {
+    "image": "1028.png",
+    "task_description": "Put the bowl on the kitchen island area as the base, then collect the tomato from the cabinet and place it into the bowl to get ready for a meal.",
+    "task_id": "task_1028"
+  },
+  {
+    "image": "1031.png",
+    "task_description": "Pick up the spoon and place it on the kitchen island area to set things up.",
+    "task_id": "task_1031"
+  },
+  {
+    "image": "1038.png",
+    "task_description": "Gently move the cooling fan onto the kitchen island area to complete this part of the task.",
+    "task_id": "task_1038"
+  },
+  {
+    "image": "1057.png",
+    "task_description": "Collect every food and drink on the table and store them properly on the rack.",
+    "task_id": "task_1057"
+  },
+  {
+    "image": "1062.png",
+    "task_description": "I need the apple with the pear transferred to the plate pronto!",
+    "task_id": "task_1062"
+  },
+  {
+    "image": "1068.png",
+    "task_description": "Scan the table. If one of the two dishes-the bowl or the plate-isn't present, place it there.",
+    "task_id": "task_1068"
+  },
+  {
+    "image": "1086.png",
+    "task_description": "Gather the bread and tomato, and carefully place them into the plate for organization.",
+    "task_id": "task_1086"
+  },
+  {
+    "image": "1102.png",
+    "task_description": "Pick up the pumpkin and knife and carefully deposit them into the cabinet for cleanup.",
+    "task_id": "task_1102"
+  },
+  {
+    "image": "1119.png",
+    "task_description": "I need the apple with the pear transferred to the plate pronto!",
+    "task_id": "task_1119"
+  },
+  {
+    "image": "1131.png",
+    "task_description": "Relocate the pear to the rack as instructed.",
+    "task_id": "task_1131"
+  },
+  {
+    "image": "1134.png",
+    "task_description": "Place the banana onto the plate. Should it be missing, have a quick look inside the cabinet.",
+    "task_id": "task_1134"
+  },
+  {
+    "image": "1135.png",
+    "task_description": "Get the peach to the wooden cutting board and give it a clean cut with the knife.",
+    "task_id": "task_1135"
+  },
+  {
+    "image": "1140.png",
+    "task_description": "Move both the pear and the banana into the bowl to prepare for serving.",
+    "task_id": "task_1140"
+  },
+  {
+    "image": "1141.png",
+    "task_description": "Ensure that both the peach and scissors are placed into the cabinet to maintain order in the workspace.",
+    "task_id": "task_1141"
+  },
+  {
+    "image": "1151.png",
+    "task_description": "Load the bread into the toaster, start its operation, and arrange the plate neatly on the kitchen island area.",
+    "task_id": "task_1151"
+  },
+  {
+    "image": "1167.png",
+    "task_description": "Move the meat together with the banana into the bowl to complete this step.",
+    "task_id": "task_1167"
+  },
+  {
+    "image": "1185.png",
+    "task_description": "Put the apple on the bowl; if it's not out here, it could be hiding in the cabinet, so look carefully.",
+    "task_id": "task_1185"
+  },
+  {
+    "image": "1233.png",
+    "task_description": "Pick up the pumpkin and place it on the kitchen work area to set things up.",
+    "task_id": "task_1233"
+  },
+  {
+    "image": "1251.png",
+    "task_description": "Put the bread into the toaster, turn on the device to begin, and place the plate on the kitchen island area to complete the setup.",
+    "task_id": "task_1251"
+  },
+  {
+    "image": "1253.png",
+    "task_description": "Transfer the bread to the bowl. If you can't spot it, open the cabinet and retrieve it.",
+    "task_id": "task_1253"
+  },
+  {
+    "image": "1254.png",
+    "task_description": "Pick up the banana and place it on the kitchen island area to set things up.",
+    "task_id": "task_1254"
+  },
+  {
+    "image": "1276.png",
+    "task_description": "Place the banana neatly on the bowl. If it's absent, the cabinet is worth checking.",
+    "task_id": "task_1276"
+  },
+  {
+    "image": "1285.png",
+    "task_description": "Serve the apple on the bowl. If you don't see it nearby, it might be inside the cabinet-have a look.",
+    "task_id": "task_1285"
+  },
+  {
+    "image": "1290.png",
+    "task_description": "Please tidy up by getting the apple and bread into the plate.",
+    "task_id": "task_1290"
+  },
+  {
+    "image": "1292.png",
+    "task_description": "Pick up the pear and tomato, and transport them into the bowl together.",
+    "task_id": "task_1292"
+  },
+  {
+    "image": "1307.png",
+    "task_description": "Gather the pumpkin and tomato, and carefully place them into the plate for organization.",
+    "task_id": "task_1307"
+  },
+  {
+    "image": "1309.png",
+    "task_description": "Put the bread on the plate; if it isn't on the counter, it might still be in the cabinet, so check there.",
+    "task_id": "task_1309"
+  },
+  {
+    "image": "1321.png",
+    "task_description": "Move the apple to the plate. In case it's not visible, you may need to inspect the cabinet.",
+    "task_id": "task_1321"
+  },
+  {
+    "image": "1325.png",
+    "task_description": "Put the bread into the toaster, turn on the device to begin, and place the bowl on the kitchen work area to complete the setup.",
+    "task_id": "task_1325"
+  },
+  {
+    "image": "1370.png",
+    "task_description": "Move the apple to the bowl. In case it isn't visible, inspect the cabinet first.",
+    "task_id": "task_1370"
+  },
+  {
+    "image": "1374.png",
+    "task_description": "Load the bread into the toaster, start its operation, and arrange the plate neatly on the kitchen island area.",
+    "task_id": "task_1374"
+  },
+  {
+    "image": "1376.png",
+    "task_description": "Move those two items - the tomato and pumpkin - into the bowl.",
+    "task_id": "task_1376"
+  },
+  {
+    "image": "1424.png",
+    "task_description": "Clear the table by moving all the food and beverages to the rack.",
+    "task_id": "task_1424"
+  },
+  {
+    "image": "1435.png",
+    "task_description": "Both the meat and pumpkin belong in the bowl; make it happen.",
+    "task_id": "task_1435"
+  },
+  {
+    "image": "1444.png",
+    "task_description": "Put the apple on the plate; if it isn't on the counter, it might still be in the cabinet, so check there.",
+    "task_id": "task_1444"
+  },
+  {
+    "image": "1473.png",
+    "task_description": "Move the apple to the plate. In case it's not visible, you may need to inspect the cabinet.",
+    "task_id": "task_1473"
+  },
+  {
+    "image": "1479.png",
+    "task_description": "Clear the food away and arrange it in the refrigerator.",
+    "task_id": "task_1479"
+  },
+  {
+    "image": "1491.png",
+    "task_description": "Lay the apple on the plate. Sometimes it's kept in the cabinet, so check there if needed.",
+    "task_id": "task_1491"
+  },
+  {
+    "image": "1493.png",
+    "task_description": "Empty the table by carrying every food and beverage item to the rack.",
+    "task_id": "task_1493"
+  },
+  {
+    "image": "1497.png",
+    "task_description": "Put all the food into the refrigerator for storage.",
+    "task_id": "task_1497"
+  },
+  {
+    "image": "1502.png",
+    "task_description": "Carry the food and put it to the refrigerator.",
+    "task_id": "task_1502"
+  },
+  {
+    "image": "1511.png",
+    "task_description": "Serve the banana on the bowl. If you don't see it nearby, it might be inside the cabinet-have a look.",
+    "task_id": "task_1511"
+  },
+  {
+    "image": "1513.png",
+    "task_description": "Serve the bread on the bowl. If you don't see it nearby, it might be inside the cabinet-have a look.",
+    "task_id": "task_1513"
+  },
+  {
+    "image": "1536.png",
+    "task_description": "Please tidy up by getting the tomato and bread into the bowl.",
+    "task_id": "task_1536"
+  },
+  {
+    "image": "1551.png",
+    "task_description": "Place the banana onto the bowl. Should it be missing, check the cabinet before proceeding.",
+    "task_id": "task_1551"
+  },
+  {
+    "image": "1618.png",
+    "task_description": "Ensure all food is moved over to the refrigerator.",
+    "task_id": "task_1618"
+  },
+  {
+    "image": "1624.png",
+    "task_description": "Begin by inserting the bread into the toaster, switch it on, and at the same time place the bowl on the kitchen work area to organize the workspace.",
+    "task_id": "task_1624"
+  },
+  {
+    "image": "1631.png",
+    "task_description": "Clear the food away and arrange it in the oven.",
+    "task_id": "task_1631"
+  },
+  {
+    "image": "1651.png",
+    "task_description": "I need the banana with the pumpkin transferred to the bowl pronto!",
+    "task_id": "task_1651"
+  },
+  {
+    "image": "1688.png",
+    "task_description": "Gather all food and drink from the table and neatly arrange them on the rack.",
+    "task_id": "task_1688"
+  },
+  {
+    "image": "1722.png",
+    "task_description": "Put the bread on the bowl; if it's not out here, it could be hiding in the cabinet, so look carefully.",
+    "task_id": "task_1722"
+  },
+  {
+    "image": "1811.png",
+    "task_description": "Move those two items - the tomato and green peas - into the plate.",
+    "task_id": "task_1811"
+  },
+  {
+    "image": "1873.png",
+    "task_description": "Move those two items - the tomato and green peas - into the plate.",
+    "task_id": "task_1873"
+  },
+  {
+    "image": "1885.png",
+    "task_description": "Please tidy up by getting the tomato and bread into the bowl.",
+    "task_id": "task_1885"
+  }
+]
