@@ -16,7 +16,14 @@
 - **VIKI-R** builds on **Qwen2.5-VL-Instruct** (3B/7B) via:  
   1. **Supervised Fine-Tuning (SFT)** with high quality Chain-of-Thought (CoT) annotations.
   2. **Reinforcement Fine-Tuning (RFT)** using Grouped Relative Policy Optimization (GRPO) and combined diverse rewards.
-     
+
+## 🕓 Update Timeline
+
+- **2025.10.20** – Released checkpoints of **VIKI-R**! Includes 3-layer models with **3B** and **7B** parameters.
+- **2025.09.19** – Our paper was **accepted to NeurIPS 2025 (Datasets and Benchmarks Track)** 🎉
+- **2025.08.15** – Our work became part of the **[MARS Challenge (Plan Track)](https://mars-eai.github.io/MARS-Challenge-Webpage/)** — welcome to participate!
+- **2025.06.09** – Released the **paper and code** for public access.
+
 ## 🎯 Key Features
 
 - **Hierarchical Dataset**: 23,737 tasks, 100 scenes, 6 robot types, ≥1,000 asset combos. 
@@ -146,8 +153,8 @@ python gpt4o.py
 
 | Model Size | Levels Supported | Training Stages   | Download           | Status      |
 |------------|------------------|-------------------|--------------------|-------------|
-| 3B         | L1 / L2 / L3     | SFT + GRPO        | [viki-3b](./models/) | Coming Soon |
-| 7B         | L1 / L2 / L3     | SFT + GRPO        | [viki-7b](./models/) | Coming Soon |
+| 3B         | L1 / L2 / L3     | SFT + RFT (GRPO)        | [viki-r-3b](https://huggingface.co/collections/henggg/viki-r-68ef92c3a67e90535ecc1a9b) | Public ✅ |
+| 7B         | L1 / L2 / L3     | SFT + RFT (GRPO)        | [viki-r-7b](https://huggingface.co/collections/henggg/viki-r-68ef92c3a67e90535ecc1a9b) | Public ✅ |
 
 ## 📑 Citation <a name="citation"></a>
 
