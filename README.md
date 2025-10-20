@@ -2,8 +2,9 @@
   <img src="./assets/logo.png" width="150"/>
   <h1 align="center">VIKI-R: Coordinating Embodied Multi-Agent Cooperation via Reinforcement Learning</h1>
   <a href="https://arxiv.org/abs/2506.09049"><img src="https://img.shields.io/badge/arxiv-2506.09049-b31b1b" alt="arXiv"></a>
-  <a href="https://faceong.github.io/VIKI-R/"><img src="https://img.shields.io/badge/Project_Page-green" alt="Project Page"></a>
+  <a href="https://faceong.github.io/VIKI-R/"><img src="https://img.shields.io/badge/Project_Page-yellow" alt="Project Page"></a>
   <a href='https://huggingface.co/datasets/henggg/VIKI-R'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Datasets-blue'></a>
+  <a href='https://huggingface.co/collections/henggg/viki-r-68ef92c3a67e90535ecc1a9b'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-green'></a>
 </div>
   
 ## 🔥 Overview <a name="overview"></a>
