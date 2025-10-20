@@ -22,7 +22,7 @@
 - **2025.10.20** – Released checkpoints of **VIKI-R**! Includes 3-layer models with **3B** and **7B** parameters.
 - **2025.09.19** – Our paper was **accepted to NeurIPS 2025 (Datasets and Benchmarks Track)** 🎉
 - **2025.08.15** – Our work became part of the **[MARS Challenge (Plan Track)](https://mars-eai.github.io/MARS-Challenge-Webpage/)** — welcome to participate!
-- **2025.06.09** – Released the **paper and code** for public access.
+- **2025.06.09** – Released the **paper, code and dataset** for public access.
 
 ## 🎯 Key Features
 
