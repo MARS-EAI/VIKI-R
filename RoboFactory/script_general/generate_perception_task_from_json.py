@@ -22,7 +22,7 @@ def main():
     for gt in data:
         num += 1
         print(f'Generating No.{num} tasks. Layout id is {gt["layout_id"]}.')
-        general_config_file = f'configs/robocasa_random_task/layout_{gt["layout_id"]}_pick_meat_multiple_assets.yaml'    # the config that consists all possible assets & agents in a layout
+        general_config_file = f'configs/layouts/layout_{gt["layout_id"]}.yaml'    # the config that consists all possible assets & agents in a layout
         with open(general_config_file, 'r', encoding='utf-8') as f:
             general_config = yaml.load(f.read(), Loader=yaml.FullLoader)
         # generate a subset config that fits the gt as temp_config
@@ -119,7 +119,7 @@ def main():
         render_camera = random.choice(render_cameras)
         temp_config['cameras']['human_render'] = [render_camera]
         temp_config['gt'] = gt
-        temp_config['task_name'] = 'PickMeatRandomTaskPerception'
+        temp_config['task_name'] = 'VikiBenchPerception'
 
         # print(general_config)
 

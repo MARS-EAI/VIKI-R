@@ -11,31 +11,17 @@ import os.path as osp
 from mani_skill.utils.wrappers.record import RecordEpisode
 from utils.wrappers.record import RecordEpisodeMA
 from mani_skill.trajectory.merge_trajectory import merge_trajectories
-from .solutions import solvePickMeat, solveStackCube, solveStrikeCube
-from .solutions import solvePlaceFood, solveTwoRobotsStackCube, solvePassShoe, solveLiftBarrier
-from .solutions import solveCameraAlignment, solveThreeRobotsStackCube
-from .solutions import solveTakePhoto, solveLongPipelineDelivery
-from .solutions import solvePickMeatRandomRobot, solvePickMeatRandomTask, solvePickRandomTaskPerception
+from .solutions import solveVikiBenchTask, solveVikiBenchPerception
+
 MP_SOLUTIONS = {
-    "PickMeat-rf": solvePickMeat,
-    "StackCube-rf": solveStackCube,
-    "StrikeCube-rf": solveStrikeCube,
-    "PassShoe-rf": solvePassShoe,
-    "LiftBarrier-rf": solveLiftBarrier,
-    "PlaceFood-rf": solvePlaceFood,
-    "TwoRobotsStackCube-rf": solveTwoRobotsStackCube,
-    "CameraAlignment-rf": solveCameraAlignment,
-    "ThreeRobotsStackCube-rf": solveThreeRobotsStackCube,
-    "TakePhoto-rf": solveTakePhoto,
-    "LongPipelineDelivery-rf": solveLongPipelineDelivery,
-    "PickMeatRandomRobot-rf": solvePickMeatRandomRobot,
-    "PickMeatRandomTask-rf": solvePickMeatRandomTask,
-    "PickMeatRandomTaskPerception-rf": solvePickRandomTaskPerception
+    "VikiBenchTask-rf": solveVikiBenchTask,
+    "VikiBenchPerception-rf": solveVikiBenchPerception,
 }
+
 def parse_args(args=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("-e", "--env-id", type=str, default="", help=f"Environment to run motion planning solver on. Available options are {list(MP_SOLUTIONS.keys())}")
-    parser.add_argument("-c", "--config", type=str, default="configs/robocasa/take_photo.yaml", help='Configuration to build scenes, assets and agents.')
+    parser.add_argument("-c", "--config", type=str, default="", help='Configuration to build scenes, assets and agents.')
     parser.add_argument("-o", "--obs-mode", type=str, default="none", help="Observation mode to use. Usually this is kept as 'none' as observations are not necesary to be stored, they can be replayed later via the mani_skill.trajectory.replay_trajectory script.")
     parser.add_argument("-n", "--num-traj", type=int, default=10, help="Number of trajectories to generate.")
     parser.add_argument("-s", "--seed", type=int, default=0, help="Seed of the random.")
@@ -59,7 +45,7 @@ def _main(args, proc_id: int = 0, start_seed: int = 0) -> str:
             env_id = config['task_name'] + '-rf'
     env = gym.make(
         env_id,
-        config=args.config, 
+        config=args.config,
         obs_mode=args.obs_mode,
         control_mode="pd_joint_pos",
         render_mode=args.render_mode,
@@ -71,7 +57,7 @@ def _main(args, proc_id: int = 0, start_seed: int = 0) -> str:
     )
     if env_id not in MP_SOLUTIONS:
         raise RuntimeError(f"No already written motion planning solutions for {env_id}. Available options are {list(MP_SOLUTIONS.keys())}")
-    
+
     if not args.traj_name:
         new_traj_name = time.strftime("%Y%m%d_%H%M%S")
     else:
@@ -103,11 +89,7 @@ def _main(args, proc_id: int = 0, start_seed: int = 0) -> str:
     failed_motion_plans = 0
     passed = 0
     while True:
-        #try:
         res = solve(env, seed=seed, debug=False, vis=True if args.vis else False)
-        #except Exception as e:
-        #   print(f"Cannot find valid solution because of an error in motion planning solution: {e}")
-        #    res = -1
         if res == -1:
             success = False
             failed_motion_plans += 1
@@ -166,7 +148,5 @@ def main(args):
         _main(args)
 
 if __name__ == "__main__":
-    # start = time.time()
     mp.set_start_method("spawn")
     main(parse_args())
-    # print(f"Total time taken: {time.time() - start}")
