@@ -18,11 +18,9 @@
   1. **Supervised Fine-Tuning (SFT)** with high quality Chain-of-Thought (CoT) annotations.
   2. **Reinforcement Fine-Tuning (RFT)** using Grouped Relative Policy Optimization (GRPO) and combined diverse rewards.
 
-## TODO
-- Open source an easy-use data generation pipeline for public use.
-
 ## 🕓 Update Timeline
 
+- **26.03.10** – Open source an easy-use data generation pipeline for public use.
 - **25.10.20** – Released checkpoints of **VIKI-R**! Includes 3-layer models with **3B** and **7B** parameters.
 - **25.09.19** – Our paper was **accepted to NeurIPS 2025 (Datasets and Benchmarks Track)** 🎉
 - **25.08.15** – Our work became part of the **[MARS Challenge (Plan Track)](https://mars-eai.github.io/MARS-Challenge-Webpage/)** — welcome to participate!
