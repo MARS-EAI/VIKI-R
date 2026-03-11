@@ -7,6 +7,7 @@
 <a href="https://arxiv.org/abs/2506.09049"><img src="https://img.shields.io/badge/arxiv-2506.09049-b31b1b" alt="arXiv"></a>
 <a href="https://faceong.github.io/VIKI-R/"><img src="https://img.shields.io/badge/Project_Page-green" alt="Project Page"></a>
 <a href='https://huggingface.co/datasets/henggg/VIKI-R'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Datasets-blue'></a>
+<a href='https://huggingface.co/datasets/FACEONG/VIKI-Assets'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Assets-yellow'></a>
 </div>
 
 ## Overview
@@ -21,13 +22,13 @@ This repository provides the **data production pipeline** for [VIKI-Bench](https
 
 The pipeline takes **task templates** as input, instantiates them with randomized robots, objects, and scene layouts, then renders visual observations through [ManiSkill3](https://www.maniskill.ai/) simulation to produce complete training samples.
 
-> For model training and inference code, please refer to [VIKI-R (MARS-EAI)](https://github.com/MARS-EAI/VIKI-R).
+> For model training and inference code, please refer to the [`main` branch](https://github.com/MARS-EAI/VIKI-R/tree/main).
 
 ## Installation
 
 ```bash
-git clone https://github.com/FACEONG/RoboViki-R.git
-cd RoboViki-R
+git clone -b data-pipeline https://github.com/MARS-EAI/VIKI-R.git
+cd VIKI-R
 conda create -n viki-r python=3.9
 conda activate viki-r
 pip install -r RoboFactory/requirements.txt
@@ -66,7 +67,6 @@ RoboFactory/
 │   └── entities.py                              # Agent, Asset, Action, Position definitions
 │
 ├── eval_gt.py                                   # Batch validate generated data
-├── viki_reward_plan.py                          # Reward functions for GRPO training
 ├── tasks/                                       # ManiSkill task environments
 │   ├── viki_bench_task.py                       # VikiBenchTask – L1/L2 scene environment
 │   └── viki_bench_perception.py                 # VikiBenchPerception – L3 scene environment
