@@ -163,18 +163,18 @@ python gpt4o.py
 If our work is helpful to you, please consider citing our work!
 
 ```bibtex
-@article{kang2025viki,
+@inproceedings{kangviki,
   title={VIKI-R: Coordinating Embodied Multi-Agent Cooperation via Reinforcement Learning},
-  author={Kang, Li and Song, Xiufeng and Zhou, Heng and Qin, Yiran and Yang, Jie and Liu, Xiaohong and Torr, Philip and Bai, Lei and Yin, Zhenfei},
-  journal={arXiv preprint arXiv:2506.09049},
-  year={2025}
+  author={Kang, Li and Song, Xiufeng and Zhou, Heng and Qin, Yiran and Yang, Jie and Liu, Xiaohong and Torr, Philip and BAI, LEI and Yin, Zhenfei},
+  booktitle={The Thirty-ninth Annual Conference on Neural Information Processing Systems Datasets and Benchmarks Track}
 }
 ```
 ```bibtex
-@article{qin2025robofactory,
-  title={RoboFactory: Exploring Embodied Agent Collaboration with Compositional Constraints},
+@inproceedings{qin2025robofactory,
+  title={Robofactory: Exploring embodied agent collaboration with compositional constraints},
   author={Qin, Yiran and Kang, Li and Song, Xiufeng and Yin, Zhenfei and Liu, Xiaohong and Liu, Xihui and Zhang, Ruimao and Bai, Lei},
-  journal={arXiv preprint arXiv:2503.16408},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={10075--10085},
   year={2025}
 }
 ```
